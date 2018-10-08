@@ -1,0 +1,12 @@
+*.pyc
+*.c~
+*.py~
+*.log
+*.aux
+*.out
+*.toc
+*.synctex.gz
+*.bbl
+*.blg
+*.o
+*.exe
