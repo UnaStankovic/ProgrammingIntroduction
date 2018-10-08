@@ -8,6 +8,7 @@
 \usepackage[T2A]{fontenc} % enable Cyrillic fonts
 \usepackage[utf8]{inputenc} % make weird characters work
 \usepackage{graphicx}
+\usepackage{verbatim}
 
 \usepackage[english,serbian]{babel}
 %\usepackage[english,serbianc]{babel} %ukljuciti babel sa ovim opcijama, umesto gornjim, ukoliko se koristi cirilica
@@ -44,24 +45,25 @@ Kada se razmišlja o tome šta sve računarstvo obuhvata, lako se uviđa da rač
 Da bismo u potpunosti razumeli računarstvo moramo imati uvid u njegove početke i razvoj.
  
 \subsection{Fon Nojmanova arhitektura}
+\label{sec:fN}
 Na osnovu istorijata može se uočiti da svi navedeni računari imaju nedostatak jedne važne karakteristike računara danas, a to je programabilnost. Mašine korišćene nekada nisu bile programabilne već su funkcionisale po unapred definisanom programu određenom samom konstrukcijom mašine. Iako ovakav pristup nije sasvim izumro (danas se može videti na primeru digitrona), uglavnom nije poželjan. Prava promena u pristupu, koja je dovela do stvaranja programabilnih računara, nastala je ranih 1940-ih godina sa pojavom računara koji bi programe koje izvršavaju čuvali u memoriji zajedno sa podacima. Takve računare nazivamo računarima sa skladištenim podacima (engl. stored program computers). Jedna od najvažnijih karakteristika ovih računara je da kod njih postoji jasna podela na hardver i softver. Za rodonačelnika ovakve arhitekture smatra se Džon fon Nojman. On je 1945. godine opisao arhitekturu čija je glavna karakteristika da se programi mogu učitavati isto kao i podaci koji se obrađuju. Primeri prvih ovakvih računara su EDVAC, Mark 1 i EDSAC.\\\\
 Osnovni elementi fon Nojmanove arhitekture su:
 \begin{enumerate}
 \item procesor - koji čine aritmetičko-logička jedinica, kontrolna jedinica i registri, i 
 \item glavna memorija 
 \end{enumerate}
-koji su međusobno povezani, dok se ostale komponente računara smatraju pomoćnim. Prikaz Fon Nojmanove arhitekture je na slici \ref{fig:fonN}.
+koji su međusobno povezani, dok se ostale komponente računara smatraju pomoćnim. Prikaz fon Nojmanove arhitekture je na slici \ref{fig:fonN}.
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[scale=0.25]{pictures/fonN.png}
 \end{center}
-\caption{Šematski prikaz Fon Nojmanove arhitekture}
+\caption{Šematski prikaz fon Nojmanove arhitekture}
 \label{fig:fonN}
 \end{figure}
 Pod pomoćne komponente ubrajamo ulazno-izlazne jediice, spoljašnje memorije itd., koje da bi funkcionisale moraju biti povezane na centralni deo računara (procesor i glavnu memoriju).
 Osnovna uloga procesora je obrada podataka, dok je osnovna uloga memorije skladištenje podataka koji se obrađuju, kao i programa. Postoji jedinstven način na koji zapisujemo i podatke i programe, a to je uz pomoć nula i jedinica, odnosno, binarnim zapisom. Tokom rada računara podaci i programi se prenose između procesora i glavne memorije.
-\subparagraph{Procesor} Prva centralna komponenta Fon Nojmanove arhitekture. Procesor, koji je odgovoran za rad računara, sastoji se od \textit{kontrolne jedinice} - koja upravlja radom procesora i \textit{aritmetičko-logičke jedinice} - koja je zadužena za izvođenje aritmetičkih operacija (sabiranje, oduzimanje, množenje, poređenje, itd. ) i logičkih operacija (konjunkcija, negacija, itd. ) nad brojevima. Osim dva navedena dela procesor sadrži i određeni broj registara, obično fiksirane širine (8, 16, 32 ili 64 bita), koji privremeno mogu da čuvaju podatke. Danas procesori neretko poseduju više jezgara (engl. core) koja istovremeno izvršavaju instrukcije čime se obezbeđuje paralelno izvršavanje.
-\subparagraph{Memorija} Druga centralna komponenta Fon Nojmanove arhitekture
+\subparagraph{Procesor} Prva centralna komponenta fon Nojmanove arhitekture. Procesor, koji je odgovoran za rad računara, sastoji se od \textit{kontrolne jedinice} - koja upravlja radom procesora i \textit{aritmetičko-logičke jedinice} - koja je zadužena za izvođenje aritmetičkih operacija (sabiranje, oduzimanje, množenje, poređenje, itd. ) i logičkih operacija (konjunkcija, negacija, itd. ) nad brojevima. Osim dva navedena dela procesor sadrži i određeni broj registara, obično fiksirane širine (8, 16, 32 ili 64 bita), koji privremeno mogu da čuvaju podatke. Danas procesori neretko poseduju više jezgara (engl. core) koja istovremeno izvršavaju instrukcije čime se obezbeđuje paralelno izvršavanje.
+\subparagraph{Memorija} Druga centralna komponenta fon Nojmanove arhitekture
 je glavna memorija. Memorija predstavlja linearno uređeni niz registara, pri čemu svaki ima svoju adresu. Kao posledica osobine ove memorije da se sadržaju može pristupati u slučajnom redosledu, čest naziv je i memorija sa slobodnim pristupom (engl. RAM - random access memory). Razlikujemo nekoliko parametara koji odlikuju memoriju, to su:
 \begin{itemize}
 \item kapacitet - GB,
@@ -78,7 +80,7 @@ Na slici \ref{fig:memh} može se videti memorijska hijerarhija.
 \end{figure}
 
 \subsection{Hardver}
-Bez obzira na činjenicu da osnovu savremenih računarskih sistema i dalje čini Fon Nojmanova arhitektura, za rad računara u današnjem smislu reči potreban je i čitav niz hardverskih komponenti koje nam dodatno olakšavaju. Opis komponenti koje čine jedan računar danas ne sastoji se od kućišta, monitora, tastature i miša, već nam je potreban apstraktniji, sveobuhvatniji opis. Upravo, kako bi se jasnije i preciznije opisao računar kaže se da ga čine:
+Bez obzira na činjenicu da osnovu savremenih računarskih sistema i dalje čini fon Nojmanova arhitektura, za rad računara u današnjem smislu reči potreban je i čitav niz hardverskih komponenti koje nam dodatno olakšavaju. Opis komponenti koje čine jedan računar danas ne sastoji se od kućišta, monitora, tastature i miša, već nam je potreban apstraktniji, sveobuhvatniji opis. Upravo, kako bi se jasnije i preciznije opisao računar kaže se da ga čine:
 \begin{itemize}
 \item procesor tj. centralna procesorska jedinica (engl. Central Processing Unit,
 CPU), koja obrađuje podatke,
@@ -107,9 +109,9 @@ Kao naredni primer uzmimo poređenje dva broja, odnosno, kao izlaz treba da dobi
 Ovakav izraz možemo zapisati kao:
 \begin{verbatim}
 ako je x >= y onda
-m := x
+    m := x
 inače
-m := y
+    m := y
 \end{verbatim}
 \end{primer}
 \begin{primer}
@@ -117,7 +119,8 @@ Kao još jedan primer uzmimo stepenovanje:
 \begin{verbatim}
 s := 1, i := 0
 dok je i < n radi sledeće:
-s := s·x, i := i + 1
+    s := s·x, 
+    i := i + 1
 \end{verbatim}
 \end{primer}
 Savremeni softver klasifikujemo u 2 kategorije:
@@ -154,10 +157,90 @@ verifikacija softvera, itd).
 \end{itemize}
 
 \subsection{Programiranje, algoritmi i složenost}
-Programiranje predstavlja proces zapisivanja algoritama u nekom programskom jeziku. Algoritam predstavlja precizan opis postupka za rešavanje nekog problema u konačnom broju koraka. Algoritmi se odlikuju svojom složenošću. Ta složenost može biti vremenska ili memorijska. Cilj analize algoritama je predvidjanje njegovog ponašanja i brzine izvršavanja bez realizacije na nekom konkretnom računaru. Ta procena treba da se odnosi na svaki računar. Nemoguće bi bilo na svakom računaru ispitati izvršavanje nekog algoritma. Zbog toga se smatra da je analiza algoritama približna.~\cite{Zivkovic}
+Programiranje predstavlja proces zapisivanja algoritama u nekom programskom jeziku.
+Algoritam predstavlja precizan opis postupka za rešavanje nekog problema u konačnom broju koraka. Algoritmi se odlikuju svojom složenošću. Ta složenost može biti vremenska ili memorijska. Vremenska složenost se odnosi na vreme potrebno za izvršavanje nekog algoritma. Memorijska složenost označava koliko memorijskih resursa je potrebno za izvršavanje algoritma. Cilj analize algoritama je predviđanje njegovog ponašanja i brzine izvršavanja bez realizacije na nekom konkretnom računaru. Ta procena treba da se odnosi na svaki računar. Nemoguće bi bilo na svakom računaru ispitati izvršavanje nekog algoritma. Zbog toga je analiza algoritama približna tehnika.~\cite{Zivkovic} Postoji uniformna tehnika za grafički prikaz algoritama, međutim, mi nećemo ulaziti u detalje, već će biti dato nekoliko ilustrativnih primera kako bi se dobila glavna ideja.
+\begin{primer}
+Kao najjednostavniji primer algoritma uzmimo primer sa lampom. U početnom koraku lampa je ugašena, a mi želimo da je upalimo ili, ako ne radi, da je odnesemo na popravku. Najpre, proveravamo da li je lampa uključena u struju. Romb je znak kojim označavamo uslov. Ako lampa nije uključena u struju treba je uključiti. U suprotnom, ako je lampa uključena u struju, ali ne svetli, proveravamo da li je sijalica pregorela. Ako jeste, menjamo sijalicu. Ako nije, lampa je pokvarena i moramo je popraviti. Na slici \ref{fig:alg0} vidimo kako bismo grafički prikazali opisani postupak.
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.25]{pictures/lamp.png}
+\end{center}
+\caption{Primer najjednostavnijeg algoritma.}
+\label{fig:alg0}
+\end{figure}
+\end{primer}
+
+\begin{primer}
+Kao primer, više prikladan računarskoj terminologiji, uzmimo sabiranje $2$ broja, $M$ i $N$. Na slici \ref{fig:alg1} vidimo kako bismo grafički prikazali postupak sabiranja brojeva.
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.5]{pictures/sum-num-alg.png}
+\end{center}
+\caption{Prikaz algoritma za sabiranje dva broja.}
+\label{fig:alg1}
+\end{figure}
+\end{primer}
+
+U sekciji \ref{sec:fN} koja govori o fon Nojmanovoj arhitekturi, videli smo da se podaci (i programi) smeštaju u memoriju računara, najčešće u vidu niza bitova. Međutim, kako se programer ne bi zamarao detaljima i kako bi mogao da radi na dosta apstraktnijem nivou, programski jezici obezbeđuju koncept promenljivih. Promenljive daju mogućnost programeru da podacima dodeli imena i da im na osnovu tih imena i pristupa. Svaka promenljiva u programu ima dodeljen određeni niz bajtova. \\\\
+Promenenljive se odlikuju svojim tipovima i životnim vekom. Životni vek je koncept koji nam govori u kom delu faze izvršavanja programa je promenljivoj dodeljen memorijski prostor, odnosno, kada je možemo koristiti. Životni vek promenljive omogućava da na različitim mestima u programu koristimo različite promenljive istog imena i pravilo dosega identifikatora (engl. scope) određuje deo programa u kome se uvedeno ime može koristiti. Druga odlika promenljivih su tipovi. Organizovanje podataka u tipove pomaže programeru da ne mora da razmišlja o podacima na nivou njihove binarne reprezentacije, već daleko apstraktnije. Neki od najčešćih tipova su:
+\begin{itemize}
+\item celi brojevi (... -3, -2, -1, 0, 1, 2, 3,...),
+\item brojevi u pokretnom zarezu ( 1.0, 3.14, 9.81,...),
+\item karakteri (a, b, P, ,, !, ...),
+\item niske ("zdravo", "svima",...)
+\end{itemize} 
+Osim ovih postoje i složeniji tipovi koji mogu objediniti više istih ili različitih tipova, pa tako imamo nizove, strukture, liste, i dr.
+Svaki tip podataka se karakteriše vrstom podataka koje opisuje, skupom operacija koje se nad njime vrše i načinom reprezentacije i detaljima implementacije tog tipa.
+
+Još jedan od najbitnijih koncepata programiranja je pojam {\em petlje}. Petlje predstavljaju konstrukcije koje nam omogućuju da izvršavamo jednu ili više akcija više puta. Sastoje se iz uslova i tela petlje. Uslov nam definiše u kom slučaju ćemo napustiti petlju (na primer, ako broj iteracija\footnote{Iteracija petlje predstavlja jedno izvršavanje koda koji se nalazi u telu petlje.} petlje predje 100, ili ako je neka promenljiva n veca od 1000, itd.). Telo petlje sadrži akcije koje želimo da ponavljamo.
+
+\begin{primer}
+Za naredni primer, uzećemo sabiranje prvih 50 brojeva. Naime, naporno bi bilo da pišemo $1+2+3+...+50$, a da ne pomišljamo na brojeve poput $1000$, $100 000$ ili $1 000 000$. To bi bilo gotovo neizvodivo. Zbog toga, želimo da na apstraktniji način opišemo proceduru koja će umesto nas izvršiti sabiranje prvih 50 brojeva. Da bismo to uspeli moramo iskoristiti petlju. Na slici \ref{fig:alg2} vidimo kako bismo grafički prikazali postupak
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.5]{pictures/algorithm-flow.png}
+\end{center}
+\caption{Prikaz algoritma za sabiranje prvih 50 brojeva.}
+\label{fig:alg2}
+\end{figure}
+\end{primer}
+
+\subsection{Klasifikacija programskih jezika}
+Brojnost programskih jezika raste iz godine u godinu. Stalno se pojavljuju novi i brži jezici, unapređuju se stari i nemoguće je ispratiti sve promene. Da bismo odmah razumeli okvirno kako neki programski jezik funkcioniše moramo znati kojoj paradigmi pripada. Kada kažemo da neki jezik pripada nekoj paradigmi mi zapravo govorimo nešto o karakteristikama tog jezika koje važe za sve jezike koji pripadaju istoj grupi. Programske paradigme su formirane prema načinu programiranja. Neki od najkorišćenijih programskih jezika današnjice spadaju u grupu imperativnih programskih jezika, npr. jezik C. Glavna karakteristika imperativnih programskih jezika je da stanje programa karakterišu promenljive kojima se predstavljaju podaci i naredbe kojima se vrše određene transformacije nad promenljivim (sabiranje, oduzimanje, poređenje, itd.). Osim imperativne, značajne programske paradigme su i
+objektno-orijentisana (C++, Java (Java NIJE JavaScript!), C\# itd.), funkcionalna (Lisp, Haskell, ML, itd.), logička (u nju spada, na primer, Prolog). Sa razvojem savremenih programskih jezika došlo je do brisanja jasnih granica između ovih jezika, pa tako dolazi do mešanja karakteristika različitih paradigmi.\\\\
+Za većinu programskih jezika danas reći ćemo da su proceduralni. Kada kažemo da je neki jezik proceduralan zapravo želimo da iskažemo činjenicu da je zadatak programera da opiše način (proceduru) kojim će se doći do rešenja problema. Kao idejno potpuno kontrastni, postoje deklarativni programski jezici (poput Prologa) koji od programera zahteva precizan opis problema, a mehanizam programskog jezika se onda bavi pronalaskom rešenja.\\\\
+Prema tipu konverzije tipova imamo statički i dinamički tipizirane jezike. Kod statički tipiziranih jezika (poput C-a) zahteva se da programer definiše tip svake promenljive i da ga potom više ne menja tokom izvršavanja programa. Kod dinamički tipiziranih jezika ista promenljiva može sadržati podatke različitog tipa tokom različitih faza izvršavanja. Nekada je moguće čak i vršenje operacija nad promenljivima različitog tipa, pri čemu dolazi do implicitne konverzije. Na primer, jezik JavaScript ne zahteva definisanje tipa promenjlivih i dopušta kôd poput $a = 1; b = "2"; a = a + b;$\\\\
+
+Osnovni gradivni elementi imperativnih programskih jezika su naredbe.
+Naredba dodele je osnovna naredba i njom se vrednost neke promenljive postavlja na vrednost nekog izraza definisanog nad konstantama i promenljivim. Šta to, u praksi, znači? To znači da kada kažemo $x = 3*y$ zapravo promenljivoj x dodeljujemo vrednost $3*y$. Naredbe se u programu nižu jedna za drugom, osim u slučaju korišćenja naredbi za kontrolu toka izvršavanja programa. Ove naredbe u zavisnosti od tekućih
+vrednosti promenljivih neke naredbe mogu da ne izvršavaju, izvršavaju ih više puta(petlje) i slično. Najčešće korišćene kontrolne strukture su granajuće naredbe (if-then-else), petlje (for, while, do-while, repeat-until) i naredbe skoka (goto). Naredba if-then-else ima sledeći opšti oblik:
+\begin{verbatim}
+if izraz1 
+   naredba1
+else 
+   naredba2
+\end{verbatim}
+Treba obratiti pažnju da je else grana neobavezna, odnosno, može, ali ne mora, da postoji. 
+\begin{primer}
+Naredni primer štampa veći od dva broja.
+\begin{verbatim}
+if a > b
+   print(a)
+else
+   print(b)
+\end{verbatim}
+\end{primer}
+
+\begin{primer}
+Naredni primer u promenljivu $a$ smešta tekst $"$Hello world!$"$ ako je vrednost promenljive b veća od 0.
+\begin{verbatim}
+if b > 0
+   a = "Hello world!"
+\end{verbatim}
+\end{primer}
+
 
 \newpage
-
 \section{Uvod u web}
 \label{sec:uvodweb}
 
@@ -205,12 +288,12 @@ Programiranje predstavlja proces zapisivanja algoritama u nekom programskom jezi
 
 %\end{primer}
 
-
+\newpage
 \section{Zaključak}
 \label{sec:zakljucak}
 
 \addcontentsline{toc}{section}{Literatura}
-\appendix
+%\appendix
 \bibliography{seminarski} 
 \bibliographystyle{plain}
 
