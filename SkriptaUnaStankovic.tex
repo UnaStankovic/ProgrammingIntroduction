@@ -260,7 +260,6 @@ Kao posledica navedenog, $for$ petlju možemo posmatrati kao:
 for(inicijalizacija, uslov izlaska, korak)
     kod koji želimo da se izvrši
 \end{verbatim}
-
 \begin{primer}
 Naredni primer predstavlja jedan od uobičajenih oblika u kojima se $for$ petlja pojavljuje:
 \begin{verbatim}
@@ -270,6 +269,7 @@ for(i = 0; i < n; i++)
 Ovaj primer za svaki korak petlje ispisuje broj koraka. 
 \end{primer}
 
+
 \subsection{Klasifikacija programskih jezika}
 
 Brojnost programskih jezika raste iz godine u godinu. Stalno se pojavljuju novi i brži jezici, unapređuju se stari i nemoguće je ispratiti sve promene. Da bismo odmah razumeli okvirno kako neki programski jezik funkcioniše moramo znati kojoj paradigmi pripada. Kada kažemo da neki jezik pripada nekoj paradigmi mi zapravo govorimo nešto o karakteristikama tog jezika koje važe za sve jezike koji pripadaju istoj grupi. Programske paradigme su formirane prema načinu programiranja. Neki od najkorišćenijih programskih jezika današnjice spadaju u grupu imperativnih programskih jezika, npr. jezik C. Glavna karakteristika imperativnih programskih jezika je da stanje programa karakterišu promenljive kojima se predstavljaju podaci i naredbe kojima se vrše određene transformacije nad promenljivim (sabiranje, oduzimanje, poređenje, itd.). Osim imperativne, značajne programske paradigme su i
@@ -277,8 +277,47 @@ objektno-orijentisana (C++, Java (Java NIJE JavaScript!), C\# itd.), funkcionaln
 Za većinu programskih jezika danas reći ćemo da su proceduralni. Kada kažemo da je neki jezik proceduralan zapravo želimo da iskažemo činjenicu da je zadatak programera da opiše način (proceduru) kojim će se doći do rešenja problema. Kao idejno potpuno kontrastni, postoje deklarativni programski jezici (poput Prologa) koji od programera zahteva precizan opis problema, a mehanizam programskog jezika se onda bavi pronalaskom rešenja.\\\\
 Prema tipu konverzije tipova imamo statički i dinamički tipizirane jezike. Kod statički tipiziranih jezika (poput C-a) zahteva se da programer definiše tip svake promenljive i da ga potom više ne menja tokom izvršavanja programa. Kod dinamički tipiziranih jezika ista promenljiva može sadržati podatke različitog tipa tokom različitih faza izvršavanja. Nekada je moguće čak i vršenje operacija nad promenljivima različitog tipa, pri čemu dolazi do implicitne konverzije. Na primer, jezik JavaScript ne zahteva definisanje tipa promenjlivih i dopušta kôd poput $a = 1; b = "2"; a = a + b;$\\\\
 
+\subsection{Primeri za vežbu}
+\begin{primer}
+Napisati primer algoritma za kuvanje kafe.
+\end{primer}
+\begin{primer}
+Napisati primer algoritma za provodjenje jednog dana.
+\end{primer}
+\begin{primer}
+Napisati primer algoritma za savladavanje nekog kursa. 
+\end{primer}
+\begin{primer}
+Napisati primer algoritma za računanje zbira prvih 10 parnih brojeva.
+\end{primer}
+\begin{primer}
+Koju vrednost ima promenljiva $x$ nakon izvršavanja narednog koda:
+\begin{verbatim}
+int x = 0;
+if (x > 3);
+    x++;
+\end{verbatim}
+\end{primer}
+\begin{primer}
+Napisati pseudo kod za računanje zbira 3 broja.
+\end{primer}
+\begin{primer}
+Napisati pseudo kod u kome se promenljivoj $a$ dodeljuje vrednost $3$, promenljivoj $b$ dodeljuje vrednost $6$ i onda se njihov zbir smešta u promenljivu $c$. Nakon toga, proveriti da li ostatak pri deljenju promenljive (računa se uz pomoć \%) $c$ sa brojem 2 daje 0, odnosno, da li je $c$ paran.
+\end{primer}
+\begin{primer}
+Napisati pseudo kod\footnote{Pseudo kod predstavlja kod koji nije dat u formalnim terminima, već predstavlja ideju kako bi kod trebao da izgleda.} algoritma za računanje zbira prvih 10 parnih brojeva.
+\end{primer}
+\begin{primer}
 
+\end{primer}
 
+\subsection{Domaći zadatak}
+Domaći zadatak:
+\begin{itemize}
+\item pročitati nešto dodatno o istorijatu računarstva, 
+\item odraditi sve primere i pitalice,
+\item samostalno pronaći još 10 novih i uraditi ih
+\end{itemize}
 \newpage
 \section{Uvod u web}
 \label{sec:uvodweb}
