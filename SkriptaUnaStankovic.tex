@@ -447,7 +447,7 @@ Komunikacione kanale možemo podeliti u dve grupe prema tipu prenosa informacija
 \item Bežične 
 \end{enumerate}
 
-\subsubsection{Žičane komunikacije}
+\subparagraph{Žičane komunikacije} 
 \subparagraph{Parice}(eng. twisted-pair wire) - Najkorišćeniji način komunikacije. Uređaji se povezuju korišćenjem uvijenih uparenih izolovanih bakarnih žica. Žice se uparuju i uvijaju kako bi se smanjile smetnje u komunikaciji. Brzina prenosa kroz ovakav medijum obično varira od $2Mbps$ do $100Mbps$.
 \begin{figure}[h!]
 \begin{center}
@@ -476,7 +476,7 @@ Komunikacione kanale možemo podeliti u dve grupe prema tipu prenosa informacija
 \label{fig:optical}
 \end{figure}
 
-\subsubsection{Bežične komunikacije}
+\subparagraph{Bežične komunikacije}
 Bežična komunikacija, kao što i samo ime sugeriše, ne koristi kablove za prenos podataka. Ovakav vid komunikacije poseban značaj nalazi kod prenosivih računara, mobilnih telefona ili dosta udaljenih lokacija do kojih bi bilo jako skupo, ako ne i nemoguće, sprovesti kablovsku mrežu. Umesto kablova ove mreže koriste radio talase, mikro talase i infracrvene zrake. Podaci se prenose moduliranjem amplitude, frekvencije ili faze talasa. Neke od danas najkorišćenijih tehnologija su: 
 \begin{itemize}
 \item Bluetooth - koristi se za veoma male razdaljine (do $10$ ili do $100$ metara. Brzina prenosa je do $3Mbps$. Bluetooth tehnologija koristi radio talase i može da prođe i kroz čvrste prepreke. Koristi se najčešće za komunikaciju računara sa periferjskim uređajima, kao i u mobilnoj telefoniji.
@@ -487,6 +487,20 @@ Bežična komunikacija, kao što i samo ime sugeriše, ne koristi kablove za pre
 \end{itemize}
 
 \subsubsection{Mrežni softver}
+Mrežna infrastruktura sama po sebi ne služi ničemu bez mrežnog softvera. Uloga mrežnog softvera je da obezbedi korisniku mrežnu komunikaciju. Na primer, programer pregledača Veba, ne treba da misli o tome kako će pregledač primiti informacije, već treba da se fokusira samo na aspekte značajne za njegovu konkretnu aplikaciju, a sve ostale detalje prepusti nižem sloju mrežnog softvera.
+
+Mrežni softver, najgrublje, može da se podeli na dva nivoa:
+\begin{itemize}
+\item niskog nivoa - mrežni softver koji omogućuje korišćenje različitih mrežnih uređaja, poput mrežnih kartica, modema, itd. Ovaj softver se nalazi u jezgru operativnog sistema i u obliku upravljača perifernim uređajima, takoznavnih drajvera (eng. driver). On upravlja računarskim hardverom i komunikacijskom opremom. Korisnik nikad ne koristi ovaj softver direktno, a često nije ni svestan njegovog postojanja 
+
+\item 
+\end{itemize}
+Osnovni zadatak ovog softvera je da pruˇzi usluge mreˇznim aplikacijama
+(tj. njihovim programerima) koje korisnici koriste. Ove aplikacije ˇcine mreˇzni
+softver visokog nivoa i pruˇzaju razliˇcite usluge i servise korisnicima na mreˇzi,
+kao ˇsto je slanje i prijem elektronske poˇste, pregledanje Veba i sl.
+Podela na samo dva nivoa predstavlja priliˇcno uproˇs´ceno glediˇste. S obzirom
+na znaˇcaj ovog koncepta, o slojevitosti mreˇza ´ce biti viˇse reˇci u poglavlju 1.5.
 
 \newpage
 \section{HTML i CSS}
