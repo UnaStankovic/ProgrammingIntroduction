@@ -506,7 +506,7 @@ Mrežni softver, najgrublje, može da se podeli na dva nivoa:
 \newpage
 
 \section{HTML i CSS}
-\label{sec:uvod}
+\label{sec:htmlcss}
 HTML i CSS predstavljanju neizostavan materijal pri učenju web programiranja. Upravo zbog njihovog velikog značaja im posvećujem celo poglavlje. Slajdovi korišćeni prilikom predavanja su apsolutno nedovoljan materijal. Svi materijali korišćeni pri kreiranju časova, kao i ovog materijala su javno dostupni i nalaze se na:
 \begin{itemize}
 \item Aleksandar Veljković, Veb programiranje, Matematički fakultet http://poincare.matf.bg.ac.rs/~aleksandar/files/web/skripta.pdf
@@ -591,10 +591,268 @@ Forma za registraciju za učešće na nekom kursu. Zadatak je kreirati stranicu 
 Neke od informacija o polaznicima kurseva su obavezne, neke nisu, sami odredite koje jesu. Osim navedenih treba dodati jos barem 2 dodatne informacije po izboru u različitim oblicima.
 \end{primer}
 
+\subsection{CSS}
+\subsubsection{Zadaci sa casa}
+
+\begin{primer}
+Kreirati stranicu zdrave hrane.
+\end{primer}
+
 \subsubsection{Domaći zadaci}
 Domaći zadaci vezani za ovo poglavlje se odnose na unapređivanje i dodavanje sadržaja i isprobavanje tagova i elemenata nad zadacima rađenim na časovima. 
 
 \newpage
+
+\section{JavaScript}
+\label{sec:javascript}
+
+\subsection{Uvod}
+\subsubsection{Obnavaljanje osnovnih konstrukta}
+Osnovni elementi za opis izračunavanja u programima nazivaju se naredbe.
+Naredbe za kontrolu toka omogućavaju različite načine izvršavanja programa, u zavisnosti od vrednosti promenljivih. Naredbe za kontrolu toka mogu biti:
+\begin{itemize}
+\item naredbe grananja i 
+\item petlje.
+\end{itemize}
+Osnovni oblik naredbe koji se javlja je takozvana naredba izraza (ova vrsta naredbi obuhvata i naredbu dodele i naredbu poziva funkcije).
+Naime, svaki izraz završen karakterom ; je naredba. Na primer:
+\begin{verbatim}
+3 + 4*5;
+n = 3;
+c++;
+f();	
+\end{verbatim}
+Nekada, želimo da više različitih naredbi grupišemo i da ih tretiramo kao jednu jedinstvenu naredbu. Vitičaste zagrade { i } se koriste da grupišu naredbe u složene naredbe, odnosno blokove, i takvi blokovi se mogu koristiti na svim mestima gde se mogu koristiti i pojedinačne naredbe. 
+
+\subparagraph{Naredbe grananja} (ili naredbe uslova), na osnovu vrednosti
+nekog izraza, odreduju naredbu (ili grupu naredbi) koja će biti
+izvršena.
+\begin{verbatim}
+if (izraz)
+	naredba1
+else
+	naredba2
+\end{verbatim}
+Naredbe $naredba1$ i $naredba2$ su ili pojedinačne naredbe (kada se završavaju simbolom ;) ili blokovi naredbi zapisani između vitičastih zagrada (na kraju kojih ne ide ;).
+Deo naredbe else je opcioni, odnosno, ne mora postojati, pa se može napisati samo if grana.
+Izraz izraz predstavlja logički uslov:
+\begin{verbatim}
+if (5 > 7)
+   a = 1;
+else
+   a = 2;
+
+
+if (7)
+    a = 1;
+else 
+    a = 2;
+    
+a = 3;
+if (a = 0)
+    console.log("a je nula\n");
+else
+    console.log("a nije nula\n");
+\end{verbatim}
+
+
+Često možemo imati višestruke odluke, za šta koristimo $else\ if$ konstrukciju oblika:
+\begin{verbatim}
+if (izraz1)
+    naredba1
+else if (izraz2)
+    naredba2
+else if (izraz3)
+    naredba3
+else
+    naredba4
+\end{verbatim}
+
+\begin{primer}
+Primer $else\ if$ naredbe.
+\begin{verbatim}
+if (a > 20)
+   console.log("A je vece od 20\n");
+else if (a > 10)
+   console.log("A je vece od 10\n");
+else if (a < -20)
+   console.log("A je manje od -20\n");
+else if (a < -10)
+   console.log("A je manje od -10\n");
+else
+   console.log("A pripada intervalu [-10, 10]\n");
+\end{verbatim}
+\end{primer}
+
+Ternarni operator je uslovni operator oblika: $uslov\ ?\ ispunjen\ :\ inace$ i ima isto značenje kao i if else. 
+\begin{primer} Zadatak je smestiti veći od dva broja u promenljivu $x$. Prvi if else ima isto značenje kao i ternarni operator koji smešta veći broj u $x$. Ako je $a$ vece od $b$ postavlja se $x$ na $a$, inače postavlja se na $b$.
+\begin{verbatim}
+if (a > b)
+   x = a;
+else
+   x = b;
+x = (a > b) ? a : b;
+\end{verbatim}
+\end{primer}
+Osim if else postoji i naredba switch, koja se takođe može koristiti za višestruko odlučivanje i ima opšti oblik:
+\begin{verbatim}
+switch (izraz) {
+  case konstantan_izraz1: naredbe1
+  case konstantan_izraz2: naredbe2
+  ...
+  default: naredbe_n
+}
+\end{verbatim}
+Case predstavljaju slučajeve, koji ako su ispunjeni, izvršava se naredba desno od dvotačke. U slučaju da nijedan od case-ova nije ispunjen izvršava se default, ako default nije postavljen i nijedan od case-ova nije ispunjen kroz switch će se samo proći.
+
+\subparagraph{Petlje}(ciklusi ili repetitivne naredbe) uzrokuju da se određena
+naredba (ili grupa naredbi) izvršava više puta (sve dok je neki logički uslov ispunjen).
+\begin{verbatim}
+while(izraz)
+   naredba
+   
+while (i < j)
+   i++;
+   
+while (1)
+   i++;
+   
+for (izraz1; izraz2; izraz3)
+   naredba
+
+izraz1;
+while (izraz2) {
+   naredba
+   izraz3;
+}
+
+for(i = 0; i < n; i++)
+...
+\end{verbatim}
+
+Postoji još jedan vid petlje, to je petlja do-while.
+\begin{verbatim}
+do {
+naredbe
+} while(izraz)
+\end{verbatim}
+Telo (blok naredbi naredbe) naveden izmedu vitičastih
+zagrada se izvršava i onda se izračunava uslov (izraz $izraz$).
+Ako je on tačan, telo se izvršava ponovo i to se nastavlja sve
+dok izraz $izraz$ nema vrednost nula (tj. sve dok njegova
+istinitosna vrednost ne postane netačno).
+Za razliku od petlje while, naredbe u bloku ove petlje se uvek
+izvršavaju barem jednom.\\\\
+
+U nekim situacijama pogodno je napustiti petlju ne zbog toga
+što nije ispunjen uslov petlje, već iz nekog drugog razloga. To
+je moguće postici naredbom break:
+\begin{verbatim}
+for(i = 1; i < n; i++) {
+    if(i > 10)
+       break;
+    ...
+}
+\end{verbatim}
+Naredbom continue se prelazi na sledeću iteraciju u petlji.
+Na primer,
+\begin{verbatim}
+for(i = 0; i < n; i++) {
+   if (i % 10 == 0)
+      continue; /* preskoci brojeve deljive sa 10 */
+   ...
+}
+\end{verbatim}
+Petlje i uslovne naredbe se mogu kombinovati, korišćenjem jednih u drugima i slično.
+U slučaju ugnježdenih petlji, naredbe break i continue imaju
+dejstvo samo na unutrašnju petlju.
+
+\subparagraph{Funkcije}
+Funkcija je jedna od osnovnih konstrukcija jezika koja nam omogućava ponovno korišćenje koda. Omogućavaju nam čak i da ih koristimo iako ne razumemo detalje implementacije. Izdvajanjem koda u funkcije povećava se čitljivost koda i olakšava se njegovo održavanje.   
+\\
+Osnovno uputstvo za pisanje funkcija se sastoji iz nekoliko bazičnih koraka:
+\begin{itemize}
+\item Uočiti logičke celine
+\item Uočiti neophodne parametre i povratnu vrednost 
+\item Dati ime koje odgovara implementaciji
+\item Implementirati funkciju
+\end{itemize}
+
+Funkcija se odlikuje svojom deklaracijom i definicijom.
+Deklaracija (ili prototip) funkcije ima opšti oblik:\\
+$tip\ ime\_funkcije(niz\_deklaracija\_parametara);$\\\\
+Definicija funkcije ima oblik:
+\begin{verbatim}
+tip ime_funkcije(niz_deklaracija_parametara) {
+   deklaracije
+   naredbe
+}
+\end{verbatim}
+
+Funkcija može imati parametre koje obraduje i oni se navode u
+okviru definicije, iza imena funkcije i izmedu zagrada.
+Termini parametar funkcije i argument funkcije se ponekad
+koriste kao sinonimi.
+$n$ je parametar funkcije kvadrat(n);, a 5 i 9 su
+njeni argumenti u pozivima kvadrat(5) i kvadrat(9).
+Parametri funkcije mogu se u telu funkcije koristiti kao lokalne
+promenljive te funkcije a koje imaju početnu vrednost
+odredenu vrednostima argumenata u pozivu funkcije.\\\\
+Funkcija rezultat vraća naredbom return r; gde je r izraz
+zadatog tipa ili tipa koji se može konvertovati u taj tip.
+Naredba return r; ne samo da vraća vrednost r kao rezultat
+rada funkcije, nego i prekida njeno izvršavanje.\\\\
+Funkcije mogu pozivati druge funkcije, a funkcija može pozivati i samu sebe.
+
+\subsection{Zadaci sa casa}
+
+\subsection{Domaći zadaci}
+\begin{primer}
+Na koje $if$ se odnosi $else$?
+\begin{verbatim}
+if (izraz1)
+    if (izraz2)
+        naredba1
+else
+    naredba2
+\end{verbatim}
+\end{primer}
+\begin{primer}
+Na koje $if$ se odnosi $else$?
+\begin{verbatim}
+if (izraz1) {
+   if (izraz2)
+      naredba1
+} else
+    naredba2
+\end{verbatim}
+\end{primer}
+\begin{primer}
+Napisati program koji za dva cela broja ispisuje najpre
+njihove vrednosti, a zatim i njihov zbir, razliku, proizvod, ceo deo pri deljenju
+prvog broja drugim brojem i ostatak pri deljenju prvog broja drugim brojem. 
+\end{primer}
+
+\begin{primer}
+Napisati program koji za uneti pozitivan trocifreni broj na
+standardni izlaz ispisuje njegove cifre jedinica, desetica i stotina
+\end{primer}
+
+\begin{primer}
+Napisati program koji za uneti pozitivan četvorocifreni
+broj:\\
+(a) izračunava proizvod cifara\\
+(b) izračunava razliku sume krajnjih i srednjih cifara\\
+(c) izračunava sumu kvadrata cifara\\
+(d) izračunava broj koji se dobija ispisom cifara u obrnutom poretku\\
+(e) izračunava broj koji se dobija zamenom cifre jedinice i cifre stotine\\
+\end{primer}
+
+\subsection{Dodatni zadaci}
+\begin{primer}
+Kreirati sajt zdrave hrane. Koristeći ugrađenu funkciju prompt zahtevati od korisnika količinu badema koju želi da kupi(u gramima), a potom u alert prozoru ispisati konačnu cenu za unetu količinu. Npr. ako je badem 2000 dinara po kilogramu, a korisnik želi 500 grama, u alertu treba da se ispiše 1000 dinara.  
+\end{primer}
+
 \section{Zaključak}
 \label{sec:zakljucak}
 
