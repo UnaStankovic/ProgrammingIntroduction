@@ -29,7 +29,7 @@
 \newpage
 
 U ovom tekstu predstavljene su teorijske osnove potrebne za savladavanje kursa $"$ Uvod u programiranje kroz JavaScript$"$. Najpre su navedene, ukratko, teorijske osnove računarstva i uvod kroz HTML i CSS, a kasnije se ulazi u rad sa JavaScript-om.  Ova skripta je obavezan materijal pri kursu i sa prezentacijama i kodovima formira celinu. Ova skripta sama po sebi nije dovoljna, samostalan rad i istraživanje je neizostavni deo procesa učenja. U slučaju da primetite greške pri čitanju rada ili imate bilo kakve nedoumice, predloge i sugestije javite se mejlom na adresu navedenu na prvoj strani.
-
+Materijali su kreirani prvenstveno na osnovu materijala korišćenih u nastavi na Matematičkom fakultetu, iz predmeta Uvod u Veb i Internet tehnologije, Programiranje za Veb, Mrežno računarstvo i Programiranje 1. 
 \newpage
 
 \tableofcontents
@@ -966,14 +966,203 @@ je on deljiv sumom svojih cifara.
 
 \begin{primer}
 Promptom se unosi ceo pozitivan broj n, a potom i n celih
+brojeva. Izračunati i ispisati zbir onih brojeva koji su parni.
+\end{primer}
+
+\begin{primer}
+Promptom se unosi ceo pozitivan broj n, a potom i n celih
 brojeva. Izračunati i ispisati zbir onih brojeva koji su neparni i negativni.
 \end{primer}
+
+
+\begin{primer}
+Program učitava ceo broj n, a zatim i n karaktera. Napisati
+program koji proverava da li se od unetih karaktera može napisati reč Zima.
+\end{primer}
+
+\begin{primer}
+Program učitava cele brojeve sve do unosa broja nula 0.
+Napisati program koji izračunava i ispisuje aritmetičku sredinu unetih brojeva na
+četiri decimale.
+\end{primer}
+
+\begin{primer}
+U prodavnici se nalaze artikala čije cene su realni pozitivni
+brojevi. Program unosi cene artikala sve do unosa broja nula 0. Napisati program
+koji izračunava i ispisuje prosečnu vrednost cena u radnji.
+\end{primer}
+
+\begin{primer}
+Program učitava realan broj x i ceo pozitivan broj n.
+Napisati program koji izračunava i ispisuje sumu $S=x + 2*x^2 + 3*x^3 + ..$.
+\end{primer}
+
+\begin{primer}
+Napisati program koji učitava karaktere sve do kraja ulaza,
+a potom ispisuje broj velikih slova, broj malih slova, broj cifara, broj belina i zbir
+unetih cifara.
+\end{primer}
+
+\begin{primer}
+Za unetu pozitivnu celobrojnu vrednost n napisati programe
+koji ispisuju odgovarajuće brojeve. Pretpostaviti da je unos korektan.\\
+(a) Napisati program koji za unetu pozitivnu celobrojnu vrednost n ispisuje
+tablicu množenja.\\
+(b) Napisati program koji za uneto n ispisuje sve brojeve od 1 do $n^2$ pri čemu se ispisuje po n brojeva u jednoj vrsti.\\
+\end{primer}
+
+
+\begin{primer}
+Program učitava ceo pozitivan broj n, a potom n realnih
+brojeva. Odrediti koliko puta je prilikom unosa došlo do promene znaka. Ispisati
+dobijenu vrednost.
+\end{primer}
+
+\begin{primer}
+Kreirati sajt prodavnice u kome svaki kupac određuje sam cenu artikla. U prodavnici se nalazi n artikala čije cene su realni brojevi. Na stranici treba da postoji naziv prodavnice kao i spisak dostupnih artikala sa slikama, a potom da se uz pomoć prompta učita broj proizvoda koje korisnik želi da kupi. Nakon toga, za svaki od proizvoda treba uneti cenu svakog od n artikala i određuje i ispisuje ukupnu cenu kao i cenu najmanjeg artikla.
+\end{primer}
+
+\begin{primer}
+U prodavnici se nalaze artikala čije cene su realni pozitivni
+brojevi. Program unosi cene artikala sve do unosa broja nula 0. Napisati program
+koji izračunava i ispisuje prosečnu vrednost cena u radnji.
+\end{primer}
+
+\subsubsection{Funkcije}
+
+\begin{primer}
+Napisati funkciju kvadrat(x) koja računa kvadrat
+datog broja. Napisati program koji učitava ceo broj i ispuje rezultat poziva
+funkcije.
+\end{primer}
+
+\begin{primer}
+Napisati funkciju unsigned apsolutna\_vrednost(x) koja izračunava apsolutnu vrednost broja x. Napisati program koji učitava jedan ceo broj i ispisuje rezultat poziva funkcije.
+\end{primer}
+
+\begin{primer}
+Napisati funkciju min(x, y, z) koja izračunava minimum tri broja. Napisati program koji učitava tri cela broja i ispisuje rezultat poziva funkcije.
+\end{primer}
+
+\begin{primer}
+Napisati funkciju stepen(x, n) koja
+računa vrednost n-tog stepena realnog broja x. Napisati program koji učitava
+relan broj x i ceo broj n i ispisuje rezultat rada funkcije.
+\end{primer}
+
+\begin{primer}
+8 Napisati funkciju faktorijel(n) koja računa
+faktorijel broja n. Napisati i program koji učitava dva cela broja x i y iz intervala
+[0, 12] i ispisuje vrednost zbira x! + y!.
+\end{primer}
+
+\begin{primer}
+Napisati funkciju sadrzi(x, c) koja ispituje
+da li se cifra c nalazi u zapisu celog broja x. Funkcija treba da vrati 1 ako se cifra
+nalazi u broju, a 0 inače. Napisati program koji učitava dva cela broja i ispisuje
+rezultat poziva funkcije.
+\end{primer}
+
+\begin{primer}
+Napisati program za ispitivanje svojstava cifara datog celog
+broja.\\
+(a) Napisati funkciju sve\_parne\_cifre koja ispituje da li se dati ceo broj sastoji
+isključivo iz parnih cifara. Funkcija treba da vrati 1 ako su sve cifre
+broja parne i 0 u suprotnom.\\
+(b) Napisati funkciju sve\_cifre\_jednake koja ispituje da li su sve cifre datog
+celog broja jednake. Funkcija treba da vrati 1 ako su sve cifre broja jednake
+i 0 u suprotnom.\\
+Napisati program koji učitava ceo broj i ispisuje da li su sve cifre parne i da li su
+sve cifre jednake.
+\end{primer}
+
+\begin{primer}
+Napisati funkciju rastuce(n) koja ispituje da li
+su cifre datog celog broja u rastućem poretku. Funkcija treba da vrati vrednost
+1 ako cifre ispunjavaju uslov, odnosno 0 ako ne ispunjavaju uslov. Napisati i
+program koji učitava ceo broj i ispisuje poruku da li su cifre unetog broja u
+rastućem poretku.
+\end{primer}
+
+\begin{primer}
+Broj je prost ako je deljiv samo sa 1 i sa samim sobom.
+Napisati funkciju int prost (int x) koja ispituje da li je dati ceo broj prost.
+Funkcija treba da vrati 1 ako je broj prost i 0 u suprotnom. 
+\end{primer}
+
+\begin{primer}
+
+Napisati funkciju int prebrojavanje(float x) koja prebrojava
+koliko puta se broj x pojavljuje u nizu brojeva koji se unose sve do pojave
+broja 0. Napisati program koji učitava vrednost broja x i testira rad napisane
+funkcije.
+\end{primer}
+
+\subsubsection{Nizovi}
+
+\begin{primer}
+Napisati program koji računa skalarni proizvod vektora a i b. Vektor $a=(a_1, a_2,...)$ i $b=(b_1, b_2,...)$, a skalarni proizvod $a*b= a_1 * b_1 + a_2 * b_2 + ... + a_n * b_n$. Najpre se unosi n, a potom po n vrednosti za vektore a i b. 
+\end{primer}
+
+\begin{primer}
+Napisati program koji za dati niz ispisuje:\\
+a) elemente na parnim pozicijama u nizu
+b) parne elemente niza.
+\end{primer}
+
+\begin{primer}
+Napisati program koji za učitani ceo broj, ispisuje broj
+pojavljivanja svake od cifara u zapisu tog broja.
+\end{primer}
+
+
+\begin{primer}
+Napisati funkcije za rad sa nizovima celih brojeva.\\
+(a) Napisati funkciju ucitaj(a, n) koja učitava elemente niza a dimenzije n.\\
+(b) Napisati funkciju stampaj(a, n) koja štampa elemente niza a dimenzije n.\\
+(c) Napisati funkciju suma(a, n) koja računa i vraća sumu
+elemenata niza a dimenzije n.\\
+(d) Napisati funkciju prosek(a, n) koja računa i vraća prosečnu
+vrednost (aritmetičku sredinu) elemenata niza a dimenzije n.\\
+(e) Napisati funkciju minimum(a, n) koja izračunava i vraća
+minimum elemenata niza a dimenzije n.\\
+(f) Napisati funkciju pozicija\_maksimuma(a, n) koja izračunava
+i vraća poziciju maksimalnog elementa u nizu a dimenzije n. U slučaju
+više pojavljivanja maksimalnog elementa, vratiti najmanju poziciju.\\
+(g)Napisati funkciju koja sve vrednosti niza uvećava za zadatu vrednost m.
+\end{primer}
+
+\begin{primer}
+Napisati program koji transformiše uneti niz tako što
+kvadrira sve negativne elemente niza. 
+\end{primer}
+
+\begin{primer}
+Sa standardnog ulaza se učitava dimenzija niza, elementi
+niza i jedan ceo broj k. Napisati program koji štampa indekse elemenata koji su
+deljivi sa k.
+\end{primer}
+
+\begin{primer}
+\end{primer}
+
+\begin{primer}
+\end{primer}
+
+\begin{primer}
+\end{primer}
+
 
 \subsection{Dodatni zadaci}
 \begin{primer}
 Kreirati sajt zdrave hrane. Koristeći ugrađenu funkciju prompt zahtevati od korisnika količinu badema koju želi da kupi(u gramima), a potom u alert prozoru ispisati konačnu cenu za unetu količinu. Npr. ako je badem 2000 dinara po kilogramu, a korisnik želi 500 grama, u alertu treba da se ispiše 1000 dinara.  
 \end{primer}
 
+
+\begin{primer}
+Kreirati sajt za organizovanje proslava. Sajt treba da sadrži navigacioni bar sa stavkama: o nama, rođendani, proslave jubileja, svadbe i krštenja, kao i kontakt stranu. Rođendanske proslave se sastoje iz više kategorija, kao što su proslave punoletstva, proslave prvih rodjendana i proslave rođendana. Svaka od stavki navigacije vodi ka novim stranicama koje sadrže paragraf sa kratkim opisom usluga koje se nude, tabele sa cenama usluga (Ketering, Premium Ketering, Piće (osnovna i premium ponuda), dekoracija, muzika, transport do lokacije itd.). Svaka od strana sadrži i barem 3 moguće lokacije za proslave, sa sumom cena.
+
+\end{primer}
 \section{Zaključak}
 \label{sec:zakljucak}
 
