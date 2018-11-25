@@ -697,10 +697,16 @@ x = (a > b) ? a : b;
 Osim if else postoji i naredba switch, koja se takođe može koristiti za višestruko odlučivanje i ima opšti oblik:
 \begin{verbatim}
 switch (izraz) {
-  case konstantan_izraz1: naredbe1
-  case konstantan_izraz2: naredbe2
+  case konstantan_izraz1: 
+  	naredbe1;
+  	break;
+  case konstantan_izraz2: 
+  	naredbe2;
+  	break;
   ...
-  default: naredbe_n
+  default: 
+    naredbe_n;
+    break;
 }
 \end{verbatim}
 Case predstavljaju slučajeve, koji ako su ispunjeni, izvršava se naredba desno od dvotačke. U slučaju da nijedan od case-ova nije ispunjen izvršava se default, ako default nije postavljen i nijedan od case-ova nije ispunjen kroz switch će se samo proći.
@@ -1143,14 +1149,7 @@ niza i jedan ceo broj k. Napisati program koji štampa indekse elemenata koji su
 deljivi sa k.
 \end{primer}
 
-\begin{primer}
-\end{primer}
 
-\begin{primer}
-\end{primer}
-
-\begin{primer}
-\end{primer}
 
 
 \subsection{Dodatni zadaci}
@@ -1163,6 +1162,21 @@ Kreirati sajt zdrave hrane. Koristeći ugrađenu funkciju prompt zahtevati od ko
 Kreirati sajt za organizovanje proslava. Sajt treba da sadrži navigacioni bar sa stavkama: o nama, rođendani, proslave jubileja, svadbe i krštenja, kao i kontakt stranu. Rođendanske proslave se sastoje iz više kategorija, kao što su proslave punoletstva, proslave prvih rodjendana i proslave rođendana. Svaka od stavki navigacije vodi ka novim stranicama koje sadrže paragraf sa kratkim opisom usluga koje se nude, tabele sa cenama usluga (Ketering, Premium Ketering, Piće (osnovna i premium ponuda), dekoracija, muzika, transport do lokacije itd.). Svaka od strana sadrži i barem 3 moguće lokacije za proslave, sa sumom cena.
 
 \end{primer}
+
+\subsection{Interakcija sa DOM-om iz jezika JavaScript}
+\begin{primer}
+Za uneti ceo broj $n$, izgenerisati tablicu množenja veličine $n$ koristeći table element i dodavanje uz pomoć interakcije sa DOM drvetom. Doterati stranicu koristeći CSS.
+\end{primer}
+
+\begin{primer}
+Na osnovu unetog naziva slike, dodati na stranicu primer biografije zadate ličnosti. Na primer, za naziv slike $tesla.jpg$ na stranicu dodati naslov Nikola Tesla, paragraf sa kratkom biografijom, sliku, kao i link ka stranici na wikipediji. Svaka biografija treba da bude prigodno uokvirena. Ponuditi unos za do 3 licnosti, tako sto ce se preko prompta najpre uneti broj licnosti a potom i nazivi slika. Sajt ukrasiti korišćenjem prigodinih HTML i CSS elemenata.
+\end{primer}
+
+\begin{primer}
+
+\end{primer}
+
+
 \section{Zaključak}
 \label{sec:zakljucak}
 
