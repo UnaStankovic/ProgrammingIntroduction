@@ -9,6 +9,7 @@
 \usepackage[utf8]{inputenc} % make weird characters work
 \usepackage{graphicx}
 \usepackage{verbatim}
+\usepackage{minted}
 
 \usepackage[english,serbian]{babel}
 %\usepackage[english,serbianc]{babel} %ukljuciti babel sa ovim opcijama, umesto gornjim, ukoliko se koristi cirilica
@@ -606,9 +607,97 @@ Domaći zadaci vezani za ovo poglavlje se odnose na unapređivanje i dodavanje s
 \section{JavaScript}
 \label{sec:javascript}
 
-\subsection{Uvod}
-\subsubsection{Obnavaljanje osnovnih konstrukta}
-Osnovni elementi za opis izračunavanja u programima nazivaju se naredbe.
+JavaScript (skraćeno JS) je skript jezik, nastao $1995$. godine kao jezik za pregledač Netscape Navigator kako bi se omogućile programske sposobnosti veb stranicama. Osnovna uloga JavaScripta na Vebu je programiranje korisnickog interfejsa. ECMAScript standard je standard kojim se definiše ponašanje svih pregledača koji podržavaju JavaScrpit. Bitno je naglasiti da programi napisani jezikom Javascript se izvršavaju na klijentskoj mašini (iako postoje i upotrebe na serveru). Uz HTML i CSS, JS predstavlja jezgro tehnologija korišćenih na Vebu.
+
+
+
+\subsection{Osnovni konstrukti jezika}
+Pod osnovne konstrukte jezika podrazumevamo minimalan skup neophodnih znanja i pravila potrebnih za rad u određenom programskom jeziku. Osnovni konstrukti su idejno veoma slični, pa i isti, za većinu viših programskih jezika i dobrim poznavanjem osnova barem jednog programskog jezika višeg nivoa, moguće je dosta lako savladavanje i ostalih. U ovom delu biće predstavljeni osnovni konstrukti jezika vezani konkretno za JavaScript.\\\\
+JavaScript kod možemo ubaciti u postojeću HTML datoteku na naredna dva načina:
+\begin{itemize}
+    \item kao novu datoteku u headu: <script src='datoteka.js'></script> 
+    \item kroz HTML, na kraju body-ja, između <script> tagova.
+\end{itemize}
+
+\subsubsection{Promenljive i tipovi}
+Nakon što smo na odabrani način obezbedili prostor za unošenje JS koda, želimo da kreiramo neku promenljivu. Za JS se kaže da je slabo tipiziran jezik, to znači da tip promenljive koju kreiramo ne zadajemo eksplicitno, već je on određen tipom vrednosti koju ta promenljiva čuva. Veoma bitno je naglasiti da se sa promenom sadržaja promenljive menja i njen tip u toku izvršavanja programa. Ako bismo na primer u promenljivu $a$ stavili broj $13$, a kasnije stavili nisku $"$programer$"$, promenljiva $a$ bi najpre imala tip $number$, a potom $string$.\\\\
+Postoji nekoliko različitih tipova koje možemo smestiti u promenljivu, to su:
+\begin{enumerate}
+    \item Brojevi: 
+    \begin{itemize}
+        \item celi brojevi: ...,-10, -5, 0, 1, 7, 13,...
+        \item razlomljeni brojevi: 3.14, 9.81, ...
+        \item beskonačnosti: Infinity, -Infinity
+        \item NaN - not a number - označava da nešto nije broj, dobija se kao rezultat nedefinisanih operacija (0/0, Infinity/Infinity,...) 
+    \end{itemize}
+    \item Niske (stringovi) - predstavljaju nizove karaktera: $"$ Mi volimo programiranje $"$
+    \item Bulove vrednosti: True, False
+    \item Prazne vrednosti: null, undefined
+\end{enumerate}
+U nastavku će biti ukratko opisano kreiranje, korišćenje i osnovne operacije nad navedenim tipovima. U promenljive je moguće smestiti i složenije tipove kao što su nizovi, objekti i drugi, o kojima će, takođe, biti reči u nastavku.\\\\
+Kako bismo kreirali promenljivu u programu, navodimo ključnu reč $var$ (Postoje jos neke ključne reči za kreiranje promenljivih, ali će o njima biti reči kasnije).
+\begin{verbatim}
+var a;
+\end{verbatim}
+Ovako smo samo kreirali promenljivu, ona za sada nema nikakvu vrednost u sebi, a samim time i njen tip nije definisan. Kada želimo da promenljivoj dodelimo neku vrednost to činimo korišćenjem naredbe dodele $*$, pa tako sa
+\begin{verbatim}
+a = 5;    
+\end{verbatim}
+smeštamo celi broj 5 u promenljivu a, i njen tip postaje $number$.
+Moguće je i pri kreiranju odmah dodeliti vrednost promenljivoj $a$, ovaj postupak nazivamo inicijalizacijom ili dodeljivanjem početne vrednosti promenljivoj.
+\begin{verbatim}
+var a = 5;    
+\end{verbatim}
+JavaScript dopušta još jednu stvar, a to je kreiranje promenljive bez navođenja ključne reči var ukoliko bismo joj odmah dodelili vrednost. Napomena: ovo se ne smatra dobrom praksom, a ukoliko bi stajalo samo b bez $var$ i bez $*7$ program bi izbacio grešku.
+\begin{verbatim}
+b = 7;    
+\end{verbatim}
+Kada se dodeljuju nazivi promenljivim treba obratiti pažnju da nazivi nisu ključne reči jezika, kao i da ne počinju brojem.\\\\
+
+\subparagraph{Brojevi}
+Osim operatora dodele $=$, postoje i drugi operatori. Najčešće operatore primenjujemo nad brojevnim (numeric) vrednostima. Nad numeričkim vrednostima definisani su:
+\begin{itemize}
+    \item Unarni $-$: $-4$
+    \item Binarni $+$, $-$, $*$, $/$, $\%$, $=$, $<$, $>$, $<=$, $>=$
+\end{itemize}
+Ovi operatori imaju standarne prioritete. Operator $\%$ predstavlja ostatak pri deljenju dva broja.\\
+\begin{verbatim}
+var c = a + b; //12
+\end{verbatim}
+\paragraph{Pisanje komentara}
+Pisanje komentara predstavlja dobru praksu i može biti od velike pomoći programeru. Najčešće se radi nad nasleđenim kodovima, koje su pisali programeri pre nas, pa tako komentari mogu dosta olakšati rad i razumevanje koda. Osim toga, vrlo često prilikom vraćanja na ranije pisane kodove, dešava se da nismo sigurni kako smo nešto napisali, iako nam je u datom momentu to delovalo sasvim jednostavno i logično, pa nam komentari mogu pomoći da se prisetimo šta je bila glavna ideja. U početničkom programiranju, komentari pomažu kako bi se neki koncepti utvrdili, dodatno razjasnili i definisali, pa autor predlaže pisanje komentara što češće.\\\\ 
+Komentari mogu biti: linijski i blokovski. Linijski komentari, kao što im i samo ime kaže imaju doseg jedne linije (koja ne bi trebalo prema konvenciji da sadrži više od 80 karaktera!) i pišu se nakon znaka $//$. Blokovski komentari imaju doseg od više linija i pišu se između $/**/$.
+\begin{verbatim}
+//ovo je linijski komentar
+/*Ovo 
+je 
+blokovski*/
+var c = a + b; //12
+\end{verbatim}
+
+\paragraph{Konzola}
+Konzola omogućava programeru lakše debagovanje koda, lakše pronalaženje grešaka, izbacuje greške, upozorenja i obaveštenja.
+U konzoli, takođe, možemo ispisati rezultate nekih izvršavanja programa, vrednosti i tipove promenljivih itd.\\
+Da bismo to postigli, moramo najpre otvoriti konzolu, to se radi uz pomoć $F12$. Konzola je, najverovatnije, trenutno prazna. Kako bismo ispisali neki tekst u nju koristimo neke od sledećih funkcija:
+\begin{itemize}
+    \item console.log()
+    \item console.warn()
+    \item console.error()
+    \item console.info()
+\end{itemize}
+\begin{verbatim}
+var c = a + b; //12
+console.log(c); //ovime ispisujemo 12 u konzolu
+\end{verbatim}
+\textbf{Operator typeof} služi kako bi se ispisao tip promenljive.
+\begin{verbatim}
+var c = a + b; //12
+console.log(typeof c); //ispis tipa promenljive c u konzolu - numeric
+\end{verbatim}
+
+
+\subsubsection{Naredbe za kontrolu toka}
+Osnovni elementi za opis izračunavanja u programima nazivaju se naredbe (već smo videli naredbu dodele).
 Naredbe za kontrolu toka omogućavaju različite načine izvršavanja programa, u zavisnosti od vrednosti promenljivih. Naredbe za kontrolu toka mogu biti:
 \begin{itemize}
 \item naredbe grananja i 
@@ -619,23 +708,29 @@ Naime, svaki izraz završen karakterom ; je naredba. Na primer:
 \begin{verbatim}
 3 + 4*5;
 n = 3;
-c++;
+c++; //uvecanje promenljive za 1, isto kao c = c + 1
 f();	
 \end{verbatim}
 Nekada, želimo da više različitih naredbi grupišemo i da ih tretiramo kao jednu jedinstvenu naredbu. Vitičaste zagrade { i } se koriste da grupišu naredbe u složene naredbe, odnosno blokove, i takvi blokovi se mogu koristiti na svim mestima gde se mogu koristiti i pojedinačne naredbe. 
 
-\subparagraph{Naredbe grananja} (ili naredbe uslova), na osnovu vrednosti
-nekog izraza, odreduju naredbu (ili grupu naredbi) koja će biti
-izvršena.
+\subparagraph{Naredbe grananja} (ili naredbe uslova), na osnovu vrednosti nekog izraza, odreduju naredbu (ili grupu naredbi) koja će biti izvršena.
 \begin{verbatim}
 if (izraz)
-	naredba1
+    naredba1
 else
-	naredba2
+    naredba2
+\end{verbatim}
+Konkretno, na primeru kroz jezik JavaScript:
+\begin{verbatim}
+//primer ispisuje veci od dva broja
+if (a > b)
+    console.log(a);
+else
+    console.log(b);
 \end{verbatim}
 Naredbe $naredba1$ i $naredba2$ su ili pojedinačne naredbe (kada se završavaju simbolom ;) ili blokovi naredbi zapisani između vitičastih zagrada (na kraju kojih ne ide ;).
-Deo naredbe else je opcioni, odnosno, ne mora postojati, pa se može napisati samo if grana.
-Izraz izraz predstavlja logički uslov:
+Deo naredbe $else$ je opcioni, odnosno, ne mora postojati, pa se može napisati samo $if$ grana.
+Izraz $izraz$ predstavlja logički uslov:
 \begin{verbatim}
 if (5 > 7)
    a = 1;
@@ -694,7 +789,7 @@ else
 x = (a > b) ? a : b;
 \end{verbatim}
 \end{primer}
-Osim if else postoji i naredba switch, koja se takođe može koristiti za višestruko odlučivanje i ima opšti oblik:
+Osim $if$-$else$ postoji i naredba $switch$, koja se takođe može koristiti za višestruko odlučivanje i ima opšti oblik:
 \begin{verbatim}
 switch (izraz) {
   case konstantan_izraz1: 
@@ -709,7 +804,7 @@ switch (izraz) {
     break;
 }
 \end{verbatim}
-Case predstavljaju slučajeve, koji ako su ispunjeni, izvršava se naredba desno od dvotačke. U slučaju da nijedan od case-ova nije ispunjen izvršava se default, ako default nije postavljen i nijedan od case-ova nije ispunjen kroz switch će se samo proći.
+$Case$ predstavljaju slučajeve, koji ako su ispunjeni, izvršava se naredba desno od dvotačke. U slučaju da nijedan od case-ova nije ispunjen izvršava se default, ako default nije postavljen i nijedan od case-ova nije ispunjen kroz switch će se samo proći.
 
 \subparagraph{Petlje}(ciklusi ili repetitivne naredbe) uzrokuju da se određena
 naredba (ili grupa naredbi) izvršava više puta (sve dok je neki logički uslov ispunjen).
@@ -773,7 +868,9 @@ Petlje i uslovne naredbe se mogu kombinovati, korišćenjem jednih u drugima i s
 U slučaju ugnježdenih petlji, naredbe break i continue imaju
 dejstvo samo na unutrašnju petlju.
 
-\subparagraph{Funkcije}
+\inputminted{javascript}{examples/JS_uvod_1.html}
+
+\subsubsection{Funkcije}
 Funkcija je jedna od osnovnih konstrukcija jezika koja nam omogućava ponovno korišćenje koda. Omogućavaju nam čak i da ih koristimo iako ne razumemo detalje implementacije. Izdvajanjem koda u funkcije povećava se čitljivost koda i olakšava se njegovo održavanje.   
 \\
 Osnovno uputstvo za pisanje funkcija se sastoji iz nekoliko bazičnih koraka:
