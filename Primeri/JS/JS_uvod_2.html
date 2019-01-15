@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Uvod u JS</title>
+		<meta charset='UTF-8'>
+		<meta author='Una Stankovic'>
+		<!--Naredna linija koda predstavlja prvi nacin uvodjenja JavaScript koda
+		<script src='filename.js'></script> -->
+	</head>
+	<body>
+		<h1>Uvod u JavaScript</h1>
+		<p> Na ovoj stranici bice predstavljeni osnovni elementi JS koda.
+			Najveci deo zabave odvija se unutar konzole, koju dobijate otvaranjem 
+			konzole uz pomoc <mark>F12</mark>.</p>
+		<ul>
+			Ovaj fajl pokriva naredne elemente jezika:
+			<li>Obavestenja</li>
+			<li>Stringove</li>
+			<li>Nizove</li>
+			<li>Objekte</li>
+		</ul>
+		<!--Ovo je drugi nacin navodjenja JavaScript koda,
+			u body-ju, nakon svog drugog koda, kako bi se izvrsilo smestanje HTML elemenata u DOM,
+			pre JS koda. --> 
+		<script>
+			//Korisnika cesto zelimo da obavestimo na nacin koji ne moze da ignorise
+			alert("Ovo je iskacuce obavestenje!");
+			//Cesto zelimo da nam na neko pitanje odgovori pozitivno ili negativno
+			if(confirm("Da li ste sigurni?")){
+				console.log("Korisnik je odgovorio pozitivno.");
+			}else{
+				console.log("Korisnik je odgovorio negativno.");
+			}
+			//Ukoliko zelimo da nam korisnik da neki unos
+			prompt("Unesite broj godina:");
+
+			//STRINGOVI
+			console.log("_________________________________________");
+			console.log("RAD SA NISKAMA");
+			console.log("_________________________________________");
+			var niska1 = "Ovo je prva niska.";
+			var niska2 = 'Ovo je druga niska';
+			var niska3 = `Ovo je niska
+			              neka treca`;
+			console.log(niska1 + niska2); //Ovo je prva niska.Ovo je druga niska.
+			console.log(niska1 + " " + niska2);
+
+			niska1 = 'Ovo je neka niska.';
+            niska1 = 'Kaze Bob: "Alice ne kradi"';
+            console.log(niska1);
+            niska2 = 'Kaze Alice: \'Sta cu moram\' \nAlice nikad nije imala \nnameru da ukradene podatke zloupotrebi.';
+            console.log(niska2); 
+            niska2 = 'It\'s mine';
+            console.log(niska2);
+
+            niska2 = `Kaze Alice:
+             'Necu vise krasti'
+             Ukrala sam samo ${2 + 2} jabuke.`;
+            console.log(niska2);
+
+			console.log("Zbir 1 i 2 je: " + 1 + 2);
+			console.log("Zbir 1 i 2 je: " + (1 + 2));
+			console.log(`Zbir 1 i 2 je: ${1 + 2}`);
+			
+			//kastovanje uz pomoc parseInt i parseFloat
+			var p = "5"; // uzeti za p vrednosti 123.292ajkula i a123.292
+			console.log(typeof p); //string
+			console.log(typeof parseInt(p)); //number
+
+			//implicitna konverzija
+			console.log("_________________________________________");
+			console.log("IMPLICITNA KONVERZIJA");
+			console.log("_________________________________________");
+			var conv = '5' + 3; //53
+			conv = 3 + '3'; //33
+			conv = 5 * null; //0
+			conv = '7' - 4; //3 
+			conv = !""; //true 
+			console.log(conv);
+			console.log(typeof conv);
+
+            alert("Ovo je obavestenje");
+            if(confirm("Da li ste sigurni?"))
+            {
+                var a = parseInt(prompt("Unesite broj: "));
+                console.log(a);
+                console.log(typeof(a));
+                var b = prompt("Unesite drugi broj");
+                console.log(b);
+                console.log(typeof(b));
+            }
+            else{
+                console.log("nastavak");
+            }
+            console.log(typeof(a));
+        
+			//== i ===
+			console.log("_________________________________________");
+			console.log("POREDJENJE JEDNAKOSTI");
+			console.log("_________________________________________");
+			console.log("==", 10 == '10'); //true
+			console.log("!=", 10 != '10'); //false
+			console.log("===", 10 === '10'); //false
+
+
+			// Poredjenje niski vrsi se leksikografski
+			//ubaciti u ovaj primer jos neke niske npr.: petar < ivan, jovana <= jovana,...
+			if("ana" >= "ane"){
+                console.log("ana");
+            }
+            else{
+            	console.log("ane");
+            }
+
+			
+			console.log("_________________________________________");
+			console.log("EKSPLICITNA KONVERZIJA");
+			console.log("_________________________________________");
+			var br_u_str = 102;
+			console.log("Tip promenljive br_u_str je :", typeof br_u_str);
+			//Da bismo neki broj pretvorili u string koristimo metod toString()
+			br_u_str = br_u_str.toString();
+			console.log(br_u_str);
+			console.log("Metod toString() vraca",typeof br_u_str);
+
+			//Pristup pojedinacnim karakterima niske
+			console.log("_________________________________________");
+			console.log("PRISTUP KARAKTERIMA NISKE");
+			console.log("_________________________________________");
+			var niska = "Programiranje";
+			console.log("Uz pomoc svojstva length dobijamo duzinu niske", niska.length);
+			//prolaskom kroz petlju obilazimo sve karaktere niske redom
+			for(i=0; i<niska.length;i++){
+				console.log(niska.charAt(i));	
+			}
+			//Obratiti paznju da brojanje niske krece od 0
+			//P R O G R A M I R A  N  J  E
+			//0 1 2 3 4 5 6 7 8 9 10 11 12
+			console.log("5 karakter niske", niska.charAt(4));
+
+			//Pogledati ASCII tabelu
+			//charCodeAt i fromCharCode
+			var voce = "  Ananas  "
+			console.log(voce.charCodeAt(2)); //A --> 65
+			//Da bismo izvrsili konverziju broja u karakter koristimo fromCharCode
+			console.log(String.fromCharCode(97)); //a
+			//trim() - uklanjanje belina sa krajeva 
+			voce = voce.trim();
+			console.log(voce); 
+			//toUpperCase i toLowerCase podizu ili spustaju celu nisku ili pojedinacni karakter
+            console.log(voce.toLowerCase());
+            console.log(voce.toUpperCase());
+            voce = voce.toUpperCase();
+            console.log(voce);
+            /*
+                1. Koristeci promprt alert i confirm za sajt sa zdravom hranom napraviti
+                2. za 10 korisnika da se unese:
+                    -ime 12abc, 1 
+                    -ocena sajta
+                    -predlog naziva za zdravu hranu
+                3. Proveriti ispravnost unetog podatka
+                4. Ako jeste, unosi se naredni podatak
+                5. Unos ocena dodati na zbir 
+                6. Ispisati predlog korisnika u formatu: Ime : predlog
+                7. Na kraju ispisati prosecnu ocenu sajta
+            */
+		</script>
+	</body>
+</html>
