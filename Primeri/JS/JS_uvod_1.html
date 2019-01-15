@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Uvod u JS</title>
+		<meta charset='UTF-8'>
+		<meta author='Una Stankovic'>
+		<!--Naredna linija koda predstavlja prvi nacin uvodjenja JavaScript koda
+		<script src='filename.js'></script> -->
+	</head>
+	<body>
+		<h1>Uvod u JavaScript</h1>
+		<p> Na ovoj stranici bice predstavljeni osnovni elementi JS koda.
+			Najveci deo zabave odvija se unutar konzole, koju dobijate otvaranjem 
+			konzole uz pomoc <mark>F12</mark>.</p>
+		<ul>
+			Ovaj fajl pokriva naredne elemente jezika:
+			<li>Promenljive</li>
+			<li>Operatore</li>
+			<li>If-else if-else</li>
+			<li>Petlje:
+				<ul>
+					<li>for</li>
+					<li>while</li>
+					<li>do-while</li>
+				</ul>
+			</li>
+			<li>Razlicite vrste ispisa u konzoli</li>
+		</ul>
+		<!--Ovo je drugi nacin navodjenja JavaScript koda,
+			u body-ju, nakon svog drugog koda, kako bi se izvrsilo smestanje HTML elemenata u DOM,
+			pre JS koda. --> 
+		<script>
+			//Ovo je linjski komentar.
+			/*Ovo
+				je
+				blokovski komentar.*/
+			//PROMENLJIVE
+			//Kreiranje promenljivih - deklarisanje promenljive 
+			var a;
+			//Kreiranje promenljive sa inicijalizacijom
+			var b = 10;
+			//NAPOMENA: prilikom kreiranja promenljive sa inicijalizacijom moguce je ne navesti kljucnu rec var na pocetku
+			c = 15;
+			//U promenljive mozemo smestiti brojevne vrednosti, niske, Bulove vrednosti, ...
+			// Kao i slozenije vrednosti kao sto su nizovi i objekti, o njima ce biti reci kasnije
+			var niska1 = "Ovo je neka niska";
+			var niska2 = 'Ovo je neka druga niska';
+
+			a = 5;
+			//Nad brojevnim vrednostima mozemo primeniti standardne binarne operatore: +, -, *, / , %
+			//Moguce je koristiti i slozene operatore poput ++, +=,*=,itd. 
+			var zbir = a + b;
+
+			//KONZOLA - otvara se uz pomoc F12
+			//Da bismo ispisali na konzolu koristimo neku od sledecih funkcija:
+			console.log(zbir);
+			console.warn("Ovo je neko upozorenje.");
+			console.error("Ovo je neka greska.");
+			console.info("Ovo je neko obavestenje.")
+			//prilikom ispisa mozemo imati i vise argumenata
+			console.log("Ovo", "je", "ispis", "vise", "argumenata");
+
+			//NAREDBE ZA KONTROLU TOKA
+			//uslovna naredba if-else
+			//primer ispisuje veci od dva broja
+			if (a > b)
+				console.log(a);
+			else
+				console.log(b);
+			//osim ovog oblika postoji i naredni
+			if (a > b)
+				console.log("a je veci!");
+			else if(a < b)
+				console.log("b je veci!");
+			else 
+				console.log("Jednaki su.");
+			//Napomenimo da moze postojati i if bez else-a
+			if(a<b)
+				a++; // uvecavanje promenljive a za 1, ekvivalentno sa a = a + 1
+			console.log("Promenljiva a je:", a);
+			//Nekada zelimo da se neke naredbe izvrsavaju veci broj puta
+			//Kako ne bismo imali ponavljanje koda, zgodno bi bilo da iskoristimo for petlju
+			//Zelimo da sracunamo sumu prvih 10 brojeva
+			var n = 10;
+			var suma = 0;
+			for(i=1; i<=n;i++){
+				suma = suma + i;
+			}
+			console.log('Suma prvih 10 prirodnih brojeva je:', suma);
+			//Napomena: for petlja najcesce pocinje od 0, pa treba obratiti paznju na uslov petlje!
+			//Osim for petlje postoji while petlja
+			p = 0;
+			q = 3;
+			while(p < q){
+				console.log("Mi volimo da programiramo");
+				p++;
+			}
+			//While petlja ima i svoju modifikovanu verziju do while koja ce se izvrsiti barem jednom 
+			p=3;
+			do{
+				console.log("Ovo ce se ispisati barem jednom. Da je u while petlji ne bi nijednom.");
+			}while(p<q)
+			
+			//Bulovski operatori && u ||
+			//&& ce se izvrsiti ako su svi uslovi ispunjeni 
+			//|| ce se izvrsiti ako je bar jedan od uslova ispunjen
+			var a = 10;
+			if(a > 0 && a%2==0)
+			   console.log("a je paran broj veci od 0.");
+			var b = -10;
+			if(a > 0 || b > 0 )
+			   console.log("Ako je ili a ili b vece od 0 ovo ce se ispisati");
+
+			//Bulovske promenljive true i false
+			//while(true){ //NE POKRETATI
+			   //radi nesto zauvek 
+			//}
+			if(false)
+			    console.log("Ovo se nece nikad ispisati");
+			if(true)
+			    console.log("Ovo ce se uvek ispisati");
+			if((a != b) == true){
+				console.log("uslov da su a i b razliciti vazi");
+			}
+
+		</script>
+	</body>
+</html>

@@ -609,8 +609,6 @@ Domaći zadaci vezani za ovo poglavlje se odnose na unapređivanje i dodavanje s
 
 JavaScript (skraćeno JS) je skript jezik, nastao $1995$. godine kao jezik za pregledač Netscape Navigator kako bi se omogućile programske sposobnosti veb stranicama. Osnovna uloga JavaScripta na Vebu je programiranje korisnickog interfejsa. ECMAScript standard je standard kojim se definiše ponašanje svih pregledača koji podržavaju JavaScrpit. Bitno je naglasiti da programi napisani jezikom Javascript se izvršavaju na klijentskoj mašini (iako postoje i upotrebe na serveru). Uz HTML i CSS, JS predstavlja jezgro tehnologija korišćenih na Vebu.
 
-
-
 \subsection{Osnovni konstrukti jezika}
 Pod osnovne konstrukte jezika podrazumevamo minimalan skup neophodnih znanja i pravila potrebnih za rad u određenom programskom jeziku. Osnovni konstrukti su idejno veoma slični, pa i isti, za većinu viših programskih jezika i dobrim poznavanjem osnova barem jednog programskog jezika višeg nivoa, moguće je dosta lako savladavanje i ostalih. U ovom delu biće predstavljeni osnovni konstrukti jezika vezani konkretno za JavaScript.\\\\
 JavaScript kod možemo ubaciti u postojeću HTML datoteku na naredna dva načina:
@@ -635,7 +633,7 @@ Postoji nekoliko različitih tipova koje možemo smestiti u promenljivu, to su:
     \item Prazne vrednosti: null, undefined
 \end{enumerate}
 U nastavku će biti ukratko opisano kreiranje, korišćenje i osnovne operacije nad navedenim tipovima. U promenljive je moguće smestiti i složenije tipove kao što su nizovi, objekti i drugi, o kojima će, takođe, biti reči u nastavku.\\\\
-Kako bismo kreirali promenljivu u programu, navodimo ključnu reč $var$ (Postoje jos neke ključne reči za kreiranje promenljivih, ali će o njima biti reči kasnije).
+Kako bismo kreirali promenljivu u programu, navodimo ključnu reč $var$ (postoje jos neke ključne reči za kreiranje promenljivih, ali će o njima biti reči kasnije), a potom naziv promenljive, koji ne sme počinjati brojem ili biti ključna reč jezika.
 \begin{verbatim}
 var a;
 \end{verbatim}
@@ -655,6 +653,11 @@ b = 7;
 Kada se dodeljuju nazivi promenljivim treba obratiti pažnju da nazivi nisu ključne reči jezika, kao i da ne počinju brojem.\\\\
 
 \subparagraph{Brojevi}
+U JavaScript-u možemo predstaviti cele brojeve - int: -1, -32, 0, 13, 173,itd., kao i razlomljene brojeve - float: 3.14, 9.81,itd..
+Da bismo broj smestili u neku promenljivu koristimo operator dodele.
+\begin{verbatim}
+var a = 5; 
+\end{verbatim}
 Osim operatora dodele $=$, postoje i drugi operatori. Najčešće operatore primenjujemo nad brojevnim (numeric) vrednostima. Nad numeričkim vrednostima definisani su:
 \begin{itemize}
     \item Unarni $-$: $-4$
@@ -663,6 +666,12 @@ Osim operatora dodele $=$, postoje i drugi operatori. Najčešće operatore prim
 Ovi operatori imaju standarne prioritete. Operator $\%$ predstavlja ostatak pri deljenju dva broja.\\
 \begin{verbatim}
 var c = a + b; //12
+\end{verbatim}
+Osim ovih operatora postoje i operatori za proveru jednakosti $==$, nejednakosti $!=$, za proveru jednakosti sa proverom tipova $===$, kao i složeni operatori ++, +=, -=, *=,itd.. O njima će biti više reči u nastavku. \\\\
+Da bismo broj zapisali sa određenim brojem decimala koristimo metod\footnote{Metodi su, za sad, crne kutije koje nam omogućavaju da vršimo određene promene nad promenljivim. U nastavku će biti detaljnije obrađene.} $toFixed()$, kome kao jedini argument šaljemo broj decimala koji želimo da zadržimo. 
+\begin{verbatim}
+var pi = 3.1415;
+pi = pi.toFixed(2); // pi = 3.14
 \end{verbatim}
 \paragraph{Pisanje komentara}
 Pisanje komentara predstavlja dobru praksu i može biti od velike pomoći programeru. Najčešće se radi nad nasleđenim kodovima, koje su pisali programeri pre nas, pa tako komentari mogu dosta olakšati rad i razumevanje koda. Osim toga, vrlo često prilikom vraćanja na ranije pisane kodove, dešava se da nismo sigurni kako smo nešto napisali, iako nam je u datom momentu to delovalo sasvim jednostavno i logično, pa nam komentari mogu pomoći da se prisetimo šta je bila glavna ideja. U početničkom programiranju, komentari pomažu kako bi se neki koncepti utvrdili, dodatno razjasnili i definisali, pa autor predlaže pisanje komentara što češće.\\\\ 
@@ -694,7 +703,11 @@ console.log(c); //ovime ispisujemo 12 u konzolu
 var c = a + b; //12
 console.log(typeof c); //ispis tipa promenljive c u konzolu - numeric
 \end{verbatim}
-
+Možemo nadovezati i više argumenata pri ispisu u konzolu odvajajući ih zarezom. Korišćenjem zareza kreira se razmak između argumenata.
+\begin{verbatim}
+var c = a + b; //12
+console.log("Vrednost zbira je", c); 
+\end{verbatim}
 
 \subsubsection{Naredbe za kontrolu toka}
 Osnovni elementi za opis izračunavanja u programima nazivaju se naredbe (već smo videli naredbu dodele).
@@ -843,7 +856,7 @@ Ako je on tačan, telo se izvršava ponovo i to se nastavlja sve
 dok izraz $izraz$ nema vrednost nula (tj. sve dok njegova
 istinitosna vrednost ne postane netačno).
 Za razliku od petlje while, naredbe u bloku ove petlje se uvek
-izvršavaju barem jednom.\\\\
+izvršavaju barem jednom. Navođenje vitičastih zagrada pri korišćenju naredbi za kontrolu toka smatra se dobrom programerskom praksom.\\\\
 
 U nekim situacijama pogodno je napustiti petlju ne zbog toga
 što nije ispunjen uslov petlje, već iz nekog drugog razloga. To
@@ -867,8 +880,186 @@ for(i = 0; i < n; i++) {
 Petlje i uslovne naredbe se mogu kombinovati, korišćenjem jednih u drugima i slično.
 U slučaju ugnježdenih petlji, naredbe break i continue imaju
 dejstvo samo na unutrašnju petlju.
+\subparagraph{Bulove vrednosti i Bulovski operatori}
+Pod Bulovim vrednostima smatramo $true$ i $false$, odnosno tačno i netačno, $1$ i $0$. 
+Ako bismo hteli da kreiramo beskonačnu petlju (iako se to nikako ne preporučuje) bio bi nam potreban uslov koji uvek važi:
+\begin{verbatim}
+while(true){
+   //radi nesto zauvek
+}
+if(false)
+    console.log("Ovo se nece nikad ispisati");
+if(true)
+    console.log("Ovo ce se uvek ispisati");
+var a = 10;
+var b = -10;
+if((a != b) == true){
+    console.log("uslov da su a i b razliciti vazi");
+}
+\end{verbatim}
+Ako bismo hteli da nadovežemo više uslova, ili da kažemo da želimo da se nešto izvrši ako je bilo koji od uslova ispunjen koristimo Bulovske operatore. Pod Bulovskim operatorima podrazumevamo $&&$ i $||$, odnosno $"$logičko i$"$ i $"$logičko ili$"$.
+\begin{verbatim}
+var a = 10;
+if(a > 0 && a%2==0)
+   console.log("a je paran broj veci od 0.);
+var b = -10;
+if(a > 0 || b > 0 )
+   console.log("Ako je ili a ili b vece od 0 ovo ce se ispisati);
+\end{verbatim}
+Napomena: uslova može biti više od 2.
 
-\inputminted{javascript}{examples/JS_uvod_1.html}
+
+\subparagraph{Prozori}
+Često se javlja potreba da korisnika stranice obavestimo o nečemu. Ono što nam JS omogućava je da na jednostavan način uz pomoć \textbf{alert} funkcije, korisniku jasno prikažemo poruku, koju ne može da ignoriše. Jedini argument ove funkcije je niska koja se prikazuje korisniku. 
+\begin{verbatim}
+alert("Ovo je iskačuće obaveštenje");
+\end{verbatim}
+Nekada se od korisnika zahteva da na neko pitanje odgovori pozitivno ili negativno, za šta se koristi funkcija \textbf{confirm}. Argument ove funkcije je isti kao kod $alert$. 
+\begin{verbatim}
+confirm("Da li ste sigurni?");
+\end{verbatim}
+Ukoliko bi se od korisnika očekivao unos nekog teksta, za to može da se koristi funkcija \textbf{prompt}. Argumenti ove funkcije su niska koja se ispisuje u prozoru i podrazumevana vrednost polja za unos. 
+\begin{verbatim}
+prompt("Unesite broj godina:");
+\end{verbatim}
+\subparagraph{Vežba}
+Uraditi zadatke iz uvodne sekcije.
+
+\subsubsection{Niske}
+Niske ili stringovi, predstavljaju nizove karaktera. U promenljivu možemo smestiti pojedinačni karakter, a možemo i čitave reči ili rečenice. \\
+\begin{verbatim}
+var a = 'abc'; //a je niska
+a = 'a'; // a je sada karakter
+\end{verbatim}
+Niske se mogu navoditi između $"$ (dvostrukih), $'$ (jednostrukih), kao i $`$ iskošenih navodnika (šablon-literali, engl. template literals).  
+\begin{verbatim}
+var niska1 = "Ovo je prva niska.";
+var niska2 = "Ovo je druga niska";
+var niska3 = `Ovo je niska
+              neka treca`;
+\end{verbatim}
+Primetimo da šablon literali poštuju novi red. Važno je naglasiti da se mora obratiti pažnja na to da navodnici budu pravilno upareni. Naime, program se neće izvršavati na predviđeni način ukoliko, na primer, nakon dvostrukog navodnika pokušamo nisku da zatvorimo jednostrukim navodnikom.
+\begin{verbatim}
+var niska1 = "Ovo je prva niska.";
+var niska2 = "Ovo je druga niska";
+var niska3 = "Ova niska nije pravilna';
+\end{verbatim}
+Ukoliko želimo da unutar niske imamo prave navodnike (na primer kod citata), onda možemo ili upotrebiti drugi vid navodnika ili koristiti escape sekvencu $\\$. Kako bismo nadovezali dve niske koristimo operator $+$, a ovaj postupak se naziva $konkatenacija$. Treba obratiti pažnju na to da nadovezivanjem niski sa $+$, ne dobijamo razmak između stringova kao kod korišćenja $,$. Da bismo dobili razmak moramo ga dodati kao još jednu nisku, a kako bismo dobili novi red koristimo $\n$. 
+\begin{verbatim}
+console.log(niska1 + niska2); //Ovo je prva niska.Ovo je druga niska.
+niska1 = 'Ovo je neka niska.';
+niska1 = 'Kaze Bob: "Alice ne kradi"';
+console.log(niska1);
+niska2 = 'Kaze Alice: \'Sta cu moram\' \nAlice nikad nije imala \nnameru
+da ukradene podatke zloupotrebi.';
+console.log(niska2); 
+niska2 = 'It\'s mine';
+console.log(niska2);
+niska2 = `Kaze Alice:
+          'Necu vise krasti'
+          Ukrala sam samo ${2 + 2} jabuke.`;
+\end{verbatim}
+Ako bismo pokušali da na niske nadovežemo numeričke vrednosti, one bi se ponašale kao niske, osim ako bismo ih izdvojili zagradama.
+\begin{verbatim}
+console.log("Zbir 1 i 2 je: " + 1 + 2); //12
+console.log("Zbir 1 i 2 je: " + (1 + 2)); //3
+console.log(`Zbir 1 i 2 je: ${1 + 2}`);  //3
+\end{verbatim}
+Primetimo da pri korišćenju šablon literala ono što želimo da se sračuna navodimo između $\$\{\}$.
+Nekada želimo da nisku posmatramo kao broj, da bismo eksplicitno kastovali (izvršili pretvaranje, eksplicitnu konverziju) niske u broj, koristimo funkcije $parseInt()$ i $parseFloat()$, koje prave ceo broj ili razlomljen broj redom. U slučaju da niska osim brojeva sadrži i neke druge karaktere, biće pokupljeni samo brojevi koji se nalaze na početku niske. Na primer, za nisku $"$123.292ajkula$"$ parseInt će uzeti samo broj 123 (zaključno sa tačkom, jer je Int ceo broj), parseFloat će uzeti 123.292, a ostatak će biti ignorisan. Ako bi niska bila $"$a123.292$"$ ništa ne bi bilo pokupljeno i funkcije bi vratile NaN ($"$Not a Number$"$). 
+\begin{verbatim}
+var p = "5";
+console.log(typeof p); //string
+console.log(typeof parseInt(p)); //number
+\end{verbatim}
+Poređenje niski vrši se leksikografski uz pomoc operatora $>$,$<$,$>=$ i $<=$, kao i uz pomoć operatora $==$, $!=$ ili $===$.
+\begin{verbatim}
+if("ana" >= "ane"){
+   console.log("ana");
+}
+else{
+   console.log("ane");
+}
+\end{verbatim}
+\\\\
+Metodom toString() vršimo eksplicitno konvertovanje u nisku.
+\begin{verbatim}
+var br_u_str = 102;
+console.log("Tip promenljive br_u_str je :", typeof br_u_str);
+br_u_str = br_u_str.toString();
+console.log(br_u_str);
+console.log("Metod toString() vraca",typeof br_u_str);
+\end{verbatim}
+
+\subparagraph{Implicitna konverzija}
+JavaScript je programski jezik takav da može da "progura" razne konstrukte, sa ciljem da program izvrši, zbog toga se često javljaju neki više ili manje očekivani rezultati. Implicitna konverzija je postupak pri kom program sam vrši konvertovanje nekog tipa u neki drugi tip kako bi dobio nešto što je njegovim internim mehanizmima smisleno. Prilikom primenjivanja konkatenacije nad brojem i niskom, broj će biti konvertovan u nisku.
+\begin{verbatim}
+//zakomentarisati sve linije pa redom oslobadjati po jedno conv
+var conv = '5' + 3; //53
+conv = 3 + '3'; //33
+conv = 5 * null; //0
+conv = '7' - 4; //3 
+conv = !""; //true 
+console.log(conv);
+console.log(typeof conv);
+\end{verbatim}
+Kako bismo proverili da li su dve vrednosti jednake koristimo $"$==$"$, ali da bismo bili precizniji i proverili da li su vrednosti koje poredimo i istog tipa moramo koristiti $"$===$"$.
+\begin{verbatim}
+console.log(10 == '10'); //true
+console.log(10 === '10'); //false
+\end{verbatim}
+
+Vrlo često pri programiranju želećemo da dobijemo dužinu neke niske i potom pristupimo nekom pojedinačnom karakteru. To se lako postiže korišćenjem svojstva $length$ u vidu $niska.length$, a potom uz pomoć $charAt()$ pristupamo pojedinačnim karakterima niske.
+\begin{verbatim}
+//Pristup pojedinacnim karakterima niske
+var niska = "Programiranje";
+console.log("Uz pomoc svojstva length dobijamo duzinu niske", niska.length);
+//prolaskom kroz petlju obilazimo sve karaktere niske redom
+for(i=0; i<niska.length;i++){
+    console.log(niska.charAt(i));	
+}
+//Obratiti paznju da brojanje niske krece od 0
+console.log("5 karakter niske", niska.charAt(4));
+\end{verbatim}
+Treba primetiti da brojanje karaktera u niski kreće od 0, pa tako 
+\begin{verbatim}
+P R O G R A M I R A  N  J  E
+0 1 2 3 4 5 6 7 8 9 10 11 12
+\end{verbatim}
+Svi karakteri koje je moguće zapisati nalaze se u takozvanoj $ASCII$ tabeli i imaju svoje kodne cifre, te cifre nam nekada mogu biti od koristi. Njima se pristupa korišćenjem $charCodeAt()$. Da bismo uradili obrnuto, tj. izvršili konverziju broja u karakter koristimo fromCharCode(). Ako bismo želeli da uklonimo beline sa krajeva (i sa početka i sa kraja niske), koristimo $trim()$. 
+\begin{verbatim}
+var voce = "  Ananas  "
+console.log(voce.charCodeAt(2)); //A --> 65
+console.log(String.fromCharCode(97)); //a
+voce = voce.trim();
+console.log(voce);     
+\end{verbatim}
+Da bismo neku nisku celu smanjili ili uvećali, koristimo metode $toUpperCase()$ ili $toLowerCase()$ u zavisnosti od toga šta želimo postići. Primetimo da se mogu primeniti i nad pojedinačnim karakterom.
+\begin{verbatim}
+console.log(voce.toLowerCase()); //ananas
+console.log(voce.toUpperCase()); //ANANAS
+\end{verbatim}
+\subparagraph{Neke metode za rad sa niskama}
+Postoji puno metoda za rad sa niskama, a u ovom delu biće navedene samo neke od njih. 
+
+
+\subparagraph{Vežba}
+Uraditi zadatke iz sekcije vezane za niske.
+
+\subsubsection{Nizovi}
+Nizovi predstavljaju kolekcije elemenata nekog tipa. U JavaScriptu je dozvoljeno da ti elementi budu različitih tipova. Indeksiranje nizova počinje od 0. Novi niz kreiramo korišćenjem uglastih zagrada:
+\begin{verbatim}
+var niz = [];
+var niz2 = [1,2,3,4,5];
+var niz3 = ["niska1", "niska2"];
+var niz4 = [1, "neki tekst", "!", 3.14];
+niz4["kljuc"] = 5;
+console.log(niz2[3]);
+console.log(niz3[0]);
+console.log(niz4[3]);
+console.log(niz4);
+\end{verbatim}
+
 
 \subsubsection{Funkcije}
 Funkcija je jedna od osnovnih konstrukcija jezika koja nam omogućava ponovno korišćenje koda. Omogućavaju nam čak i da ih koristimo iako ne razumemo detalje implementacije. Izdvajanjem koda u funkcije povećava se čitljivost koda i olakšava se njegovo održavanje.   
@@ -892,7 +1083,7 @@ tip ime_funkcije(niz_deklaracija_parametara) {
 }
 \end{verbatim}
 
-Funkcija može imati parametre koje obraduje i oni se navode u
+Funkcija može imati parametre koje obrađuje i oni se navode u
 okviru definicije, iza imena funkcije i izmedu zagrada.
 Termini parametar funkcije i argument funkcije se ponekad
 koriste kao sinonimi.
@@ -900,7 +1091,7 @@ $n$ je parametar funkcije kvadrat(n);, a 5 i 9 su
 njeni argumenti u pozivima kvadrat(5) i kvadrat(9).
 Parametri funkcije mogu se u telu funkcije koristiti kao lokalne
 promenljive te funkcije a koje imaju početnu vrednost
-odredenu vrednostima argumenata u pozivu funkcije.\\\\
+određenu vrednostima argumenata u pozivu funkcije.\\\\
 Funkcija rezultat vraća naredbom return r; gde je r izraz
 zadatog tipa ili tipa koji se može konvertovati u taj tip.
 Naredba return r; ne samo da vraća vrednost r kao rezultat
@@ -908,48 +1099,14 @@ rada funkcije, nego i prekida njeno izvršavanje.\\\\
 Funkcije mogu pozivati druge funkcije, a funkcija može pozivati i samu sebe.
 
 \subsection{Zadaci sa casa}
+\subsubsection{Uvodni primeri}
 
-\subsection{Domaći zadaci}
-\begin{primer}
-Na koje $if$ se odnosi $else$?
-\begin{verbatim}
-if (izraz1)
-    if (izraz2)
-        naredba1
-else
-    naredba2
-\end{verbatim}
-\end{primer}
-\begin{primer}
-Na koje $if$ se odnosi $else$?
-\begin{verbatim}
-if (izraz1) {
-   if (izraz2)
-      naredba1
-} else
-    naredba2
-\end{verbatim}
-\end{primer}
 \begin{primer}
 Napisati program koji za dva cela broja ispisuje najpre
 njihove vrednosti, a zatim i njihov zbir, razliku, proizvod, ceo deo pri deljenju
 prvog broja drugim brojem i ostatak pri deljenju prvog broja drugim brojem. 
 \end{primer}
 
-\begin{primer}
-Napisati program koji za uneti pozitivan trocifreni broj na
-standardni izlaz ispisuje njegove cifre jedinica, desetica i stotina
-\end{primer}
-
-\begin{primer}
-Napisati program koji za uneti pozitivan četvorocifreni
-broj:\\
-(a) izračunava proizvod cifara\\
-(b) izračunava razliku sume krajnjih i srednjih cifara\\
-(c) izračunava sumu kvadrata cifara\\
-(d) izračunava broj koji se dobija ispisom cifara u obrnutom poretku\\
-(e) izračunava broj koji se dobija zamenom cifre jedinice i cifre stotine\\
-\end{primer}
 
 \begin{primer}
 Napisati program koji za realne vrednosti dužina
@@ -995,25 +1152,11 @@ tri artikla izračunava ukupnu cenu, kao i koliko dinara se uštedi zahvaljujuć
 popustu.
 \end{primer}
 
-\begin{primer}
-Broj je Armstrongov ako je jednak zbiru kubova svojih
-cifara. Napisati program koji za dati trocifren broj proverava da li je Armstrongov.
-\end{primer}
-
-\begin{primer}
-Napisati program koji ispisuje proizvod parnih cifara unetog
-četvorocifrenog broja.
-\end{primer}
-
-\begin{primer}
-Napisati program koji za ceo broj x ispisuje njegov
-znak, tj da li je broj jednak nuli, manji od nule ili veći od nule.
-\end{primer}
 
 \begin{primer}
 Napisati program koji za redni broj dana u nedelji ispisuje
 ime odgovarajućeg dana. U slučaju pogrešnog unosa ispisati odgovarajuću
-poruku
+poruku. Napomena: uraditi zadatak i korišćenjem case
 \end{primer}
 
 \begin{primer}
@@ -1022,13 +1165,14 @@ samoglasnik.
 \end{primer}
 
 \begin{primer}
-Napisati program koji 5 puta ispisuje tekst Mi volimo da
-programiramo.
+Napisati program koji 5 puta ispisuje tekst $"$Mi volimo da
+programiramo$"$.
 \end{primer}
 
 \begin{primer}
 Napisati program koji preko prompta učitava ceo broj n i ispisuje n puta
-tekst Mi volimo da programiramo.
+tekst $"$Mi volimo da
+programiramo$"$.
 \end{primer}
 
 \begin{primer}
@@ -1043,8 +1187,6 @@ sve cele brojeve iz intervala [n, m].\\
 (b) Koristiti for petlju.\\
 (c) Koristiti do-while petlju.\\
 \end{primer}
-
-
 
 \begin{primer}
 Napisati program koji učitava ceo pozitivan broj i izračunava
@@ -1063,47 +1205,13 @@ prave delioce.
 \end{primer}
 
 \begin{primer}
-Napisati program koji za uneti prirodan broj ispisuje da li
-je on deljiv sumom svojih cifara.
-\end{primer}
-
-\begin{primer}
-Promptom se unosi ceo pozitivan broj n, a potom i n celih
-brojeva. Izračunati i ispisati zbir onih brojeva koji su parni.
-\end{primer}
-
-\begin{primer}
 Promptom se unosi ceo pozitivan broj n, a potom i n celih
 brojeva. Izračunati i ispisati zbir onih brojeva koji su neparni i negativni.
-\end{primer}
-
-
-\begin{primer}
-Program učitava ceo broj n, a zatim i n karaktera. Napisati
-program koji proverava da li se od unetih karaktera može napisati reč Zima.
-\end{primer}
-
-\begin{primer}
-Program učitava cele brojeve sve do unosa broja nula 0.
-Napisati program koji izračunava i ispisuje aritmetičku sredinu unetih brojeva na
-četiri decimale.
-\end{primer}
-
-\begin{primer}
-U prodavnici se nalaze artikala čije cene su realni pozitivni
-brojevi. Program unosi cene artikala sve do unosa broja nula 0. Napisati program
-koji izračunava i ispisuje prosečnu vrednost cena u radnji.
 \end{primer}
 
 \begin{primer}
 Program učitava realan broj x i ceo pozitivan broj n.
 Napisati program koji izračunava i ispisuje sumu $S=x + 2*x^2 + 3*x^3 + ..$.
-\end{primer}
-
-\begin{primer}
-Napisati program koji učitava karaktere sve do kraja ulaza,
-a potom ispisuje broj velikih slova, broj malih slova, broj cifara, broj belina i zbir
-unetih cifara.
 \end{primer}
 
 \begin{primer}
@@ -1113,7 +1221,6 @@ koji ispisuju odgovarajuće brojeve. Pretpostaviti da je unos korektan.\\
 tablicu množenja.\\
 (b) Napisati program koji za uneto n ispisuje sve brojeve od 1 do $n^2$ pri čemu se ispisuje po n brojeva u jednoj vrsti.\\
 \end{primer}
-
 
 \begin{primer}
 Program učitava ceo pozitivan broj n, a potom n realnih
@@ -1125,10 +1232,44 @@ dobijenu vrednost.
 Kreirati sajt prodavnice u kome svaki kupac određuje sam cenu artikla. U prodavnici se nalazi n artikala čije cene su realni brojevi. Na stranici treba da postoji naziv prodavnice kao i spisak dostupnih artikala sa slikama, a potom da se uz pomoć prompta učita broj proizvoda koje korisnik želi da kupi. Nakon toga, za svaki od proizvoda treba uneti cenu svakog od n artikala i određuje i ispisuje ukupnu cenu kao i cenu najmanjeg artikla.
 \end{primer}
 
+\subsubsection{Niske}
 \begin{primer}
-U prodavnici se nalaze artikala čije cene su realni pozitivni
-brojevi. Program unosi cene artikala sve do unosa broja nula 0. Napisati program
-koji izračunava i ispisuje prosečnu vrednost cena u radnji.
+Za unetu nisku proveriti da li sadrži broj i ispisati u konzoli. Napomena: koristiti $ASCII$ tabelu.
+\end{primer}
+%
+%\begin{primer}
+%Zameniti sva pojavljivanja slova $a$ u niski unetoj preko prompta %slovom $b$. Na primer, $"$Danas je lep dan.$"$ sa $"$Dbnbs je lep dbn.$"$.
+%\end{primer}
+%
+\begin{primer}
+Proveriti da li je reč uneta preko prompta palindrom. Palindromi su reči, rečenice koji se mogu čitati unapred i unazad i imaju isto značenje. Primeri za reči: Ana, bob, dovod, kapak, kajak, kuk, melem, neven, oko, pop, potop, ratar, teret. 
+\end{primer}
+%% Primeri za recenice:
+%% Ana voli Milovana. Idu ljudi.
+\begin{primer}
+Program učitava reč. Napisati
+program koji proverava da li se od karaktera unete reči može napisati reč $Zima$.
+\end{primer}
+
+\begin{primer}
+Program učitava ceo broj n, a zatim i n karaktera. Napisati
+program koji proverava da li se od unetih karaktera može napisati reč $Zima$.
+\end{primer}
+
+\begin{primer}
+Napisati program koji učitava karaktere sve do kraja ulaza (do unosa broja 0), a potom ispisuje broj velikih slova, broj malih slova, broj cifara, broj belina i zbir unetih cifara. (Za velika i mala slova koristiti toUpperCase() i toLowerCase())
+\end{primer}
+
+
+\begin{primer}
+Kreirati sajt zdrave hrane. Sajt treba da sadrži naziv, logo, navigacioni bar (O nama, Proizvodi, Kontakt). 
+\begin{itemize}
+    \item Stranica o nama treba da sadrži: sliku, tekst o radnji, adresu i ostale relevantne informacije. 
+    \item Kreirati potom stranicu sa proizvodima koja treba da sadrži najpre listu proizvoda (kategorije, pa potom po nekoliko proizvoda), a ispod toga treba da se nalaze neki od popularnih proizvoda sa slikama i cenama na 100 grama. 
+    \item Stranica za kontakt treba da sadrži kontakt formu (Ime, email, prostor za poruku, itd.).  
+\end{itemize}
+
+Nakon toga koristeci prompt, alert i confirm za sajt sa zdravom hranom napraviti da se za 5 korisnika unese: ime, ocena sajta i predlog novog naziva zdrave hrane. Proveriti ispravnost unetog podatka, ako podatak nije pravilno unet ponuditi korisniku da ponovo unese podatak. Ako jeste, unosi se naredni. Unos ocena dodati na zbir. U konzoli ispisati predlog korisnika u formatu Ime : predlog. Na kraju, ispisati prosečnu ocenu sajta.
 \end{primer}
 
 \subsubsection{Funkcije}
@@ -1286,6 +1427,89 @@ Prikaz programa dat je na slici \ref{fig:hes}.
 \end{figure}
 
 \end{primer}
+
+
+\subsection{Domaći zadaci}
+\begin{primer}
+Na koje $if$ se odnosi $else$?
+\begin{verbatim}
+if (izraz1)
+    if (izraz2)
+        naredba1
+else
+    naredba2
+\end{verbatim}
+\end{primer}
+\begin{primer}
+Na koje $if$ se odnosi $else$?
+\begin{verbatim}
+if (izraz1) {
+   if (izraz2)
+      naredba1
+} else
+    naredba2
+\end{verbatim}
+\end{primer}
+
+\begin{primer}
+Napisati program koji za uneti pozitivan trocifreni broj na
+standardni izlaz ispisuje njegove cifre jedinica, desetica i stotina
+\end{primer}
+
+\begin{primer}
+Napisati program koji za uneti pozitivan četvorocifreni
+broj:\\
+(a) izračunava proizvod cifara\\
+(b) izračunava razliku sume krajnjih i srednjih cifara\\
+(c) izračunava sumu kvadrata cifara\\
+(d) izračunava broj koji se dobija ispisom cifara u obrnutom poretku\\
+(e) izračunava broj koji se dobija zamenom cifre jedinice i cifre stotine\\
+\end{primer}
+
+\begin{primer}
+Broj je Armstrongov ako je jednak zbiru kubova svojih
+cifara. Napisati program koji za dati trocifren broj proverava da li je Armstrongov.
+\end{primer}
+
+\begin{primer}
+Napisati program koji ispisuje proizvod parnih cifara unetog
+četvorocifrenog broja.
+\end{primer}
+
+\begin{primer}
+Napisati program koji za ceo broj x ispisuje njegov
+znak, tj da li je broj jednak nuli, manji od nule ili veći od nule.
+\end{primer}
+
+\begin{primer}
+Napisati program koji za uneti prirodan broj ispisuje da li
+je on deljiv sumom svojih cifara.
+\end{primer}
+
+\begin{primer}
+Promptom se unosi ceo pozitivan broj n, a potom i n celih
+brojeva. Izračunati i ispisati zbir onih brojeva koji su parni.
+\end{primer}
+
+\begin{primer}
+Program učitava cele brojeve sve do unosa broja nula 0.
+Napisati program koji izračunava i ispisuje aritmetičku sredinu unetih brojeva na
+četiri decimale.
+\end{primer}
+
+\begin{primer}
+U prodavnici se nalaze artikli, čije cene su realni pozitivni
+brojevi. Program unosi cene artikala sve do unosa broja nula 0. Napisati program
+koji izračunava i ispisuje prosečnu vrednost cena u radnji.
+\end{primer}
+
+\begin{primer}
+U prodavnici se nalaze artikli čije cene su realni pozitivni
+brojevi. Program unosi cene artikala sve do unosa broja nula 0. Napisati program
+koji izračunava i ispisuje prosečnu vrednost cena u radnji.
+\end{primer}
+
+
 
 
 \section{Zaključak}
