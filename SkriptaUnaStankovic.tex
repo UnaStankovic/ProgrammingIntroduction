@@ -1034,13 +1034,45 @@ console.log(String.fromCharCode(97)); //a
 voce = voce.trim();
 console.log(voce);     
 \end{verbatim}
-Da bismo neku nisku celu smanjili ili uvećali, koristimo metode $toUpperCase()$ ili $toLowerCase()$ u zavisnosti od toga šta želimo postići. Primetimo da se mogu primeniti i nad pojedinačnim karakterom.
+Da bismo karaktere neke niske smanjili ili uvećali, koristimo metode $toUpperCase()$ ili $toLowerCase()$ u zavisnosti od toga šta želimo postići. Primetimo da se mogu primeniti i nad pojedinačnim karakterom.
 \begin{verbatim}
 console.log(voce.toLowerCase()); //ananas
 console.log(voce.toUpperCase()); //ANANAS
 \end{verbatim}
 \subparagraph{Neke metode za rad sa niskama}
-Postoji puno metoda za rad sa niskama, a u ovom delu biće navedene samo neke od njih. 
+Metode nam omogućavaju da izvršimo neke akcije nad objektima. Postoji puno metoda za rad sa niskama, a u ovom delu biće navedene samo neke od njih. \\\\
+U prethodnom delu već su predstavljene $charAt()$ i $charCodeAt()$. Prva nam daje (kaže se i vraća) karakter na poziciji koju pošaljemo kao argument, a druga nam vraća kodnu vrednost karaktera, koji se nalazi na poziciji prosleđenoj kao argument. Osim njih neki od istaknutih metoda su:
+\begin{itemize}
+    \item \textbf{concat()} - nadovezuje dve niske i vraća novu nisku ne menjajući stare,
+    \item \textbf{includes()} - proverava da li niska sadrži određen karakter ili reč, kao drugi argument se šalje od koje pozicije početi sa traženjem,  
+    \item \textbf{indexOf()} - vraća indeks prvog pojavljivanja niske koju šaljemo kao argument funkcije ili $-1$ ako ta niska nije pronađena (napomena: lastIndexOf() radi isto samo vraća poslednji), 
+    \item \textbf{repeat()} - vraća string ponovljen onoliko puta koliko je navedeno u zagradi, 
+    \item \textbf{replace()} - vraća novi string u kome je reč navedena kao prvi argument, zamenjena rečju navedenom kao drugi argument, 
+    \item \textbf{search()} - pretražuje string za rečju koja je navedena kao argument i vraća poziciju od koje reč počinje u niski ili vraća $-1$ ako reč nije pronađena,  
+    \item \textbf{slice()} - iz niske izdvaja deo niske počevši od indeksa naznačenog kao prvi argument, do indeksa naznačenog kao drugi, 
+    \item \textbf{substr()} - iz niske izdvaja podnisku počevši od indeksa navedenog kao prvi argument u dužini navedenoj kao drugi argument.
+\end{itemize}
+
+Navedimo sada neke od primera primena ovih metoda.
+\begin{verbatim}
+var niska1 = "Danas je.";
+    		var niska2 = "lep dan.";
+    		var niska3 = niska1.concat(niska2);
+    		console.log(niska3);
+    		//hocemo da provermo da li niska3 sadrzi rec dan
+    		console.log("Da li niska sadrzi rec dan", niska3.includes("dan"));
+    		console.log("Da li niska sadrzi rec ana", niska3.includes("ana"));
+    		console.log("Indeks prvog pojavljivanja reci dan", niska3.indexOf("dan"));
+    		console.log("Indeks prvog pojavljivanja reci ana", niska3.indexOf("ana"));
+    		console.log(niska1.repeat(4));
+    		var niska4 = niska2.replace("dan", "covek");
+    		console.log(niska4);
+    		console.log("Na kom indeksu pocinje rec dan", niska3.search("dan"));
+    		console.log("Na kom indeksu pocinje rec ana", niska3.search("ana"));
+    		console.log(niska3.slice(1,4));
+    		console.log(niska3);
+    		console.log(niska3.substr(1,4));    
+\end{verbatim}
 
 
 \subparagraph{Vežba}
@@ -1128,7 +1160,6 @@ c) a i b su pozitivni brojevi, ne veći od 100
 U suprotnom, promenljivoj rezultat dodeliti vrednost 0. Ispisati vrednost promenljive
 rezultat.
 \end{primer}
-
 
 \begin{primer}
 Napisati program koji za dva cela broja ispisuje
@@ -1236,16 +1267,15 @@ Kreirati sajt prodavnice u kome svaki kupac određuje sam cenu artikla. U prodav
 \begin{primer}
 Za unetu nisku proveriti da li sadrži broj i ispisati u konzoli. Napomena: koristiti $ASCII$ tabelu.
 \end{primer}
-%
-%\begin{primer}
-%Zameniti sva pojavljivanja slova $a$ u niski unetoj preko prompta %slovom $b$. Na primer, $"$Danas je lep dan.$"$ sa $"$Dbnbs je lep dbn.$"$.
-%\end{primer}
-%
+
+\begin{primer}
+Zameniti sva pojavljivanja slova $a$ u niski unetoj preko prompta slovom $b$. Na primer, $"$Danas je lep dan.$"$ sa $"$Dbnbs je lep dbn.$"$. Napomena: uraditi kreiranjem nove niske.
+\end{primer}
+
 \begin{primer}
 Proveriti da li je reč uneta preko prompta palindrom. Palindromi su reči, rečenice koji se mogu čitati unapred i unazad i imaju isto značenje. Primeri za reči: Ana, bob, dovod, kapak, kajak, kuk, melem, neven, oko, pop, potop, ratar, teret. 
 \end{primer}
-%% Primeri za recenice:
-%% Ana voli Milovana. Idu ljudi.
+
 \begin{primer}
 Program učitava reč. Napisati
 program koji proverava da li se od karaktera unete reči može napisati reč $Zima$.
@@ -1257,9 +1287,8 @@ program koji proverava da li se od unetih karaktera može napisati reč $Zima$.
 \end{primer}
 
 \begin{primer}
-Napisati program koji učitava karaktere sve do kraja ulaza (do unosa broja 0), a potom ispisuje broj velikih slova, broj malih slova, broj cifara, broj belina i zbir unetih cifara. (Za velika i mala slova koristiti toUpperCase() i toLowerCase())
+Napisati program koji učitava karaktere sve do kraja ulaza (do unosa broja 0), a potom ispisuje broj velikih slova, broj malih slova, broj cifara, broj belina i zbir unetih cifara. 
 \end{primer}
-
 
 \begin{primer}
 Kreirati sajt zdrave hrane. Sajt treba da sadrži naziv, logo, navigacioni bar (O nama, Proizvodi, Kontakt). 
@@ -1504,7 +1533,7 @@ koji izračunava i ispisuje prosečnu vrednost cena u radnji.
 \end{primer}
 
 \begin{primer}
-U prodavnici se nalaze artikli čije cene su realni pozitivni
+U prodavnici se nalaze artikala čije cene su realni pozitivni
 brojevi. Program unosi cene artikala sve do unosa broja nula 0. Napisati program
 koji izračunava i ispisuje prosečnu vrednost cena u radnji.
 \end{primer}
