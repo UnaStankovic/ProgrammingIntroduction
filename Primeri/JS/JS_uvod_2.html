@@ -153,18 +153,27 @@
             console.log(voce.toUpperCase());
             voce = voce.toUpperCase();
             console.log(voce);
-            /*
-                1. Koristeci promprt alert i confirm za sajt sa zdravom hranom napraviti
-                2. za 10 korisnika da se unese:
-                    -ime 12abc, 1 
-                    -ocena sajta
-                    -predlog naziva za zdravu hranu
-                3. Proveriti ispravnost unetog podatka
-                4. Ako jeste, unosi se naredni podatak
-                5. Unos ocena dodati na zbir 
-                6. Ispisati predlog korisnika u formatu: Ime : predlog
-                7. Na kraju ispisati prosecnu ocenu sajta
-            */
+           
+    		console.log("_________________________________________");
+			console.log("METODI ZA RAD SA NISKAMA");
+			console.log("_________________________________________");
+    		var niska1 = "Danas je.";
+    		var niska2 = "lep dan.";
+    		var niska3 = niska1.concat(niska2);
+    		console.log(niska3);
+    		//hocemo da provermo da li niska3 sadrzi rec dan
+    		console.log("Da li niska sadrzi rec dan", niska3.includes("dan"));
+    		console.log("Da li niska sadrzi rec ana", niska3.includes("ana"));
+    		console.log("Na kom indeksu se nalazi prvo pojavljivanje reci dan", niska3.indexOf("dan"));
+    		console.log("Na kom indeksu se nalazi prvo pojavljivanje reci ana", niska3.indexOf("ana"));
+    		console.log(niska1.repeat(4));
+    		var niska4 = niska2.replace("dan", "covek");
+    		console.log(niska4);
+    		console.log("Na kom indeksu pocinje rec dan", niska3.search("dan"));
+    		console.log("Na kom indeksu pocinje rec ana", niska3.search("ana"));
+    		console.log(niska3.slice(1,4));
+    		console.log(niska3);
+    		console.log(niska3.substr(1,4));
 		</script>
 	</body>
 </html>
