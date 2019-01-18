@@ -1132,15 +1132,34 @@ console.log(niska);
 Pomenimo još neke istaknute metode za rad sa nizovima:  
 \begin{itemize}
     \item \textbf{concat()} - nadovezuje dva niza i vraća novi ne menjajući stare,
-    \item \textbf{includes()} - proverava da li niska sadrži određen karakter ili reč, kao drugi argument se šalje od koje pozicije početi sa traženjem,  
-    \item \textbf{indexOf()} - vraća indeks prvog pojavljivanja niske koju šaljemo kao argument funkcije ili $-1$ ako ta niska nije pronađena (napomena: lastIndexOf() radi isto samo vraća poslednji), 
-    \item \textbf{repeat()} - vraća string ponovljen onoliko puta koliko je navedeno u zagradi, 
-    \item \textbf{replace()} - vraća novi string u kome je reč navedena kao prvi argument, zamenjena rečju navedenom kao drugi argument, 
-    \item \textbf{search()} - pretražuje string za rečju koja je navedena kao argument i vraća poziciju od koje reč počinje u niski ili vraća $-1$ ako reč nije pronađena,  
-    \item \textbf{slice()} - iz niske izdvaja deo niske počevši od indeksa naznačenog kao prvi argument, do indeksa naznačenog kao drugi, 
-    \item \textbf{substr()} - iz niske izdvaja podnisku počevši od indeksa navedenog kao prvi argument u dužini navedenoj kao drugi argument.
+    \item \textbf{includes()} - proverava da li niz sadrži određeni element, kao argument se šalje  ono što se traži, ako postoji vraća $true$, inače, vraća $false$,  
+    \item \textbf{push()} - dodaje novi element na kraj niza, 
+    \item \textbf{pop()} - skida poslednji element sa kraja niza, 
+    \item \textbf{reverse()} - vraća obrnut niz, 
+    \item \textbf{slice()} - iz niza izdvaja deo počevši od indeksa naznačenog kao prvi argument, do indeksa naznačenog kao drugi i vraća novi niz, 
+    \item \textbf{sort()} - sortira niz.
 \end{itemize}
+\begin{verbatim}
+var niz_brojeva = [1,2,3,4];
+var novi = niz_brojeva.concat(niz);
+console.log(novi);
 
+console.log("Da li niz sadrzi broj 13?", niz.includes(13)); //false
+niz.push(13);
+console.log("Dodat je novi element na kraj niza",niz);
+niz.pop()
+console.log("Niz kada skinemo poslednji element",niz);
+			
+niz.reverse();
+console.log("Obrnut niz",niz);
+
+niz = niz.slice(1,3);
+console.log(niz);
+niz_brojeva.reverse();
+console.log(niz_brojeva);
+niz_brojeva.sort();
+console.log(niz_brojeva);
+\end{verbatim}
 
 \subsubsection{Funkcije}
 Funkcija je jedna od osnovnih konstrukcija jezika koja nam omogućava ponovno korišćenje koda. Omogućavaju nam čak i da ih koristimo iako ne razumemo detalje implementacije. Izdvajanjem koda u funkcije povećava se čitljivost koda i olakšava se njegovo održavanje.   
@@ -1354,6 +1373,43 @@ Kreirati sajt zdrave hrane. Sajt treba da sadrži naziv, logo, navigacioni bar (
 Nakon toga koristeci prompt, alert i confirm za sajt sa zdravom hranom napraviti da se za 5 korisnika unese: ime, ocena sajta i predlog novog naziva zdrave hrane. Proveriti ispravnost unetog podatka, ako podatak nije pravilno unet ponuditi korisniku da ponovo unese podatak. Ako jeste, unosi se naredni. Unos ocena dodati na zbir. U konzoli ispisati predlog korisnika u formatu Ime : predlog. Na kraju, ispisati prosečnu ocenu sajta.
 \end{primer}
 
+\subsubsection{Nizovi}
+
+\begin{primer}
+Napisati program u kom za niz brojeva program ispisuje niz kvadriranih vrednosti.
+\end{primer}
+
+\begin{primer}
+Napisati program u kom se unosi n, a potom i n elemenata niza. Nakon toga, na kraj niza se dodaje suma zadatih brojeva.
+\end{primer}
+
+\begin{primer}
+Napisati program koji računa skalarni proizvod vektora a i b. Vektor $a=(a_1, a_2,...)$ i $b=(b_1, b_2,...)$, a skalarni proizvod $a*b= a_1 * b_1 + a_2 * b_2 + ... + a_n * b_n$. Najpre se unosi n, a potom po n vrednosti za vektore a i b. 
+\end{primer}
+
+\begin{primer}
+Napisati program koji za dati niz ispisuje:\\
+a) elemente na parnim pozicijama u nizu
+b) parne elemente niza.
+\end{primer}
+
+\begin{primer}
+Napisati program koji za učitani ceo broj, ispisuje broj
+pojavljivanja svake od cifara u zapisu tog broja.
+\end{primer}
+
+
+\begin{primer}
+Napisati program koji transformiše uneti niz tako što
+kvadrira sve negativne elemente niza. 
+\end{primer}
+
+\begin{primer}
+Sa standardnog ulaza se učitava dimenzija niza, elementi
+niza i jedan ceo broj k. Napisati program koji štampa indekse elemenata koji su
+deljivi sa k.
+\end{primer}
+
 \subsubsection{Funkcije}
 
 \begin{primer}
@@ -1424,23 +1480,6 @@ broja 0. Napisati program koji učitava vrednost broja x i testira rad napisane
 funkcije.
 \end{primer}
 
-\subsubsection{Nizovi}
-
-\begin{primer}
-Napisati program koji računa skalarni proizvod vektora a i b. Vektor $a=(a_1, a_2,...)$ i $b=(b_1, b_2,...)$, a skalarni proizvod $a*b= a_1 * b_1 + a_2 * b_2 + ... + a_n * b_n$. Najpre se unosi n, a potom po n vrednosti za vektore a i b. 
-\end{primer}
-
-\begin{primer}
-Napisati program koji za dati niz ispisuje:\\
-a) elemente na parnim pozicijama u nizu
-b) parne elemente niza.
-\end{primer}
-
-\begin{primer}
-Napisati program koji za učitani ceo broj, ispisuje broj
-pojavljivanja svake od cifara u zapisu tog broja.
-\end{primer}
-
 
 \begin{primer}
 Napisati funkcije za rad sa nizovima celih brojeva.\\
@@ -1457,19 +1496,6 @@ i vraća poziciju maksimalnog elementa u nizu a dimenzije n. U slučaju
 više pojavljivanja maksimalnog elementa, vratiti najmanju poziciju.\\
 (g)Napisati funkciju koja sve vrednosti niza uvećava za zadatu vrednost m.
 \end{primer}
-
-\begin{primer}
-Napisati program koji transformiše uneti niz tako što
-kvadrira sve negativne elemente niza. 
-\end{primer}
-
-\begin{primer}
-Sa standardnog ulaza se učitava dimenzija niza, elementi
-niza i jedan ceo broj k. Napisati program koji štampa indekse elemenata koji su
-deljivi sa k.
-\end{primer}
-
-
 
 
 \subsection{Dodatni zadaci}

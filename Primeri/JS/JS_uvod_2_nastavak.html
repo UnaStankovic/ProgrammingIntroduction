@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Uvod u JS</title>
+		<meta charset='UTF-8'>
+		<meta author='Una Stankovic'>
+		<!--Naredna linija koda predstavlja prvi nacin uvodjenja JavaScript koda
+		<script src='filename.js'></script> -->
+	</head>
+	<body>
+		<h1>Uvod u JavaScript</h1>
+		<p> Na ovoj stranici bice predstavljeni osnovni elementi JS koda.
+			Najveci deo zabave odvija se unutar konzole, koju dobijate otvaranjem 
+			konzole uz pomoc <mark>F12</mark>.</p>
+		<ul>
+			Ovaj fajl pokriva naredne elemente jezika:
+			<li>Obavestenja</li>
+			<li>Stringove</li>
+			<li>Nizove</li>
+			<li>Objekte</li>
+		</ul>
+		<!--Ovo je drugi nacin navodjenja JavaScript koda,
+			u body-ju, nakon svog drugog koda, kako bi se izvrsilo smestanje HTML elemenata u DOM,
+			pre JS koda. --> 
+		<script>
+			//NIZOVI
+			console.log("_________________________________________");
+			console.log("RAD SA NIZOVIMA");
+			console.log("_________________________________________");
+			var niz = [];
+			var niz2 = [1,2,3,4,5];
+			var niz3 = ["niska1", "niska2"];
+			var niz4 = [1, "neki tekst", "!", 3.14];
+			niz4["kljuc"] = 5;
+			//pristup elementima niza
+			console.log(niz2[3]);
+			console.log(niz3[0]);
+			console.log(niz4[3]);
+			console.log(niz4);
+			
+			//elementi niza mogu biti drugi nizovi
+			console.log("_________________________________________");
+			console.log("MATRICE");
+			console.log("_________________________________________");
+			var niz1 = [niz2,0,1,4];
+			console.log("Niz 1:",niz1);
+			//kreiranje matrice
+			var matrica = [];
+			matrica[0] = [1,2];
+			matrica[1] = [3,4];
+			console.log(matrica[0][1]);
+			//da bismo obisli celu matricu mozemo koristiti dvostruku for petlju
+			//unutrasnja petlja ide ko kolonama
+			// spoljasnja po vrstama
+			//za velicinu niza koristimo svojstvo length
+			console.log(matrica.length);
+			for(i = 0;i<matrica.length;i++){
+				for(j = 0; j<matrica.length;j++){
+					console.log("element u vrsti",i,"i koloni",j,"je:",matrica[i][j]);
+				}
+			}
+			console.log("_________________________________________");
+			console.log("INDEKSIRANJE");
+			console.log("_________________________________________");
+			var niz = [];
+			niz['x'] = [1, 2, 3, [4, 5, 6]];
+			/* Niz ima jedan element sa indeksom „x‟, njegova vrednost je niz
+			sa elementima 1, 2, 3 koji su indeksirani sa 0, 1, 2 i podniz sa
+			elementima 4, 5, 6 koji se nalazi na indeksu 3. Elementi 4, 5, 6 su
+			indeksirani sa 0, 1, 2 u svoj nizu.
+			„x‟:[
+				0: 1
+				1: 2
+				2: 3
+				3: [
+ 					0: 4
+ 					1: 5
+ 					2: 6
+				 ]
+ 				]
+			*/
+			// Ispis vrednosti 6
+			console.log(niz['x'][3][2]);
+
+			//metodi za rad sa nizovima
+			console.log("_________________________________________");
+			console.log("METODI ZA RAD SA NIZOVIMA");
+			console.log("_________________________________________");
+			//Jos jedan metod za rad sa niskama koji od niske kreira niz: split 
+			var niska = "Danas je lep dan.";
+			var niz = niska.split(" ");
+			console.log(typeof niz);
+			console.log(niz);
+
+			//Metod za rad sa nizovima koji od niza formira nisku: join
+			niz = ["danas", "je", "tmuran", "dan"];
+			niska = niz.join();
+			console.log(typeof niska);
+			console.log(niska);
+			//concat spaja dva niza i vraca novi niz
+			var niz_brojeva = [1,2,3,4];
+			var novi = niz_brojeva.concat(niz);
+			console.log(novi);
+			//includes ispituje postoji li element u nizu
+			console.log("Da li niz sadrzi broj 13?", niz.includes(13)); //false
+			//push dodaje element na kraj niza, pop skida element sa kraja niza
+			niz.push(13);
+			console.log("Dodat je novi element na kraj niza",niz);
+			niz.pop()
+			console.log("Niz kada skinemo poslednji element",niz);
+			//reverse obrce niz
+			niz.reverse();
+			console.log("Obrnut niz",niz);
+			//slice izdvaja deo niza
+			niz = niz.slice(1,3);
+			console.log("Izdvojen deo niza",niz);
+			niz_brojeva.reverse();
+			console.log(niz_brojeva);
+			niz_brojeva.sort();
+			console.log("Sortiran",niz_brojeva);
+		</script>
+	</body>
+</html>
