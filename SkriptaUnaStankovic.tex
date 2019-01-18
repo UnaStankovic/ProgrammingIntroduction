@@ -667,7 +667,7 @@ Ovi operatori imaju standarne prioritete. Operator $\%$ predstavlja ostatak pri 
 \begin{verbatim}
 var c = a + b; //12
 \end{verbatim}
-Osim ovih operatora postoje i operatori za proveru jednakosti $==$, nejednakosti $!=$, za proveru jednakosti sa proverom tipova $===$, kao i složeni operatori ++, +=, -=, *=,itd.. O njima će biti više reči u nastavku. \\\\
+Osim ovih binarnih operatora postoje i binarni operatori za proveru jednakosti $==$, nejednakosti $!=$, za proveru jednakosti sa proverom tipova $===$, operatori koji vrše konjunkciju $\&\&$ i disjunkciju $||$, kao i složeni operatori ++(unarni), +=, -=, *=,itd.. O njima će biti više reči u nastavku. \\\\
 Da bismo broj zapisali sa određenim brojem decimala koristimo metod\footnote{Metodi su, za sad, crne kutije koje nam omogućavaju da vršimo određene promene nad promenljivim. U nastavku će biti detaljnije obrađene.} $toFixed()$, kome kao jedini argument šaljemo broj decimala koji želimo da zadržimo. 
 \begin{verbatim}
 var pi = 3.1415;
@@ -880,7 +880,7 @@ for(i = 0; i < n; i++) {
 Petlje i uslovne naredbe se mogu kombinovati, korišćenjem jednih u drugima i slično.
 U slučaju ugnježdenih petlji, naredbe break i continue imaju
 dejstvo samo na unutrašnju petlju.
-\subparagraph{Bulove vrednosti i Bulovski operatori}
+\subparagraph{Bulove vrednosti}
 Pod Bulovim vrednostima smatramo $true$ i $false$, odnosno tačno i netačno, $1$ i $0$. 
 Ako bismo hteli da kreiramo beskonačnu petlju (iako se to nikako ne preporučuje) bio bi nam potreban uslov koji uvek važi:
 \begin{verbatim}
@@ -897,7 +897,7 @@ if((a != b) == true){
     console.log("uslov da su a i b razliciti vazi");
 }
 \end{verbatim}
-Ako bismo hteli da nadovežemo više uslova, ili da kažemo da želimo da se nešto izvrši ako je bilo koji od uslova ispunjen koristimo Bulovske operatore. Pod Bulovskim operatorima podrazumevamo $&&$ i $||$, odnosno $"$logičko i$"$ i $"$logičko ili$"$.
+Ako bismo hteli da nadovežemo više uslova, ili da kažemo da želimo da se nešto izvrši ako je bilo koji od uslova ispunjen koristimo binarne operatore $\&\&$ i $||$, odnosno $"$logičko i$"$ i $"$logičko ili$"$.
 \begin{verbatim}
 var a = 10;
 if(a > 0 && a%2==0)
@@ -944,7 +944,8 @@ var niska1 = "Ovo je prva niska.";
 var niska2 = "Ovo je druga niska";
 var niska3 = "Ova niska nije pravilna';
 \end{verbatim}
-Ukoliko želimo da unutar niske imamo prave navodnike (na primer kod citata), onda možemo ili upotrebiti drugi vid navodnika ili koristiti escape sekvencu $\\$. Kako bismo nadovezali dve niske koristimo operator $+$, a ovaj postupak se naziva $konkatenacija$. Treba obratiti pažnju na to da nadovezivanjem niski sa $+$, ne dobijamo razmak između stringova kao kod korišćenja $,$. Da bismo dobili razmak moramo ga dodati kao još jednu nisku, a kako bismo dobili novi red koristimo $\n$. 
+
+Ukoliko želimo da unutar niske imamo prave navodnike (na primer kod citata), onda možemo ili upotrebiti drugi vid navodnika ili koristiti escape sekvencu \textbackslash. Kako bismo nadovezali dve niske koristimo operator $+$, a ovaj postupak se naziva $konkatenacija$. Treba obratiti pažnju na to da nadovezivanjem niski sa $+$, ne dobijamo razmak između stringova kao kod korišćenja $,$. Da bismo dobili razmak moramo ga dodati kao još jednu nisku, a kako bismo dobili novi red koristimo \textbackslash$n$. 
 \begin{verbatim}
 console.log(niska1 + niska2); //Ovo je prva niska.Ovo je druga niska.
 niska1 = 'Ovo je neka niska.';
@@ -981,7 +982,7 @@ else{
    console.log("ane");
 }
 \end{verbatim}
-\\\\
+
 Metodom toString() vršimo eksplicitno konvertovanje u nisku.
 \begin{verbatim}
 var br_u_str = 102;
@@ -1091,7 +1092,25 @@ console.log(niz3[0]);
 console.log(niz4[3]);
 console.log(niz4);
 \end{verbatim}
-
+Element niza može biti i neki drugi niz. Kao što se vidi u primeru iznad, osim što nizovi mogu čuvati različite tipove, moguće je indeksiranje elemenata niza različitim tipovima. Ukoliko indeksi elemenata nisu eksplicitno navedeni, elementi niza su podrazumevano indeksirani celim brojevima počevši od 0. Kao posledica činjenice da nizovi mogu čuvati elemente različitih tipova, za element niza možemo postaviti i drugi niz, čime je moguće kreiranje matrica, pa tako:
+\begin{verbatim}
+//elementi niza mogu biti drugi nizovi
+var niz1 = [niz2,0,1,4];
+console.log("Niz 1:",niz1);
+//kreiranje matrice
+var matrica = [];
+matrica[0] = [1,2];
+matrica[1] = [3,4];
+console.log(matrica[0][1]);
+\end{verbatim}
+Da bismo obišli celu matricu, neophodno je da prođemo kroz sve njene elemente. Odnosno, da krećući se kroz elemente niza redom obiđemo svaki od elemenata. Kako bismo to učinili na najjednostavniji način, neophodno je da koristimo dvostruku $for$ petlju. Spoljašnja petlja bi se kretala po vrstama matrice, a unutrašnja po kolonama. 
+\begin{verbatim}
+for(i = 0;i<matrica.length;i++){
+    for(j = 0; j<matrica.length;j++){
+         console.log("element u vrsti",i,"i koloni",j,"je:",matrica[i][j]);
+    }
+}
+\end{verbatim}
 
 \subsubsection{Funkcije}
 Funkcija je jedna od osnovnih konstrukcija jezika koja nam omogućava ponovno korišćenje koda. Omogućavaju nam čak i da ih koristimo iako ne razumemo detalje implementacije. Izdvajanjem koda u funkcije povećava se čitljivost koda i olakšava se njegovo održavanje.   
