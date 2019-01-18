@@ -29,8 +29,7 @@
 \maketitle
 \newpage
 
-U ovom tekstu predstavljene su teorijske osnove potrebne za savladavanje kursa $"$ Uvod u programiranje kroz JavaScript$"$. Najpre su navedene, ukratko, teorijske osnove računarstva i uvod kroz HTML i CSS, a kasnije se ulazi u rad sa JavaScript-om.  Ova skripta je obavezan materijal pri kursu i sa prezentacijama i kodovima formira celinu. Ova skripta sama po sebi nije dovoljna, samostalan rad i istraživanje je neizostavni deo procesa učenja. U slučaju da primetite greške pri čitanju rada ili imate bilo kakve nedoumice, predloge i sugestije javite se mejlom na adresu navedenu na prvoj strani.
-Materijali su kreirani prvenstveno na osnovu materijala korišćenih u nastavi na Matematičkom fakultetu, iz predmeta Uvod u Veb i Internet tehnologije, Programiranje za Veb, Mrežno računarstvo i Programiranje 1. 
+U ovom tekstu predstavljene su teorijske osnove potrebne za savladavanje kursa $"$ Uvod u programiranje kroz JavaScript$"$. Najpre su navedene, ukratko, teorijske osnove računarstva i uvod kroz HTML i CSS, a kasnije se ulazi u rad sa JavaScript-om.  Ova skripta je obavezan materijal pri kursu i sa prezentacijama i kodovima formira celinu. Ova skripta sama po sebi nije dovoljna, samostalan rad i istraživanje je neizostavni deo procesa učenja. U slučaju da primetite greške pri čitanju rada ili imate bilo kakve nedoumice, predloge i sugestije javite se mejlom na adresu navedenu na prvoj strani. Materijali su kreirani prvenstveno na osnovu materijala korišćenih u nastavi na Matematičkom fakultetu, iz predmeta Uvod u Veb i Internet tehnologije, Programiranje za Veb, Mrežno računarstvo i Programiranje 1.  
 \newpage
 
 \tableofcontents
@@ -1080,7 +1079,7 @@ var niska1 = "Danas je.";
 Uraditi zadatke iz sekcije vezane za niske.
 
 \subsubsection{Nizovi}
-Nizovi predstavljaju kolekcije elemenata nekog tipa. U JavaScriptu je dozvoljeno da ti elementi budu različitih tipova. Indeksiranje nizova počinje od 0. Novi niz kreiramo korišćenjem uglastih zagrada:
+Nizovi predstavljaju kolekcije elemenata nekog tipa. U JavaScriptu je dozvoljeno da ti elementi budu različitih tipova. Indeksiranje nizova počinje od 0. Novi niz kreiramo korišćenjem uglastih zagrada. Elementima niza pristupamo navođenjem naziva niza, a potom u uglastim zagradama indeksa kojem želimo da pristupimo:
 \begin{verbatim}
 var niz = [];
 var niz2 = [1,2,3,4,5];
@@ -1103,14 +1102,45 @@ matrica[0] = [1,2];
 matrica[1] = [3,4];
 console.log(matrica[0][1]);
 \end{verbatim}
-Da bismo obišli celu matricu, neophodno je da prođemo kroz sve njene elemente. Odnosno, da krećući se kroz elemente niza redom obiđemo svaki od elemenata. Kako bismo to učinili na najjednostavniji način, neophodno je da koristimo dvostruku $for$ petlju. Spoljašnja petlja bi se kretala po vrstama matrice, a unutrašnja po kolonama. 
+Da bismo obišli celu matricu, neophodno je da prođemo kroz sve njene elemente. Odnosno, da krećući se kroz elemente niza redom obiđemo svaki od elemenata. Kako bismo to učinili na najjednostavniji način, neophodno je da koristimo dvostruku $for$ petlju. Spoljašnja petlja bi se kretala po vrstama matrice, a unutrašnja po kolonama. Veličinu niza, kao i kod niski, uzimamo korišćenjem svojstva $length$.
 \begin{verbatim}
+console.log(matrica.length);
 for(i = 0;i<matrica.length;i++){
     for(j = 0; j<matrica.length;j++){
          console.log("element u vrsti",i,"i koloni",j,"je:",matrica[i][j]);
     }
 }
 \end{verbatim}
+
+
+\subparagraph{Neke metode za rad sa nizovima}
+
+Pomenimo još jedan bitan metod za rad sa niskama. Metodom $split()$ od postojeće niske kreiramo niz. Argument koji prosleđujemo predstavlja po kom kriterijumu da se izvrši podela niske. Da bismo uradili obratno, odnosno, od niza kreirali nisku, koristimo metod $join()$.
+\begin{verbatim}
+//Jos jedan metod za rad sa niskama koji od niske kreira niz: split 
+var niska = "Danas je lep dan.";
+var niz = niska.split(" ");
+console.log(typeof niz);
+console.log(niz);
+
+//Metod za rad sa nizovima koji od niza formira nisku: join
+niz = ["danas", "je", "tmuran", "dan"];
+niska = niz.join();
+console.log(typeof niska);
+console.log(niska);
+\end{verbatim}
+Pomenimo još neke istaknute metode za rad sa nizovima:  
+\begin{itemize}
+    \item \textbf{concat()} - nadovezuje dva niza i vraća novi ne menjajući stare,
+    \item \textbf{includes()} - proverava da li niska sadrži određen karakter ili reč, kao drugi argument se šalje od koje pozicije početi sa traženjem,  
+    \item \textbf{indexOf()} - vraća indeks prvog pojavljivanja niske koju šaljemo kao argument funkcije ili $-1$ ako ta niska nije pronađena (napomena: lastIndexOf() radi isto samo vraća poslednji), 
+    \item \textbf{repeat()} - vraća string ponovljen onoliko puta koliko je navedeno u zagradi, 
+    \item \textbf{replace()} - vraća novi string u kome je reč navedena kao prvi argument, zamenjena rečju navedenom kao drugi argument, 
+    \item \textbf{search()} - pretražuje string za rečju koja je navedena kao argument i vraća poziciju od koje reč počinje u niski ili vraća $-1$ ako reč nije pronađena,  
+    \item \textbf{slice()} - iz niske izdvaja deo niske počevši od indeksa naznačenog kao prvi argument, do indeksa naznačenog kao drugi, 
+    \item \textbf{substr()} - iz niske izdvaja podnisku počevši od indeksa navedenog kao prvi argument u dužini navedenoj kao drugi argument.
+\end{itemize}
+
 
 \subsubsection{Funkcije}
 Funkcija je jedna od osnovnih konstrukcija jezika koja nam omogućava ponovno korišćenje koda. Omogućavaju nam čak i da ih koristimo iako ne razumemo detalje implementacije. Izdvajanjem koda u funkcije povećava se čitljivost koda i olakšava se njegovo održavanje.   
@@ -1307,6 +1337,10 @@ program koji proverava da li se od unetih karaktera može napisati reč $Zima$.
 
 \begin{primer}
 Napisati program koji učitava karaktere sve do kraja ulaza (do unosa broja 0), a potom ispisuje broj velikih slova, broj malih slova, broj cifara, broj belina i zbir unetih cifara. 
+\end{primer}
+
+\begin{primer}
+Napisati program koji za unetu nisku proverava da li sadrži reč $ima$.
 \end{primer}
 
 \begin{primer}
