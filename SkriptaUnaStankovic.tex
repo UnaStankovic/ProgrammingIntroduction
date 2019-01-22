@@ -10,6 +10,8 @@
 \usepackage{graphicx}
 \usepackage{verbatim}
 \usepackage{minted}
+\usepackage{xcolor}
+
 
 \usepackage[english,serbian]{babel}
 %\usepackage[english,serbianc]{babel} %ukljuciti babel sa ovim opcijama, umesto gornjim, ukoliko se koristi cirilica
@@ -243,29 +245,29 @@ Svaki tip podataka se karakteriše vrstom podataka koje opisuje, skupom operacij
 Osnovni gradivni elementi imperativnih programskih jezika su naredbe.
 Naredba dodele je osnovna naredba i njom se vrednost neke promenljive postavlja na vrednost nekog izraza definisanog nad konstantama i promenljivim. Šta to, u praksi, znači? To znači da kada kažemo $x = 3*y$ zapravo promenljivoj x dodeljujemo vrednost $3*y$. Naredbe se u programu nižu jedna za drugom, osim u slučaju korišćenja naredbi za kontrolu toka izvršavanja programa. Ove naredbe u zavisnosti od tekućih
 vrednosti promenljivih neke naredbe mogu da ne izvršavaju, izvršavaju ih više puta(petlje) i slično. Najčešće korišćene kontrolne strukture su granajuće naredbe (if-then-else), petlje (for, while, do-while, repeat-until) i naredbe skoka (goto). Naredba if-then-else ima sledeći opšti oblik:
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 if izraz1 
    naredba1
 else 
    naredba2
-\end{verbatim}
+\end{lstlisting}
 Treba obratiti pažnju da je else grana neobavezna, odnosno, može, ali ne mora, da postoji. 
 \begin{primer}
 Naredni primer štampa veći od dva broja.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 if a > b
    print(a)
 else
    print(b)
-\end{verbatim}
+\end{lstlisting}
 \end{primer}
 
 \begin{primer}
 Naredni primer u promenljivu $a$ smešta tekst $"$Hello world!$"$ ako je vrednost promenljive b veća od 0.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 if b > 0
    a = "Hello world!"
-\end{verbatim}
+\end{lstlisting}
 \end{primer}
 
 Jedan od najbitnijih koncepata programiranja je pojam {\em petlje}. Petlje predstavljaju konstrukcije koje nam omogućuju da izvršavamo jednu ili više akcija više puta. Sastoje se iz uslova i tela petlje. Uslov nam definiše u kom slučaju ćemo napustiti petlju (na primer, ako broj iteracija\footnote{Iteracija petlje predstavlja jedno izvršavanje koda koji se nalazi u telu petlje.} petlje predje 100, ili ako je neka promenljiva n veca od 1000, itd.). Telo petlje sadrži akcije koje želimo da ponavljamo.Na slici \ref{fig:loops} može se videti opšti oblik petlji.
@@ -296,10 +298,10 @@ Petlje su neophodne za uspešno programiranje.
 \end{itemize}
 koje predstavljaju osnovne konstrukte u skoro svim programskim jezicima. Osim for i while petlje postoje i druge, ali o njima nece biti reči.\\\\
 For petlja je najčešće oblika:
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 for(izraz1, izraz2, izraz3)
     naredba
-\end{verbatim}
+\end{lstlisting}
 $Izraz1$ i $izraz3$ obično predstavljaju naredbe dodele ili inkrementiranje, gde se $izraz1$ obično naziva inicijalizacija, a $izraz3$ je korak. Izraz u sredini, $izraz2$, predstavlja relacijski izraz i služi kao uslov izlaska iz petlje. $Naredba$ predstavlja liniju ili blok koda koji želimo da se izvršava.
 Kao posledica navedenog, $for$ petlju možemo posmatrati kao:
 \begin{verbatim}
@@ -308,10 +310,10 @@ for(inicijalizacija, uslov izlaska, korak)
 \end{verbatim}
 \begin{primer}
 Naredni primer predstavlja jedan od uobičajenih oblika u kojima se $for$ petlja pojavljuje:
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 for(i = 0; i < n; i++)
     print(i)
-\end{verbatim}
+\end{lstlisting}
 Ovaj primer za svaki korak petlje ispisuje broj koraka. 
 \end{primer}
 
@@ -338,11 +340,11 @@ Napisati primer algoritma za računanje zbira prvih 10 parnih brojeva.
 \end{primer}
 \begin{primer}
 Koju vrednost ima promenljiva $x$ nakon izvršavanja narednog koda:
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 int x = 0;
 if (x > 3);
     x++;
-\end{verbatim}
+\end{lstlisting}
 \end{primer}
 \begin{primer}
 Napisati pseudo kod za računanje zbira 3 broja.
@@ -633,55 +635,55 @@ Postoji nekoliko različitih tipova koje možemo smestiti u promenljivu, to su:
 \end{enumerate}
 U nastavku će biti ukratko opisano kreiranje, korišćenje i osnovne operacije nad navedenim tipovima. U promenljive je moguće smestiti i složenije tipove kao što su nizovi, objekti i drugi, o kojima će, takođe, biti reči u nastavku.\\\\
 Kako bismo kreirali promenljivu u programu, navodimo ključnu reč $var$ (postoje jos neke ključne reči za kreiranje promenljivih, ali će o njima biti reči kasnije), a potom naziv promenljive, koji ne sme počinjati brojem ili biti ključna reč jezika.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 var a;
-\end{verbatim}
+\end{lstlisting}
 Ovako smo samo kreirali promenljivu, ona za sada nema nikakvu vrednost u sebi, a samim time i njen tip nije definisan. Kada želimo da promenljivoj dodelimo neku vrednost to činimo korišćenjem naredbe dodele $*$, pa tako sa
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 a = 5;    
-\end{verbatim}
+\end{lstlisting}
 smeštamo celi broj 5 u promenljivu a, i njen tip postaje $number$.
 Moguće je i pri kreiranju odmah dodeliti vrednost promenljivoj $a$, ovaj postupak nazivamo inicijalizacijom ili dodeljivanjem početne vrednosti promenljivoj.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 var a = 5;    
-\end{verbatim}
+\end{lstlisting}
 JavaScript dopušta još jednu stvar, a to je kreiranje promenljive bez navođenja ključne reči var ukoliko bismo joj odmah dodelili vrednost. Napomena: ovo se ne smatra dobrom praksom, a ukoliko bi stajalo samo b bez $var$ i bez $*7$ program bi izbacio grešku.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 b = 7;    
-\end{verbatim}
+\end{lstlisting}
 Kada se dodeljuju nazivi promenljivim treba obratiti pažnju da nazivi nisu ključne reči jezika, kao i da ne počinju brojem.\\\\
 
 \subparagraph{Brojevi}
 U JavaScript-u možemo predstaviti cele brojeve - int: -1, -32, 0, 13, 173,itd., kao i razlomljene brojeve - float: 3.14, 9.81,itd..
 Da bismo broj smestili u neku promenljivu koristimo operator dodele.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 var a = 5; 
-\end{verbatim}
+\end{lstlisting}
 Osim operatora dodele $=$, postoje i drugi operatori. Najčešće operatore primenjujemo nad brojevnim (numeric) vrednostima. Nad numeričkim vrednostima definisani su:
 \begin{itemize}
     \item Unarni $-$: $-4$
     \item Binarni $+$, $-$, $*$, $/$, $\%$, $=$, $<$, $>$, $<=$, $>=$
 \end{itemize}
 Ovi operatori imaju standarne prioritete. Operator $\%$ predstavlja ostatak pri deljenju dva broja.\\
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 var c = a + b; //12
-\end{verbatim}
+\end{lstlisting}
 Osim ovih binarnih operatora postoje i binarni operatori za proveru jednakosti $==$, nejednakosti $!=$, za proveru jednakosti sa proverom tipova $===$, operatori koji vrše konjunkciju $\&\&$ i disjunkciju $||$, kao i složeni operatori ++(unarni), +=, -=, *=,itd.. O njima će biti više reči u nastavku. \\\\
 Da bismo broj zapisali sa određenim brojem decimala koristimo metod\footnote{Metodi su, za sad, crne kutije koje nam omogućavaju da vršimo određene promene nad promenljivim. U nastavku će biti detaljnije obrađene.} $toFixed()$, kome kao jedini argument šaljemo broj decimala koji želimo da zadržimo. 
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 var pi = 3.1415;
 pi = pi.toFixed(2); // pi = 3.14
-\end{verbatim}
+\end{lstlisting}
 \paragraph{Pisanje komentara}
 Pisanje komentara predstavlja dobru praksu i može biti od velike pomoći programeru. Najčešće se radi nad nasleđenim kodovima, koje su pisali programeri pre nas, pa tako komentari mogu dosta olakšati rad i razumevanje koda. Osim toga, vrlo često prilikom vraćanja na ranije pisane kodove, dešava se da nismo sigurni kako smo nešto napisali, iako nam je u datom momentu to delovalo sasvim jednostavno i logično, pa nam komentari mogu pomoći da se prisetimo šta je bila glavna ideja. U početničkom programiranju, komentari pomažu kako bi se neki koncepti utvrdili, dodatno razjasnili i definisali, pa autor predlaže pisanje komentara što češće.\\\\ 
 Komentari mogu biti: linijski i blokovski. Linijski komentari, kao što im i samo ime kaže imaju doseg jedne linije (koja ne bi trebalo prema konvenciji da sadrži više od 80 karaktera!) i pišu se nakon znaka $//$. Blokovski komentari imaju doseg od više linija i pišu se između $/**/$.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 //ovo je linijski komentar
 /*Ovo 
 je 
 blokovski*/
 var c = a + b; //12
-\end{verbatim}
+\end{lstlisting}
 
 \paragraph{Konzola}
 Konzola omogućava programeru lakše debagovanje koda, lakše pronalaženje grešaka, izbacuje greške, upozorenja i obaveštenja.
@@ -693,20 +695,20 @@ Da bismo to postigli, moramo najpre otvoriti konzolu, to se radi uz pomoć $F12$
     \item console.error()
     \item console.info()
 \end{itemize}
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 var c = a + b; //12
 console.log(c); //ovime ispisujemo 12 u konzolu
-\end{verbatim}
+\end{lstlisting}
 \textbf{Operator typeof} služi kako bi se ispisao tip promenljive.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 var c = a + b; //12
 console.log(typeof c); //ispis tipa promenljive c u konzolu - numeric
-\end{verbatim}
+\end{lstlisting}
 Možemo nadovezati i više argumenata pri ispisu u konzolu odvajajući ih zarezom. Korišćenjem zareza kreira se razmak između argumenata.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 var c = a + b; //12
 console.log("Vrednost zbira je", c); 
-\end{verbatim}
+\end{lstlisting}
 
 \subsubsection{Naredbe za kontrolu toka}
 Osnovni elementi za opis izračunavanja u programima nazivaju se naredbe (već smo videli naredbu dodele).
@@ -717,33 +719,33 @@ Naredbe za kontrolu toka omogućavaju različite načine izvršavanja programa, 
 \end{itemize}
 Osnovni oblik naredbe koji se javlja je takozvana naredba izraza (ova vrsta naredbi obuhvata i naredbu dodele i naredbu poziva funkcije).
 Naime, svaki izraz završen karakterom ; je naredba. Na primer:
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 3 + 4*5;
 n = 3;
 c++; //uvecanje promenljive za 1, isto kao c = c + 1
 f();	
-\end{verbatim}
+\end{lstlisting}
 Nekada, želimo da više različitih naredbi grupišemo i da ih tretiramo kao jednu jedinstvenu naredbu. Vitičaste zagrade { i } se koriste da grupišu naredbe u složene naredbe, odnosno blokove, i takvi blokovi se mogu koristiti na svim mestima gde se mogu koristiti i pojedinačne naredbe. 
 
 \subparagraph{Naredbe grananja} (ili naredbe uslova), na osnovu vrednosti nekog izraza, odreduju naredbu (ili grupu naredbi) koja će biti izvršena.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 if (izraz)
     naredba1
 else
     naredba2
-\end{verbatim}
+\end{lstlisting}
 Konkretno, na primeru kroz jezik JavaScript:
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 //primer ispisuje veci od dva broja
 if (a > b)
     console.log(a);
 else
     console.log(b);
-\end{verbatim}
+\end{lstlisting}
 Naredbe $naredba1$ i $naredba2$ su ili pojedinačne naredbe (kada se završavaju simbolom ;) ili blokovi naredbi zapisani između vitičastih zagrada (na kraju kojih ne ide ;).
 Deo naredbe $else$ je opcioni, odnosno, ne mora postojati, pa se može napisati samo $if$ grana.
 Izraz $izraz$ predstavlja logički uslov:
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 if (5 > 7)
    a = 1;
 else
@@ -760,11 +762,11 @@ if (a = 0)
     console.log("a je nula\n");
 else
     console.log("a nije nula\n");
-\end{verbatim}
+\end{lstlisting}
 
 
 Često možemo imati višestruke odluke, za šta koristimo $else\ if$ konstrukciju oblika:
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 if (izraz1)
     naredba1
 else if (izraz2)
@@ -773,11 +775,11 @@ else if (izraz3)
     naredba3
 else
     naredba4
-\end{verbatim}
+\end{lstlisting}
 
 \begin{primer}
 Primer $else\ if$ naredbe.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 if (a > 20)
    console.log("A je vece od 20\n");
 else if (a > 10)
@@ -788,21 +790,21 @@ else if (a < -10)
    console.log("A je manje od -10\n");
 else
    console.log("A pripada intervalu [-10, 10]\n");
-\end{verbatim}
+\end{lstlisting}
 \end{primer}
 
 Ternarni operator je uslovni operator oblika: $uslov\ ?\ ispunjen\ :\ inace$ i ima isto značenje kao i if else. 
 \begin{primer} Zadatak je smestiti veći od dva broja u promenljivu $x$. Prvi if else ima isto značenje kao i ternarni operator koji smešta veći broj u $x$. Ako je $a$ vece od $b$ postavlja se $x$ na $a$, inače postavlja se na $b$.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 if (a > b)
    x = a;
 else
    x = b;
 x = (a > b) ? a : b;
-\end{verbatim}
+\end{lstlisting}
 \end{primer}
 Osim $if$-$else$ postoji i naredba $switch$, koja se takođe može koristiti za višestruko odlučivanje i ima opšti oblik:
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 switch (izraz) {
   case konstantan_izraz1: 
   	naredbe1;
@@ -815,12 +817,12 @@ switch (izraz) {
     naredbe_n;
     break;
 }
-\end{verbatim}
+\end{lstlisting}
 $Case$ predstavljaju slučajeve, koji ako su ispunjeni, izvršava se naredba desno od dvotačke. U slučaju da nijedan od case-ova nije ispunjen izvršava se default, ako default nije postavljen i nijedan od case-ova nije ispunjen kroz switch će se samo proći.
 
 \subparagraph{Petlje}(ciklusi ili repetitivne naredbe) uzrokuju da se određena
 naredba (ili grupa naredbi) izvršava više puta (sve dok je neki logički uslov ispunjen).
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 while(izraz)
    naredba
    
@@ -841,14 +843,14 @@ while (izraz2) {
 
 for(i = 0; i < n; i++)
 ...
-\end{verbatim}
+\end{lstlisting}
 
 Postoji još jedan vid petlje, to je petlja do-while.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 do {
 naredbe
 } while(izraz)
-\end{verbatim}
+\end{lstlisting}
 Telo (blok naredbi naredbe) naveden izmedu vitičastih
 zagrada se izvršava i onda se izračunava uslov (izraz $izraz$).
 Ako je on tačan, telo se izvršava ponovo i to se nastavlja sve
@@ -860,29 +862,29 @@ izvršavaju barem jednom. Navođenje vitičastih zagrada pri korišćenju naredb
 U nekim situacijama pogodno je napustiti petlju ne zbog toga
 što nije ispunjen uslov petlje, već iz nekog drugog razloga. To
 je moguće postici naredbom break:
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 for(i = 1; i < n; i++) {
     if(i > 10)
        break;
     ...
 }
-\end{verbatim}
+\end{lstlisting}
 Naredbom continue se prelazi na sledeću iteraciju u petlji.
 Na primer,
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 for(i = 0; i < n; i++) {
    if (i % 10 == 0)
       continue; /* preskoci brojeve deljive sa 10 */
    ...
 }
-\end{verbatim}
+\end{lstlisting}
 Petlje i uslovne naredbe se mogu kombinovati, korišćenjem jednih u drugima i slično.
 U slučaju ugnježdenih petlji, naredbe break i continue imaju
 dejstvo samo na unutrašnju petlju.
 \subparagraph{Bulove vrednosti}
 Pod Bulovim vrednostima smatramo $true$ i $false$, odnosno tačno i netačno, $1$ i $0$. 
 Ako bismo hteli da kreiramo beskonačnu petlju (iako se to nikako ne preporučuje) bio bi nam potreban uslov koji uvek važi:
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 while(true){
    //radi nesto zauvek
 }
@@ -895,58 +897,58 @@ var b = -10;
 if((a != b) == true){
     console.log("uslov da su a i b razliciti vazi");
 }
-\end{verbatim}
+\end{lstlisting}
 Ako bismo hteli da nadovežemo više uslova, ili da kažemo da želimo da se nešto izvrši ako je bilo koji od uslova ispunjen koristimo binarne operatore $\&\&$ i $||$, odnosno $"$logičko i$"$ i $"$logičko ili$"$.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 var a = 10;
 if(a > 0 && a%2==0)
    console.log("a je paran broj veci od 0.);
 var b = -10;
 if(a > 0 || b > 0 )
    console.log("Ako je ili a ili b vece od 0 ovo ce se ispisati);
-\end{verbatim}
+\end{lstlisting}
 Napomena: uslova može biti više od 2.
 
 
 \subparagraph{Prozori}
 Često se javlja potreba da korisnika stranice obavestimo o nečemu. Ono što nam JS omogućava je da na jednostavan način uz pomoć \textbf{alert} funkcije, korisniku jasno prikažemo poruku, koju ne može da ignoriše. Jedini argument ove funkcije je niska koja se prikazuje korisniku. 
-\begin{verbatim}
-alert("Ovo je iskačuće obaveštenje");
-\end{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+alert("Ovo je iskacuce obavestenje");
+\end{lstlisting}
 Nekada se od korisnika zahteva da na neko pitanje odgovori pozitivno ili negativno, za šta se koristi funkcija \textbf{confirm}. Argument ove funkcije je isti kao kod $alert$. 
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 confirm("Da li ste sigurni?");
-\end{verbatim}
+\end{lstlisting}
 Ukoliko bi se od korisnika očekivao unos nekog teksta, za to može da se koristi funkcija \textbf{prompt}. Argumenti ove funkcije su niska koja se ispisuje u prozoru i podrazumevana vrednost polja za unos. 
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 prompt("Unesite broj godina:");
-\end{verbatim}
+\end{lstlisting}
 \subparagraph{Vežba}
 Uraditi zadatke iz uvodne sekcije.
 
 \subsubsection{Niske}
 Niske ili stringovi, predstavljaju nizove karaktera. U promenljivu možemo smestiti pojedinačni karakter, a možemo i čitave reči ili rečenice. \\
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 var a = 'abc'; //a je niska
 a = 'a'; // a je sada karakter
-\end{verbatim}
+\end{lstlisting}
 Niske se mogu navoditi između $"$ (dvostrukih), $'$ (jednostrukih), kao i $`$ iskošenih navodnika (šablon-literali, engl. template literals).  
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 var niska1 = "Ovo je prva niska.";
 var niska2 = "Ovo je druga niska";
 var niska3 = `Ovo je niska
               neka treca`;
-\end{verbatim}
+\end{lstlisting}
 Primetimo da šablon literali poštuju novi red. Važno je naglasiti da se mora obratiti pažnja na to da navodnici budu pravilno upareni. Naime, program se neće izvršavati na predviđeni način ukoliko, na primer, nakon dvostrukog navodnika pokušamo nisku da zatvorimo jednostrukim navodnikom.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 var niska1 = "Ovo je prva niska.";
 var niska2 = "Ovo je druga niska";
 var niska3 = "Ova niska nije pravilna';
-\end{verbatim}
+\end{lstlisting}
 
 Ukoliko želimo da unutar niske imamo prave navodnike (na primer kod citata), onda možemo ili upotrebiti drugi vid navodnika ili koristiti escape sekvencu \textbackslash. Kako bismo nadovezali dve niske koristimo operator $+$, a ovaj postupak se naziva $konkatenacija$. Treba obratiti pažnju na to da nadovezivanjem niski sa $+$, ne dobijamo razmak između stringova kao kod korišćenja $,$. Da bismo dobili razmak moramo ga dodati kao još jednu nisku, a kako bismo dobili novi red koristimo \textbackslash$n$. 
-\begin{verbatim}
-console.log(niska1 + niska2); //Ovo je prva niska.Ovo je druga niska.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+console.log(niska1 + niska2); 
 niska1 = 'Ovo je neka niska.';
 niska1 = 'Kaze Bob: "Alice ne kradi"';
 console.log(niska1);
@@ -958,43 +960,43 @@ console.log(niska2);
 niska2 = `Kaze Alice:
           'Necu vise krasti'
           Ukrala sam samo ${2 + 2} jabuke.`;
-\end{verbatim}
+\end{lstlisting}
 Ako bismo pokušali da na niske nadovežemo numeričke vrednosti, one bi se ponašale kao niske, osim ako bismo ih izdvojili zagradama.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 console.log("Zbir 1 i 2 je: " + 1 + 2); //12
 console.log("Zbir 1 i 2 je: " + (1 + 2)); //3
 console.log(`Zbir 1 i 2 je: ${1 + 2}`);  //3
-\end{verbatim}
+\end{lstlisting}
 Primetimo da pri korišćenju šablon literala ono što želimo da se sračuna navodimo između $\$\{\}$.
 Nekada želimo da nisku posmatramo kao broj, da bismo eksplicitno kastovali (izvršili pretvaranje, eksplicitnu konverziju) niske u broj, koristimo funkcije $parseInt()$ i $parseFloat()$, koje prave ceo broj ili razlomljen broj redom. U slučaju da niska osim brojeva sadrži i neke druge karaktere, biće pokupljeni samo brojevi koji se nalaze na početku niske. Na primer, za nisku $"$123.292ajkula$"$ parseInt će uzeti samo broj 123 (zaključno sa tačkom, jer je Int ceo broj), parseFloat će uzeti 123.292, a ostatak će biti ignorisan. Ako bi niska bila $"$a123.292$"$ ništa ne bi bilo pokupljeno i funkcije bi vratile NaN ($"$Not a Number$"$). 
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 var p = "5";
 console.log(typeof p); //string
 console.log(typeof parseInt(p)); //number
-\end{verbatim}
+\end{lstlisting}
 Poređenje niski vrši se leksikografski uz pomoc operatora $>$,$<$,$>=$ i $<=$, kao i uz pomoć operatora $==$, $!=$ ili $===$.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 if("ana" >= "ane"){
    console.log("ana");
 }
 else{
    console.log("ane");
 }
-\end{verbatim}
+\end{lstlisting}
 
 Metodom toString() vršimo eksplicitno konvertovanje u nisku.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 var br_u_str = 102;
-console.log("Tip promenljive br_u_str je :", typeof br_u_str);
+console.log("Tip promenljive je :", typeof br_u_str);
 br_u_str = br_u_str.toString();
 console.log(br_u_str);
 console.log("Metod toString() vraca",typeof br_u_str);
-\end{verbatim}
+\end{lstlisting}
 
 \subparagraph{Implicitna konverzija}
 JavaScript je programski jezik takav da može da "progura" razne konstrukte, sa ciljem da program izvrši, zbog toga se često javljaju neki više ili manje očekivani rezultati. Implicitna konverzija je postupak pri kom program sam vrši konvertovanje nekog tipa u neki drugi tip kako bi dobio nešto što je njegovim internim mehanizmima smisleno. Prilikom primenjivanja konkatenacije nad brojem i niskom, broj će biti konvertovan u nisku.
-\begin{verbatim}
-//zakomentarisati sve linije pa redom oslobadjati po jedno conv
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+//zakomentarisati sve linije pa redom oslobadjati 
 var conv = '5' + 3; //53
 conv = 3 + '3'; //33
 conv = 5 * null; //0
@@ -1002,44 +1004,44 @@ conv = '7' - 4; //3
 conv = !""; //true 
 console.log(conv);
 console.log(typeof conv);
-\end{verbatim}
-Kako bismo proverili da li su dve vrednosti jednake koristimo $"$==$"$, ali da bismo bili precizniji i proverili da li su vrednosti koje poredimo i istog tipa moramo koristiti $"$===$"$.
-\begin{verbatim}
+\end{lstlisting}
+Kako bismo proverili da li su dve vrednosti jednake koristimo $"$==$"$, ali da bismo bili precizniji i proverili da li su vrednosti koje poredimo i istog tipa moramo koristiti $"$===$"$. Važnost ovog koncepta se jasno vidi u narednom primeru:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 console.log(10 == '10'); //true
 console.log(10 === '10'); //false
-\end{verbatim}
+\end{lstlisting}
 
 Vrlo često pri programiranju želećemo da dobijemo dužinu neke niske i potom pristupimo nekom pojedinačnom karakteru. To se lako postiže korišćenjem svojstva $length$ u vidu $niska.length$, a potom uz pomoć $charAt()$ pristupamo pojedinačnim karakterima niske.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 //Pristup pojedinacnim karakterima niske
 var niska = "Programiranje";
-console.log("Uz pomoc svojstva length dobijamo duzinu niske", niska.length);
+console.log("Svojstvo length daje duzinu niske", niska.length);
 //prolaskom kroz petlju obilazimo sve karaktere niske redom
 for(i=0; i<niska.length;i++){
     console.log(niska.charAt(i));	
 }
 //Obratiti paznju da brojanje niske krece od 0
 console.log("5 karakter niske", niska.charAt(4));
-\end{verbatim}
+\end{lstlisting}
 Treba primetiti da brojanje karaktera u niski kreće od 0, pa tako 
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 P R O G R A M I R A  N  J  E
 0 1 2 3 4 5 6 7 8 9 10 11 12
-\end{verbatim}
-Svi karakteri koje je moguće zapisati nalaze se u takozvanoj $ASCII$ tabeli i imaju svoje kodne cifre, te cifre nam nekada mogu biti od koristi. Njima se pristupa korišćenjem $charCodeAt()$. Da bismo uradili obrnuto, tj. izvršili konverziju broja u karakter koristimo fromCharCode(). Ako bismo želeli da uklonimo beline sa krajeva (i sa početka i sa kraja niske), koristimo $trim()$. 
-\begin{verbatim}
+\end{lstlisting}
+Svi karakteri koje je moguće zapisati nalaze se u takozvanoj $ASCII$ tabeli i imaju svoje kodne cifre, te cifre nam nekada mogu biti od koristi. Njima se pristupa korišćenjem $charCodeAt()$. Da bismo uradili obrnuto, tj. izvršili konverziju broja u karakter koristimo $fromCharCode()$. Ako bismo želeli da uklonimo beline sa krajeva (i sa početka i sa kraja niske), koristimo $trim()$. 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 var voce = "  Ananas  "
 console.log(voce.charCodeAt(2)); //A --> 65
 console.log(String.fromCharCode(97)); //a
 voce = voce.trim();
 console.log(voce);     
-\end{verbatim}
+\end{lstlisting}
 Da bismo karaktere neke niske smanjili ili uvećali, koristimo metode $toUpperCase()$ ili $toLowerCase()$ u zavisnosti od toga šta želimo postići. Primetimo da se mogu primeniti i nad pojedinačnim karakterom.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 console.log(voce.toLowerCase()); //ananas
 console.log(voce.toUpperCase()); //ANANAS
-\end{verbatim}
-\subparagraph{Neke metode za rad sa niskama}
+\end{lstlisting}
+\subparagraph{Dodatne metode za rad sa niskama}
 Metode nam omogućavaju da izvršimo neke akcije nad objektima. Postoji puno metoda za rad sa niskama, a u ovom delu biće navedene samo neke od njih. \\\\
 U prethodnom delu već su predstavljene $charAt()$ i $charCodeAt()$. Prva nam daje (kaže se i vraća) karakter na poziciji koju pošaljemo kao argument, a druga nam vraća kodnu vrednost karaktera, koji se nalazi na poziciji prosleđenoj kao argument. Osim njih neki od istaknutih metoda su:
 \begin{itemize}
@@ -1054,33 +1056,33 @@ U prethodnom delu već su predstavljene $charAt()$ i $charCodeAt()$. Prva nam da
 \end{itemize}
 
 Navedimo sada neke od primera primena ovih metoda.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 var niska1 = "Danas je.";
-    		var niska2 = "lep dan.";
-    		var niska3 = niska1.concat(niska2);
-    		console.log(niska3);
-    		//hocemo da provermo da li niska3 sadrzi rec dan
-    		console.log("Da li niska sadrzi rec dan", niska3.includes("dan"));
-    		console.log("Da li niska sadrzi rec ana", niska3.includes("ana"));
-    		console.log("Indeks prvog pojavljivanja reci dan", niska3.indexOf("dan"));
-    		console.log("Indeks prvog pojavljivanja reci ana", niska3.indexOf("ana"));
-    		console.log(niska1.repeat(4));
-    		var niska4 = niska2.replace("dan", "covek");
-    		console.log(niska4);
-    		console.log("Na kom indeksu pocinje rec dan", niska3.search("dan"));
-    		console.log("Na kom indeksu pocinje rec ana", niska3.search("ana"));
-    		console.log(niska3.slice(1,4));
-    		console.log(niska3);
-    		console.log(niska3.substr(1,4));    
-\end{verbatim}
+var niska2 = "lep dan.";
+var niska3 = niska1.concat(niska2);
+console.log(niska3);
+//hocemo da provermo da li niska3 sadrzi rec dan
+console.log("Da li niska sadrzi rec dan", niska3.includes("dan"));
+console.log("Da li niska sadrzi rec ana", niska3.includes("ana"));
+console.log("Indeks prvog pojavljivanja reci dan", niska3.indexOf("dan"));
+console.log("Indeks prvog pojavljivanja reci ana", niska3.indexOf("ana"));
+console.log(niska1.repeat(4));
+var niska4 = niska2.replace("dan", "covek");
+console.log(niska4);
+console.log("Na kom indeksu pocinje rec dan", niska3.search("dan"));
+console.log("Na kom indeksu pocinje rec ana", niska3.search("ana"));
+console.log(niska3.slice(1,4));
+console.log(niska3);
+console.log(niska3.substr(1,4));    
+\end{lstlisting}
 
 
 \subparagraph{Vežba}
 Uraditi zadatke iz sekcije vezane za niske.
 
 \subsubsection{Nizovi}
-Nizovi predstavljaju kolekcije elemenata nekog tipa. U JavaScriptu je dozvoljeno da ti elementi budu različitih tipova. Indeksiranje nizova počinje od 0. Novi niz kreiramo korišćenjem uglastih zagrada. Elementima niza pristupamo navođenjem naziva niza, a potom u uglastim zagradama indeksa kojem želimo da pristupimo:
-\begin{verbatim}
+Nizovi predstavljaju kolekcije elemenata nekog tipa. U JavaScriptu, za razliku od većine drugih programskih jezika, dozvoljeno je da ti elementi budu različitih tipova. Novi niz kreiramo korišćenjem uglastih zagrada. Ako navedemo samo uglaste zagrade, onda se kreira prazan niz, odnosno, niz koji ne sadrži elemente. Elemente u nizu navodimo pisanjem između uglastih zagrada i odvajamo ih zarezima. Indeksiranje nizova počinje od 0. Indeksiranje nam je veoma važno kako bismo mogli da lako pristupimo vrednosti koju čuva neki element niza. Elementima niza pristupamo navođenjem naziva niza, a potom u uglastim zagradama indeksa kojem želimo da pristupimo. Opisani postupci predstavljeni su kroz primer u nastavku:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 var niz = [];
 var niz2 = [1,2,3,4,5];
 var niz3 = ["niska1", "niska2"];
@@ -1090,9 +1092,9 @@ console.log(niz2[3]);
 console.log(niz3[0]);
 console.log(niz4[3]);
 console.log(niz4);
-\end{verbatim}
-Element niza može biti i neki drugi niz. Kao što se vidi u primeru iznad, osim što nizovi mogu čuvati različite tipove, moguće je indeksiranje elemenata niza različitim tipovima. Ukoliko indeksi elemenata nisu eksplicitno navedeni, elementi niza su podrazumevano indeksirani celim brojevima počevši od 0. Kao posledica činjenice da nizovi mogu čuvati elemente različitih tipova, za element niza možemo postaviti i drugi niz, čime je moguće kreiranje matrica, pa tako:
-\begin{verbatim}
+\end{lstlisting}
+Element niza može biti i neki drugi niz. Kao što se vidi u primeru iznad, osim što nizovi mogu čuvati različite tipove (niske, brojeve, razlomljene brojeve, karaktere), moguće je indeksiranje elemenata niza različitim tipovima. Ukoliko indeksi elemenata nisu eksplicitno navedeni, elementi niza su podrazumevano indeksirani celim brojevima počevši od 0. Kao posledica činjenice da nizovi mogu čuvati elemente različitih tipova, za element niza možemo postaviti i drugi niz, čime je moguće kreiranje matrica, pa tako:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 //elementi niza mogu biti drugi nizovi
 var niz1 = [niz2,0,1,4];
 console.log("Niz 1:",niz1);
@@ -1101,22 +1103,22 @@ var matrica = [];
 matrica[0] = [1,2];
 matrica[1] = [3,4];
 console.log(matrica[0][1]);
-\end{verbatim}
+\end{lstlisting}
 Da bismo obišli celu matricu, neophodno je da prođemo kroz sve njene elemente. Odnosno, da krećući se kroz elemente niza redom obiđemo svaki od elemenata. Kako bismo to učinili na najjednostavniji način, neophodno je da koristimo dvostruku $for$ petlju. Spoljašnja petlja bi se kretala po vrstama matrice, a unutrašnja po kolonama. Veličinu niza, kao i kod niski, uzimamo korišćenjem svojstva $length$.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 console.log(matrica.length);
 for(i = 0;i<matrica.length;i++){
     for(j = 0; j<matrica.length;j++){
          console.log("element u vrsti",i,"i koloni",j,"je:",matrica[i][j]);
     }
 }
-\end{verbatim}
-
+\end{lstlisting}
+Treba obratiti pažnju da u primeru gore podrazumevamo da je matrica kvadratna (sa istim brojem vrsta i kolona). Kako bismo obišli matricu koja ima različit broj vrsta i kolona treba da obratimo pažnju na veličinu vrste i veličinu kolone. Čitaocu se ostavlja radi vežbe i boljeg razumevanja funkcionisanja matrica i nizova da isproba obilaske matrice za različit broj vrsta i kolona. 
 
 \subparagraph{Neke metode za rad sa nizovima}
 
 Pomenimo još jedan bitan metod za rad sa niskama. Metodom $split()$ od postojeće niske kreiramo niz. Argument koji prosleđujemo predstavlja po kom kriterijumu da se izvrši podela niske. Da bismo uradili obratno, odnosno, od niza kreirali nisku, koristimo metod $join()$.
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 //Jos jedan metod za rad sa niskama koji od niske kreira niz: split 
 var niska = "Danas je lep dan.";
 var niz = niska.split(" ");
@@ -1128,7 +1130,7 @@ niz = ["danas", "je", "tmuran", "dan"];
 niska = niz.join();
 console.log(typeof niska);
 console.log(niska);
-\end{verbatim}
+\end{lstlisting}
 Pomenimo još neke istaknute metode za rad sa nizovima:  
 \begin{itemize}
     \item \textbf{concat()} - nadovezuje dva niza i vraća novi ne menjajući stare,
@@ -1139,7 +1141,7 @@ Pomenimo još neke istaknute metode za rad sa nizovima:
     \item \textbf{slice()} - iz niza izdvaja deo počevši od indeksa naznačenog kao prvi argument, do indeksa naznačenog kao drugi i vraća novi niz, 
     \item \textbf{sort()} - sortira niz.
 \end{itemize}
-\begin{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
 var niz_brojeva = [1,2,3,4];
 var novi = niz_brojeva.concat(niz);
 console.log(novi);
@@ -1159,7 +1161,7 @@ niz_brojeva.reverse();
 console.log(niz_brojeva);
 niz_brojeva.sort();
 console.log(niz_brojeva);
-\end{verbatim}
+\end{lstlisting}
 
 \subsubsection{Funkcije}
 Funkcija je jedna od osnovnih konstrukcija jezika koja nam omogućava ponovno korišćenje koda. Omogućavaju nam čak i da ih koristimo iako ne razumemo detalje implementacije. Izdvajanjem koda u funkcije povećava se čitljivost koda i olakšava se njegovo održavanje.   
