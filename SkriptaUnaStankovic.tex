@@ -710,6 +710,9 @@ var c = a + b; //12
 console.log("Vrednost zbira je", c); 
 \end{lstlisting}
 
+\subparagraph{Prazne vrednosti}
+Pod prazne vrednosti ubrajamo $null$ i $undefined$. One služe da označe odsustvo postojanja vrednosti. U daljem tekstu, susretaćemo se sa ovim vrednostima.
+
 \subsubsection{Naredbe za kontrolu toka}
 Osnovni elementi za opis izračunavanja u programima nazivaju se naredbe (već smo videli naredbu dodele).
 Naredbe za kontrolu toka omogućavaju različite načine izvršavanja programa, u zavisnosti od vrednosti promenljivih. Naredbe za kontrolu toka mogu biti:
@@ -1113,19 +1116,47 @@ for(i = 0;i<matrica.length;i++){
     }
 }
 \end{lstlisting}
-Treba obratiti pažnju da u primeru gore podrazumevamo da je matrica kvadratna (sa istim brojem vrsta i kolona). Kako bismo obišli matricu koja ima različit broj vrsta i kolona treba da obratimo pažnju na veličinu vrste i veličinu kolone. Čitaocu se ostavlja radi vežbe i boljeg razumevanja funkcionisanja matrica i nizova da isproba obilaske matrice za različit broj vrsta i kolona. 
+Treba obratiti pažnju da u primeru gore podrazumevamo da je matrica kvadratna (sa istim brojem vrsta i kolona). Kako bismo obišli matricu koja ima različit broj vrsta i kolona treba da obratimo pažnju na veličinu vrste i veličinu kolone. Čitaocu se ostavlja radi vežbe i boljeg razumevanja funkcionisanja matrica i nizova da isproba obilaske matrice za različit broj vrsta i kolona.\\\\
+Da bismo nekom elementu niza promenili vrednost dovoljno je da ga nađemo po indeksu, a potom da naredbom dodele navedemo novu vrednost. Važno je istaći da ta nova vrednost ne mora biti istog tipa.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+var brojevi = [1,2,3,4];
+brojevi[3] = 6;
+console.log(brojevi); //1,2,3,6
+brojevi[3] = "Sest";
+console.log(brojevi); //1,2,3,"Sest"
+\end{lstlisting}
+
+Elemente niza možemo postaviti eksplicitno bez obzira na to da li neke indekse izostavljamo, pa je tako moguće postaviti vrednosti $brojevi[5]$ i $brojevi[7]$, a potom ispisati sve elemente niza. Za one indekse koje smo preskočili $console.log$ će ispisati $empty$.
+
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+brojevi[5] = 15;
+brojevi[7] = 99;
+console.log(brojevi); //[1,2,3,"Sest",empty,15,empty,99]
+\end{lstlisting}
+
+Nizovi i petlje se dosta dobro kombinuju, u smislu da sa petljama lako obilazimo elemente niza, kao što je i viđeno u prethodnim primerima. Kod $for$ petlje primetili smo da promenljiva $i$ dobija vrednost indeksa svakog od elemenata niza. Osim standardne $for$ petlje, u $JavaScript-u$ moguće je koristiti i poseban vid $for$ petlje, tzv. $for-in$ petlju. Ova petlja funkcioniše na isti način kao standardna $for$ petlja prolazeći kroz elemente redom, ali je njen zapis dosta kraći. Osim toga, $for-in$ petlja će proći samo kroz elemente koji postoje (preskočiće indekse u nizu koji ne čuvaju nikakvu vrednost!). Ovakvo ponašanje se najbolje oslikava kroz primer.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+for(i=0;i < brojevi.length; i++){
+	console.log(brojevi[i]); 
+}
+for(i in brojevi){
+	console.log(brojevi[i]);
+}
+\end{lstlisting}
+Ispisom kroz konzolu, lako se vidi da je prva petlja dala $1$, $2$, $3$, $"$Sest$"$, $undefined$, $15$, $undefined$, $99$, a druga $for$ petlja $1$, $2$, $3$, $"$Sest$"$, $15$, $99$. 
+ 
 
 \subparagraph{Neke metode za rad sa nizovima}
 
-Pomenimo još jedan bitan metod za rad sa niskama. Metodom $split()$ od postojeće niske kreiramo niz. Argument koji prosleđujemo predstavlja po kom kriterijumu da se izvrši podela niske. Da bismo uradili obratno, odnosno, od niza kreirali nisku, koristimo metod $join()$.
+Pomenimo, pre svega, još jedan bitan metod za rad sa niskama. Metodom $split()$ od postojeće niske kreiramo niz. Argument koji prosleđujemo predstavlja po kom kriterijumu da se izvrši podela niske. Da bismo uradili obratno, odnosno, od niza kreirali nisku, koristimo metod $join()$.
 \begin{lstlisting}[backgroundcolor = \color{lightgray}]
-//Jos jedan metod za rad sa niskama koji od niske kreira niz: split 
+//Metod za rad sa niskama koji od niske kreira niz: split 
 var niska = "Danas je lep dan.";
 var niz = niska.split(" ");
 console.log(typeof niz);
 console.log(niz);
 
-//Metod za rad sa nizovima koji od niza formira nisku: join
+//Metod koji od niza formira nisku: join
 niz = ["danas", "je", "tmuran", "dan"];
 niska = niz.join();
 console.log(typeof niska);
@@ -1162,6 +1193,67 @@ console.log(niz_brojeva);
 niz_brojeva.sort();
 console.log(niz_brojeva);
 \end{lstlisting}
+
+\subsubsection{Svojstva i objekti}
+
+Ako bismo u naš niz dodali još jedan element:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+niz[4] = {svojstvo: 5 };
+console.log(niz[4]);			
+\end{lstlisting}
+Primećujemo da smo u niz dodali nešto novo oblika ${naziv\_svojstva : vrednost }$. Takav konstrukt nazivamo objektom. Objekti su strukture podataka koje čine nizovi svojstava i njihovih vrednosti. Većina JavaScript vrednosti imaju neka svojstva, već smo se susreli sa svojstvom $length$ za nizove. U primeru navedenom gore imamo samo jedno svojstvo $svojstvo$. Pogledajmo nešto intuitivniji primer. U primeru kreiramo jednog studenta sa svim svojstvima koja su nam za jednog studenta interesantna:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+var student = { ime : "Una",
+prezime : "Stankovic",
+datum_rodjenja : "13.10.1994.",
+jmbg: 1310994715004,
+broj_indeksa: "1095/2016",
+nivo_studija: "m",
+prosek: 9.75,
+ocene: [8,9,10]};
+console.log(student);
+\end{lstlisting}
+Ispisom objekta student u konzoli, možemo videti svojstva i sve vrednosti svojstava. Primetimo da vrednosti svojstava opet mogu biti različite vrednosti.\\
+Zanima nas sad kako možemo pristupiti vrednostima svojstava i to je moguće učiniti na dva načina:
+\begin{itemize}
+	\item $"$tačka notacijom $"$- $nazivobjekta.svojstvo$, na primer $student.ime$
+	\item $"$po indeksu$"$ - $nazivobjekta['svojstvo']$, na primer $student['ime']$
+\end{itemize}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+console.log(student);
+console.log(student.ime);
+console.log(student["ime"]);
+\end{lstlisting}
+Napomena: u slučaju da je svojstvo broj ili da sadrži razmake u nazivu ne može se koristiti tačka notacija.\\\\
+Ako pokušamo da pristupimo vrednosti svojstva koje ne postoji dobijamo $undefined$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+console.log(student.drzavljanstvo);
+\end{lstlisting}
+
+Svojstvu dodeljujemo vrednost uz pomoć naredbe dodele (operatora $=$). Ako bismo počeli od praznog objekta kako bismo mu dodali nova svojstva možemo koristiti samo tačka notaciju. JavaScript sam prepoznaje da ta svojstva ne postoje i dodaje ih. 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+var racunar = {};
+console.log(racunar);
+console.log(typeof racunar);
+racunar.licni_racunar = "da";
+racunar.os = 'windows';
+racunar.marka = 'lenovo';
+console.log(racunar);
+\end{lstlisting}
+Za uklanjanje svojstva iz objekta koristimo unarni operator $delete$.
+Ako pokušamo da pristupimo vrednosti svojstva koje smo obrisali dobijamo $undefined$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+delete racunar.licni_racunar;
+console.log(racunar.licni_racunar);
+console.log(racunar);
+\end{lstlisting}
+
+Binarnim operatorom $in$ lako se proverava da li neki objekat sadrži neko svojstvo. U zavisnosti od toga da li svojstvo postoji ili ne vraćaju se $true$ ili $false$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+console.log("licni_racunar" in racunar); //false
+console.log("os" in racunar); //true
+\end{lstlisting}
+
 
 \subsubsection{Funkcije}
 Funkcija je jedna od osnovnih konstrukcija jezika koja nam omogućava ponovno korišćenje koda. Omogućavaju nam čak i da ih koristimo iako ne razumemo detalje implementacije. Izdvajanjem koda u funkcije povećava se čitljivost koda i olakšava se njegovo održavanje.   
@@ -1410,6 +1502,43 @@ kvadrira sve negativne elemente niza.
 Sa standardnog ulaza se učitava dimenzija niza, elementi
 niza i jedan ceo broj k. Napisati program koji štampa indekse elemenata koji su
 deljivi sa k.
+\end{primer}
+
+\subsubsection{Objekti}
+\begin{primer}
+Kreirati objekat $"$Auto$"$. Objekat treba da sadrži: marku, godište, cenu.
+Ispisati objekat na izlaz.
+\end{primer}
+
+\begin{primer}
+Kreirati objekat $"$Film$"$, sa imenom filma, godinom izlaska, i ocenom na $IMDB$-u. Kreirati više takvih objekata i smestiti ih u niz (barem $5$). Na izlaz ispisati one filmove koji imaju ocenu preko $8$.  
+\end{primer}
+
+\begin{primer}
+Kreirati objekat $"$Zaposleni$"$ za neku firmu. Objekat treba da sadrži: ime, prezime, datum rodjenja, identifikacioni broj, poziciju, platu, datum zaposlenja, da li je zaposlen za stalno, pol i spisak iznosa poslednjih $6$ plata.
+\end{primer}
+
+\begin{primer}
+Za spisak zaposlenih u nekoj firmi (barem $5$), uraditi sledeće:
+\begin{itemize}
+	\item kreirati spisak zaposlenih: ime i prezime, visina plate, da li su stalno zaposleni
+	\item izdvojiti one čija su primanja veća od 30000,
+	\item izdvojiti stalno zaposlene,
+	\item onima koji nisu stalno zaposleni dodati bonuse u iznosu od 10000,	
+	\item proveriti da li se za zaposlene date firme posebno vodi stavka visina poreza i
+	\item za zaposlene koji su stalno zaposleni izračunati prosek poslednje 3 plate.
+\end{itemize}
+
+\end{primer}
+
+\begin{primer}
+Kreirati sajt muzeja. Sajt treba da sadrži navigacioni bar: O nama, Postavke, Karte i Kontakt. Stranica O nama treba da sadrži kratak istorijat muzeja, kao i spisak događaja. Postavke treba da sadrži 3 postavke: Afrička umetnost, Kineska umetnost i Evropska umetnost. Svaka od postavki treba da sadrži bar 3 slike, kratak opis kao i datum početka i završetka postavke. Osim toga treba kreirati inventar za svaku od postavki sa barem 3 stavke. Stranica sa kartama treba da sadrži cene karata prema kategorijama, kao i popuste za specijalne kategorije (mlade do 26 godina, penzionere). Stranica za kontakt treba da sadrži formu: Ime i prezime, E-mail, Poruka.\\\\
+U programu kreirati:
+\begin{itemize}
+\item POSTAVKE: Evropska, Afrička i Kineska. Potom, za svaku od postavki kreirati naziv, datume trajanja (od i do) i sifrarnik inventara ( kao niz sifara).
+\item Karte: povlašćene kategorije, standardna cena
+\item Kontakt: ime i prezime, e-mail, poruka.
+\end{itemize}  
 \end{primer}
 
 \subsubsection{Funkcije}
