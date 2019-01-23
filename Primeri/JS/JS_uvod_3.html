@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Uvod u JS</title>
+    </head>
+    <body>
+        <h1>Uvod u JavaScript</h1>
+        <p> Na ovoj stranici bice predstavljeni osnovni elementi JS koda.
+            Najveci deo zabave odvija se unutar konzole, koju dobijate otvaranjem 
+            konzole uz pomoc <mark>F12</mark>.</p>
+        <ul>
+            Ovaj fajl pokriva naredne elemente jezika:
+            <li>Funkcije</li>
+            <li>Pisanje funkcija</li>
+            <li>Anonimne funkcije</li>
+            <li>Opseg vazenja promenljivih</li>
+        </ul>
+        <script>
+            console.log("_________________________________________");
+            console.log("RAD SA FUNKCIJAMA");
+            console.log("_________________________________________");
+            //funkcije sa 2 argumenta
+            function sabiranje1(a,b){
+                var zbir = a + b;
+                return zbir; //povratna vrednost funkcije smestena u promenljivu zbir
+            }
+
+
+            function sabiranje2(a,b){
+                return a+b; //odmah vracamo zbir
+            }
+
+            //funkcije bez argumenata
+            function pozdrav(){
+                console.log("Hello World!");
+                return;
+            }
+
+
+            function dodatak(){
+                var broj = Math.random()*100;
+                return broj;
+            }
+
+            var a = 5;
+            var b = 7;
+            //nece se nista ispisati funkcija ce se samo izvrsiti i vratiti rezultat ovde
+            sabiranje1(a, b); 
+            //povratnu vrednost funkcije mozemo smestiti unutar neke promenljive 
+            var c = sabiranje2(a,b);
+            console.log(c);
+            //funkciju mozemo pozvati i unutar neke druge funkcije
+            console.log("Rezultat sabiranja ", a, "i", b,"je", sabiranje1(a,b));
+            pozdrav(); //funkcija ce se izvrsiti i ispisati "Hello world u konzoli"
+            console.log(dodatak()); 
+
+            //Dodela funkcije promenljivoj 
+            console.log("_________________________________________");
+            console.log("DODELA FUNKCIJE PROMENLJIVOJ");
+            console.log("_________________________________________");
+            var stepenovanje = function(osnova, eksponent){
+                var rez = 1;
+                for(i = 0; i < eksponent; i++){
+                    rez *= osnova;
+                }
+                return rez;
+            };
+            console.log(stepenovanje(2,3));
+            //Anonimne funkcije
+
+            //Periodicno izvrsavanje funkcija
+        </script>
+
+    </body>
+</html>
