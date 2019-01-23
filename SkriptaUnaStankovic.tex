@@ -1194,6 +1194,9 @@ niz_brojeva.sort();
 console.log(niz_brojeva);
 \end{lstlisting}
 
+\subparagraph{Vežba}
+Uraditi sve zadatke iz sekcije Nizovi.
+
 \subsubsection{Svojstva i objekti}
 
 Ako bismo u naš niz dodali još jedan element:
@@ -1254,9 +1257,29 @@ console.log("licni_racunar" in racunar); //false
 console.log("os" in racunar); //true
 \end{lstlisting}
 
+Koncept \textbf{refereciranja objekata} je veoma važan. Naime, kod objekata moramo razlikovati da li imamo dve različite reference ka istom objektu ili dva objekta imaju ista svojstva. U prvom slučaju, kada imamo dve različite reference ka istom objektu, dve različite promenljive pokazuju na isti memorijski prostor, a svaka promena izvedena nad objektom preko jedne promenljive propagiraće se i na drugu. U drugom slučaju, kada dva objekta imaju ista svojstva, ali su ti objekti različiti, promene izvedene nad jednom promenljivom neće imati nikakvog uticaja na drugu. Kako bismo ovo bolje razumeli, najbolje da pogledamo naredni primer:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+var student1 = {ime : "Janko",
+	prezime: "Jovanovic",
+	prosek: 9.5};
+var student2 = student1;
+var student3 = {ime : "Jovana",
+	prezime : "Markovic",
+	prosek : 8.5}
+console.log(student1 === student2); //true
+console.log(student2 === student3); //false
+console.log(student3 === student2); //false
+\end{lstlisting}
+Vidimo da pri poređenju objekata dobijamo da su objekti $student1$ i $student2$ isti. Sada pogledajmo šta se dešava kada pokušamo da izvršimo neku promenu nad $student1$. 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+student1.ime = "Ana";
+console.log(student2.ime); //Ana
+console.log(student3.ime); //Jovana
+\end{lstlisting}
+Obratiti pažnju da je u prvom $console.log$-u $student2$.
 
 \subsubsection{Funkcije}
-Funkcija je jedna od osnovnih konstrukcija jezika koja nam omogućava ponovno korišćenje koda. Omogućavaju nam čak i da ih koristimo iako ne razumemo detalje implementacije. Izdvajanjem koda u funkcije povećava se čitljivost koda i olakšava se njegovo održavanje.   
+Funkcija je jedna od osnovnih konstrukcija jezika koja nam omogućava ponovno korišćenje koda. Omogućavaju nam, čak, i da ih koristimo iako ne razumemo detalje implementacije. Štaviše, već smo koristili neke od ugrađenih funkcija, kao što su prompt, alert, parseInt, itd.. Izdvajanjem koda u funkcije povećava se čitljivost koda i olakšava se njegovo održavanje. Osim toga, olakšava se ponovna upotrebljivost koda (engl. reusability). Naime, vrlo često će nam biti potrebno da ponovo iskoristimo neki kod, neku funkciju koja nam se javlja u više programa. Upravo zbog toga, u $JavaScript$-u , kao i u mnogim drugim programskim jezicima, postoje ugrađene funkcije, kao i dodatne biblioteke sa funkcijama koje je moguće koristiti kako bi se olakšao rad. Moguće je čak i pisanje sopstvenih biblioteka.    
 \\
 Osnovno uputstvo za pisanje funkcija se sastoji iz nekoliko bazičnih koraka:
 \begin{itemize}
@@ -1268,29 +1291,116 @@ Osnovno uputstvo za pisanje funkcija se sastoji iz nekoliko bazičnih koraka:
 
 Funkcija se odlikuje svojom deklaracijom i definicijom.
 Deklaracija (ili prototip) funkcije ima opšti oblik:\\
-$tip\ ime\_funkcije(niz\_deklaracija\_parametara);$\\\\
+$function\ ime\_funkcije(niz\_deklaracija\_parametara);$\\\\
 Definicija funkcije ima oblik:
 \begin{verbatim}
-tip ime_funkcije(niz_deklaracija_parametara) {
+function ime_funkcije(niz_deklaracija_parametara) {
    deklaracije
    naredbe
 }
 \end{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+function sabiranje(a,b){
 
+}
+\end{lstlisting}
+
+\subparagraph{Parametri i argumenti funkcije}
 Funkcija može imati parametre koje obrađuje i oni se navode u
 okviru definicije, iza imena funkcije i izmedu zagrada.
 Termini parametar funkcije i argument funkcije se ponekad
-koriste kao sinonimi.
-$n$ je parametar funkcije kvadrat(n);, a 5 i 9 su
-njeni argumenti u pozivima kvadrat(5) i kvadrat(9).
+koriste kao sinonimi. Objasnimo kroz primer razliku između ovih pojmova. Naime,  $n$ je parametar funkcije $kvadrat(n);$, a $5$ i $9$ su
+njeni argumenti u pozivima $kvadrat(5)$ i $kvadrat(9)$.\\\\
 Parametri funkcije mogu se u telu funkcije koristiti kao lokalne
-promenljive te funkcije a koje imaju početnu vrednost
-određenu vrednostima argumenata u pozivu funkcije.\\\\
-Funkcija rezultat vraća naredbom return r; gde je r izraz
-zadatog tipa ili tipa koji se može konvertovati u taj tip.
-Naredba return r; ne samo da vraća vrednost r kao rezultat
-rada funkcije, nego i prekida njeno izvršavanje.\\\\
-Funkcije mogu pozivati druge funkcije, a funkcija može pozivati i samu sebe.
+promenljive\footnote{Lokalne promenljive su vidljive samo unutar tela te funkcije.} te funkcije, a koje imaju početnu vrednost
+određenu vrednostima argumenata u pozivu funkcije.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+function sabiranje(a,b){
+	var zbir = a + b;
+}
+
+var a = 5;
+var b = 7;
+sabiranje(5,7);
+\end{lstlisting}
+
+\subparagraph{Povratna vrednost funkcije}
+\textbf{Povratna vrednost} funkcije predstavlja glavni rezultat rada te funkcije.Funkcija rezultat vraća naredbom $return\ r;$ gde je $r$ izraz ili promenljiva. Nakon završetka svih naredbi unutar funkcije ili dolaskom do naredbe $return$ izvršavanje se nastavlja od mesta odakle je funkcija pozvana.
+Naredba $return\ r;$ ne samo da vraća vrednost $r$ kao rezultat
+rada funkcije, nego i prekida njeno izvršavanje. Funkcija može vraćati i rezultat izračunavanja nekog izraza, kao funkcija $sabiranje2$ u primeru dole. Vrednost koju funkcija vrati možemo smestiti u neku promenljivu kako bismo mogli sa njom na dalje da radimo. Funkcije mogu pozivati druge funkcije, a funkcija može pozivati i samu sebe. Više o slučaju kada funkcija poziva samu sebe biće u sekciji o rekurzivnim funkcijama.\\\\
+
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+function sabiranje(a,b){
+	var zbir = a + b;
+	return zbir;
+}
+
+function sabiranje2(a,b){
+	return a + b;
+}
+
+var a = 5;
+var b = 7;
+sabiranje(5,7);
+var c = sabiranje2(a,b);
+\end{lstlisting}
+
+Kao što vidimo kada pozivamo funkciju koristimo naziv funkcije, a potom navodimo listu argumenata. Funkcija može primati nula ili više argumenata. U slučaju, da funkcija nema argumente pozivamo je kao $ime\_funkcije()$. Funkcija bez argumenata će se izvršiti i vratiti povratnu vrednost. Ako funkcija ima jedan ili više argumenata, njih navodimo između zagrada, odvojene zarezima. Bitno je naglasiti da nazivi parametara pri definisanju funkcije i argumenata pri njenom pozivanju ne moraju biti isti, ali promenljive korišćene u telu funkcije i nazivi parametara moraju biti isti! To je posledica toga što promenljive navedene u definiciji dobijaju vrednosti argumenata, koje se kasnije koriste u telu funkcije, one su poput najave da će se na tom mestu očekivati neke vrednosti koje kasnije treba koristiti na tačno određen način (što je definisano u telu funkcije).  
+
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+function sabiranje(a,b){
+	var zbir = a + b;
+	return zbir;
+}
+
+function sabiranje2(a,b){
+	return a + b;
+}
+//funkcije bez argumenata
+function pozdrav(){
+	console.log("Hello World!");
+	return;
+}
+
+function dodatak(){
+	var broj = Math.random()*100;
+	return broj;
+}
+
+var a = 5;
+var b = 7;
+sabiranje(5,7); //nema ispisa nikakvog
+var c = sabiranje2(a,b); 
+console.log(c);
+pozdrav(); //"Hello World!"
+console.log(dodatak());
+\end{lstlisting}
+Primetimo da iako funkcija ne vraća nikakvu konkretnu vrednost na kraju funkcije se nalazi $return;$.
+Napomena: Funkcija $Math.random()$ korišćena u primeru je funkcija iz biblioteke $Math$ i vraća nasumični broj između $0$ i $1$. \\\\
+
+Osim navedenog načina moguće je funkciju dodeliti promenljivoj. Obratiti pažnju da nakon poslednje vitičaste zagrade mora stajati zarez. 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+var stepenovanje = function(osnova, eksponent){
+		var rez = 1;
+        for(i = 0; i < eksponent; i++){
+        	rez *= osnova;
+        }
+        return rez;
+	};
+console.log(stepenovanje(2,3));
+\end{lstlisting}
+
+
+\subparagraph{Vežba}
+Uraditi sve zadatke iz uvodne sekcije koristeći funkcije. Uraditi zadatke iz sekcije funkcije.
+
+\subparagraph{Anonimne funkcije}
+Anonimne funkcije su funkcije koje nemaju naziv.
+
+\subparagraph{Periodično izvršavanje funkcija}
+Nekada funkcije želimo da izvršavamo periodično, odnosno, želimo da se kod unutar funkcije izvršava nakon određenog vremenskog intervala. Za ovakvo izvršavanje funkcija koristimo funkcije $setTimeout()$ i $setInterval()$.\\\\
+Funkcija $setTimeout()$ izvršava naredbe nakn vremenskog intervala zadatog u milisekundama. Prvi argument je funkcija koja se izvršava nakon broja milisekundi navedenih kao drugi argument funkcije.
+
 
 \subsection{Zadaci sa casa}
 \subsubsection{Uvodni primeri}
@@ -1604,7 +1714,6 @@ Funkcija treba da vrati 1 ako je broj prost i 0 u suprotnom.
 \end{primer}
 
 \begin{primer}
-
 Napisati funkciju int prebrojavanje(float x) koja prebrojava
 koliko puta se broj x pojavljuje u nizu brojeva koji se unose sve do pojave
 broja 0. Napisati program koji učitava vrednost broja x i testira rad napisane
@@ -1628,12 +1737,15 @@ više pojavljivanja maksimalnog elementa, vratiti najmanju poziciju.\\
 (g)Napisati funkciju koja sve vrednosti niza uvećava za zadatu vrednost m.
 \end{primer}
 
+\begin{primer}
+Kreirati sajt zdrave hrane. Stranica treba da sadrži odgovarajuće HTML i CSS elemente (slike, naslove, tekst, itd.). Korisnik treba da odabere da li želi da učestvuje u anketi ili ne. ako odabere da želi, koristeći ugrađenu funkciju prompt zahtevati od korisnika predlog za naziv zdrave hrane i ocenu sajta. Postupak uraditi za barem 6 korisnika. Nakon što su svi uneli podatke (ili odlučili da ih ne unesu), ispisati spisak svih predloga, a potom ispisati prosečnu ocenu sajta. Uraditi odgovarajuće provere unosa.   
+\end{primer}
+
 
 \subsection{Dodatni zadaci}
 \begin{primer}
 Kreirati sajt zdrave hrane. Koristeći ugrađenu funkciju prompt zahtevati od korisnika količinu badema koju želi da kupi(u gramima), a potom u alert prozoru ispisati konačnu cenu za unetu količinu. Npr. ako je badem 2000 dinara po kilogramu, a korisnik želi 500 grama, u alertu treba da se ispiše 1000 dinara.  
 \end{primer}
-
 
 \begin{primer}
 Kreirati sajt za organizovanje proslava. Sajt treba da sadrži navigacioni bar sa stavkama: o nama, rođendani, proslave jubileja, svadbe i krštenja, kao i kontakt stranu. Rođendanske proslave se sastoje iz više kategorija, kao što su proslave punoletstva, proslave prvih rodjendana i proslave rođendana. Svaka od stavki navigacije vodi ka novim stranicama koje sadrže paragraf sa kratkim opisom usluga koje se nude, tabele sa cenama usluga (Ketering, Premium Ketering, Piće (osnovna i premium ponuda), dekoracija, muzika, transport do lokacije itd.). Svaka od strana sadrži i barem 3 moguće lokacije za proslave, sa sumom cena.

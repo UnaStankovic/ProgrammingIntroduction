@@ -187,7 +187,7 @@
 			var student1 = { ime : "Ana",
 							prezime : "Stankovic",
 							datum_rodjenja : "03.02.1994.",
-							jmbg: 0302994715243,
+							jmbg: "0302994715243",
 							broj_indeksa: "1097/2016",
 							nivo_studija: "m",
 							prosek: 8.75,
@@ -198,6 +198,25 @@
 			for(i in studenti){
 				console.log(studenti[i]);
 			}
+			console.log("_________________________________________");
+			console.log("REFERENCIRANJE OBJEKATA");
+			console.log("_________________________________________");
+			var student1 = {ime : "Janko",
+						prezime: "Jovanovic",
+						prosek: 9.5};
+			var student2 = student1;
+			var student3 = {ime : "Jovana",
+							prezime : "Markovic",
+							prosek : 8.5}
+			console.log(student1 === student2); //true
+			console.log(student2 === student3); //false
+			console.log(student3 === student2);	//false
+
+			student1.ime = "Ana";
+			console.log(student2.ime);
+			console.log(student3.ime);
+		
+
 		</script>
 	</body>
 </html>
