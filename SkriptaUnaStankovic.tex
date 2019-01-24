@@ -1378,7 +1378,7 @@ console.log(dodatak());
 Primetimo da iako funkcija ne vraća nikakvu konkretnu vrednost na kraju funkcije se nalazi $return;$.
 Napomena: Funkcija $Math.random()$ korišćena u primeru je funkcija iz biblioteke $Math$ i vraća nasumični broj između $0$ i $1$. \\\\
 
-Osim navedenog načina moguće je funkciju dodeliti promenljivoj. Obratiti pažnju da nakon poslednje vitičaste zagrade mora stajati zarez. 
+Osim navedenog načina moguće je funkciju dodeliti promenljivoj. Obratiti pažnju da nakon poslednje vitičaste zagrade mora stajati tačka-zarez. 
 \begin{lstlisting}[backgroundcolor = \color{lightgray}]
 var stepenovanje = function(osnova, eksponent){
 		var rez = 1;
@@ -1395,12 +1395,139 @@ console.log(stepenovanje(2,3));
 Uraditi sve zadatke iz uvodne sekcije koristeći funkcije. Uraditi zadatke iz sekcije funkcije.
 
 \subparagraph{Anonimne funkcije}
-Anonimne funkcije su funkcije koje nemaju naziv.
+Anonimne funkcije su funkcije koje nemaju naziv. Anonimne funkcije koristimo kada želimo da se neka funkcija izvrši jednom. Vrednost anonimne funkcije ne možemo koristiti ukoliko je ne smestimo u neku promenljivu ili nije deo neke druge funkcije o čemu će biti više reči kasnije. Definisanjem funkcije dodelom promenljivoj kreiramo anonimnu funkciju sa desne strane naredbe dodele. Pogledajmo još jedan primer:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+var anonimna = function(){
+	console.log("Dosli ste do anonimne funkcije.");
+	return;
+	};
+anonimna();
+\end{lstlisting}
+%Anonimne funkcije imaju i svoj skraćeni zapis u vidu \textbf{lambda funkcija} oblika:
+%\begin{verbatim}
+%(lista parametara) => telo funkcije
+%\end{verbatim}
+%Zagrade oko parametara su neophodne ukoliko je broj parametara veći od 1. Ukoliko funkcija nema %parametara onda su potrebne samo $()$. Ukoliko funkcija ima samo jednu naredbu i ta naredba je $%$return$ sa povratnom vrednošću, onda nam ni reč $return$ nije neophodna. Pogledajmo primere:
+%\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+%x => { return x*x; }
+%console.log(x);
+%x => x*x;
+%\end{lstlisting}
 
 \subparagraph{Periodično izvršavanje funkcija}
 Nekada funkcije želimo da izvršavamo periodično, odnosno, želimo da se kod unutar funkcije izvršava nakon određenog vremenskog intervala. Za ovakvo izvršavanje funkcija koristimo funkcije $setTimeout()$ i $setInterval()$.\\\\
-Funkcija $setTimeout()$ izvršava naredbe nakn vremenskog intervala zadatog u milisekundama. Prvi argument je funkcija koja se izvršava nakon broja milisekundi navedenih kao drugi argument funkcije.
+Funkcija $setTimeout()$ izvršava naredbe nakon vremenskog intervala zadatog u milisekundama ( 1000ms = 1s). Prvi argument je funkcija koja se izvršava nakon broja milisekundi navedenih kao drugi argument funkcije. Funkcija koja se prosleđuje kao argument funkcije $setTimeout()$ može biti i anonimna funkcija. U tom slučaju nju direktno pišemo u okviru zagrada funkcije. 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+function objava(){
+	alert("Obavesteni ste!");
+}
+setTimeout(objava,4000);
+//anonimna fija je prvi argument
+setTimeout(function(){
+	alert("Obavesteni ste iz anonimne funkcije!");
+},5000);
+\end{lstlisting}
+Funkciju $setTimeout()$ možemo koristiti i za periodično izvršavanje funkcije tako što ćemo je pozvati unutar neke funkcije $f()$ koju želimo da izvršavamo više puta, a kao prvi argument šaljemo naziv te funkcije iz koje se poziva. Napomena: Neophodno je posebno pozvati funkciju $f()$ prvi put.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+ //Funkciju setTimeout mozemo koristiti i za periodicno izvrsavanje
+function objava2(){
+	alert("Obavestenje u intervalu!");
+    setTimeout(objava2,1000);
+	}
+objava2();
+\end{lstlisting}
+Povratna vrednost funkcije $setTimeout()$ je identifikator tajmera koji je pokrenut, za prekidanje tajmera koristimo funkciju $clearTimeout()$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+var tajmer = setTimeout(function(){
+	alert("Ovaj tekst se nece ispisati");
+	}, 2000);
+clearTimeout(tajmer);
+\end{lstlisting}
+Osim funkcije $setTimeout()$ za periodično izvršavanje funkcija možemo koristiti funkciju $setInterval()$. Ova funkcija prima iste argumente kao i $setTimeout()$, samo što u njenom slučaju broj milisekundi predstavlja broj nakon kog će se ponovo izvršiti funkcija navedena kao prvi argument.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+setInterval(function(){
+	alert("Ova funkcija ce se izvrsavati svake sekunde.")
+	}, 1000);
+\end{lstlisting}
+Kao i kod $setTimeout()$ povratna vrednost funkcije $setInterval()$ je tajmer. Kako bismo prekinuli tajmer moramo pozvati funkciju $clearInterval()$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+var tajmer = setInterval(function(){
+	alert("Ovo ce se izvrsiti samo jednom");
+},1000);
+//Nakon 1.5 sekunde ce se pozvati prekidanje setInterval()
+setTimeout(function(){
+	clearInterval(tajmer);
+},1500);
+\end{lstlisting}
 
+\subparagraph{Broj argumenata funkcije}
+Lako se uočava da pri pozivu funkcije možemo funkciji poslati više argumenata nego što ona zahteva. U $JavaScriptu$ je to dozvoljeno ponašanje, iako u većini drugih programskih jezika nije. Ako bismo poslali veći broj argumenata nego što funkcija zahteva, ona bi višak argumenata ignorisala. U slučaju da je poslato manje argumenata nego što funkcija zahteva, za oni parametri za koje argumenti nisu poslati postavljaju se na $undefined$. Zaključak, $JavaScript$ ne proverava ni broj ni tip poslatih argumenata.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+var a = 5;
+var b = 7;
+//fija: sabiranje2(a,b);
+console.log(sabiranje2(a,b,4,2,1));
+\end{lstlisting}
+Pogledajmo još jedan primer.  Funkcija $argumenti()$ prima $2$ argumenta, posmatrajmo šta se dešava u različitim slučajevima:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+function argumenti(prvi, drugi){
+	console.log(prvi);
+	console.log(drugi);
+    return;
+}
+argumenti("Prvi","Drugi"); //prvi drugi
+argumenti("Prvi"); //prvi undefined
+argumenti(); //undefined undefined
+argumenti("Prvi","Drugi","Treci"); //prvi drugi	
+\end{lstlisting}
+
+$JavaScript$ funkcije imaju ugrađeni objekat $arguments$. Ovaj objekat možemo koristiti da na jednostavan način proverimo koji je broj argumenata poslat.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+ function prosek(){
+	var suma = 0;
+	console.log("Broj argumenataje:",arguments.length);
+	for(i=0;i<arguments.length;i++){
+    suma += arguments[i];
+	console.log(arguments[i]);
+    }
+	var prosek = suma / arguments.length;
+    console.log(suma);
+	return prosek;
+    }
+	var p = prosek(9,10,10,6,8);
+    console.log("Prosek ocena je:",p);	
+\end{lstlisting}
+Na ovaj način možemo pristupiti argumentima koje bismo inače ignorisali.
+U jeziku $JavaScript$ argumenti se prenose po vrednosti. To znači da se njihova originalna vrednost ne menja. Sa druge strane, objekti se prenose po referenci, što znači da se njihova originalna vrednost menja.
+
+\subsubsection{Objekat Math}
+Primetili smo da smo pri pisanju funkcija za rad sa brojevima pisali neke funkcije koje bi trebalo da se dosta često koriste pri matematičkim izračunavanjima. Osim toga, pominjali smo i da se funkcije koriste kako bi nam omogućile da neke postupke koji su nam često potrebni napišemo samo jednom, a potom upotrebljavamo kad god nam je to neophodno. $JavaScript$ u okviru objekta \textbf{Math} nudi definisane matematičke funkcije i konstante. Neke od njih su:
+\begin{itemize}
+	\item \textbf{Math.random()} - generiše pseudoslučajne brojeve iz intervala 0,1, 
+	\item \textbf{Math.round(x)} - zaokružuje broj $x$ na najbliži ceo broj,  
+	\item \textbf{Math.sqrt(x)} - računa koren broja $x$, 
+	\item \textbf{Math.pow(x,y)} - računa $y$-ti stepen broja $x$,  
+	\item \textbf{Math.min(x,y,z,...)} - računa minimum brojeva navedenih kao argumente,
+	\item \textbf{Math.max(x,y,z,...)} - računa maksimum brojeva navedenih kao argumente i
+	\item \textbf{Math.PI} - konstanta $\pi$.
+\end{itemize} 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+var a = 9;
+var b = 3;
+console.log("Koren ",a,"je", Math.sqrt(a));
+console.log(a,"na",b,'je',Math.pow(a,b));
+console.log("Minimum brojeva",a,",",b,", 
+	120 i 2 je",Math.min(a,b,120,2));
+console.log("Maksimum brojeva",a,",",b,",
+	120 i 2 je",Math.min(a,b,120,2));
+console.log("Broj ",a,"puta konstanta pi je", 
+	a*Math.PI,"\nKada se dobijeni broj podeli sa 14 i 
+	zaokruzi dobija se:",Math.round((Math.PI*a)/14));
+\end{lstlisting}
+
+
+\subparagraph{Vežba}
+Modifikovati prethodno urađene primere tako da se koriste funkcije objekta $Math$.
 
 \subsection{Zadaci sa casa}
 \subsubsection{Uvodni primeri}
@@ -1741,10 +1868,36 @@ više pojavljivanja maksimalnog elementa, vratiti najmanju poziciju.\\
 Kreirati sajt zdrave hrane. Stranica treba da sadrži odgovarajuće HTML i CSS elemente (slike, naslove, tekst, itd.). Korisnik treba da odabere da li želi da učestvuje u anketi ili ne. ako odabere da želi, koristeći ugrađenu funkciju prompt zahtevati od korisnika predlog za naziv zdrave hrane i ocenu sajta. Postupak uraditi za barem 6 korisnika. Nakon što su svi uneli podatke (ili odlučili da ih ne unesu), ispisati spisak svih predloga, a potom ispisati prosečnu ocenu sajta. Uraditi odgovarajuće provere unosa.   
 \end{primer}
 
+\subsubsection{Periodično izvršavanje funkcija}
+\begin{primer}
+Kreirati stranicu-prezentaciju pozorista. Sajt treba da sadrži: naslov, paragraf, slike, deo sa kontakt informacijama i ostale odgovarajuće HTML i CSS elemente. Nakon $10$ sekundi od otvaranja sajta korisnik se obavestava da su tokom januara sve cene karata snižene $50\%$. 
+\end{primer}
+
+\begin{primer}
+Kreirati stranicu za brzo anketiranje stanovnika. Po otvaranju stranice nakon 3 sekunde izlazi prozor sa pitanjem $"$Da li želite da učestvujete u anketi?$"$. Ako je odgovor potvrdan, korisniku se svake 4 sekunde nudi jedno od 15 pitanja. Pitanja:
+\begin{itemize}
+\item Koliko imate godina?
+\item Koji ste nivo obrazovanja stekli?
+\item Da li ste pušač?
+\item Da li jedete meso?
+\item Da li redovno odlazite na zdravstvene preglede?
+\item Da li radite?
+\item Koliko puta nedeljno trenirate?
+\item Posecujete li muzeje?
+\item Posecujete li pozorište?
+\item Imate li partnera?
+\item Koliko stranih jezika govorite?
+\item Imate li kucnog ljubimca?
+\item Koristite li računar svakodnevno?
+\item Koliko sati dnevno gledate TV?
+\item U kom mestu živite?
+\end{itemize}  
+Anketiranje traje ukupno minut. Po završetku ankete treba da iskoči prozor sa $"$Hvala na izdvojenom vremenu!$"$. Na kraju, u konzoli se ispisuje spisak pitanja i korisnikovih odgovora. 
+\end{primer}
 
 \subsection{Dodatni zadaci}
 \begin{primer}
-Kreirati sajt zdrave hrane. Koristeći ugrađenu funkciju prompt zahtevati od korisnika količinu badema koju želi da kupi(u gramima), a potom u alert prozoru ispisati konačnu cenu za unetu količinu. Npr. ako je badem 2000 dinara po kilogramu, a korisnik želi 500 grama, u alertu treba da se ispiše 1000 dinara.  
+Kreirati stranicu zdrave hrane. Koristeći ugrađenu funkciju prompt zahtevati od korisnika količinu badema koju želi da kupi(u gramima), a potom u alert prozoru ispisati konačnu cenu za unetu količinu. Npr. ako je badem 2000 dinara po kilogramu, a korisnik želi 500 grama, u alertu treba da se ispiše 1000 dinara.  
 \end{primer}
 
 \begin{primer}
