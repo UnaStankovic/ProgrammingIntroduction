@@ -15,6 +15,8 @@
             <li>Funkcije</li>
             <li>Pisanje funkcija</li>
             <li>Anonimne funkcije</li>
+            <li>Periodicno izvrsavanje funkcija</li>
+            <li>Math objekat</li>
             <li>Opseg vazenja promenljivih</li>
         </ul>
         <script>
@@ -69,8 +71,112 @@
             };
             console.log(stepenovanje(2,3));
             //Anonimne funkcije
+            //stepenovanje je takodje primer anonimne funkcije!
+            console.log("_________________________________________");
+            console.log("ANONIMNE FUNKCIJE");
+            console.log("_________________________________________");
+            var anonimna = function(){
+                console.log("Dosli ste do anonimne funkcije.");
+                return;
+            };
+            anonimna();
+            /*
+            function(){
+                console.log("Nece proci");
+            };*/
 
+            
             //Periodicno izvrsavanje funkcija
+            console.log("_________________________________________");
+            console.log("PERIODICNO IZVRSAVANJE FUNKCIJA");
+            console.log("_________________________________________");
+            //Koristimo funkcije setTimeout() i setInterval
+            function objava(){
+                alert("Obavesteni ste!");
+            }
+            setTimeout(objava,4000);
+            //anonimna fija je prvi argument
+            setTimeout(function(){
+                alert("Obavesteni ste iz anonimne funkcije!");
+            },5000);
+
+            //Funkciju setTimeout mozemo koristiti i za periodicno izvrsavanje
+            function objava2(){
+                alert("Obavestenje u intervalu!");
+                //setTimeout(objava2,1000); // skinuti komentar ispred set
+            }
+            objava2();
+
+            //clearTimeout
+            var tajmer = setTimeout(function(){
+                alert("Ovaj tekst se nece ispisati");
+            }, 2000);
+            clearTimeout(tajmer);
+
+            //setInterval
+            /*setInterval(function(){
+                alert("Ova funkcija ce se izrsavati svake sekunde.")
+            }, 1000); */
+
+            //clearInterval()
+            var tajmer = setInterval(function(){
+                alert("Ovo ce se izvrsiti samo jednom");
+            },1000);
+            //Nakon 1.5 sekunde ce se pozvati prekidanje setInterval()
+            setTimeout(function(){
+                clearInterval(tajmer);
+            },1500);
+
+
+            //Objekat Math
+            console.log("_________________________________________");
+            console.log("OBJEKAT MATH");
+            console.log("_________________________________________");
+            var a = 9;
+            var b = 3;
+            console.log("Koren ",a,"je", Math.sqrt(a));
+            console.log(a,"na",b,'je',Math.pow(a,b));
+            console.log("Minimum brojeva",a,",",b,", 120 i 2 je",Math.min(a,b,120,2));
+            console.log("Maksimum brojeva",a,",",b,", 120 i 2 je",Math.min(a,b,120,2));
+            console.log("Broj ",a,"puta konstanta pi je", a*Math.PI,"\nKada se dobijeni broj podeli sa 14 i zaokruzi dobija se:",Math.round((Math.PI * a)/14));
+
+            //Broj argumenata funkcije
+            console.log("_________________________________________");
+            console.log("BROJ ARGUMENATA FUNKCIJE");
+            console.log("_________________________________________");
+            var a = 5;
+            var b = 7;
+            //funkcija vraca ispravan rezultat
+            //ignorise visak argumenata
+            console.log(sabiranje2(a,b,4,2,1));
+
+            function argumenti(prvi, drugi){
+                console.log(prvi);
+                console.log(drugi);
+                return;
+            }
+            argumenti("Prvi","Drugi"); //prvi drugi
+            argumenti("Prvi"); //prvi undefined
+            argumenti(); //undefined undefined
+            argumenti("Prvi","Drugi","Treci"); //prvi drugi
+
+
+            function prosek(){
+                var suma = 0;
+                console.log("Broj argumenataje:",arguments.length);
+                for(i=0;i<arguments.length;i++){
+                    suma += arguments[i];
+                    console.log(arguments[i]);
+                }
+                var prosek = suma / arguments.length;
+                console.log(suma);
+                console.log(prosek);
+                return prosek;
+            }
+            var p = prosek(9,10,10,6,8);
+            console.log("Prosek ocena je:",p);
+
+           
         </script>
 
     </body>
