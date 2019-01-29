@@ -1414,6 +1414,79 @@ anonimna();
 %x => x*x;
 %\end{lstlisting}
 
+\subparagraph{Broj argumenata funkcije}
+Lako se uočava da pri pozivu funkcije možemo funkciji poslati više argumenata nego što ona zahteva. U $JavaScriptu$ je to dozvoljeno ponašanje, iako u većini drugih programskih jezika nije. Ako bismo poslali veći broj argumenata nego što funkcija zahteva, ona bi višak argumenata ignorisala. U slučaju da je poslato manje argumenata nego što funkcija zahteva, za oni parametri za koje argumenti nisu poslati postavljaju se na $undefined$. Zaključak, $JavaScript$ ne proverava ni broj ni tip poslatih argumenata.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+var a = 5;
+var b = 7;
+//fija: sabiranje2(a,b);
+console.log(sabiranje2(a,b,4,2,1));
+\end{lstlisting}
+Pogledajmo još jedan primer.  Funkcija $argumenti()$ prima $2$ argumenta, posmatrajmo šta se dešava u različitim slučajevima:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+function argumenti(prvi, drugi){
+	console.log(prvi);
+	console.log(drugi);
+    return;
+}
+argumenti("Prvi","Drugi"); //prvi drugi
+argumenti("Prvi"); //prvi undefined
+argumenti(); //undefined undefined
+argumenti("Prvi","Drugi","Treci"); //prvi drugi	
+\end{lstlisting}
+
+$JavaScript$ funkcije imaju ugrađeni objekat $arguments$. Ovaj objekat možemo koristiti da na jednostavan način proverimo koji je broj argumenata poslat.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+ function prosek(){
+	var suma = 0;
+	console.log("Broj argumenataje:",arguments.length);
+	for(i=0;i<arguments.length;i++){
+    suma += arguments[i];
+	console.log(arguments[i]);
+    }
+	var prosek = suma / arguments.length;
+    console.log(suma);
+	return prosek;
+    }
+	var p = prosek(9,10,10,6,8);
+    console.log("Prosek ocena je:",p);	
+\end{lstlisting}
+Na ovaj način možemo pristupiti argumentima koje bismo inače ignorisali.
+U jeziku $JavaScript$ argumenti se prenose po vrednosti. To znači da se njihova originalna vrednost ne menja. Sa druge strane, objekti se prenose po referenci, što znači da se njihova originalna vrednost menja.\\\\
+Nekada nam nije odmah poznato koliko parametara će funkcija imati. $JavaScript$ nam omogućava da funkcije mogu imati i proizvoljan broj parametara. Da bismo napisali ovakvu funkciju koristimo sledeću notaciju:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+ function nova(...parametri){
+	for(parametar of parametri){
+		//uradi nesto sa parametrima	
+	} 
+ }
+\end{lstlisting}
+Pogledajmo i na primeru:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+function lista_za_kupovinu(...parametri){
+	for(parametar of parametri){
+    	console.log(parametar);    
+    } 
+}
+console.log("Lista za kupovinu");
+lista_za_kupovinu("mleko","hleb","lazanje","torta");
+\end{lstlisting}
+Primetimo da smo koristili $for-of$ petlju za kretanje kroz listu parametara. Ova petlja nam služi za kretanje kroz nizove, karaktere niski, mape, skupove, itd. Napomena: ranije smo videli $for-in$
+petlju, ta petlja se najčešće koristi za iteraciju kroz svojstva objekata ili indekse.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+var ucenik = { ime : "Ana",
+	indeks: "1083/2016",
+    prosek: 9.41};
+for(kljuc in ucenik){
+	console.log(`${kljuc} --> ${ucenik[kljuc]}`);
+}  
+
+var str = "Neki tekst";
+for(indeks in str){
+	console.log(`Indeks ${str[indeks]}:${indeks}`);
+}
+\end{lstlisting}
+
 \subparagraph{Periodično izvršavanje funkcija}
 Nekada funkcije želimo da izvršavamo periodično, odnosno, želimo da se kod unutar funkcije izvršava nakon određenog vremenskog intervala. Za ovakvo izvršavanje funkcija koristimo funkcije $setTimeout()$ i $setInterval()$.\\\\
 Funkcija $setTimeout()$ izvršava naredbe nakon vremenskog intervala zadatog u milisekundama ( 1000ms = 1s). Prvi argument je funkcija koja se izvršava nakon broja milisekundi navedenih kao drugi argument funkcije. Funkcija koja se prosleđuje kao argument funkcije $setTimeout()$ može biti i anonimna funkcija. U tom slučaju nju direktno pišemo u okviru zagrada funkcije. 
@@ -1460,46 +1533,6 @@ setTimeout(function(){
 },1500);
 \end{lstlisting}
 
-\subparagraph{Broj argumenata funkcije}
-Lako se uočava da pri pozivu funkcije možemo funkciji poslati više argumenata nego što ona zahteva. U $JavaScriptu$ je to dozvoljeno ponašanje, iako u većini drugih programskih jezika nije. Ako bismo poslali veći broj argumenata nego što funkcija zahteva, ona bi višak argumenata ignorisala. U slučaju da je poslato manje argumenata nego što funkcija zahteva, za oni parametri za koje argumenti nisu poslati postavljaju se na $undefined$. Zaključak, $JavaScript$ ne proverava ni broj ni tip poslatih argumenata.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
-var a = 5;
-var b = 7;
-//fija: sabiranje2(a,b);
-console.log(sabiranje2(a,b,4,2,1));
-\end{lstlisting}
-Pogledajmo još jedan primer.  Funkcija $argumenti()$ prima $2$ argumenta, posmatrajmo šta se dešava u različitim slučajevima:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
-function argumenti(prvi, drugi){
-	console.log(prvi);
-	console.log(drugi);
-    return;
-}
-argumenti("Prvi","Drugi"); //prvi drugi
-argumenti("Prvi"); //prvi undefined
-argumenti(); //undefined undefined
-argumenti("Prvi","Drugi","Treci"); //prvi drugi	
-\end{lstlisting}
-
-$JavaScript$ funkcije imaju ugrađeni objekat $arguments$. Ovaj objekat možemo koristiti da na jednostavan način proverimo koji je broj argumenata poslat.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
- function prosek(){
-	var suma = 0;
-	console.log("Broj argumenataje:",arguments.length);
-	for(i=0;i<arguments.length;i++){
-    suma += arguments[i];
-	console.log(arguments[i]);
-    }
-	var prosek = suma / arguments.length;
-    console.log(suma);
-	return prosek;
-    }
-	var p = prosek(9,10,10,6,8);
-    console.log("Prosek ocena je:",p);	
-\end{lstlisting}
-Na ovaj način možemo pristupiti argumentima koje bismo inače ignorisali.
-U jeziku $JavaScript$ argumenti se prenose po vrednosti. To znači da se njihova originalna vrednost ne menja. Sa druge strane, objekti se prenose po referenci, što znači da se njihova originalna vrednost menja.
-
 \subsubsection{Objekat Math}
 Primetili smo da smo pri pisanju funkcija za rad sa brojevima pisali neke funkcije koje bi trebalo da se dosta često koriste pri matematičkim izračunavanjima. Osim toga, pominjali smo i da se funkcije koriste kako bi nam omogućile da neke postupke koji su nam često potrebni napišemo samo jednom, a potom upotrebljavamo kad god nam je to neophodno. $JavaScript$ u okviru objekta \textbf{Math} nudi definisane matematičke funkcije i konstante. Neke od njih su:
 \begin{itemize}
@@ -1529,7 +1562,120 @@ console.log("Broj ",a,"puta konstanta pi je",
 \subparagraph{Vežba}
 Modifikovati prethodno urađene primere tako da se koriste funkcije objekta $Math$.
 
+\subsubsection{Doseg promenljivih}
+Doseg (engl. scope) važenja promenljive označava u kojim sve delovima koda je neku promenljivu moguće $"$videti$"$, odnosno, pristupati joj, menjati je i koristiti. Dobro razumevanje i poznavanje dosega važenja promenljive nam je veoma bitno pri programiranju. Nekada se može desiti da pokušavamo da pristupimo promenljivoj u nekom delu koda u kome ona nije vidljiva ili da, još gore, nesvesno promenimo vrednost neke promenljive, što kasnije može imati posledice po izvršavanje ostatka programa.\\\\
+Mesto gde uvodimo promenljivu utiče na njen doseg. Promenljive kreirane van svih blokova koda i funkcija imaju \textbf{globalni doseg}. Promenljive koje predstavljaju argumente funkcije, kao i one koje kreiramo unutar funkcija imaju doseg te funkcije u kojoj se nalaze.
+Do sada smo promenljive kreirali koristeći isključivo ključnu reč $var$. Postoje još dve ključne reči kojima kreiramo promenljive to su $let$ i $const$. Promenljive kreirane ključnom rečju $let$ i $const$ imaju \textbf{lokalni doseg}. To znači da su one vidljive samo unutar bloka u kom su deklarisane. Promenljive uvedene ključnom rečju $var$ za funkciju važe na nivou cele funkcije. Pogledajmo naredni primer:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+function vidljivost(x){
+	console.log(x);
+    var x = 5;
+	console.log(x);
+    if(x == 5){
+	//promenljive mozemo kreirati koristeci let
+	//let promenljive imaju lokalni doseg
+	let n = 7;
+	console.log("n iz if-a:",n);
+	}
+    else{
+	console.log("n iz else-a:",n);   
+    }
+    return x;
+}
+var x = 10;
+vidljivost(x);
+console.log(x);
+\end{lstlisting}
+Iz primera se vidi da je promenljiva $x$ globalna. U funkciji $vidljivost(x)$ najpre ispisujemo vrednost promenljive $x$, i dobijamo $10$, što je ono što smo i prosledili. Potom unutar funkcije menjamo vrednost promenljive $x$ na $5$. Nakon toga kreiramo promenljivu n, koja nije vidljiva u $else$ grani (probati ovo tako što ćete zakomentarisati liniju $var x = 5;$. Nakon poziva funkcije ponovo ispisujemo vrednost promenljive $x$ i vidimo da ništa nije promenjeno. Posmatrajmo još jedan primer:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+function zbir(){
+	return c+d;
+}
+
+var c = 7; //zakomentarisati
+var d = 8; //zakomentarisati
+console.log(zbir());
+var a = 5;
+var b = 7;
+console.log(zbir(a,b));
+\end{lstlisting}
+
+
+Primetimo da funkcija uvek radi za promenljive $c$ i $d$ zato što su globalno definisane, pa funkcija može da nađe njihove vrednosti. U slučaju da su $c$ i $d$ nedefinisani izbacuje se greška.\\\\
+Obratite pažnju i na to šta se dešava sa $let$, kada pokušamo da mu promenimo vrednost. Zameniti $let$ sa $var$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+function vidljivost_let(){
+	let x = 5;
+	if(true){
+		let x = 7;
+		console.log(x); //7
+	} 
+	console.log(x); //5
+}
+vidljivost_let();
+\end{lstlisting}
+
+Osim promenljivih, funkcije isto mogu biti deklarisane globalno i lokalno. Globalno deklarisane funkcije su vidljive i mogu se pozivati na nivou celog programa, a lokalno deklarisane funkcije samo unutar one funkcije (i njenih drugih podfunkcija) u kojoj je deklarisana. \textbf{Izvlačenje deklaracija} (engl. hoisting) je pojam koji se odnosi na to da $JavaScript$ izvlači deklaracije funkcija i promenljivih tokom faze kompajliranja što nam omogućava da vršimo pozive funkcija ili promenljivih i pre njihovog definisanja (obratiti pažnju da se izvlače deklaracije, ali ne i definicije!). Navedeni koncepti se oslikavaju kroz sledeće primere. Najpre, vidljivost funkcija:
+
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+
+function globalna(){
+	console.log("Ova funkcija je vidljiva i moze se 
+	pozvati na nivou celog programa.");
+}
+function globalna_2(){
+	lokalna(1); //poziv pre definicije
+	function lokalna(n){
+		console.log("Poziv",n, "iz lokalne:");
+		globalna();
+	}
+	function lokalna2(){
+		console.log("Poziv iz druge lokalne:");
+		lokalna(2);
+	}
+    lokalna(3); //poziv nakon definicije   
+    lokalna2();
+}
+
+globalna();
+globalna_2();
+lokalna(4);
+lokalna2();
+\end{lstlisting}
+Potom, izvlačenje deklaracija:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+ispisi(s); //s is not declared
+ispisi(parametar); //undefined
+var parametar;
+function ispisi(p){
+	console.log("Vrednost parametra je:",p);
+    return;
+}
+parametar = 10; 
+ispisi(parametar);
+\end{lstlisting}
+
+\subsubsection{Rekurzivne funkcije}
+Programski jezik $JavaScript$ podržava rekurzivne funkcije. Rekurzivne funkcije su one funkcije koje pozivaju same sebe. Uvek mora postojati neki uslov izlaska iz rekurzije. Najčešći primer koji se posmatra pri učenju ovih funkcija je \textit{Fibonačijev niz}.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+function fib(n){
+	if(n == 0 || n == 1){
+		return 1;	
+	}
+	return fib(n-1) + fib(n-2);
+}
+
+var a = 5;
+console.log("a-ti Fibonacijev broj", fib(a));
+\end{lstlisting}
+Da bismo dobili naredni element potrebna su nam prethodna 2. Zbog toga, pozivamo funkciju za prethodna 2 broja. Uslov zaustavljanja je kada dođemo do $1$ ili do $0$.
+
+\newpage
+\subsection{DOM}
+
+\newpage
 \subsection{Zadaci sa casa}
+Napomena:Rešenja zadataka nisu jedinstvena. Skoro svi zadaci se mogu uraditi na više načina. Za vežbu pokušati pronaći ili uraditi zadatke na više načina. 
 \subsubsection{Uvodni primeri}
 
 \begin{primer}
