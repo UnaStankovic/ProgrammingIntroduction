@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title> DOM </title>
+        <style type='text/css'>
+            p{
+                background-color: red;
+            }
+            .doterani_pasus {
+                border: 2px solid green;
+                font-size: 20px;
+                color: fuchsia;
+                width: 100px;
+            }
+            .klasa1{
+            	background-color: yellow;
+            }
+            #sadrzaj{
+            	background-color: lightblue;
+            	border: 2px solid blue;
+				
+            }
+            #sadrzaj h2{
+            	text-align: center;
+            	color: blue;
+            }
+            #sadrzaj ol,em{
+            	margin-left: 20px;
+            }
+        </style>
+    </head>
+    <body>
+		<div id='sadrzaj'>
+        	<h2> DOM </h2>
+        	<em>Ovaj fajl sadrzi:</em>
+			<ol>
+				<li>Pristup elementima DOM-a</li>
+				<li>Menjanje stilova</li>
+				<li>Dohvatanje i postavljanje atributa elementima</li>
+			</ol>
+        </div>
+		<p>Neki drugi pasus</p> 
+        <p id='pasus2' title='Neki naslov'>Neki pasus</p>
+        <h1> Naslov nakon prvog pasusa</h1>
+        <div id='omotac'>
+            <p class='pasus' id='pasus1'>Prvi pasus</p> 
+            <p class='pasus' id='pasus2'>Drugi pasus</p>
+            <p class='pasus' id='pasus3'>Treci pasus</p>
+        </div>
+        <p id='pasusneki'>Neki pasus van<a href=''>link</a> omotaca</p>
+        
+        <script>
+            console.log("_________________________________________");
+            console.log("DOM");
+            console.log("_________________________________________");
+           	//elemente dohvatamo na neki od navedenih nacina:
+           	// po id-ju: getElementById
+           	// po nazivu etikete: getElementsByTagName
+           	// prema upitu: querySelector, querySelectorAll
+            var omotac_element = document.getElementById("omotac");
+            var svi_pasusi = document.getElementsByTagName('p');
+            var pasusi_u_omotacu = document.querySelectorAll('#omotac .pasus'); // 
+            var prvi_pasus = document.querySelector('#omotac .pasus');
+            var drugi_pasus = document.querySelector('p:nth-child(2)');
+            var treci_pasus = pasusi_u_omotacu[2]; //0 1 2
+
+            //Sadrzaju elementa pristupamo uz pomoc innerHTML
+            var sadrzaj_pasusa = document.getElementById('pasusneki').innerHTML;
+            console.log(sadrzaj_pasusa);
+            //Tekstualnom sadrzaju pristupamo uz pomoc textContent
+            var sadrzaj = document.getElementById('pasusneki').textContent;
+			console.log(sadrzaj);
+			//svojstvo length nam govori koliko elemenata imamo
+			var broj_elemenata = svi_pasusi.length;
+			console.log(broj_elemenata);
+            //Ako imamo vise elemenata po nekom kriterijumu dohvatamo ih kao elemente niza 
+            var pasus = svi_pasusi[0];
+            console.log("Prvi",pasus);
+            var poslednji = svi_pasusi[broj_elemenata-1].textContent;
+			console.log("Poslednji",poslednji);
+
+            //CSS svojstvima elementa pristupa se pomocu svojstva style
+            var stil_pasusa = pasus.style;
+            console.log(stil_pasusa);
+            
+            //Ako hocemo da vidimo koji je podrazumevani CSS stil za neki element koristimo 
+            //getComputedStyle
+            var izracunati_stil = window.getComputedStyle(pasus);
+            console.log(izracunati_stil.color);
+            stil_pasusa.backgroundColor = 'gray';
+            document.querySelector('#pasus1').style.fontSize = '12px';
+            document.querySelector('#pasus2').className = 'doterani_pasus';
+            var pasus = document.querySelector('p');
+            console.log(pasus.textContent);
+            pasus.textContent = "ovo je neki tekst";
+
+            var omotac = document.getElementById('omotac');
+            var prvi_pasus = omotac.firstElementChild;
+            var drugi_pasus = prvi_pasus.nextElementSibling;
+            var treci_pasus = drugi_pasus.parentElement.lastElementChild;
+            var naslov = omotac.previousElementSibling;
+
+            //dohvatanje i postavljanje atributa vrsi se sa
+            //getAttribute i setAttribute
+            var pasus = document.getElementById('pasus2');
+			var title = pasus.getAttribute('title');
+			pasus.setAttribute('title','Neki drugi naslov');
+			console.log(title);
+			pasus.setAttribute('class', 'klasa1');
+			console.log(pasus);
+
+        </script>
+
+    </body>
+</html>
