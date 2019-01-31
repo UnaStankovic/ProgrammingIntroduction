@@ -15,10 +15,32 @@
             <li>Funkcije</li>
             <li>Pisanje funkcija</li>
             <li>Anonimne funkcije</li>
+            <li>Rekurzivne funkcije</li>
             <li>Periodicno izvrsavanje funkcija</li>
             <li>Math objekat</li>
             <li>Opseg vazenja promenljivih</li>
         </ul>
+        <h1>Periodicno izvrsavanje funkcija</h1>
+        <p> Danas radimo funkcije setTimeout() i setInterval().</p>
+        <dl>
+            <dt>
+                setTimeout()
+            </dt>
+            <dd>
+                <ul>
+                    <li>izvršava zadate naredbe nakon vremenskog intervala zadatog u milisekundama.</li>
+                    <li> može se iskoristiti i za periodično izvršavanje funkcija tako što će kao poslednja naredba funkcije
+                        navesti poziv funkcije setTimeout() čiji je prvi argument upravo funkcija iz koje je pozvan setTimeout().</li>
+                </ul> 
+            </dd>
+            <dt>
+                setInterval()
+            </dt>
+            <dd>
+                vrši periodično izvršavanje koda. Redosled argumenata ove
+                funkcije je isti kao i kod funkcije setTimeout().
+            </dd>
+        </dl>    
         <script>
             console.log("_________________________________________");
             console.log("RAD SA FUNKCIJAMA");
@@ -175,8 +197,124 @@
             }
             var p = prosek(9,10,10,6,8);
             console.log("Prosek ocena je:",p);
+            //Funkcije sa promenljivim brojem parametara
+             function lista_za_kupovinu(...parametri){
+                //for of petlja za kretanje kroz listu parametara
+                  for(parametar of parametri){
+                    //uradi nesto sa parametrima
+                    console.log(parametar);    
+                } 
+             }
+             console.log("Lista za kupovinu");
+             lista_za_kupovinu("mleko","hleb","lazanje","torta");
 
-           
+
+           //for in vs for of
+            console.log("_________________________________________");
+            console.log("FOR IN i FOR OF");
+            console.log("_________________________________________");
+            var ucenik = { ime : "Ana",
+                           indeks: "1083/2016",
+                           prosek: 9.41};
+            for(kljuc in ucenik){
+                console.log(`${kljuc} --> ${ucenik[kljuc]}`);
+            }  
+
+            var str = "Neki tekst";
+            for(indeks in str){
+                console.log(`Indeks ${str[indeks]}:${indeks}`);
+            }
+           //Doseg vazenja promenljivih  
+            console.log("_________________________________________");
+            console.log("DOSEG VAZENJA PROMENLJIVIH");
+            console.log("_________________________________________");
+            function vidljivost(x){
+                console.log(x);
+                var x = 5;
+                console.log(x);
+                if(x == 5){
+                    //promenljive mozemo kreirati koristeci let
+                    //let promenljive imaju lokalni doseg
+                    let n = 7;
+                    console.log("n iz if-a:",n);
+                }
+                else{
+                    //console.log("n iz else-a:",n);   
+                }
+                return x;
+            }
+            function zbir(){
+                return c+d;
+            }
+            function vidljivost_let(){
+                let x = 5;
+                if(true){
+                    let x = 7;
+                    console.log(x); //7
+                } 
+                console.log(x); //5
+            }
+
+            var x = 10;
+            vidljivost(x);
+            console.log(x);
+            
+            var c = 7; //zakomentarisati
+            var d = 8; //zakomentarisati
+            console.log(zbir());
+            var a = 5;
+            var b = 7;
+            console.log(zbir(a,b));
+            vidljivost_let();
+            //hoisting, vidljivost funkcija
+            console.log("_________________________________________");
+            console.log("VIDLJIVOST FUNKCIJA");
+            console.log("_________________________________________");
+            
+//            ispisi(s); //s is not declared
+            ispisi(parametar); //undefined
+            var parametar;
+            function ispisi(p){
+                console.log("Vrednost parametra je:",p);
+                return;
+            }
+            parametar = 10; 
+            ispisi(parametar);
+
+            function globalna(){
+                console.log("Ova funkcija je vidljiva i moze se pozvati na nivou celog programa.");
+            }
+
+            function globalna_2(){
+                lokalna(1); //poziv pre definicije
+                function lokalna(n){
+                    console.log("Poziv",n, "iz lokalne:");
+                    globalna();
+                }
+                function lokalna2(){
+                    console.log("Poziv iz druge lokalne:");
+                    lokalna(2);
+                }
+                lokalna(3); //poziv nakon definicije   
+            }
+
+            globalna();
+            globalna_2();
+//            lokalna(4);
+  //          lokalna2();
+
+            console.log("_________________________________________");
+            console.log("REKURZIVNE FUNKCIJE");
+            console.log("_________________________________________");
+            function fib(n){
+                if(n == 0 || n == 1){
+                    return 1;   
+                }
+                return fib(n-1) + fib(n-2);
+            }
+
+            var a = 5;
+            console.log("a-ti Fibonačijev broj", fib(a));
         </script>
 
     </body>
