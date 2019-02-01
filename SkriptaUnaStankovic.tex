@@ -1788,8 +1788,6 @@ document.querySelector('#pasus1').style.fontSize = '12px';
 document.querySelector('#pasus2').className = 'doterani_pasus';
 \end{lstlisting} 	
 
-\subparagraph{Vezba} Uraditi zadatke iz osnova DOM-a.
-
 Kada dohvatimo neki $HTML$ element, moguće je kretanjem kroz $DOM$ stablo doći i do ostalih elemenata prateći veze sa ostalim elementima. Roditeljskom elementu nekog elementa pristupa se preko svojstva $parentElement$, koja sadrži pokazivač na roditeljski element. Elementu na istom nivou $DOM$ stabla $brat$/$sestra$ elementa, koji u $HTML$ strukturi sledi nakon dohvaćenog pristupa se svojstvom $nextElementSibling$. Očekivano, njegovom prethodniku pristupa se sa $previousElementSibling$.\\\\
 Na veoma sličan način možemo posmatrati i strukturu u odnosu na roditeljski element. Naime, prvom direktnom potomku roditeljskog elementa pristupa se sa $firstElementChild$, poslednjem sa $lastElementChild$. Svim direktnim potomcima se pristupa svojstvom $children$, koje sadrži niz objekata koji odgovaraju direktnim potomcima elementa. Pogledajmo kroz primer:
 \begin{lstlisting}[backgroundcolor = \color{lightgray}]
@@ -1826,6 +1824,8 @@ var title = pasus.getAttribute('title');
 console.log(title);
 pasus.setAttribute('class', 'klasa1');
 \end{lstlisting}
+
+\subparagraph{Vezba} Uraditi zadatke iz osnova DOM-a.
 
 \subsubsection{Kreiranje elemenata}
 Nekada ne želimo samo da menjamo postojeće elemente, već želimo i da kreiramo nove. Pravljenje novih elemenata vrši se funkcijom $createElement$ iz interfejsa $document$. Kao argument ova funkcija prima naziv etikete novog elementa (naziv etikete se navodi pod navodnicima). Element se vezuje u $DOM$ stablo kao poslednji sin nekog elementa funkcijom $appendChild$ čiji je argument element koji se u stablo dodaje. U slučaju da ne iskoristimo append child, element neće biti prikazan.
@@ -2256,10 +2256,17 @@ Dohvatiti sve elemente liste unutar elementa sa $id$-jem $cenovnik$. Podesiti do
 Za kreiranu stranicu koja sadrzi 10 pasusa, postaviti pozadinsku boju svakom drugom na svetlo sivu.
 \end{primer}
 
+\begin{primer}
+Za stranicu sa bioskopom kreirati novi element koji u sebi sadrži 6 $div$-ova sa najavama budućih projekcija. Svaka od najava treba da sadrži naslov filma, poster, datum premijere, kratak opis i link ka detaljnijim informacijama. Treba promeniti boju prvom, poslednjem, kao i drugom i pretposlednjem elementu na: plavu (prvi i poslednji), svetlo plavu (drugi i pretposlednji). Preostala dva elementa treba da ostanu bela. Napomena: slobodno odabrati boje iz palete boja koje bi se uklopile sa vasim sajtom.   
+\end{primer}
+
+\begin{primer}
+Na stranicu sa bioskopom postaviti tooltip sa tekstom $"$Gledajmo budućnost zajedno!$"$ na glavni naslov. Kreirati element koji sadrži naslov $"$Najpopularniji film u $2018$.$"$, poster i naziv filma. Postaviti atribute širine i visine slike koja predstavlja najpopularniji film na $100$ prema $150$px. Dohvatiti atribute vezane za linkove ka narednim projekcijama iz elementa koji sadrži najave i promeniti ih tako da predstavljaju linkove ka $IMDB$ stranicama filmova. Na kraju, za najpopularniji film, dodati ocenu i link ka $IMDB$ stranici.  
+\end{primer}
 
 \subsubsection{Kreiranje elemenata}
 \begin{primer}
-Na stranicu sa pozorištem dodati 
+Na stranicu sa pozorištem dodati nove elemente. Elemente dodavati kreiranjem novih elemenata kroz $JavaScript$. Obavezno dodati tabelu, sliku, link, dok su ostali elementi po izboru u zavisnosti od rada.
 \end{primer}
 
 \begin{primer}
