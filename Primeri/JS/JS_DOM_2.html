@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title> DOM </title>
+        <style type='text/css'>
+            p{
+                background-color: red;
+            }
+            .doterani_pasus {
+                border: 2px solid green;
+                font-size: 20px;
+                color: fuchsia;
+                width: 100px;
+            }
+            .klasa1{
+            	background-color: yellow;
+            }
+        </style>
+    </head>
+    <body>
+        <div id='omotac'>
+            <p id='pasus1'>Prvi pasus</p> 
+            <p id='pasus2'>Drugi pasus</p>
+          	  
+        </div>
+        <p id='obrisi'>Pasus koji zelimo da obrisemo</p>
+        <script>
+            var omotac = document.getElementById('omotac');
+            var novi_pasus = document.createElement('p');
+            novi_pasus.innerHTML = "Treci pasus <a href=''>link</a>";
+            novi_pasus.setAttribute('id', 'pasus3');
+            //obavezno vezivanje novog pasusa kao poslednje dete omotaca
+            omotac.appendChild(novi_pasus);
+
+            var cetvrti = document.createElement('p');
+            var sadrzaj = document.createTextNode("Cetvrti pasus <a href=''>link</a>");
+            cetvrti.appendChild(sadrzaj);
+            omotac.appendChild(cetvrti);
+
+            //createTextNode dodaje sadrzaj na postojeci
+            var pasus1 = document.getElementById('pasus1');
+            var sadrzaj = document.createTextNode('jos neki tekst unutar pasusa1');
+            pasus1.appendChild(sadrzaj);
+            //innerHTML zamenjuje sadrzaj u potpunosti
+            pasus1.innerHTML = "Tekst unutar pasusa1";
+
+            //insertBefore dodaje prvi argument pre drugog
+            var pasus_jedan_ipo = document.createElement('p');
+            var pasus2 = document.getElementById('pasus2');
+            pasus_jedan_ipo.innerHTML = "pasus i po";
+            omotac.insertBefore(pasus_jedan_ipo, pasus2);
+
+            //removeChild
+            var obrisi = document.getElementById('obrisi');
+			document.body.removeChild(obrisi);
+        </script>
+
+    </body>
+</html>
+            

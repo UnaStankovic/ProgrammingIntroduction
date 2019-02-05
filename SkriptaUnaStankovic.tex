@@ -1873,6 +1873,81 @@ document.body.removeChild(obrisi);
 \end{lstlisting}
 \subparagraph{Vezba} Uraditi zadatke iz kreiranja elemenata DOM-a.
 
+\subsubsection{Reagovanje na događaje}
+Na način na koji smo do sada vršili interakciju sa stranicom još uvek nismo mogli da dobijemo pravu interaktivnost. Da bismo to postigli neophodno je da vršimo interakciju sa elementima DOM-a.
+Svaka interakcija sa elementima DOM-a predstavlja događaj. Događaj predstavljaju različite interakcije korisnika sa stranicom kao što su: klik, prelazak miša, pritisak određenih tastera, itd..Prilikom pojave događaja moguće je reagovati i izvršiti određene naredbe. Da bi se pojava nekog događaja vezalo sa akcijom koju je potrebno preduzeti potrebno je prijaviti se, odnosno, „osluškivati“ pojavu nekog događaja.  Postoje dva načina da osluškujemo događaje. Prvi način za to je navođenje odgovarajućeg atributa elementa na kome se događaj očekuje. Takvi atributi obavezno imaju prefix $on$ nakon koga se nastavlja naziv događaja. Na primer, ako je naziv događaja $click$, atribut će imati naziv $onclick$. Vrednost atributa je naziv funkcije koju je potrebno izvršiti ukoliko se događaj desio. Obratiti pažnju da se naziv funkcije šalje sa zagradama i da naziv događaja ima prefiks $on$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+HTML:
+<button onclick='prikaziObavestenje()'>Prikazi obavestenje</button>
+JS:
+function prikaziObavestenje(){
+	alert("Obavestenje prikazano klikom na dugme.");
+}
+\end{lstlisting}
+Neki od atributa koji postoje su: 
+\begin{itemize}
+\item \textbf{onclick} - definiše šta se događa kada korisnik klikne na površinu elementa 
+\item \textbf{onchange} -  definiše šta se događa kada korisnik promeni vrednost npr. input elementa ili select elementa
+\item \textbf{onfocus} - definiše šta se događa kada element dobije fokus (kada se korisnik pozicionira bilo mišem bilo tab tasterom na ovo polje)
+\item \textbf{onblur} - definiše šta se događa kada element izgubi fokus
+\item \textbf{onhover} - definiše šta se događa kada se pređe preko površine elementa 
+\item \textbf{onkeyup} - definiše šta se događa kada korisnik pritisne taster na tastaturi (spust tastera) 
+\item \textbf{onkeyup} - definiše šta se događa kada korisnik pusti pritisnuti taster na tastaturi 
+\end{itemize}                        
+ 
+Drugi način osluškivanja događaja je dodavanje „osluškivača“ ($listener$-a) u okviru
+$JavaScript$ koda na element na kome se događaj očekuje, korišćenjem funkcije
+$addEventListener()$. Ova funkcija prima dva argumenta. Prvi je naziv događaja čija se
+pojava osluškuje, a drugi je naziv funkcije koja će se pozvati kada se događaj desi. Moguće je kao drugi argument navesti i anonimnu funkciju koja će biti definisana odmah na mestu argumenta. Obratiti pažnju da se naziv funkcije šalje bez ikakvih zagrada, a da naziv događaja nema prefiks $on$. Da bismo uopšte mogli da postavimo osluškivač događaja na neki element moramo ga najpre dohvatiti.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+HTML:
+<button id='dugme1'>Dugme1</button>
+<button id='dugme2'>Dugme2</button>
+JS:
+var dugme1 = document.getElementById('dugme1');
+var dugme2 = document.getElementById('dugme2');
+dugme1.addEventListener('click', prikaziObavestenje);
+dugme2.addEventListener('mouseover', function(){
+	alert("Obavestenje iz anonimne funkcije");
+});
+\end{lstlisting}
+
+Neki od događaja na koje se može reagovati su:
+\begin{itemize}
+\item \textbf{click} – klik na element
+\item \textbf{dblclick} – dupli klik na element
+\item \textbf{focus}  – dovođenje elementa u fokus (klikom, dugmetom tab, programski...)
+\item \textbf{blur} – promena fokusa sa fokusiranog elementa na drugi element
+\item \textbf{mouseenter}  – ulaz kursora u okvir elementa
+\item \textbf{mouseover} – pomeranje kursora preko elementa
+\item \textbf{mouseleave} – izlaz kursora iz okvira elementa
+\item \textbf{onload} – pri završenom učitavanju elementa (iscrtavanju i smeštanju u DOM)
+\item \textbf{keypress}  – Pritisnuto je dugme na tastaturi dok je element u fokusu, objekat prosleđen kao argument funkciji za obradu događaja sadrži informacije o tome koje dugme je
+pritisnuto
+\end{itemize}
+
+Svi navedeni događaji mogu biti korišćeni i kao atributi i kao argumenti funkcije. U prvom slučaju treba koristiti prefiks $on$. Za kompletnu listu ovih događaja konsultovati dodatnu literaturu.
+
+\subparagraph{Vezba} Uraditi zadatke iz Reagovanje na događaje.
+
+\subsubsection{Validacija formi}
+Forme predstavljaju jedan od osnovnih vidova prikupljanja određenih podataka koje korisnik unosi. Da bi se informacije prikupile i sačuvale, podaci se šalju na server. Da ne bi došlo do toga da korisnik unosi besmislice veoma nam je važna validacija formi, odnosno, onoga što korisnik unosi.
+Vrlo često želimo da analiziramo korisnički unos i pre nego što podatke pošaljemo na server. Time možemo da izbegnemo da se neispravni podaci šalju uopšte do servera, a potom da se vraća sa servera informacija da nešto nije u redu. Taj prvi nivo filtracije podataka vrši se upravo kroz $JavaScript$. Za pristupanje vrednostima input elemenata koristi se svojstvo $value$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+HTML:
+<input type='text' id='ime'>
+<button id='dugme3' onclick='podatak()'>Konzola</button>
+JS:
+function podatak(){
+	var vrednost_polja = input_polje.value;
+	console.log(vrednost_polja);    
+}
+var input_polje = document.getElementById('ime');
+var vrednost_polja = input_polje.value;
+console.log(vrednost_polja);
+\end{lstlisting}
+Primetiti da ako uradimo $console.log(vrednost\_polja)$ van funkcije ne dobijamo ništa. To je posledica toga što u momentu kada se taj deo koda izvršava još uvek nije uneto ništa. Sa druge strane, ako bismo uneli neki tekst i potom klikom na dugme $Konzola$, pozvali funkciju $podatak()$, dobijamo ono što je uneto.
+ 
 \newpage
 \subsection{Zadaci sa casa}
 Napomena: Rešenja zadataka nisu jedinstvena. Skoro svi zadaci se mogu uraditi na više načina. Za vežbu pokušati pronaći ili uraditi zadatke na više načina. 
@@ -2270,7 +2345,7 @@ Na stranicu sa pozorištem dodati nove elemente. Elemente dodavati kreiranjem no
 \end{primer}
 
 \begin{primer}
-Kreirati stranicu na kojoj se nalazi samo jedan prazan $div$ sa $id$-jem $omotac$. U taj $div$, dodavati elemente korišćenjem funkcije $createElement$ dok se ne dobije stranica koja sadrži.
+Kreirati stranicu na kojoj se nalazi samo jedan prazan $div$ sa $id$-jem $omotac$. U taj $div$, dodavati elemente korišćenjem funkcije $createElement$ dok se ne dobije stranica koja sadrži rezultate ispita. Stranica treba da sadrži barem naslov i tabelu sa spiskom učenika i njihovim ocena koji se izvlači iz objekta.
 \end{primer}
 
 \begin{primer}
@@ -2278,7 +2353,7 @@ Za uneti ceo broj $n$, izgenerisati tablicu množenja veličine $n$ koristeći t
 \end{primer}
 
 \begin{primer}
-Na osnovu unetog naziva slike, dodati na stranicu primer biografije zadate ličnosti. Na primer, za naziv slike $tesla.jpg$ na stranicu dodati naslov Nikola Tesla, paragraf sa kratkom biografijom, sliku, kao i link ka stranici na wikipediji. Svaka biografija treba da bude prigodno uokvirena. Ponuditi unos za do 3 licnosti, tako sto ce se preko prompta najpre uneti broj licnosti, a potom i nazivi slika. Sajt ukrasiti korišćenjem prigodinih HTML i CSS elemenata.
+Kreirati sajt koji će sadržati biografije do 3 znamenita naučnika. Na osnovu naziva slike koji se unosi preko prompta, dodati na stranicu primer biografije zadate ličnosti. Na primer, za naziv slike $tesla.jpg$ na stranicu dodati naslov Nikola Tesla, paragraf sa kratkom biografijom, sliku, kao i link ka stranici na Wikipediji. Svaka biografija treba da bude prigodno uokvirena. Ponuditi unos za do 3 licnosti, tako sto ce se preko prompta najpre uneti broj licnosti, a potom i nazivi slika koje korisnik želi da iskoristi pri kreiranju stranice. Sajt ukrasiti korišćenjem prigodinih HTML i CSS elemenata.
 \end{primer}
 
 \begin{primer}
@@ -2299,7 +2374,111 @@ Prikaz programa dat je na slici \ref{fig:hes}.
 
 \end{primer}
 
+\subsubsection{Reagovanje na događaje}
 
+\begin{primer}
+Kreirati sajt "Mala škola programiranja". Sajt treba da sadrži:
+\begin{itemize}
+\item pozadinsku sliku
+\item navigacioni bar (pocetna kursevi kontakt)
+\item na početnoj strani treba da se nalazi malo polje sa pitanjem $"$Da li volite da
+     programirate?$"$, a ispod toga dva button-odgovora na pitanje $DA$ i $NE$ 
+\item klikom na dugme DA izbacuje se alert sa natpisom "Svaka cast! Buducnost je Vasa!"
+\item prelaskom miša preko dugmeta NE, dugme treba da pobegne na proizvoljni deo ekrana
+    (koristiti funkciju Random ---> Math.Random())
+\item sajt je neophodno ukrasiti odgovarajucim CSS elementima. 
+\end{itemize}
+\end{primer}
+
+\begin{primer}
+Kreirati igru $X$-$O$. Igra se sastoji iz table $3$x$3$. Naizmenično se unose $X$ i $O$ dok se u bilo kom smeru ne nađu tri uzastopna ista znaka. Na kraju se ispisuje obaveštenje o tome koji igrač je pobedio i $"$Nerešeno!$"$ ako je rezultat nerešen.
+\end{primer}
+
+
+\begin{primer}
+Skočko - Kreirati igru koja je poput igre skočko iz kviza "Slagalica". Nasumično se generišu 4 simbola od 6 mogućih. Potom se korisniku nudi da unese odgovarajuće
+\end{primer}
+
+
+\subsubsection{Obrada formulara}
+
+\begin{primer}
+Kreirati "Mirror" sajt za izvrtanje korisnickog unosa. Pozadinska slika bi trebalo da bude
+ogledalo. Kucanjem teksta u input polje istovremeno u paragrafu ispod se ispisuje tekst u 
+obrnutom poretku. Sajt ukrasiti odgovarajucim CSS elementima.
+\end{primer}
+
+\begin{primer}
+Kreirati igru vešala. Najpre se unosi skrivena reč, na osnovu koje se formiraju polja. Potom se na neki od dva načina nudi korisniku da odabere slovo:
+\begin{itemize}
+\item unosom kroz polje ili
+\item klikom na polje sa slovom.
+\end{itemize}
+
+\end{primer}
+
+\begin{primer}
+Modifikovati prethodni zadatak, tako da se korisniku ponudi najpre odabir lakše ili teže varijante igre. Ako je odabrana lakša verzija igra se odigrava kao u prethodnom zadatku.  Ako je odabrana teža verzija igra se modifikuje tako da se korisnik stavlja u vremensko ograničenje od 30, 45 ili 60 sekundi i broj pokušaja mu se ograničava na polovinu dužine reči. To znači da do kraja igre dolazi:
+\begin{itemize}
+\item kada je korisnik pogodio skrivenu reč,
+\item kada je isteklo vreme ili
+\item kada je istekao broj pokušaja.
+\end{itemize}
+\end{primer}
+
+\begin{primer}
+Kreirati sajt za iznajmljivanje prostora za proslavu rodjendana. Sajt treba da sadrži odgovarajući
+ navigacioni bar: o nama, ponuda, galerija I kontakt. 
+ Kreirati funkciju za obračunavanje cene usluge po satu. 
+ Funkcija treba da sadrži nekoliko argumenata:
+\begin{itemize}
+ \item broj sati (podrazumevano 2), 
+ \item broj dece (podrazumevano 10),
+ \item broj odraslih (podrazumevano 5),
+ \item ketering (podrazumevano "da"). 
+\end{itemize}  
+Parametre menjati kroz pozive funkcije za različite argumente. Dopuniti zadatak tako da se korisniku
+ponudi da preko forme, klikom na $submit$ dugme (reagovanjem na $click$) omogući formiranje cene 
+na osnovu njegovih potreba. Konacnu cenu ispisati na strani.  
+Cena se formira po formuli:
+     $(brojsati*0.5*brojdece + brojsati*0.7*brojodraslih) *150$, 
+u slučaju da je ketering isključen, smanjiti cenu za ukupan broj osoba * $20$. 
+\end{primer}
+
+\begin{primer}
+Zadatak sa biografijama (naucnicima) oplemeniti i umesto prompta uz pomoc eventova
+pokupiti odgovarajuce informacije (broj naučnika, nazive slika), a potom kreirati stranicu. Dozvoljeno je kreiranje stranice na kojoj ce se nalaziti buttoni/input polja i slicno i tako pokupiti broj 1, 2 ili 3 i naziv slike/naucnika.
+\end{primer}
+
+\begin{primer}
+Kreirati zdravstvenu stanicu. Klikom na dugme dodaj pacijenta izbacuje se forma za dodavanje novog pacijenta. Podatke o pacijentima smeštati kao niz objekata, sa sledećim svojstvima:
+\item Ime
+\item Prezime
+\item Datum rođenja
+\item JMBG (13 cifara)
+\item Krvna grupa (A, B, AB, 0)
+\item RH faktor (pozitivna, negativna).
+Klikom na dugme sačuvaj informacije, unete informacije se smeštaju u odgovarajući 
+objekat. Omogućiti izlistavanje svih pacijenata, kroz tabelu: ime, prezime i krvna grupa.
+Proveriti ispravnost svih unosa.
+\end{primer}
+
+\begin{primer}
+Dopuniti zadatak sa zdravstvenom stanicom na sledeći način. 
+Kreirati pored dugmeta koje izbacuje spisak svih pacijenata dugme koje vrši filtraciju podataka o pacijentima.
+Klikom na dugme filteri izbacuje se nekoliko mogućih opcija kroz select element za koje, u zavisnosti da li je opcija obeležena vrši se odgovarajuće filtriranje.
+Dodatne parametre filtera uneti pored kroz input polje.
+Omogućiti naredne opcije:
+\begin{itemize}
+\item izdvajanje određene krvne grupe
+\item odabir RH faktora
+\item izdvajanje svih pacijenata starijih od 30 godina
+\item izdvajanje svih pacijenata sa nekim imenom 
+\end{itemize}
+Klikom na dugme "Filtriraj" izbacuje se spisak pacijenata sa brojevima kartona koji ispunjavaju predviđene uslove. 
+U slučaju da je potrebno prebrojati pacijente, to se omogućava uz pomoć check boxa prebroj. Ukupan broj pacijenata se ispisuje ispod spiska.
+Npr.: Korišćenjem novih koncepata (filter, map i reduce), izračunati broj pacijenata sa A negativnom krvnom grupom.
+\end{primer}
 
 \subsection{Dodatni zadaci}
 \begin{primer}
