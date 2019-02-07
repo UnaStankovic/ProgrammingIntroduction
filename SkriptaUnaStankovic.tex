@@ -1875,13 +1875,13 @@ document.body.removeChild(obrisi);
 
 \subsubsection{Reagovanje na događaje}
 Na način na koji smo do sada vršili interakciju sa stranicom još uvek nismo mogli da dobijemo pravu interaktivnost. Da bismo to postigli neophodno je da vršimo interakciju sa elementima DOM-a.
-Svaka interakcija sa elementima DOM-a predstavlja događaj. Događaj predstavljaju različite interakcije korisnika sa stranicom kao što su: klik, prelazak miša, pritisak određenih tastera, itd..Prilikom pojave događaja moguće je reagovati i izvršiti određene naredbe. Da bi se pojava nekog događaja vezalo sa akcijom koju je potrebno preduzeti potrebno je prijaviti se, odnosno, „osluškivati“ pojavu nekog događaja.  Postoje dva načina da osluškujemo događaje. Prvi način za to je navođenje odgovarajućeg atributa elementa na kome se događaj očekuje. Takvi atributi obavezno imaju prefix $on$ nakon koga se nastavlja naziv događaja. Na primer, ako je naziv događaja $click$, atribut će imati naziv $onclick$. Vrednost atributa je naziv funkcije koju je potrebno izvršiti ukoliko se događaj desio. Obratiti pažnju da se naziv funkcije šalje sa zagradama i da naziv događaja ima prefiks $on$.
+Svaka interakcija sa elementima DOM-a predstavlja događaj. Događaj predstavljaju različite interakcije korisnika sa stranicom kao što su: klik, prelazak miša, pritisak određenih tastera, itd..Prilikom pojave događaja moguće je reagovati i izvršiti određene naredbe. Da bi se pojava nekog događaja vezala sa akcijom koju je potrebno preduzeti potrebno je prijaviti se, odnosno, „osluškivati“ pojavu nekog događaja.  Postoje dva načina da osluškujemo događaje. Prvi način za to je navođenje odgovarajućeg atributa elementa na kome se događaj očekuje. Takvi atributi obavezno imaju prefix $on$ nakon koga se nastavlja naziv događaja. Na primer, ako je naziv događaja $click$, atribut će imati naziv $onclick$. Vrednost atributa je naziv funkcije koju je potrebno izvršiti ukoliko se događaj desio. Obratiti pažnju da se naziv funkcije šalje sa zagradama i da naziv događaja ima prefiks $on$. Element na kome se događaj dogodio može se dohvatiti korišćenjem ključne reči $this$.
 \begin{lstlisting}[backgroundcolor = \color{lightgray}]
 HTML:
 <button onclick='prikaziObavestenje()'>Prikazi obavestenje</button>
 JS:
 function prikaziObavestenje(){
-	alert("Obavestenje prikazano klikom na dugme.");
+	alert("Obavestenje prikazano klikom na dugme " + this.innerHTML);
 }
 \end{lstlisting}
 Neki od atributa koji postoje su: 
@@ -1895,6 +1895,41 @@ Neki od atributa koji postoje su:
 \item \textbf{onkeyup} - definiše šta se događa kada korisnik pusti pritisnuti taster na tastaturi 
 \end{itemize}                        
  
+Pogledajmo nesto detaljniji primer:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+HTML:
+<h2> Preko HTML atributa</h2>
+<br>
+<button onclick='prikaziObavestenje()'>Prikazi</button>
+<br>
+<div id='ip'>
+	<h2>This</h2>
+	<input type='text' id='ime' onblur="unos(this.value)">
+	<button id='dugme3' onclick='podatak()'>Konzola</button>
+	<p id="paragraf"></p>
+	<br>
+</div>
+
+JS:
+function prikaziObavestenje(){
+	alert("Obavestenje prikazano klikom na dugme.");
+}
+
+function podatak(){
+	var vrednost_polja = input_polje.value;
+    console.log(vrednost_polja);    
+}
+//ova funkcija kao argument prima this.value 
+//koji predstavlja vrednost unosa
+//tu vrednost zelimo da ispisemo
+function unos(tekst){
+	var par = document.getElementById('paragraf');
+    par.innerHTML = tekst;
+	par.style.backgroundColor = 'lightblue';
+}           
+\end{lstlisting} 
+Primetimo da se u kodu pojavljuje nešto što do sada nismo videli, a to je $this$. $this$ prilikom gore navedenog navodjenja predstavlja ceo input element, pa se moze pristupiti svim njegovim svojstvima - u ovom slučaju se funkciji $prikazi$ prosleđuje tekući tekstualni sadržaj elementa.
+
 Drugi način osluškivanja događaja je dodavanje „osluškivača“ ($listener$-a) u okviru
 $JavaScript$ koda na element na kome se događaj očekuje, korišćenjem funkcije
 $addEventListener()$. Ova funkcija prima dva argumenta. Prvi je naziv događaja čija se
@@ -1925,6 +1960,33 @@ Neki od događaja na koje se može reagovati su:
 \item \textbf{keypress}  – Pritisnuto je dugme na tastaturi dok je element u fokusu, objekat prosleđen kao argument funkciji za obradu događaja sadrži informacije o tome koje dugme je
 pritisnuto
 \end{itemize}
+Pogledajmo i ovde nešto detaljniji primer:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+HTML:
+<p>Unesite tekst (kada element izgubi fokus prikazace se njegov sadrzaj): </p>
+<input type='text' id='unos2'> 
+<br>
+<p>Unesite karakter ciji kodni broj zelite:</p>
+<textarea id='tekstualno'></textarea>
+
+JS:
+var input_polje = document.getElementById('ime');
+var vrednost_polja = input_polje.value;
+console.log(vrednost_polja);
+
+document.querySelector('#unos2').onblur=function(){            
+  window.alert("Novi sadrzaj je: " + this.value);
+}
+            
+var tekstualno_polje = document.getElementById('tekstualno');
+// U zavisnosti od pregledaca, kodni broj karaktera se dobija
+// koriscenjem funkcija which ili keycode
+tekstualno_polje.addEventListener('keypress',function(dogadjaj){
+  alert("Pritisnuto je dugme sa kodom:" + (dogadjaj.which || dogadjaj.keycode))
+});
+\end{lstlisting} 
+
+U ovom primeru koristili smo $keypress$. On označava da je pritisnuto dugme na tastaturi dok je element u fokusu. Objekat prosleđen kao argument funkciji za obradu događaja sadrži informacije o tome koje dugme je pritisnuto.
 
 Svi navedeni događaji mogu biti korišćeni i kao atributi i kao argumenti funkcije. U prvom slučaju treba koristiti prefiks $on$. Za kompletnu listu ovih događaja konsultovati dodatnu literaturu.
 
@@ -1946,7 +2008,25 @@ var input_polje = document.getElementById('ime');
 var vrednost_polja = input_polje.value;
 console.log(vrednost_polja);
 \end{lstlisting}
-Primetiti da ako uradimo $console.log(vrednost\_polja)$ van funkcije ne dobijamo ništa. To je posledica toga što u momentu kada se taj deo koda izvršava još uvek nije uneto ništa. Sa druge strane, ako bismo uneli neki tekst i potom klikom na dugme $Konzola$, pozvali funkciju $podatak()$, dobijamo ono što je uneto.
+Primetiti da ako uradimo $console.log(vrednost\_polja)$ van funkcije ne dobijamo ništa. To je posledica toga što u momentu kada se taj deo koda izvršava još uvek nije uneto ništa. Sa druge strane, ako bismo uneli neki tekst i potom klikom na dugme $Konzola$, pozvali funkciju $podatak()$, dobijamo ono što je uneto.\\\\
+
+Postoji događaj koji se odnosi na forme, a to je $submit$. Ovaj događaj označava da treba poslati podatke iz formulara. Ukoliko je povratna vrednost funkcije koja se izvršava pri pojavi ovog događaja $false$ podaci neće biti poslati. Koristi se pri validaciji
+formulara. \\\\
+
+Događaj koji nam pomaže da uhvatimo promenu vrednosti $input$ polja, odabrane vrednosti $select$ elementa ili elementa $textarea$ je $change$. Indeks odabrane opcije select elementa je vrednost svojstva $selectedIndex$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+HTML:
+<select id='selekcija'>
+	<option value='vrednost1'>Vrednost 1</option>
+    <option value='vrednost2'>Vrednost 2</option>
+</select>
+JS:
+var selekcija = document.getElementById('selekcija');
+selekcija.addEventListener('change',function(){     
+  console.log( "Odabrana je vrednost sa indeksom ",
+  this.selectedIndex, " i vrednost je:", this.value);
+});
+\end{lstlisting}
  
 \newpage
 \subsection{Zadaci sa casa}
@@ -2391,19 +2471,22 @@ Kreirati sajt "Mala škola programiranja". Sajt treba da sadrži:
 \end{primer}
 
 \begin{primer}
-Kreirati igru $X$-$O$. Igra se sastoji iz table $3$x$3$. Naizmenično se unose $X$ i $O$ dok se u bilo kom smeru ne nađu tri uzastopna ista znaka. Na kraju se ispisuje obaveštenje o tome koji igrač je pobedio i $"$Nerešeno!$"$ ako je rezultat nerešen.
+Kreirati igru $X$-$O$. Igra se sastoji iz table $3$x$3$. Naizmenično se unose $X$ i $O$ (klikom) dok se u bilo kom smeru ne nađu tri uzastopna ista znaka. Na kraju se ispisuje obaveštenje o tome koji igrač je pobedio i $"$Nerešeno!$"$ ako je rezultat nerešen.
 \end{primer}
 
 
 \begin{primer}
-Skočko - Kreirati igru koja je poput igre skočko iz kviza "Slagalica". Nasumično se generišu 4 simbola od 6 mogućih. Potom se korisniku nudi da unese odgovarajuće
+Skočko - Kreirati igru koja je poput igre skočko iz kviza $"$Slagalica$"$. Nasumično se generišu 4 simbola od 6 mogućih. Potom se korisniku nudi da unese odgovarajuće
 \end{primer}
 
+\begin{primer}
+Kreirati stranicu koja se sastoji iz 4 raznobojna dugmeta kreirana kroz CSS. Stranica predstavlja kulturni vodič kroz grad. Stranica treba da sadrži naslov $"$Kulturni vodič kroz grad$"$, a potom ispod treba da piše odaberite tip događaja. Prelaskom kursora preko dugmeta treba da se promeni boja dugmeta u svetliju nijansu dodeljene boje. Dugmici treba da sadrže naslove: bioskop, pozoriste, muzej, koncert. Klikom na dugme otvara se odgovarajuća stranica. Za stranicu o muzeju modifikovati stranicu sa biografijama najvećih srpskih naucnika tako da ona predstavlja deo prezentacije muzeja. Stranicu o koncertima treba kreirati korišćenjem niza događaja koji bi dodavali različite elemente stranice. 
+\end{primer}
 
 \subsubsection{Obrada formulara}
 
 \begin{primer}
-Kreirati "Mirror" sajt za izvrtanje korisnickog unosa. Pozadinska slika bi trebalo da bude
+Kreirati $"$Mirror$"$ sajt za izvrtanje korisnickog unosa. Pozadinska slika bi trebalo da bude
 ogledalo. Kucanjem teksta u input polje istovremeno u paragrafu ispod se ispisuje tekst u 
 obrnutom poretku. Sajt ukrasiti odgovarajucim CSS elementima.
 \end{primer}
