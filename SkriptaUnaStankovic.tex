@@ -1863,6 +1863,8 @@ pasus_jedan_ipo.innerHTML = "pasus i po";
 omotac.insertBefore(pasus_jedan_ipo, pasus2);
 \end{lstlisting}
 
+Da bismo jedan element-dete zamenili drugim, koristimo metod $replaceChild()$. Ovaj metod prima iste argumente kao i $insertBefore()$.
+
 Ako želimo da obrišemo neki element koristimo $removeChild$. Sa $document.body$ pristupamo elementima koji se nalaze unutar $<body>$ etiketa.
 \begin{lstlisting}[backgroundcolor = \color{lightgray}]
 HTML:
@@ -1875,24 +1877,26 @@ document.body.removeChild(obrisi);
 
 \subsubsection{Reagovanje na događaje}
 Na način na koji smo do sada vršili interakciju sa stranicom još uvek nismo mogli da dobijemo pravu interaktivnost. Da bismo to postigli neophodno je da vršimo interakciju sa elementima DOM-a.
-Svaka interakcija sa elementima DOM-a predstavlja događaj. Događaj predstavljaju različite interakcije korisnika sa stranicom kao što su: klik, prelazak miša, pritisak određenih tastera, itd..Prilikom pojave događaja moguće je reagovati i izvršiti određene naredbe. Da bi se pojava nekog događaja vezala sa akcijom koju je potrebno preduzeti potrebno je prijaviti se, odnosno, „osluškivati“ pojavu nekog događaja.  Postoje dva načina da osluškujemo događaje. Prvi način za to je navođenje odgovarajućeg atributa elementa na kome se događaj očekuje. Takvi atributi obavezno imaju prefix $on$ nakon koga se nastavlja naziv događaja. Na primer, ako je naziv događaja $click$, atribut će imati naziv $onclick$. Vrednost atributa je naziv funkcije koju je potrebno izvršiti ukoliko se događaj desio. Obratiti pažnju da se naziv funkcije šalje sa zagradama i da naziv događaja ima prefiks $on$. Element na kome se događaj dogodio može se dohvatiti korišćenjem ključne reči $this$.
+Svaka interakcija sa elementima DOM-a predstavlja događaj. Događaj predstavljaju različite interakcije korisnika sa stranicom kao što su: klik, prelazak miša, pritisak određenih tastera, itd..Prilikom pojave događaja moguće je reagovati i izvršiti određene naredbe. Da bi se pojava nekog događaja vezala sa akcijom koju je potrebno preduzeti potrebno je prijaviti se, odnosno, „osluškivati“ pojavu nekog događaja.  Postoje dva načina da osluškujemo događaje. Prvi način za to je navođenje odgovarajućeg atributa elementa na kome se događaj očekuje. Takvi atributi obavezno imaju prefix $on$ nakon koga se nastavlja naziv događaja. Na primer, ako je naziv događaja $click$, atribut će imati naziv $onclick$. Vrednost atributa je naziv funkcije koju je potrebno izvršiti ukoliko se događaj desio. Obratiti pažnju da se naziv funkcije šalje sa zagradama i da naziv događaja ima prefiks $on$. Element na kome se događaj dogodio može se dohvatiti korišćenjem ključne reči $this$. Nakon $this$ možemo navesti bilo koje od svojstava objekata, npr. $value$ ($this.value$). Napomena: Ovaj način se manje preporučuje, jer meša opis stranice ($HTML$) i ponašanje stranice ($JavaScript$). 
 \begin{lstlisting}[backgroundcolor = \color{lightgray}]
 HTML:
 <button onclick='prikaziObavestenje()'>Prikazi obavestenje</button>
 JS:
 function prikaziObavestenje(){
-	alert("Obavestenje prikazano klikom na dugme " + this.innerHTML);
+  alert("Obavestenje prikazano klikom na dugme " + this.innerHTML);
 }
 \end{lstlisting}
 Neki od atributa koji postoje su: 
 \begin{itemize}
 \item \textbf{onclick} - definiše šta se događa kada korisnik klikne na površinu elementa 
+\item \textbf{ondblclick} - definiše šta se događa kada korisnik dva puta klikne za redom
+\item \textbf{onmouseover} - definiše šta se događa kada korisnik pređe mišem preko elementa
+\item \textbf{onkeyup} - definiše šta se događa kada korisnik pusti pritisnuti taster na tastaturi 
 \item \textbf{onchange} -  definiše šta se događa kada korisnik promeni vrednost npr. input elementa ili select elementa
 \item \textbf{onfocus} - definiše šta se događa kada element dobije fokus (kada se korisnik pozicionira bilo mišem bilo tab tasterom na ovo polje)
 \item \textbf{onblur} - definiše šta se događa kada element izgubi fokus
 \item \textbf{onhover} - definiše šta se događa kada se pređe preko površine elementa 
-\item \textbf{onkeyup} - definiše šta se događa kada korisnik pritisne taster na tastaturi (spust tastera) 
-\item \textbf{onkeyup} - definiše šta se događa kada korisnik pusti pritisnuti taster na tastaturi 
+\item \textbf{onkeyup} - definiše šta se događa kada korisnik pritisne taster na tastaturi (spust tastera)  
 \end{itemize}                        
  
 Pogledajmo nesto detaljniji primer:
@@ -1903,32 +1907,33 @@ HTML:
 <button onclick='prikaziObavestenje()'>Prikazi</button>
 <br>
 <div id='ip'>
-	<h2>This</h2>
-	<input type='text' id='ime' onblur="unos(this.value)">
-	<button id='dugme3' onclick='podatak()'>Konzola</button>
-	<p id="paragraf"></p>
-	<br>
+  <h2>This</h2>
+  <input type='text' id='ime' onblur="unos(this.value)">
+  <button id='dugme3' onclick='podatak()'>Konzola</button>
+  <p id="paragraf"></p>
+  <br>
 </div>
 
 JS:
 function prikaziObavestenje(){
-	alert("Obavestenje prikazano klikom na dugme.");
+  alert("Obavestenje prikazano klikom na dugme.");
 }
 
 function podatak(){
-	var vrednost_polja = input_polje.value;
-    console.log(vrednost_polja);    
+  var vrednost_polja = input_polje.value;
+  console.log(vrednost_polja);    
 }
 //ova funkcija kao argument prima this.value 
 //koji predstavlja vrednost unosa
 //tu vrednost zelimo da ispisemo
 function unos(tekst){
-	var par = document.getElementById('paragraf');
-    par.innerHTML = tekst;
-	par.style.backgroundColor = 'lightblue';
+  var par = document.getElementById('paragraf');
+  par.innerHTML = tekst;
+  par.style.backgroundColor = 'lightblue';
 }           
 \end{lstlisting} 
-Primetimo da se u kodu pojavljuje nešto što do sada nismo videli, a to je $this$. $this$ prilikom gore navedenog navodjenja predstavlja ceo input element, pa se moze pristupiti svim njegovim svojstvima - u ovom slučaju se funkciji $prikazi$ prosleđuje tekući tekstualni sadržaj elementa.
+
+Primetimo da se u kodu pojavljuje $this$. $this$ prilikom gore navedenog navodjenja predstavlja ceo input element, pa se moze pristupiti svim njegovim svojstvima - u ovom slučaju se funkciji $prikazi$ prosleđuje tekući tekstualni sadržaj elementa.\\\\
 
 Drugi način osluškivanja događaja je dodavanje „osluškivača“ ($listener$-a) u okviru
 $JavaScript$ koda na element na kome se događaj očekuje, korišćenjem funkcije
@@ -1943,7 +1948,7 @@ var dugme1 = document.getElementById('dugme1');
 var dugme2 = document.getElementById('dugme2');
 dugme1.addEventListener('click', prikaziObavestenje);
 dugme2.addEventListener('mouseover', function(){
-	alert("Obavestenje iz anonimne funkcije");
+  alert("Obavestenje iz anonimne funkcije");
 });
 \end{lstlisting}
 
