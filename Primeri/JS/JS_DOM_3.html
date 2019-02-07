@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title> DOM </title>
+        <style type='text/css'>
+            #omotac{
+                background-color: lightblue;
+            }
+            .doterani_pasus {
+                border: 2px solid green;
+                font-size: 20px;
+                color: fuchsia;
+                width: 100px;
+            }
+            .klasa1{
+            	background-color: yellow;
+            }
+            #ip{
+                background-color: yellow;
+                border: 5px solid lightblue;
+            }
+            #JS{
+                background-color: lightgreen;
+            }
+            #HT{
+                background-color: yellow;
+            }
+        </style>
+    </head>
+    <body>
+        <div id='omotac'>
+            <h1> Događaji </h1>
+            <p id='pasus1'>U ovom fajlu obrađjemo događaje</p> 
+            <p id='pasus2'>Postoji više različitih vrsta događaja koje mozemo zadavati na 2 nacina:</p>
+        </div>
+        <!--Preko html-a kao atribut zadajemo dogadjaj-->
+        <div id="HT">
+            <h2> Preko HTML atributa</h2>
+            <br>
+            <button onclick='prikaziObavestenje()'>Prikazi obavestenje</button>
+            <br>
+            <div id='ip'>
+                <h2>This</h2>
+                <!-- this prilikom ovog navodjenja predstavlja ceo input element pa se moze pristupiti svim njegovim svojstvima - u ovom slucaju se funkciji prikazi prosledjuje tekuci tekstualni sadrzaj elementa-->
+                <input type='text' id='ime' onblur="unos(this.value)">
+                <button id='dugme3' onclick='podatak()'>Konzola</button>
+                <p id="paragraf"></p>
+                <br>
+                
+            </div>
+        </div>
+        <!--Preko JS-a zadajemo dogadjaj postavljanjem dogadjaja na element sa odgovarajucim id-jem-->
+        <div id='JS'>
+            <h2> Preko JS-a, postavljanjem osluskivaca na odgovarajuci element</h2>
+            <button id='dugme1'>Dugme1</button>
+            <button id='dugme2'>Dugme2</button>
+            <br>
+            <p>Unesite tekst (kada element izgubi fokus prikazace se njegov sadrzaj): </p>
+            <input type='text' id='unos2'> 
+            <br>
+            <p>Unesite karakter čiji kodni broj želite:</p>
+            <textarea id='tekstualno'></textarea>
+        </div>
+        <script>
+            //Dogadjaj je zadat preko html-a kao atribut 
+            //funkcija koja se poziva kada se desi klik na Prikazi obavestenje
+            //atribut onclick prima samo naziv funkcije pod navodnicima
+            function prikaziObavestenje(){
+                alert("Obavestenje prikazano klikom na dugme.");
+            }
+            function podatak(){
+                var vrednost_polja = input_polje.value;
+                console.log(vrednost_polja);    
+            }
+            //ova funkcija kao argument prima this.value koji predstavlja vrednost unosa
+            //tu vrednost zelimo da ispisemo
+            function unos(tekst){
+                var par = document.getElementById('paragraf');
+                par.innerHTML = tekst;
+                par.style.backgroundColor = 'lightblue';
+            }
+            
+            //Dogadjaj je zadat kroz JS
+            //moramo dohvatiti odgovarajuce elemente kako bismo mogli 
+            //da postavimo dogadjaj na njih
+            var dugme1 = document.getElementById('dugme1');
+            var dugme2 = document.getElementById('dugme2');
+
+            //sada postavljamo osluskivac dogadjaja (event listener)
+            //event listener prima dva argumenta:
+            //naziv dogadjaja na koji se reaguje
+            //funkciju (naziv funkcije ili anonimnu fiju) koja treba 
+            //da se izvrsi nakon sto se dogadjaj desio
+            dugme1.addEventListener('click', prikaziObavestenje);
+            dugme2.addEventListener('mouseover', function(){
+                alert("Obavestenje iz anonimne funkcije");
+            });
+            //cesti dogadjaji: click, dblclick, focus, blur, onload,
+            // keypress, mouseover, mouseenter, mouseleave,    
+
+            //za pristup vrednostima input polja koristi se svojstvo value
+            var input_polje = document.getElementById('ime');
+            var vrednost_polja = input_polje.value;
+            console.log(vrednost_polja);
+
+            document.querySelector('#unos2').onblur=function(){            
+                window.alert("Novi sadrzaj je: " + this.value);
+            }
+
+            var tekstualno_polje = document.getElementById('tekstualno');
+            // U zavisnosti od pregledaca, kodni broj karaktera se dobija
+            // koriscenjem funkcija which ili keycode
+            tekstualno_polje.addEventListener('keypress',function(dogadjaj){
+                alert("Pritisnuto je dugme sa kodom:" + (dogadjaj.which || dogadjaj.keycode));
+            });
+        </script>
+
+    </body>
+</html>
+            
