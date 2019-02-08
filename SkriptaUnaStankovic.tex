@@ -11,12 +11,13 @@
 \usepackage{verbatim}
 \usepackage{minted}
 \usepackage{xcolor}
+\usepackage{hyperref}
 
 
 \usepackage[english,serbian]{babel}
 %\usepackage[english,serbianc]{babel} %ukljuciti babel sa ovim opcijama, umesto gornjim, ukoliko se koristi cirilica
 
-\usepackage[unicode]{hyperref}
+%\usepackage[unicode]{hyperref}
 \hypersetup{colorlinks,citecolor=green,filecolor=green,linkcolor=blue,urlcolor=blue}
 
 %\newtheorem{primer}{Пример}[section] %ćirilični primer
@@ -245,7 +246,7 @@ Svaki tip podataka se karakteriše vrstom podataka koje opisuje, skupom operacij
 Osnovni gradivni elementi imperativnih programskih jezika su naredbe.
 Naredba dodele je osnovna naredba i njom se vrednost neke promenljive postavlja na vrednost nekog izraza definisanog nad konstantama i promenljivim. Šta to, u praksi, znači? To znači da kada kažemo $x = 3*y$ zapravo promenljivoj x dodeljujemo vrednost $3*y$. Naredbe se u programu nižu jedna za drugom, osim u slučaju korišćenja naredbi za kontrolu toka izvršavanja programa. Ove naredbe u zavisnosti od tekućih
 vrednosti promenljivih neke naredbe mogu da ne izvršavaju, izvršavaju ih više puta(petlje) i slično. Najčešće korišćene kontrolne strukture su granajuće naredbe (if-then-else), petlje (for, while, do-while, repeat-until) i naredbe skoka (goto). Naredba if-then-else ima sledeći opšti oblik:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 if izraz1 
    naredba1
 else 
@@ -254,7 +255,7 @@ else
 Treba obratiti pažnju da je else grana neobavezna, odnosno, može, ali ne mora, da postoji. 
 \begin{primer}
 Naredni primer štampa veći od dva broja.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 if a > b
    print(a)
 else
@@ -264,7 +265,7 @@ else
 
 \begin{primer}
 Naredni primer u promenljivu $a$ smešta tekst $"$Hello world!$"$ ako je vrednost promenljive b veća od 0.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 if b > 0
    a = "Hello world!"
 \end{lstlisting}
@@ -298,7 +299,7 @@ Petlje su neophodne za uspešno programiranje.
 \end{itemize}
 koje predstavljaju osnovne konstrukte u skoro svim programskim jezicima. Osim for i while petlje postoje i druge, ali o njima nece biti reči.\\\\
 For petlja je najčešće oblika:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 for(izraz1, izraz2, izraz3)
     naredba
 \end{lstlisting}
@@ -310,7 +311,7 @@ for(inicijalizacija, uslov izlaska, korak)
 \end{verbatim}
 \begin{primer}
 Naredni primer predstavlja jedan od uobičajenih oblika u kojima se $for$ petlja pojavljuje:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 for(i = 0; i < n; i++)
     print(i)
 \end{lstlisting}
@@ -340,7 +341,7 @@ Napisati primer algoritma za računanje zbira prvih 10 parnih brojeva.
 \end{primer}
 \begin{primer}
 Koju vrednost ima promenljiva $x$ nakon izvršavanja narednog koda:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 int x = 0;
 if (x > 3);
     x++;
@@ -594,6 +595,9 @@ Neke od informacija o polaznicima kurseva su obavezne, neke nisu, sami odredite 
 \end{primer}
 
 \subsection{CSS}
+
+\subsection{Bootstrap}
+
 \subsubsection{Zadaci sa casa}
 
 \begin{primer}
@@ -635,20 +639,20 @@ Postoji nekoliko različitih tipova koje možemo smestiti u promenljivu, to su:
 \end{enumerate}
 U nastavku će biti ukratko opisano kreiranje, korišćenje i osnovne operacije nad navedenim tipovima. U promenljive je moguće smestiti i složenije tipove kao što su nizovi, objekti i drugi, o kojima će, takođe, biti reči u nastavku.\\\\
 Kako bismo kreirali promenljivu u programu, navodimo ključnu reč $var$ (postoje jos neke ključne reči za kreiranje promenljivih, ali će o njima biti reči kasnije), a potom naziv promenljive, koji ne sme počinjati brojem ili biti ključna reč jezika.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var a;
 \end{lstlisting}
 Ovako smo samo kreirali promenljivu, ona za sada nema nikakvu vrednost u sebi, a samim time i njen tip nije definisan. Kada želimo da promenljivoj dodelimo neku vrednost to činimo korišćenjem naredbe dodele $*$, pa tako sa
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 a = 5;    
 \end{lstlisting}
 smeštamo celi broj 5 u promenljivu a, i njen tip postaje $number$.
 Moguće je i pri kreiranju odmah dodeliti vrednost promenljivoj $a$, ovaj postupak nazivamo inicijalizacijom ili dodeljivanjem početne vrednosti promenljivoj.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var a = 5;    
 \end{lstlisting}
 JavaScript dopušta još jednu stvar, a to je kreiranje promenljive bez navođenja ključne reči var ukoliko bismo joj odmah dodelili vrednost. Napomena: ovo se ne smatra dobrom praksom, a ukoliko bi stajalo samo b bez $var$ i bez $*7$ program bi izbacio grešku.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 b = 7;    
 \end{lstlisting}
 Kada se dodeljuju nazivi promenljivim treba obratiti pažnju da nazivi nisu ključne reči jezika, kao i da ne počinju brojem.\\\\
@@ -656,7 +660,7 @@ Kada se dodeljuju nazivi promenljivim treba obratiti pažnju da nazivi nisu klju
 \subparagraph{Brojevi}
 U JavaScript-u možemo predstaviti cele brojeve - int: -1, -32, 0, 13, 173,itd., kao i razlomljene brojeve - float: 3.14, 9.81,itd..
 Da bismo broj smestili u neku promenljivu koristimo operator dodele.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var a = 5; 
 \end{lstlisting}
 Osim operatora dodele $=$, postoje i drugi operatori. Najčešće operatore primenjujemo nad brojevnim (numeric) vrednostima. Nad numeričkim vrednostima definisani su:
@@ -665,19 +669,19 @@ Osim operatora dodele $=$, postoje i drugi operatori. Najčešće operatore prim
     \item Binarni $+$, $-$, $*$, $/$, $\%$, $=$, $<$, $>$, $<=$, $>=$
 \end{itemize}
 Ovi operatori imaju standarne prioritete. Operator $\%$ predstavlja ostatak pri deljenju dva broja.\\
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var c = a + b; //12
 \end{lstlisting}
 Osim ovih binarnih operatora postoje i binarni operatori za proveru jednakosti $==$, nejednakosti $!=$, za proveru jednakosti sa proverom tipova $===$, operatori koji vrše konjunkciju $\&\&$ i disjunkciju $||$, kao i složeni operatori ++(unarni), +=, -=, *=,itd.. O njima će biti više reči u nastavku. \\\\
 Da bismo broj zapisali sa određenim brojem decimala koristimo metod\footnote{Metodi su, za sad, crne kutije koje nam omogućavaju da vršimo određene promene nad promenljivim. U nastavku će biti detaljnije obrađene.} $toFixed()$, kome kao jedini argument šaljemo broj decimala koji želimo da zadržimo. 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var pi = 3.1415;
 pi = pi.toFixed(2); // pi = 3.14
 \end{lstlisting}
 \paragraph{Pisanje komentara}
 Pisanje komentara predstavlja dobru praksu i može biti od velike pomoći programeru. Najčešće se radi nad nasleđenim kodovima, koje su pisali programeri pre nas, pa tako komentari mogu dosta olakšati rad i razumevanje koda. Osim toga, vrlo često prilikom vraćanja na ranije pisane kodove, dešava se da nismo sigurni kako smo nešto napisali, iako nam je u datom momentu to delovalo sasvim jednostavno i logično, pa nam komentari mogu pomoći da se prisetimo šta je bila glavna ideja. U početničkom programiranju, komentari pomažu kako bi se neki koncepti utvrdili, dodatno razjasnili i definisali, pa autor predlaže pisanje komentara što češće.\\\\ 
 Komentari mogu biti: linijski i blokovski. Linijski komentari, kao što im i samo ime kaže imaju doseg jedne linije (koja ne bi trebalo prema konvenciji da sadrži više od 80 karaktera!) i pišu se nakon znaka $//$. Blokovski komentari imaju doseg od više linija i pišu se između $/**/$.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 //ovo je linijski komentar
 /*Ovo 
 je 
@@ -695,17 +699,17 @@ Da bismo to postigli, moramo najpre otvoriti konzolu, to se radi uz pomoć $F12$
     \item console.error()
     \item console.info()
 \end{itemize}
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var c = a + b; //12
 console.log(c); //ovime ispisujemo 12 u konzolu
 \end{lstlisting}
 \textbf{Operator typeof} služi kako bi se ispisao tip promenljive.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var c = a + b; //12
 console.log(typeof c); //ispis tipa promenljive c u konzolu - numeric
 \end{lstlisting}
 Možemo nadovezati i više argumenata pri ispisu u konzolu odvajajući ih zarezom. Korišćenjem zareza kreira se razmak između argumenata.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var c = a + b; //12
 console.log("Vrednost zbira je", c); 
 \end{lstlisting}
@@ -722,7 +726,7 @@ Naredbe za kontrolu toka omogućavaju različite načine izvršavanja programa, 
 \end{itemize}
 Osnovni oblik naredbe koji se javlja je takozvana naredba izraza (ova vrsta naredbi obuhvata i naredbu dodele i naredbu poziva funkcije).
 Naime, svaki izraz završen karakterom ; je naredba. Na primer:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 3 + 4*5;
 n = 3;
 c++; //uvecanje promenljive za 1, isto kao c = c + 1
@@ -731,14 +735,14 @@ f();
 Nekada, želimo da više različitih naredbi grupišemo i da ih tretiramo kao jednu jedinstvenu naredbu. Vitičaste zagrade { i } se koriste da grupišu naredbe u složene naredbe, odnosno blokove, i takvi blokovi se mogu koristiti na svim mestima gde se mogu koristiti i pojedinačne naredbe. 
 
 \subparagraph{Naredbe grananja} (ili naredbe uslova), na osnovu vrednosti nekog izraza, odreduju naredbu (ili grupu naredbi) koja će biti izvršena.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 if (izraz)
     naredba1
 else
     naredba2
 \end{lstlisting}
 Konkretno, na primeru kroz jezik JavaScript:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 //primer ispisuje veci od dva broja
 if (a > b)
     console.log(a);
@@ -748,7 +752,7 @@ else
 Naredbe $naredba1$ i $naredba2$ su ili pojedinačne naredbe (kada se završavaju simbolom ;) ili blokovi naredbi zapisani između vitičastih zagrada (na kraju kojih ne ide ;).
 Deo naredbe $else$ je opcioni, odnosno, ne mora postojati, pa se može napisati samo $if$ grana.
 Izraz $izraz$ predstavlja logički uslov:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 if (5 > 7)
    a = 1;
 else
@@ -769,7 +773,7 @@ else
 
 
 Često možemo imati višestruke odluke, za šta koristimo $else\ if$ konstrukciju oblika:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 if (izraz1)
     naredba1
 else if (izraz2)
@@ -782,7 +786,7 @@ else
 
 \begin{primer}
 Primer $else\ if$ naredbe.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 if (a > 20)
    console.log("A je vece od 20\n");
 else if (a > 10)
@@ -798,7 +802,7 @@ else
 
 Ternarni operator je uslovni operator oblika: $uslov\ ?\ ispunjen\ :\ inace$ i ima isto značenje kao i if else. 
 \begin{primer} Zadatak je smestiti veći od dva broja u promenljivu $x$. Prvi if else ima isto značenje kao i ternarni operator koji smešta veći broj u $x$. Ako je $a$ vece od $b$ postavlja se $x$ na $a$, inače postavlja se na $b$.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 if (a > b)
    x = a;
 else
@@ -807,7 +811,7 @@ x = (a > b) ? a : b;
 \end{lstlisting}
 \end{primer}
 Osim $if$-$else$ postoji i naredba $switch$, koja se takođe može koristiti za višestruko odlučivanje i ima opšti oblik:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 switch (izraz) {
   case konstantan_izraz1: 
   	naredbe1;
@@ -825,7 +829,7 @@ $Case$ predstavljaju slučajeve, koji ako su ispunjeni, izvršava se naredba des
 
 \subparagraph{Petlje}(ciklusi ili repetitivne naredbe) uzrokuju da se određena
 naredba (ili grupa naredbi) izvršava više puta (sve dok je neki logički uslov ispunjen).
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 while(izraz)
    naredba
    
@@ -849,7 +853,7 @@ for(i = 0; i < n; i++)
 \end{lstlisting}
 
 Postoji još jedan vid petlje, to je petlja do-while.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 do {
 naredbe
 } while(izraz)
@@ -865,7 +869,7 @@ izvršavaju barem jednom. Navođenje vitičastih zagrada pri korišćenju naredb
 U nekim situacijama pogodno je napustiti petlju ne zbog toga
 što nije ispunjen uslov petlje, već iz nekog drugog razloga. To
 je moguće postici naredbom break:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 for(i = 1; i < n; i++) {
     if(i > 10)
        break;
@@ -874,7 +878,7 @@ for(i = 1; i < n; i++) {
 \end{lstlisting}
 Naredbom continue se prelazi na sledeću iteraciju u petlji.
 Na primer,
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 for(i = 0; i < n; i++) {
    if (i % 10 == 0)
       continue; /* preskoci brojeve deljive sa 10 */
@@ -887,7 +891,7 @@ dejstvo samo na unutrašnju petlju.
 \subparagraph{Bulove vrednosti}
 Pod Bulovim vrednostima smatramo $true$ i $false$, odnosno tačno i netačno, $1$ i $0$. 
 Ako bismo hteli da kreiramo beskonačnu petlju (iako se to nikako ne preporučuje) bio bi nam potreban uslov koji uvek važi:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 while(true){
    //radi nesto zauvek
 }
@@ -902,7 +906,7 @@ if((a != b) == true){
 }
 \end{lstlisting}
 Ako bismo hteli da nadovežemo više uslova, ili da kažemo da želimo da se nešto izvrši ako je bilo koji od uslova ispunjen koristimo binarne operatore $\&\&$ i $||$, odnosno $"$logičko i$"$ i $"$logičko ili$"$.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var a = 10;
 if(a > 0 && a%2==0)
    console.log("a je paran broj veci od 0.);
@@ -915,15 +919,15 @@ Napomena: uslova može biti više od 2.
 
 \subparagraph{Prozori}
 Često se javlja potreba da korisnika stranice obavestimo o nečemu. Ono što nam JS omogućava je da na jednostavan način uz pomoć \textbf{alert} funkcije, korisniku jasno prikažemo poruku, koju ne može da ignoriše. Jedini argument ove funkcije je niska koja se prikazuje korisniku. 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 alert("Ovo je iskacuce obavestenje");
 \end{lstlisting}
 Nekada se od korisnika zahteva da na neko pitanje odgovori pozitivno ili negativno, za šta se koristi funkcija \textbf{confirm}. Argument ove funkcije je isti kao kod $alert$. 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 confirm("Da li ste sigurni?");
 \end{lstlisting}
 Ukoliko bi se od korisnika očekivao unos nekog teksta, za to može da se koristi funkcija \textbf{prompt}. Argumenti ove funkcije su niska koja se ispisuje u prozoru i podrazumevana vrednost polja za unos. 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 prompt("Unesite broj godina:");
 \end{lstlisting}
 \subparagraph{Vežba}
@@ -931,26 +935,26 @@ Uraditi zadatke iz uvodne sekcije.
 
 \subsubsection{Niske}
 Niske ili stringovi, predstavljaju nizove karaktera. U promenljivu možemo smestiti pojedinačni karakter, a možemo i čitave reči ili rečenice. \\
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var a = 'abc'; //a je niska
 a = 'a'; // a je sada karakter
 \end{lstlisting}
 Niske se mogu navoditi između $"$ (dvostrukih), $'$ (jednostrukih), kao i $`$ iskošenih navodnika (šablon-literali, engl. template literals).  
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var niska1 = "Ovo je prva niska.";
 var niska2 = "Ovo je druga niska";
 var niska3 = `Ovo je niska
               neka treca`;
 \end{lstlisting}
 Primetimo da šablon literali poštuju novi red. Važno je naglasiti da se mora obratiti pažnja na to da navodnici budu pravilno upareni. Naime, program se neće izvršavati na predviđeni način ukoliko, na primer, nakon dvostrukog navodnika pokušamo nisku da zatvorimo jednostrukim navodnikom.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var niska1 = "Ovo je prva niska.";
 var niska2 = "Ovo je druga niska";
 var niska3 = "Ova niska nije pravilna';
 \end{lstlisting}
 
 Ukoliko želimo da unutar niske imamo prave navodnike (na primer kod citata), onda možemo ili upotrebiti drugi vid navodnika ili koristiti escape sekvencu \textbackslash. Kako bismo nadovezali dve niske koristimo operator $+$, a ovaj postupak se naziva $konkatenacija$. Treba obratiti pažnju na to da nadovezivanjem niski sa $+$, ne dobijamo razmak između stringova kao kod korišćenja $,$. Da bismo dobili razmak moramo ga dodati kao još jednu nisku, a kako bismo dobili novi red koristimo \textbackslash$n$. 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 console.log(niska1 + niska2); 
 niska1 = 'Ovo je neka niska.';
 niska1 = 'Kaze Bob: "Alice ne kradi"';
@@ -965,20 +969,20 @@ niska2 = `Kaze Alice:
           Ukrala sam samo ${2 + 2} jabuke.`;
 \end{lstlisting}
 Ako bismo pokušali da na niske nadovežemo numeričke vrednosti, one bi se ponašale kao niske, osim ako bismo ih izdvojili zagradama.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 console.log("Zbir 1 i 2 je: " + 1 + 2); //12
 console.log("Zbir 1 i 2 je: " + (1 + 2)); //3
 console.log(`Zbir 1 i 2 je: ${1 + 2}`);  //3
 \end{lstlisting}
 Primetimo da pri korišćenju šablon literala ono što želimo da se sračuna navodimo između $\$\{\}$.
 Nekada želimo da nisku posmatramo kao broj, da bismo eksplicitno kastovali (izvršili pretvaranje, eksplicitnu konverziju) niske u broj, koristimo funkcije $parseInt()$ i $parseFloat()$, koje prave ceo broj ili razlomljen broj redom. U slučaju da niska osim brojeva sadrži i neke druge karaktere, biće pokupljeni samo brojevi koji se nalaze na početku niske. Na primer, za nisku $"$123.292ajkula$"$ parseInt će uzeti samo broj 123 (zaključno sa tačkom, jer je Int ceo broj), parseFloat će uzeti 123.292, a ostatak će biti ignorisan. Ako bi niska bila $"$a123.292$"$ ništa ne bi bilo pokupljeno i funkcije bi vratile NaN ($"$Not a Number$"$). 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var p = "5";
 console.log(typeof p); //string
 console.log(typeof parseInt(p)); //number
 \end{lstlisting}
 Poređenje niski vrši se leksikografski uz pomoc operatora $>$,$<$,$>=$ i $<=$, kao i uz pomoć operatora $==$, $!=$ ili $===$.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 if("ana" >= "ane"){
    console.log("ana");
 }
@@ -988,7 +992,7 @@ else{
 \end{lstlisting}
 
 Metodom toString() vršimo eksplicitno konvertovanje u nisku.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var br_u_str = 102;
 console.log("Tip promenljive je :", typeof br_u_str);
 br_u_str = br_u_str.toString();
@@ -998,7 +1002,7 @@ console.log("Metod toString() vraca",typeof br_u_str);
 
 \subparagraph{Implicitna konverzija}
 JavaScript je programski jezik takav da može da "progura" razne konstrukte, sa ciljem da program izvrši, zbog toga se često javljaju neki više ili manje očekivani rezultati. Implicitna konverzija je postupak pri kom program sam vrši konvertovanje nekog tipa u neki drugi tip kako bi dobio nešto što je njegovim internim mehanizmima smisleno. Prilikom primenjivanja konkatenacije nad brojem i niskom, broj će biti konvertovan u nisku.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 //zakomentarisati sve linije pa redom oslobadjati 
 var conv = '5' + 3; //53
 conv = 3 + '3'; //33
@@ -1009,13 +1013,13 @@ console.log(conv);
 console.log(typeof conv);
 \end{lstlisting}
 Kako bismo proverili da li su dve vrednosti jednake koristimo $"$==$"$, ali da bismo bili precizniji i proverili da li su vrednosti koje poredimo i istog tipa moramo koristiti $"$===$"$. Važnost ovog koncepta se jasno vidi u narednom primeru:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 console.log(10 == '10'); //true
 console.log(10 === '10'); //false
 \end{lstlisting}
 
 Vrlo često pri programiranju želećemo da dobijemo dužinu neke niske i potom pristupimo nekom pojedinačnom karakteru. To se lako postiže korišćenjem svojstva $length$ u vidu $niska.length$, a potom uz pomoć $charAt()$ pristupamo pojedinačnim karakterima niske.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 //Pristup pojedinacnim karakterima niske
 var niska = "Programiranje";
 console.log("Svojstvo length daje duzinu niske", niska.length);
@@ -1027,12 +1031,12 @@ for(i=0; i<niska.length;i++){
 console.log("5 karakter niske", niska.charAt(4));
 \end{lstlisting}
 Treba primetiti da brojanje karaktera u niski kreće od 0, pa tako 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 P R O G R A M I R A  N  J  E
 0 1 2 3 4 5 6 7 8 9 10 11 12
 \end{lstlisting}
 Svi karakteri koje je moguće zapisati nalaze se u takozvanoj $ASCII$ tabeli i imaju svoje kodne cifre, te cifre nam nekada mogu biti od koristi. Njima se pristupa korišćenjem $charCodeAt()$. Da bismo uradili obrnuto, tj. izvršili konverziju broja u karakter koristimo $fromCharCode()$. Ako bismo želeli da uklonimo beline sa krajeva (i sa početka i sa kraja niske), koristimo $trim()$. 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var voce = "  Ananas  "
 console.log(voce.charCodeAt(2)); //A --> 65
 console.log(String.fromCharCode(97)); //a
@@ -1040,7 +1044,7 @@ voce = voce.trim();
 console.log(voce);     
 \end{lstlisting}
 Da bismo karaktere neke niske smanjili ili uvećali, koristimo metode $toUpperCase()$ ili $toLowerCase()$ u zavisnosti od toga šta želimo postići. Primetimo da se mogu primeniti i nad pojedinačnim karakterom.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 console.log(voce.toLowerCase()); //ananas
 console.log(voce.toUpperCase()); //ANANAS
 \end{lstlisting}
@@ -1059,7 +1063,7 @@ U prethodnom delu već su predstavljene $charAt()$ i $charCodeAt()$. Prva nam da
 \end{itemize}
 
 Navedimo sada neke od primera primena ovih metoda.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var niska1 = "Danas je.";
 var niska2 = "lep dan.";
 var niska3 = niska1.concat(niska2);
@@ -1085,7 +1089,7 @@ Uraditi zadatke iz sekcije vezane za niske.
 
 \subsubsection{Nizovi}
 Nizovi predstavljaju kolekcije elemenata nekog tipa. U JavaScriptu, za razliku od većine drugih programskih jezika, dozvoljeno je da ti elementi budu različitih tipova. Novi niz kreiramo korišćenjem uglastih zagrada. Ako navedemo samo uglaste zagrade, onda se kreira prazan niz, odnosno, niz koji ne sadrži elemente. Elemente u nizu navodimo pisanjem između uglastih zagrada i odvajamo ih zarezima. Indeksiranje nizova počinje od 0. Indeksiranje nam je veoma važno kako bismo mogli da lako pristupimo vrednosti koju čuva neki element niza. Elementima niza pristupamo navođenjem naziva niza, a potom u uglastim zagradama indeksa kojem želimo da pristupimo. Opisani postupci predstavljeni su kroz primer u nastavku:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var niz = [];
 var niz2 = [1,2,3,4,5];
 var niz3 = ["niska1", "niska2"];
@@ -1097,7 +1101,7 @@ console.log(niz4[3]);
 console.log(niz4);
 \end{lstlisting}
 Element niza može biti i neki drugi niz. Kao što se vidi u primeru iznad, osim što nizovi mogu čuvati različite tipove (niske, brojeve, razlomljene brojeve, karaktere), moguće je indeksiranje elemenata niza različitim tipovima. Ukoliko indeksi elemenata nisu eksplicitno navedeni, elementi niza su podrazumevano indeksirani celim brojevima počevši od 0. Kao posledica činjenice da nizovi mogu čuvati elemente različitih tipova, za element niza možemo postaviti i drugi niz, čime je moguće kreiranje matrica, pa tako:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 //elementi niza mogu biti drugi nizovi
 var niz1 = [niz2,0,1,4];
 console.log("Niz 1:",niz1);
@@ -1108,7 +1112,7 @@ matrica[1] = [3,4];
 console.log(matrica[0][1]);
 \end{lstlisting}
 Da bismo obišli celu matricu, neophodno je da prođemo kroz sve njene elemente. Odnosno, da krećući se kroz elemente niza redom obiđemo svaki od elemenata. Kako bismo to učinili na najjednostavniji način, neophodno je da koristimo dvostruku $for$ petlju. Spoljašnja petlja bi se kretala po vrstama matrice, a unutrašnja po kolonama. Veličinu niza, kao i kod niski, uzimamo korišćenjem svojstva $length$.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 console.log(matrica.length);
 for(i = 0;i<matrica.length;i++){
     for(j = 0; j<matrica.length;j++){
@@ -1118,7 +1122,7 @@ for(i = 0;i<matrica.length;i++){
 \end{lstlisting}
 Treba obratiti pažnju da u primeru gore podrazumevamo da je matrica kvadratna (sa istim brojem vrsta i kolona). Kako bismo obišli matricu koja ima različit broj vrsta i kolona treba da obratimo pažnju na veličinu vrste i veličinu kolone. Čitaocu se ostavlja radi vežbe i boljeg razumevanja funkcionisanja matrica i nizova da isproba obilaske matrice za različit broj vrsta i kolona.\\\\
 Da bismo nekom elementu niza promenili vrednost dovoljno je da ga nađemo po indeksu, a potom da naredbom dodele navedemo novu vrednost. Važno je istaći da ta nova vrednost ne mora biti istog tipa.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var brojevi = [1,2,3,4];
 brojevi[3] = 6;
 console.log(brojevi); //1,2,3,6
@@ -1128,14 +1132,14 @@ console.log(brojevi); //1,2,3,"Sest"
 
 Elemente niza možemo postaviti eksplicitno bez obzira na to da li neke indekse izostavljamo, pa je tako moguće postaviti vrednosti $brojevi[5]$ i $brojevi[7]$, a potom ispisati sve elemente niza. Za one indekse koje smo preskočili $console.log$ će ispisati $empty$.
 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 brojevi[5] = 15;
 brojevi[7] = 99;
 console.log(brojevi); //[1,2,3,"Sest",empty,15,empty,99]
 \end{lstlisting}
 
 Nizovi i petlje se dosta dobro kombinuju, u smislu da sa petljama lako obilazimo elemente niza, kao što je i viđeno u prethodnim primerima. Kod $for$ petlje primetili smo da promenljiva $i$ dobija vrednost indeksa svakog od elemenata niza. Osim standardne $for$ petlje, u $JavaScript-u$ moguće je koristiti i poseban vid $for$ petlje, tzv. $for-in$ petlju. Ova petlja funkcioniše na isti način kao standardna $for$ petlja prolazeći kroz elemente redom, ali je njen zapis dosta kraći. Osim toga, $for-in$ petlja će proći samo kroz elemente koji postoje (preskočiće indekse u nizu koji ne čuvaju nikakvu vrednost!). Ovakvo ponašanje se najbolje oslikava kroz primer.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 for(i=0;i < brojevi.length; i++){
 	console.log(brojevi[i]); 
 }
@@ -1149,7 +1153,7 @@ Ispisom kroz konzolu, lako se vidi da je prva petlja dala $1$, $2$, $3$, $"$Sest
 \subparagraph{Neke metode za rad sa nizovima}
 
 Pomenimo, pre svega, još jedan bitan metod za rad sa niskama. Metodom $split()$ od postojeće niske kreiramo niz. Argument koji prosleđujemo predstavlja po kom kriterijumu da se izvrši podela niske. Da bismo uradili obratno, odnosno, od niza kreirali nisku, koristimo metod $join()$.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 //Metod za rad sa niskama koji od niske kreira niz: split 
 var niska = "Danas je lep dan.";
 var niz = niska.split(" ");
@@ -1172,7 +1176,7 @@ Pomenimo još neke istaknute metode za rad sa nizovima:
     \item \textbf{slice()} - iz niza izdvaja deo počevši od indeksa naznačenog kao prvi argument, do indeksa naznačenog kao drugi i vraća novi niz, 
     \item \textbf{sort()} - sortira niz.
 \end{itemize}
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var niz_brojeva = [1,2,3,4];
 var novi = niz_brojeva.concat(niz);
 console.log(novi);
@@ -1200,12 +1204,12 @@ Uraditi sve zadatke iz sekcije Nizovi.
 \subsubsection{Svojstva i objekti}
 
 Ako bismo u naš niz dodali još jedan element:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 niz[4] = {svojstvo: 5 };
 console.log(niz[4]);			
 \end{lstlisting}
 Primećujemo da smo u niz dodali nešto novo oblika ${naziv\_svojstva : vrednost }$. Takav konstrukt nazivamo objektom. Objekti su strukture podataka koje čine nizovi svojstava i njihovih vrednosti. Većina JavaScript vrednosti imaju neka svojstva, već smo se susreli sa svojstvom $length$ za nizove. U primeru navedenom gore imamo samo jedno svojstvo $svojstvo$. Pogledajmo nešto intuitivniji primer. U primeru kreiramo jednog studenta sa svim svojstvima koja su nam za jednog studenta interesantna:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var student = { ime : "Una",
 prezime : "Stankovic",
 datum_rodjenja : "13.10.1994.",
@@ -1222,19 +1226,19 @@ Zanima nas sad kako možemo pristupiti vrednostima svojstava i to je moguće uč
 	\item $"$tačka notacijom $"$- $nazivobjekta.svojstvo$, na primer $student.ime$
 	\item $"$po indeksu$"$ - $nazivobjekta['svojstvo']$, na primer $student['ime']$
 \end{itemize}
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 console.log(student);
 console.log(student.ime);
 console.log(student["ime"]);
 \end{lstlisting}
 Napomena: u slučaju da je svojstvo broj ili da sadrži razmake u nazivu ne može se koristiti tačka notacija.\\\\
 Ako pokušamo da pristupimo vrednosti svojstva koje ne postoji dobijamo $undefined$.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 console.log(student.drzavljanstvo);
 \end{lstlisting}
 
 Svojstvu dodeljujemo vrednost uz pomoć naredbe dodele (operatora $=$). Ako bismo počeli od praznog objekta kako bismo mu dodali nova svojstva možemo koristiti samo tačka notaciju. JavaScript sam prepoznaje da ta svojstva ne postoje i dodaje ih. 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var racunar = {};
 console.log(racunar);
 console.log(typeof racunar);
@@ -1245,20 +1249,20 @@ console.log(racunar);
 \end{lstlisting}
 Za uklanjanje svojstva iz objekta koristimo unarni operator $delete$.
 Ako pokušamo da pristupimo vrednosti svojstva koje smo obrisali dobijamo $undefined$.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 delete racunar.licni_racunar;
 console.log(racunar.licni_racunar);
 console.log(racunar);
 \end{lstlisting}
 
 Binarnim operatorom $in$ lako se proverava da li neki objekat sadrži neko svojstvo. U zavisnosti od toga da li svojstvo postoji ili ne vraćaju se $true$ ili $false$.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 console.log("licni_racunar" in racunar); //false
 console.log("os" in racunar); //true
 \end{lstlisting}
 
 Koncept \textbf{refereciranja objekata} je veoma važan. Naime, kod objekata moramo razlikovati da li imamo dve različite reference ka istom objektu ili dva objekta imaju ista svojstva. U prvom slučaju, kada imamo dve različite reference ka istom objektu, dve različite promenljive pokazuju na isti memorijski prostor, a svaka promena izvedena nad objektom preko jedne promenljive propagiraće se i na drugu. U drugom slučaju, kada dva objekta imaju ista svojstva, ali su ti objekti različiti, promene izvedene nad jednom promenljivom neće imati nikakvog uticaja na drugu. Kako bismo ovo bolje razumeli, najbolje da pogledamo naredni primer:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var student1 = {ime : "Janko",
 	prezime: "Jovanovic",
 	prosek: 9.5};
@@ -1271,7 +1275,7 @@ console.log(student2 === student3); //false
 console.log(student3 === student2); //false
 \end{lstlisting}
 Vidimo da pri poređenju objekata dobijamo da su objekti $student1$ i $student2$ isti. Sada pogledajmo šta se dešava kada pokušamo da izvršimo neku promenu nad $student1$. 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 student1.ime = "Ana";
 console.log(student2.ime); //Ana
 console.log(student3.ime); //Jovana
@@ -1299,7 +1303,7 @@ function ime_funkcije(niz_deklaracija_parametara) {
    naredbe
 }
 \end{verbatim}
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 function sabiranje(a,b){
 
 }
@@ -1314,7 +1318,7 @@ njeni argumenti u pozivima $kvadrat(5)$ i $kvadrat(9)$.\\\\
 Parametri funkcije mogu se u telu funkcije koristiti kao lokalne
 promenljive\footnote{Lokalne promenljive su vidljive samo unutar tela te funkcije.} te funkcije, a koje imaju početnu vrednost
 određenu vrednostima argumenata u pozivu funkcije.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 function sabiranje(a,b){
 	var zbir = a + b;
 }
@@ -1329,7 +1333,7 @@ sabiranje(5,7);
 Naredba $return\ r;$ ne samo da vraća vrednost $r$ kao rezultat
 rada funkcije, nego i prekida njeno izvršavanje. Funkcija može vraćati i rezultat izračunavanja nekog izraza, kao funkcija $sabiranje2$ u primeru dole. Vrednost koju funkcija vrati možemo smestiti u neku promenljivu kako bismo mogli sa njom na dalje da radimo. Funkcije mogu pozivati druge funkcije, a funkcija može pozivati i samu sebe. Više o slučaju kada funkcija poziva samu sebe biće u sekciji o rekurzivnim funkcijama.\\\\
 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 function sabiranje(a,b){
 	var zbir = a + b;
 	return zbir;
@@ -1347,7 +1351,7 @@ var c = sabiranje2(a,b);
 
 Kao što vidimo kada pozivamo funkciju koristimo naziv funkcije, a potom navodimo listu argumenata. Funkcija može primati nula ili više argumenata. U slučaju, da funkcija nema argumente pozivamo je kao $ime\_funkcije()$. Funkcija bez argumenata će se izvršiti i vratiti povratnu vrednost. Ako funkcija ima jedan ili više argumenata, njih navodimo između zagrada, odvojene zarezima. Bitno je naglasiti da nazivi parametara pri definisanju funkcije i argumenata pri njenom pozivanju ne moraju biti isti, ali promenljive korišćene u telu funkcije i nazivi parametara moraju biti isti! To je posledica toga što promenljive navedene u definiciji dobijaju vrednosti argumenata, koje se kasnije koriste u telu funkcije, one su poput najave da će se na tom mestu očekivati neke vrednosti koje kasnije treba koristiti na tačno određen način (što je definisano u telu funkcije).  
 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 function sabiranje(a,b){
 	var zbir = a + b;
 	return zbir;
@@ -1379,7 +1383,7 @@ Primetimo da iako funkcija ne vraća nikakvu konkretnu vrednost na kraju funkcij
 Napomena: Funkcija $Math.random()$ korišćena u primeru je funkcija iz biblioteke $Math$ i vraća nasumični broj između $0$ i $1$. \\\\
 
 Osim navedenog načina moguće je funkciju dodeliti promenljivoj. Obratiti pažnju da nakon poslednje vitičaste zagrade mora stajati tačka-zarez. 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var stepenovanje = function(osnova, eksponent){
 		var rez = 1;
         for(i = 0; i < eksponent; i++){
@@ -1396,7 +1400,7 @@ Uraditi sve zadatke iz uvodne sekcije koristeći funkcije. Uraditi zadatke iz se
 
 \subparagraph{Anonimne funkcije}
 Anonimne funkcije su funkcije koje nemaju naziv. Anonimne funkcije koristimo kada želimo da se neka funkcija izvrši jednom. Vrednost anonimne funkcije ne možemo koristiti ukoliko je ne smestimo u neku promenljivu ili nije deo neke druge funkcije o čemu će biti više reči kasnije. Definisanjem funkcije dodelom promenljivoj kreiramo anonimnu funkciju sa desne strane naredbe dodele. Pogledajmo još jedan primer:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var anonimna = function(){
 	console.log("Dosli ste do anonimne funkcije.");
 	return;
@@ -1408,7 +1412,7 @@ anonimna();
 %(lista parametara) => telo funkcije
 %\end{verbatim}
 %Zagrade oko parametara su neophodne ukoliko je broj parametara veći od 1. Ukoliko funkcija nema %parametara onda su potrebne samo $()$. Ukoliko funkcija ima samo jednu naredbu i ta naredba je $%$return$ sa povratnom vrednošću, onda nam ni reč $return$ nije neophodna. Pogledajmo primere:
-%\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+%\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 %x => { return x*x; }
 %console.log(x);
 %x => x*x;
@@ -1416,14 +1420,14 @@ anonimna();
 
 \subparagraph{Broj argumenata funkcije}
 Lako se uočava da pri pozivu funkcije možemo funkciji poslati više argumenata nego što ona zahteva. U $JavaScriptu$ je to dozvoljeno ponašanje, iako u većini drugih programskih jezika nije. Ako bismo poslali veći broj argumenata nego što funkcija zahteva, ona bi višak argumenata ignorisala. U slučaju da je poslato manje argumenata nego što funkcija zahteva, za oni parametri za koje argumenti nisu poslati postavljaju se na $undefined$. Zaključak, $JavaScript$ ne proverava ni broj ni tip poslatih argumenata.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var a = 5;
 var b = 7;
 //fija: sabiranje2(a,b);
 console.log(sabiranje2(a,b,4,2,1));
 \end{lstlisting}
 Pogledajmo još jedan primer.  Funkcija $argumenti()$ prima $2$ argumenta, posmatrajmo šta se dešava u različitim slučajevima:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 function argumenti(prvi, drugi){
 	console.log(prvi);
 	console.log(drugi);
@@ -1436,7 +1440,7 @@ argumenti("Prvi","Drugi","Treci"); //prvi drugi
 \end{lstlisting}
 
 $JavaScript$ funkcije imaju ugrađeni objekat $arguments$. Ovaj objekat možemo koristiti da na jednostavan način proverimo koji je broj argumenata poslat.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
  function prosek(){
 	var suma = 0;
 	console.log("Broj argumenataje:",arguments.length);
@@ -1454,7 +1458,7 @@ $JavaScript$ funkcije imaju ugrađeni objekat $arguments$. Ovaj objekat možemo 
 Na ovaj način možemo pristupiti argumentima koje bismo inače ignorisali.
 U jeziku $JavaScript$ argumenti se prenose po vrednosti. To znači da se njihova originalna vrednost ne menja. Sa druge strane, objekti se prenose po referenci, što znači da se njihova originalna vrednost menja.\\\\
 Nekada nam nije odmah poznato koliko parametara će funkcija imati. $JavaScript$ nam omogućava da funkcije mogu imati i proizvoljan broj parametara. Da bismo napisali ovakvu funkciju koristimo sledeću notaciju:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
  function nova(...parametri){
 	for(parametar of parametri){
 		//uradi nesto sa parametrima	
@@ -1462,7 +1466,7 @@ Nekada nam nije odmah poznato koliko parametara će funkcija imati. $JavaScript$
  }
 \end{lstlisting}
 Pogledajmo i na primeru:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 function lista_za_kupovinu(...parametri){
 	for(parametar of parametri){
     	console.log(parametar);    
@@ -1473,7 +1477,7 @@ lista_za_kupovinu("mleko","hleb","lazanje","torta");
 \end{lstlisting}
 Primetimo da smo koristili $for-of$ petlju za kretanje kroz listu parametara. Ova petlja nam služi za kretanje kroz nizove, karaktere niski, mape, skupove, itd. Napomena: ranije smo videli $for-in$
 petlju, ta petlja se najčešće koristi za iteraciju kroz svojstva objekata ili indekse.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var ucenik = { ime : "Ana",
 	indeks: "1083/2016",
     prosek: 9.41};
@@ -1490,7 +1494,7 @@ for(indeks in str){
 \subparagraph{Periodično izvršavanje funkcija}
 Nekada funkcije želimo da izvršavamo periodično, odnosno, želimo da se kod unutar funkcije izvršava nakon određenog vremenskog intervala. Za ovakvo izvršavanje funkcija koristimo funkcije $setTimeout()$ i $setInterval()$.\\\\
 Funkcija $setTimeout()$ izvršava naredbe nakon vremenskog intervala zadatog u milisekundama ( 1000ms = 1s). Prvi argument je funkcija koja se izvršava nakon broja milisekundi navedenih kao drugi argument funkcije. Funkcija koja se prosleđuje kao argument funkcije $setTimeout()$ može biti i anonimna funkcija. U tom slučaju nju direktno pišemo u okviru zagrada funkcije. 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 function objava(){
 	alert("Obavesteni ste!");
 }
@@ -1501,7 +1505,7 @@ setTimeout(function(){
 },5000);
 \end{lstlisting}
 Funkciju $setTimeout()$ možemo koristiti i za periodično izvršavanje funkcije tako što ćemo je pozvati unutar neke funkcije $f()$ koju želimo da izvršavamo više puta, a kao prvi argument šaljemo naziv te funkcije iz koje se poziva. Napomena: Neophodno je posebno pozvati funkciju $f()$ prvi put.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
  //Funkciju setTimeout mozemo koristiti i za periodicno izvrsavanje
 function objava2(){
 	alert("Obavestenje u intervalu!");
@@ -1510,20 +1514,20 @@ function objava2(){
 objava2();
 \end{lstlisting}
 Povratna vrednost funkcije $setTimeout()$ je identifikator tajmera koji je pokrenut, za prekidanje tajmera koristimo funkciju $clearTimeout()$.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var tajmer = setTimeout(function(){
 	alert("Ovaj tekst se nece ispisati");
 	}, 2000);
 clearTimeout(tajmer);
 \end{lstlisting}
 Osim funkcije $setTimeout()$ za periodično izvršavanje funkcija možemo koristiti funkciju $setInterval()$. Ova funkcija prima iste argumente kao i $setTimeout()$, samo što u njenom slučaju broj milisekundi predstavlja broj nakon kog će se ponovo izvršiti funkcija navedena kao prvi argument.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 setInterval(function(){
 	alert("Ova funkcija ce se izvrsavati svake sekunde.")
 	}, 1000);
 \end{lstlisting}
 Kao i kod $setTimeout()$ povratna vrednost funkcije $setInterval()$ je tajmer. Kako bismo prekinuli tajmer moramo pozvati funkciju $clearInterval()$.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var tajmer = setInterval(function(){
 	alert("Ovo ce se izvrsiti samo jednom");
 },1000);
@@ -1544,7 +1548,7 @@ Primetili smo da smo pri pisanju funkcija za rad sa brojevima pisali neke funkci
 	\item \textbf{Math.max(x,y,z,...)} - računa maksimum brojeva navedenih kao argumente i
 	\item \textbf{Math.PI} - konstanta $\pi$.
 \end{itemize} 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var a = 9;
 var b = 3;
 console.log("Koren ",a,"je", Math.sqrt(a));
@@ -1566,7 +1570,7 @@ Modifikovati prethodno urađene primere tako da se koriste funkcije objekta $Mat
 Doseg (engl. scope) važenja promenljive označava u kojim sve delovima koda je neku promenljivu moguće $"$videti$"$, odnosno, pristupati joj, menjati je i koristiti. Dobro razumevanje i poznavanje dosega važenja promenljive nam je veoma bitno pri programiranju. Nekada se može desiti da pokušavamo da pristupimo promenljivoj u nekom delu koda u kome ona nije vidljiva ili da, još gore, nesvesno promenimo vrednost neke promenljive, što kasnije može imati posledice po izvršavanje ostatka programa.\\\\
 Mesto gde uvodimo promenljivu utiče na njen doseg. Promenljive kreirane van svih blokova koda i funkcija imaju \textbf{globalni doseg}. Promenljive koje predstavljaju argumente funkcije, kao i one koje kreiramo unutar funkcija imaju doseg te funkcije u kojoj se nalaze.
 Do sada smo promenljive kreirali koristeći isključivo ključnu reč $var$. Postoje još dve ključne reči kojima kreiramo promenljive to su $let$ i $const$. Promenljive kreirane ključnom rečju $let$ i $const$ imaju \textbf{lokalni doseg}. To znači da su one vidljive samo unutar bloka u kom su deklarisane. Promenljive uvedene ključnom rečju $var$ za funkciju važe na nivou cele funkcije. Pogledajmo naredni primer:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 function vidljivost(x){
 	console.log(x);
     var x = 5;
@@ -1587,7 +1591,7 @@ vidljivost(x);
 console.log(x);
 \end{lstlisting}
 Iz primera se vidi da je promenljiva $x$ globalna. U funkciji $vidljivost(x)$ najpre ispisujemo vrednost promenljive $x$, i dobijamo $10$, što je ono što smo i prosledili. Potom unutar funkcije menjamo vrednost promenljive $x$ na $5$. Nakon toga kreiramo promenljivu n, koja nije vidljiva u $else$ grani (probati ovo tako što ćete zakomentarisati liniju $var x = 5;$. Nakon poziva funkcije ponovo ispisujemo vrednost promenljive $x$ i vidimo da ništa nije promenjeno. Posmatrajmo još jedan primer:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 function zbir(){
 	return c+d;
 }
@@ -1603,7 +1607,7 @@ console.log(zbir(a,b));
 
 Primetimo da funkcija uvek radi za promenljive $c$ i $d$ zato što su globalno definisane, pa funkcija može da nađe njihove vrednosti. U slučaju da su $c$ i $d$ nedefinisani izbacuje se greška.\\\\
 Obratite pažnju i na to šta se dešava sa $let$, kada pokušamo da mu promenimo vrednost. Zameniti $let$ sa $var$.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 function vidljivost_let(){
 	let x = 5;
 	if(true){
@@ -1617,7 +1621,7 @@ vidljivost_let();
 
 Osim promenljivih, funkcije isto mogu biti deklarisane globalno i lokalno. Globalno deklarisane funkcije su vidljive i mogu se pozivati na nivou celog programa, a lokalno deklarisane funkcije samo unutar one funkcije (i njenih drugih podfunkcija) u kojoj je deklarisana. \textbf{Izvlačenje deklaracija} (engl. hoisting) je pojam koji se odnosi na to da $JavaScript$ izvlači deklaracije funkcija i promenljivih tokom faze kompajliranja što nam omogućava da vršimo pozive funkcija ili promenljivih i pre njihovog definisanja (obratiti pažnju da se izvlače deklaracije, ali ne i definicije!). Navedeni koncepti se oslikavaju kroz sledeće primere. Najpre, vidljivost funkcija:
 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 
 function globalna(){
 	console.log("Ova funkcija je vidljiva i moze se 
@@ -1643,7 +1647,7 @@ lokalna(4);
 lokalna2();
 \end{lstlisting}
 Potom, izvlačenje deklaracija:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 ispisi(s); //s is not declared
 ispisi(parametar); //undefined
 var parametar;
@@ -1657,7 +1661,7 @@ ispisi(parametar);
 
 \subsubsection{Rekurzivne funkcije}
 Programski jezik $JavaScript$ podržava rekurzivne funkcije. Rekurzivne funkcije su one funkcije koje pozivaju same sebe. Uvek mora postojati neki uslov izlaska iz rekurzije. Najčešći primer koji se posmatra pri učenju ovih funkcija je \textit{Fibonačijev niz}.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 function fib(n){
 	if(n == 0 || n == 1){
 		return 1;	
@@ -1681,7 +1685,7 @@ Rečeno je da je $JavaScript$ služi za davanje interaktivnosti stranici, međut
 \label{fig:domwin}
 \end{figure}
 \subparagraph{Vežba}  Izabrati sajt i kreirati strukturu $DOM$ stabla. Kao na primeru:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 <div>
  <h1>Ovo je naslov</h1>
  <h2>Ovo je podnaslov</h2>
@@ -1728,7 +1732,7 @@ var treci_pasus = pasusi_u_omotacu[2];
 \end{lstlisting} 	 
 Treba obratiti pažnju da se nazivi tagova navode između navodnika. Osim njih, uslove navodimo između navodnika. Primetimo da se uslovi mogu postavljati korišćenjem istih oznaka kao u $CSS$-u, pa tako uslov $'\#omotac\ .pasus'$ tumači se kao: $"$u elementu sa $id$-jem $omotac$ pronađi sve elemente koji pripadaju klasi pasus. $"$
 Svojstvima dohvaćenog elementa pristupa se uz pomoć tzv. \textbf{tačka notacije}, što znači da nakon naziva promenljive, navodimo tačku, a potom ime svojstva. Sadržaj unutar etiketa $HTML$ elementa nalazi se u svojstvu $innerHTML$ objekta koji odgovara dohvaćenom elementu. Sadržaj ima tip niske.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 HTML:
 <p id='pasusneki'>Neki<a href=''>link</a> pasus</p>
 
@@ -1737,7 +1741,7 @@ var sadrzaj = document.getElementById('pasusneki').innerHTML;
 console.log(sadrzaj);
 \end{lstlisting} 	 
 Da bismo pristupili tekstualnom sadržaju nekog elementa koristimo svojstvo $textContent$.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 HTML:
 <p id='pasusneki'>Neki <a href=''>link</a> pasus</p>
 
@@ -1748,12 +1752,12 @@ console.log(sadrzaj);
 
 Razlika između ova dva pristupa je što ćemo u prvom slučaju dobiti sav sadržaj unutar $<p>$ etiketa. U drugom slučaju, dobićemo samo tekstualni sadržaj kako je i prikazan na stranici. \\\\
 Kada koristimo metode koje vraćaju više od jednog elementa, na primer $getElementsByTagName$, kako bismo saznali koliko je takvih elemenata možemo koristiti svojstvo $length$.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var broj_elemenata = svi_pasusi.length;
 console.log(broj_elemenata);
 \end{lstlisting}
 Kako bismo pristupili pojedinačnom elementu koristimo notaciju kao kod nizova (pošto metod zapravo i vraća niz elemenata).
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var pasus = svi_pasusi[0];
 console.log(pasus);
 var poslednji = svi_pasusi[broj_elemenata-1].textContent;
@@ -1761,7 +1765,7 @@ console.log(poslednji);
 \end{lstlisting}
 
 %Za pristupanje vrednostima $input$ elementa koristi se svojstvo $value$.
-%\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+%\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 %HTML:
 %<input type='text' id='ime'>
 
@@ -1778,7 +1782,7 @@ naziv u kome crtica ne postoji, ali je prvo slovo posle crtice u originalnom zap
 (npr. $background\-color  \rightarrow backgroundColor$). Izračunate CSS vrednosti dobijaju se
 funkcijom $getComputedStyle$ iz interfejsa $windows$, element čija se izračunata svojstva
 traže se prosleđuje kao argument funkcije. Novu vrednost nekog svojstva postavljamo uz pomoć $element.style.osobina = vrednost$. Možemo na ovakav način dodavati i nove klase elementima, koristeći svojstvo $className$.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var stil_pasusa = pasus.style;
 console.log(stil_pasusa);
 var izracunati_stil = window.getComputedStyle(pasus);
@@ -1790,7 +1794,7 @@ document.querySelector('#pasus2').className = 'doterani_pasus';
 
 Kada dohvatimo neki $HTML$ element, moguće je kretanjem kroz $DOM$ stablo doći i do ostalih elemenata prateći veze sa ostalim elementima. Roditeljskom elementu nekog elementa pristupa se preko svojstva $parentElement$, koja sadrži pokazivač na roditeljski element. Elementu na istom nivou $DOM$ stabla $brat$/$sestra$ elementa, koji u $HTML$ strukturi sledi nakon dohvaćenog pristupa se svojstvom $nextElementSibling$. Očekivano, njegovom prethodniku pristupa se sa $previousElementSibling$.\\\\
 Na veoma sličan način možemo posmatrati i strukturu u odnosu na roditeljski element. Naime, prvom direktnom potomku roditeljskog elementa pristupa se sa $firstElementChild$, poslednjem sa $lastElementChild$. Svim direktnim potomcima se pristupa svojstvom $children$, koje sadrži niz objekata koji odgovaraju direktnim potomcima elementa. Pogledajmo kroz primer:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var omotac = document.getElementById('omotac');
 var prvi_pasus = omotac.firstElementChild;
 var drugi_pasus = prvi_pasus.nextElementSibling;
@@ -1814,7 +1818,7 @@ Na slici \ref{fig:dom2} se na primeru liste jasno vide odnosi između elemenata:
 \label{fig:dom2}
 \end{figure}	
 Atributima dohvaćenih elemenata pristupa se funkcijom $getAttribute()$ kojoj se kao argument prosleđuje naziv atributa čija se vrednost traži. Postavljanje atributa elementima vrši se funkcijom $setAttribute()$ čiji je prvi argument naziv novog atributa, a drugi argument željena vrednost novog atributa.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 HTML:
 <p id='pasus' title='Neki naslov'>Neki pasus</p>
 
@@ -1830,7 +1834,7 @@ pasus.setAttribute('class', 'klasa1');
 \subsubsection{Kreiranje elemenata}
 Nekada ne želimo samo da menjamo postojeće elemente, već želimo i da kreiramo nove. Pravljenje novih elemenata vrši se funkcijom $createElement$ iz interfejsa $document$. Kao argument ova funkcija prima naziv etikete novog elementa (naziv etikete se navodi pod navodnicima). Element se vezuje u $DOM$ stablo kao poslednji sin nekog elementa funkcijom $appendChild$ čiji je argument element koji se u stablo dodaje. U slučaju da ne iskoristimo append child, element neće biti prikazan.
 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var omotac = document.getElementById('omotac');
 var novi_pasus = document.createElement('p');
 novi_pasus.innerHTML = "Treci pasus <a href=''>link</a>";
@@ -1841,7 +1845,7 @@ omotac.appendChild(novi_pasus);
 
 Ukoliko zelimo da postavimo tekstualni sadržaj nad elementom, moramo napraviti novi tekstualni čvor sa $createTextNode$, a potom ga sa $appendChild$ dodati odgovarajućem elementu. Primetiti da sa $createTextNode$ takođe dodajemo tekst kao sa $innerHTML$. Razlika je u tome što će $innerHTML$ tumačiti etikete i prikazivati ih na odgovarajući način dok $createTextNode$ nece. Još jedna razlika koju možemo videti je ta da sa $innerHTML$ zamenjujemo celokupni sadržaj elementa novim sadržajem, dok sa $createTextNode$ dodajemo novi sadržaj na postojeći.
 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var cetvrti = document.createElement('p');
 var sadrzaj = document.createTextNode("Cetvrti pasus <a href=''>link</a>");
 cetvrti.appendChild(sadrzaj);
@@ -1856,7 +1860,7 @@ pasus1.innerHTML = "Tekst unutar pasusa1";
 \end{lstlisting}
 
 Dodavanjem novih elemenata sa $appendChild$, uvek dodajemo element kao poslednjeg naslednika u nizu elementa na koji vršimo $"$lepljenje$"$. Ako bismo želeli da dodamo novi element pre nekog drugog elementa koristimo $insertBefore()$. Ova funkcija prima dva argumenta. Prvi, novokreirani čvor, koji želimo da ubacimo pre drugog argumenta, koji predstavlja neki postojeći čvor. 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 var pasus_jedan_ipo = document.createElement('p');
 var pasus2 = document.getElementById('pasus2');
 pasus_jedan_ipo.innerHTML = "pasus i po";
@@ -1866,7 +1870,7 @@ omotac.insertBefore(pasus_jedan_ipo, pasus2);
 Da bismo jedan element-dete zamenili drugim, koristimo metod $replaceChild()$. Ovaj metod prima iste argumente kao i $insertBefore()$.
 
 Ako želimo da obrišemo neki element koristimo $removeChild$. Sa $document.body$ pristupamo elementima koji se nalaze unutar $<body>$ etiketa.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 HTML:
 <p id='obrisi'>Pasus koji zelimo da obrisemo</p>
 JS:
@@ -1878,7 +1882,7 @@ document.body.removeChild(obrisi);
 \subsubsection{Reagovanje na događaje}
 Na način na koji smo do sada vršili interakciju sa stranicom još uvek nismo mogli da dobijemo pravu interaktivnost. Da bismo to postigli neophodno je da vršimo interakciju sa elementima DOM-a.
 Svaka interakcija sa elementima DOM-a predstavlja događaj. Događaj predstavljaju različite interakcije korisnika sa stranicom kao što su: klik, prelazak miša, pritisak određenih tastera, itd..Prilikom pojave događaja moguće je reagovati i izvršiti određene naredbe. Da bi se pojava nekog događaja vezala sa akcijom koju je potrebno preduzeti potrebno je prijaviti se, odnosno, „osluškivati“ pojavu nekog događaja.  Postoje dva načina da osluškujemo događaje. Prvi način za to je navođenje odgovarajućeg atributa elementa na kome se događaj očekuje. Takvi atributi obavezno imaju prefix $on$ nakon koga se nastavlja naziv događaja. Na primer, ako je naziv događaja $click$, atribut će imati naziv $onclick$. Vrednost atributa je naziv funkcije koju je potrebno izvršiti ukoliko se događaj desio. Obratiti pažnju da se naziv funkcije šalje sa zagradama i da naziv događaja ima prefiks $on$. Element na kome se događaj dogodio može se dohvatiti korišćenjem ključne reči $this$. Nakon $this$ možemo navesti bilo koje od svojstava objekata, npr. $value$ ($this.value$). Napomena: Ovaj način se manje preporučuje, jer meša opis stranice ($HTML$) i ponašanje stranice ($JavaScript$). 
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 HTML:
 <button onclick='prikaziObavestenje()'>Prikazi obavestenje</button>
 JS:
@@ -1900,7 +1904,7 @@ Neki od atributa koji postoje su:
 \end{itemize}                        
  
 Pogledajmo nesto detaljniji primer:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 HTML:
 <h2> Preko HTML atributa</h2>
 <br>
@@ -1939,7 +1943,7 @@ Drugi način osluškivanja događaja je dodavanje „osluškivača“ ($listener
 $JavaScript$ koda na element na kome se događaj očekuje, korišćenjem funkcije
 $addEventListener()$. Ova funkcija prima dva argumenta. Prvi je naziv događaja čija se
 pojava osluškuje, a drugi je naziv funkcije koja će se pozvati kada se događaj desi. Moguće je kao drugi argument navesti i anonimnu funkciju koja će biti definisana odmah na mestu argumenta. Obratiti pažnju da se naziv funkcije šalje bez ikakvih zagrada, a da naziv događaja nema prefiks $on$. Da bismo uopšte mogli da postavimo osluškivač događaja na neki element moramo ga najpre dohvatiti.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 HTML:
 <button id='dugme1'>Dugme1</button>
 <button id='dugme2'>Dugme2</button>
@@ -1966,7 +1970,7 @@ Neki od događaja na koje se može reagovati su:
 pritisnuto
 \end{itemize}
 Pogledajmo i ovde nešto detaljniji primer:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 HTML:
 <p>Unesite tekst (kada element izgubi fokus prikazace se njegov sadrzaj): </p>
 <input type='text' id='unos2'> 
@@ -2000,7 +2004,7 @@ Svi navedeni događaji mogu biti korišćeni i kao atributi i kao argumenti funk
 \subsubsection{Validacija formi}
 Forme predstavljaju jedan od osnovnih vidova prikupljanja određenih podataka koje korisnik unosi. Da bi se informacije prikupile i sačuvale, podaci se šalju na server. Da ne bi došlo do toga da korisnik unosi besmislice veoma nam je važna validacija formi, odnosno, onoga što korisnik unosi.
 Vrlo često želimo da analiziramo korisnički unos i pre nego što podatke pošaljemo na server. Time možemo da izbegnemo da se neispravni podaci šalju uopšte do servera, a potom da se vraća sa servera informacija da nešto nije u redu. Taj prvi nivo filtracije podataka vrši se upravo kroz $JavaScript$. Za pristupanje vrednostima input elemenata koristi se svojstvo $value$.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 HTML:
 <input type='text' id='ime'>
 <button id='dugme3' onclick='podatak()'>Konzola</button>
@@ -2017,9 +2021,22 @@ Primetiti da ako uradimo $console.log(vrednost\_polja)$ van funkcije ne dobijamo
 
 Postoji događaj koji se odnosi na forme, a to je $submit$. Ovaj događaj označava da treba poslati podatke iz formulara. Ukoliko je povratna vrednost funkcije koja se izvršava pri pojavi ovog događaja $false$ podaci neće biti poslati. Koristi se pri validaciji
 formulara. \\\\
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+HTML:
+<form onsubmit='return validacija()'>
+...
+</form>
+JS:
+function validacija(){
 
+if(formaValidna)
+  return true;
+else
+  return false;
+}
+\end{lstlisting}
 Događaj koji nam pomaže da uhvatimo promenu vrednosti $input$ polja, odabrane vrednosti $select$ elementa ili elementa $textarea$ je $change$. Indeks odabrane opcije select elementa je vrednost svojstva $selectedIndex$.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 HTML:
 <select id='selekcija'>
 	<option value='vrednost1'>Vrednost 1</option>
@@ -2032,7 +2049,104 @@ selekcija.addEventListener('change',function(){
   this.selectedIndex, " i vrednost je:", this.value);
 });
 \end{lstlisting}
- 
+Postoji i događaj $reset$ koji se aktivira prilikom poništavanja unetih polja. 
+
+Najpre, da bismo prikupili informacije koje želimo da validiramo na raspolaganju nam je veliki broj HTML elemenata formulara. Neki od njih su:
+\begin{itemize}
+\item \textbf{input} - Prikaz ovog elementa zavisi od njegovog $type$ atributa:
+	\begin{enumerate}
+		\item \textbf{text} - jednolinijski tekst
+		\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+<input type='text'>
+		\end{lstlisting}
+		\item \textbf{password} - unos lozinke
+		\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+<input type='password'>
+		\end{lstlisting}		
+		\item \textbf{button} - proizvoljno dugme (može i preko elementa button)
+		\begin{lstlisting}[backgroundcolor = \color{lightgray},breaklines=true]
+<input type='button' value='Klikni!' onclick='alert("Hello World!)'>
+		\end{lstlisting}
+		\item \textbf{submit} - dugme koje šalje podatke ka serveru (samo u okviru form elementa)
+		\item \textbf{reset} - dugme koje briše sve podatke unete u formular
+		\item \textbf{radio} - dugme, ide u grupama dugmića istog tipa, nudi se odabir tačno jednog od ponuđenih. Neophodno je navođenje atributa $name$ za ovaj tip elementa, kako bi se znalo kojoj grupi pripada (grupisanje $radio$ dugmića). Dodavanjem atributa $value$ definišemo izbor opcije.
+		\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+<form>
+  <input type='radio' name='pol' value='muski' checked>Muski
+  <input type='radio' name='pol' value='zenski' checked>Zenski
+  <input type='radio' name='pol' value='ostalo' checked>Ne zelim da odgovorim
+</form>
+		\end{lstlisting}
+		\item \textbf{checkbox} - dugmići koji nude odabir više opcija, razlika u odnosu na prethodni je što ne moramo vršiti grupisanje.
+		\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+<form>
+  <input type='checkbox' name='nivo1' value='srednja' checked>Srednja skola
+  <input type='checkbox' name='nivo2' value='osnovne' checked>Osnovne studije
+  <input type='checkbox' name='nivo3' value='master' checked>Master studije
+</form>
+		\end{lstlisting}
+		\item Postoji još vrednosti za tip $input$-a, za više, posetiti:\href{https://www.w3schools.com/html/html_form_input_types.asp	}{W3Schools}
+	\end{enumerate}
+ 	 Za element $input$ definisani su atributi:
+ 	 \begin{itemize}
+ 	 \item $name$ - za naziv opcije, 
+ 	 \item $value$ - za vrednost,
+ 	 \item $readonly$ - polje je samo za čitanje, vrednost ne bi trebalo da se menja, 
+ 	 \item $size$ - veličina polja u karakterima, 
+ 	 \item $maxlength$ - najveći broj karaktera koje element prima,
+ 	 \item $disabled$ - nije moguće unošenje u polje,
+ 	 \item $placeholder$ - vrednost postavljena pre unosa.
+	\end{itemize} 	    
+\item \textbf{select} - Ovaj element predstavlja padajuću listu sa izborima, sa atributom $name$ označavamo naziv te liste, a sa elementima $option$ opcije. Ako nad $select$-om postavimo atribut $multiple$ onda dozvoljavamo odabir više opcija.  
+\item \textbf{option} - Predstavlja elemente padajuće liste. Ima atribut $value$ koji predstavlja vrednost izbora. Atributom $selected$ postavljamo podrazumevanu vrednost.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+<select name="kursevi" multiple>
+  <option value="engleski">Engleski</option>
+  <option value="spanski">Spanski</option>
+  <option value="francuski">Francuski</option>
+  <option value="nemacki" selected>Nemacki</option>
+</select>
+\end{lstlisting}
+\item \textbf{optgroup} - Dozvoljava grupisanje opcija.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+<select name="kursevi" multiple>
+<optgroup label='radnidani'>
+  <option value="engleski">Engleski</option>
+  <option value="spanski">Spanski</option>
+</optgroup>
+<optgroup label='vikend'>  
+  <option value="francuski">Francuski</option>
+  <option value="nemacki" selected>Nemacki</option>
+</optgroup>
+</select>
+\end{lstlisting}
+\item \textbf{textarea} - unos teksta u više linija. Ima atribute $rows$ i $cols$ koji označavaju broj redova i kolona koje je moguće uneti. Visina i širina ovog elementa mogu se izmeniti uz pomoć $CSS$-a.\\
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+<textarea name="biografija" rows="20" cols="30">
+Napisite kratku biografiju.
+</textarea>
+\end{lstlisting}
+\item \textbf{datalist} - Ako bismo hteli da napravimo $input$ polje koje bi nam nudilo više opcija ili radilo $autocomplete$ mogli bismo da atributu $list$ dodelimo naziv $id$ atributa elementa $datalist$. Potom u nastavku koristeći element $option$ navodimo moguće vrednosti atributom $value$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true] 	 
+<input list="browsers">
+<datalist id="browsers">
+  <option value="Internet Explorer">
+  <option value="Firefox">
+  <option value="Chrome">
+  <option value="Opera">
+  <option value="Safari">
+</datalist>
+\end{lstlisting}
+\item \textbf{fieldset} - grupisanje više elemenata forme u jednu celinu
+\item \textbf{legend} - davanje naziva celini koja je izdvojena uz pomoć $fieldset$ elementa
+\item \textbf{label} - daje semantičko značenje elementima forme, kada korisnici kliknu na labelu, onaj element koji je povezan sa tom labelom postaje aktivan. Da bismo izvršili povezivanje koristimo atribut $for$ koji dobija za vrednost naziv identifikatora onog elementa za koji labelu vezujemo.
+\end{itemize}
+
+Pogledajmo sada primer
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+
+\end{lstlisting}
+
 \newpage
 \subsection{Zadaci sa casa}
 Napomena: Rešenja zadataka nisu jedinstvena. Skoro svi zadaci se mogu uraditi na više načina. Za vežbu pokušati pronaći ili uraditi zadatke na više načina. 
