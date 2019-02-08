@@ -2095,7 +2095,8 @@ Najpre, da bismo prikupili informacije koje želimo da validiramo na raspolaganj
  	 \item $size$ - veličina polja u karakterima, 
  	 \item $maxlength$ - najveći broj karaktera koje element prima,
  	 \item $disabled$ - nije moguće unošenje u polje,
- 	 \item $placeholder$ - vrednost postavljena pre unosa.
+ 	 \item $placeholder$ - vrednost postavljena pre unosa,
+ 	 \item $required$ - označava da zahtevamo da nešto bude uneseno u to polje (ovaj atribut nam ne obezbeđuje da će taj unos biti i ispravan!).
 	\end{itemize} 	    
 \item \textbf{select} - Ovaj element predstavlja padajuću listu sa izborima, sa atributom $name$ označavamo naziv te liste, a sa elementima $option$ opcije. Ako nad $select$-om postavimo atribut $multiple$ onda dozvoljavamo odabir više opcija.  
 \item \textbf{option} - Predstavlja elemente padajuće liste. Ima atribut $value$ koji predstavlja vrednost izbora. Atributom $selected$ postavljamo podrazumevanu vrednost.
@@ -2142,10 +2143,85 @@ Napisite kratku biografiju.
 \item \textbf{label} - daje semantičko značenje elementima forme, kada korisnici kliknu na labelu, onaj element koji je povezan sa tom labelom postaje aktivan. Da bismo izvršili povezivanje koristimo atribut $for$ koji dobija za vrednost naziv identifikatora onog elementa za koji labelu vezujemo.
 \end{itemize}
 
-Pogledajmo sada primer
+Pogledajmo sada primer. Želimo da kreiramo formular kao na slici \ref{fig:formular}
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.5]{pictures/formular.png}
+\end{center}
+\caption{Prikaz primera formulara koji želimo da napravimo.}
+\label{fig:formular}
+\end{figure}	  
+
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+HTML:
+<h2> Formular </h2>
+<form id="forma" onsubmit="return provera()">
+ <p id="greska" style="color: red"></p>
+ <fieldset>
+  <legend> Login info </legend>
+  <label for="korisnickoIme">Korisnicko ime</label>
+  <br>
+  <input type="text" id="korisnickoIme" name="ime">
+  <br>
+  <br>
+  <label for="lozinka">Lozinka</label>
+  <br>
+  <input type="password" name="pass" id="lozinka">
+  <br>    
+ </fieldset>
+ <br>
+ 
+ Godina studija:
+ <label for="prva">1</label>
+ <input type="radio" name="godina" id="prva" value="1">
+ <label for="druga">2</label>
+ <input type="radio" name="godina" id="druga" value="2">
+ <label for="treca">3</label>
+ <input type="radio" name="godina" id="treca" value="3">
+ <label for="cetvrta">4</label>
+ <input type="radio" name="godina" id="cetvrta" value="4">
+ <br>
+
+ <label for="racun">Broj racuna</label>
+ <br>
+ <input type="text" name="racun" id="racun" placeholder="xxx-xxxxxx-xxx">
+ <br>
+ 
+ <label for="email">E-mail adresa</label>
+ <br>
+ <input type="text" name="email" id="email">
+                
+ <br>
+ <label for="smer">Smer</label>
+ <select name="smer" id="smer">
+  <option value="X">------</option>
+  <option value="I">Informatika</option>
+  <option value="M">Teorijska matematika</option>
+  <option value="L">Profesorski</option>
+ </select>
+ <br>
+ <input type="submit" value="OK">
+</form>
+\end{lstlisting}
+
+Ovim delom koda smo omogućili korisniku da unese neke podatke.
+Sada želimo da vidimo da li je ono što je uneto ispravno, i da, ako nije, ispišemo grešku.
 \begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
 
+
 \end{lstlisting}
+Napomena: ovaj deo teksta ce biti prepravljen sa dodatnim objasnjenjima funkcija.
+
+%\subsubsection{Web storage}
+%\subparagraph{Local storage}
+%\subparagraph{Session storage}
+
+%\subsection{Objektno orijentisani JavaScript}
+
+%\subsection{JavaScript napredni koncepti}
+
+%\section{Sistemi za kontrolu verzije}
+%\subsection{Git}
 
 \newpage
 \subsection{Zadaci sa casa}
@@ -2608,6 +2684,10 @@ Kreirati stranicu koja se sastoji iz 4 raznobojna dugmeta kreirana kroz CSS. Str
 Kreirati $"$Mirror$"$ sajt za izvrtanje korisnickog unosa. Pozadinska slika bi trebalo da bude
 ogledalo. Kucanjem teksta u input polje istovremeno u paragrafu ispod se ispisuje tekst u 
 obrnutom poretku. Sajt ukrasiti odgovarajucim CSS elementima.
+\end{primer}
+
+\begin{primer}
+Kreirati stranicu na kojoj se unete rečenice (kroz textarea) sortiraju po dužini i ispisuju.
 \end{primer}
 
 \begin{primer}
