@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title> Forme </title>
+        <style type='text/css'>
+            #omotac{
+                background-color: lightblue;
+            }
+            #forma{
+                background-color: yellow;
+            }
+            h2{
+                color: black;
+                text-align: center;
+            }
+            form{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id='omotac'>
+            <h1> Validacija formi </h1>
+            <p> U ovom fajlu biće obrađena validacija formulara kroz JS.</p>
+        </div>
+        <form onsubmit='return validacija()'>
+            <select id='selekcija'>
+                <option value='vrednost1'>Vrednost 1</option>
+                <option value='vrednost2'>Vrednost 2</option>
+            </select>
+             
+        </form>
+        <div id='forma'>
+            <h2> Formular </h2>
+            <form id="forma" onsubmit="return provera()">
+                <p id="greska" style="color: red"></p>
+                <fieldset>
+                    <legend> Login info </legend>
+                    <label for="korisnickoIme">Korisnicko ime</label>
+                    <br>
+                    <input type="text" id="korisnickoIme" name="ime">
+                    <br>
+                    <br>
+                    <label for="lozinka">Lozinka</label>
+                    <br>
+                    <input type="password" name="pass" id="lozinka">
+                    <br>    
+                </fieldset>
+                
+                <br>
+                Godina studija:
+                <label for="prva">1</label>
+                <input type="radio" name="godina" id="prva" value="1">
+
+                <label for="druga">2</label>
+                <input type="radio" name="godina" id="druga" value="2">
+
+                <label for="treca">3</label>
+                <input type="radio" name="godina" id="treca" value="3">
+
+                <label for="cetvrta">4</label>
+                <input type="radio" name="godina" id="cetvrta" value="4">
+                <br>
+                <br>
+
+                <label for="racun">Broj racuna</label>
+                <br>
+                <input type="text" name="racun" id="racun" placeholder="xxx-xxxxxx-xxx">
+                <br>
+                <br>
+            
+                <label for="email">E-mail adresa</label>
+                <br>
+                <input type="text" name="email" id="email">
+                
+                <br>
+                <br>
+
+                <label for="smer">Smer</label>
+                <select name="smer" id="smer">
+                    <option value="X">------</option>
+                    <option value="I">Informatika</option>
+                    <option value="M">Teorijska matematika</option>
+                    <option value="L">Profesorski</option>
+                </select>
+            
+                <br>
+                <br>
+                <input type="submit" value="OK">
+            </form>
+        </div>
+        <script>
+            function validacija(){
+                //pretpostavimo da je forma validna
+                var formaValidna = true; 
+
+                if(formaValidna){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            var selekcija = document.getElementById('selekcija');
+            selekcija.addEventListener('change',function(){     
+                console.log( "Odabrana je vrednost sa indeksom ", this.selectedIndex, " i vrednost je:", this.value);
+            });
+
+            //ODAVDE POCINJE VALIDACIJA FORME
+            var formular = document.getElementById('forma');
+            var greska = document.getElementById('greska');
+
+            function provera()
+            {
+
+                return uneto_korisnicko_ime() && ispravna_lozinka() && odabrana_godina() && ispravan_racun() && ispravan_email() && odabran_smer() && confirm('Da li ste sigurni?');
+            }
+
+            function uneto_korisnicko_ime()
+            {
+                var korisnickoIme = document.getElementById('korisnickoIme').value;
+
+                if(korisnickoIme.trim().length == 0)
+                {
+                    greska.innerHTML = "Nije uneto korisnicko ime";
+                    return false;
+                }
+
+                return true;
+            }
+
+            function ispravna_lozinka()
+            {
+                var lozinka = document.getElementById('lozinka').value.trim();
+
+                if(lozinka.length < 8)
+                {
+                    greska.innerHTML = "Neispravna duzina lozinke";
+                    return false;
+                }
+
+                var broj_cifara = 0;
+                var broj_velikih_slova = 0;
+                var broj_malih_slova = 0;
+                var broj_ostalih_karaktera = 0;
+
+                for(var i = 0; i < lozinka.length; i++)
+                {
+                    var karakter = lozinka.charAt(i);
+
+                    if(cifra(karakter))
+                        broj_cifara++;
+                    else if(malo_slovo(karakter))
+                        broj_malih_slova++;
+                    else if(veliko_slovo(karakter))
+                        broj_velikih_slova++;
+                    else
+                        broj_ostalih_karaktera++;
+                }
+
+                if(broj_cifara == 0)
+                {
+                    greska.innerHTML = "Lozinka mora sadrzati bar jednu cifru";
+                    return false;
+                }
+
+                if(broj_malih_slova < 2)
+                {
+                    greska.innerHTML = "Lozinka mora sadrzati bar dva mala slova";
+                    return false;
+                }
+
+                if(broj_velikih_slova == 0)
+                {
+                    greska.innerHTML = "Lozinka mora sadrati bar jedno veliko slovo";
+                    return false;
+                }
+
+                if(broj_ostalih_karaktera == 0)
+                {
+                    greska.innerHTML = "Lozinka mora sadrati bar jedan specijalni karakter";
+                    return false;
+                }
+
+                return true;
+            }
+
+            function cifra(karakter)
+            {
+                if(karakter >= '0' && karakter <= '9')
+                    return true;
+
+                return false;
+            }
+
+            function malo_slovo(karakter)
+            {
+                if(karakter >= 'a' && karakter <= 'z')
+                    return true;
+
+                return false;
+            }
+
+            function veliko_slovo(karakter)
+            {
+                if(karakter >= 'A' && karakter <= 'Z')
+                    return true;
+
+                return false;
+            }
+
+            function odabrana_godina()
+            {
+                var godine = document.querySelectorAll("input[name='godina']");
+
+                for(i in godine)
+                {
+                    if(godine[i].checked)
+                        return true;    
+                }
+
+                greska.innerHTML = "Nije odabrana godina";
+                return false;
+            }
+
+            function ispravan_racun()
+            {
+                var racun = document.getElementById('racun').value.trim();
+
+        /*
+                r = new RegExp('^[0-9]{3}-[0-9]{6}-[0-9]{3}$');
+                if(r.test(racun) == false)
+                    {
+                        greska.innerHTML = "Neispravan broj racuna";
+                        return false;
+                    }
+                return true;
+        */
+
+
+                if(racun.length != 14)
+                {
+                    greska.innerHTML = "Neispravna duzina broja racuna";
+                    return false;
+                }
+
+                var prvi = racun.substring(0, 3);
+                var drugi = racun.substring(4, 10);
+                var treci = racun.substring(11, 14);
+
+                console.log(prvi, drugi, treci);
+
+                for(i = 0; i < prvi.length; i++)
+                {
+                    if(!cifra(prvi.charAt(i)))
+                    {
+                        greska.innerHTML = "Neispravan broj racuna";
+                        return false;
+                    }
+                }
+
+                for(i = 0; i < drugi.length; i++)
+                {
+                    if(!cifra(drugi.charAt(i)))
+                    {
+                        greska.innerHTML = "Neispravan broj racuna";
+                        return false;
+                    }
+                }
+
+                for(i = 0; i < treci.length; i++)
+                {
+                    if(!cifra(treci.charAt(i)))
+                    {
+                        greska.innerHTML = "Neispravan broj racuna";
+                        return false;
+                    }
+                }
+
+                if(racun.charAt(3) != '-' && racun.charAt(10) != '-')
+                    {
+                        greska.innerHTML = "Neispravan broj racuna";
+                        return false;
+                    }
+
+                    return true;
+            }
+
+            function ispravan_email()
+            {
+                var email = document.getElementById('email').value.trim();
+
+                if(email.indexOf('@') == -1)
+                {
+                    greska.innerHTML = "Neispravna email adresa";
+                    return false;
+                }
+
+                var drugi_deo = email.split('@')[1];
+
+                if(drugi_deo.indexOf('.') == -1 || drugi_deo.indexOf('.') == 0 || drugi_deo.indexOf('.') == drugi_deo.length - 1)
+                    {
+                        greska.innerHTML = "Neispravna email adresa";
+                        return false;
+                    }
+
+                return true;
+
+
+                /*
+                Domaci: Izuciti regularne izraze 
+                r = new RegExp("[a-z0-9]+@([a-z0-9]+\\.)+[a-z]+")
+                if(r.test(email) == false)
+                {
+                    greska.innerHTML = "Neispravna email adresa";
+                    return false;
+                }
+
+                */
+            }
+
+            function odabran_smer()
+            {
+                var smer = document.getElementById('smer');
+
+                if(smer.selectedIndex == 0)
+                {
+                    greska.innerHTML = "Nije odabran smer";
+                    return false;
+                }
+
+                return true;
+            }
+
+
+        </script>
+
+    </body>
+</html>
+            
