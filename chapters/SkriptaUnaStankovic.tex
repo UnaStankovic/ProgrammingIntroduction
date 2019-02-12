@@ -1,0 +1,69 @@
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass[a4paper]{article}
+
+\usepackage{color}
+\usepackage{listings}
+\usepackage{url}
+\usepackage[T2A]{fontenc} % enable Cyrillic fonts
+\usepackage[utf8]{inputenc} % make weird characters work
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{minted}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+
+\usepackage[english,serbian]{babel}
+%\usepackage[english,serbianc]{babel} %ukljuciti babel sa ovim opcijama, umesto gornjim, ukoliko se koristi cirilica
+
+%\usepackage[unicode]{hyperref}
+\hypersetup{colorlinks,citecolor=green,filecolor=green,linkcolor=blue,urlcolor=blue}
+
+%\newtheorem{primer}{Пример}[section] %ćirilični primer
+\newtheorem{primer}{Primer}[section]
+
+\begin{document}
+
+\title{Uvod u programiranje\\ \small{Skipta za kurs\\Uvod u programiranje kroz JavaScript\\}}
+
+\author{Una Stanković\\ una.stankovic@code.edu.rs}
+\date{10.~septembar 2018.}
+\maketitle
+\newpage
+
+U ovom tekstu predstavljene su teorijske osnove potrebne za savladavanje kursa $"$ Uvod u programiranje kroz JavaScript$"$. Najpre su navedene, ukratko, teorijske osnove računarstva i uvod kroz HTML i CSS, a kasnije se ulazi u rad sa JavaScript-om.  Ova skripta je obavezan materijal pri kursu i sa prezentacijama i kodovima formira celinu. Ova skripta sama po sebi nije dovoljna, samostalan rad i istraživanje je neizostavni deo procesa učenja. U slučaju da primetite greške pri čitanju rada ili imate bilo kakve nedoumice, predloge i sugestije javite se mejlom na adresu navedenu na prvoj strani. Materijali su kreirani prvenstveno na osnovu materijala korišćenih u nastavi na Matematičkom fakultetu, iz predmeta Uvod u Veb i Internet tehnologije, Programiranje za Veb, Mrežno računarstvo i Programiranje 1.  
+\newpage
+
+\tableofcontents
+
+\newpage
+\include{introduction}
+\newpage
+\include{web}
+\newpage
+\include{htmlcss}
+\newpage
+\include{javascript}
+\newpage
+\include{javascript_DOM}
+\newpage
+
+%\section{Sistemi za kontrolu verzije}
+%\subsection{Git}
+\subsubsection{examples}
+\newpage
+
+\section{Zaključak}
+\label{sec:zakljucak}
+
+\addcontentsline{toc}{section}{Literatura}
+%\appendix
+\bibliography{seminarski} 
+\bibliographystyle{plain}
+
+\appendix
+\section{Dodatak}
+
+
+\end{document}

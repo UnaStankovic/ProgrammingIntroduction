@@ -1,0 +1,1428 @@
+\section{JavaScript}
+\label{sec:javascript}
+
+JavaScript (skraćeno JS) je skript jezik, nastao $1995$. godine kao jezik za pregledač Netscape Navigator kako bi se omogućile programske sposobnosti veb stranicama. Osnovna uloga JavaScripta na Vebu je programiranje korisnickog interfejsa. ECMAScript standard je standard kojim se definiše ponašanje svih pregledača koji podržavaju JavaScrpit. Bitno je naglasiti da programi napisani jezikom Javascript se izvršavaju na klijentskoj mašini (iako postoje i upotrebe na serveru). Uz HTML i CSS, JS predstavlja jezgro tehnologija korišćenih na Vebu.
+
+\subsection{Osnovni konstrukti jezika}
+Pod osnovne konstrukte jezika podrazumevamo minimalan skup neophodnih znanja i pravila potrebnih za rad u određenom programskom jeziku. Osnovni konstrukti su idejno veoma slični, pa i isti, za većinu viših programskih jezika i dobrim poznavanjem osnova barem jednog programskog jezika višeg nivoa, moguće je dosta lako savladavanje i ostalih. U ovom delu biće predstavljeni osnovni konstrukti jezika vezani konkretno za JavaScript.\\\\
+JavaScript kod možemo ubaciti u postojeću HTML datoteku na naredna dva načina:
+\begin{itemize}
+    \item kao novu datoteku u headu: <script src='datoteka.js'></script> 
+    \item kroz HTML, na kraju body-ja, između <script> tagova.
+\end{itemize}
+
+\subsubsection{Promenljive i tipovi}
+Nakon što smo na odabrani način obezbedili prostor za unošenje JS koda, želimo da kreiramo neku promenljivu. Za JS se kaže da je slabo tipiziran jezik, to znači da tip promenljive koju kreiramo ne zadajemo eksplicitno, već je on određen tipom vrednosti koju ta promenljiva čuva. Veoma bitno je naglasiti da se sa promenom sadržaja promenljive menja i njen tip u toku izvršavanja programa. Ako bismo na primer u promenljivu $a$ stavili broj $13$, a kasnije stavili nisku $"$programer$"$, promenljiva $a$ bi najpre imala tip $number$, a potom $string$.\\\\
+Postoji nekoliko različitih tipova koje možemo smestiti u promenljivu, to su:
+\begin{enumerate}
+    \item Brojevi: 
+    \begin{itemize}
+        \item celi brojevi: ...,-10, -5, 0, 1, 7, 13,...
+        \item razlomljeni brojevi: 3.14, 9.81, ...
+        \item beskonačnosti: Infinity, -Infinity
+        \item NaN - not a number - označava da nešto nije broj, dobija se kao rezultat nedefinisanih operacija (0/0, Infinity/Infinity,...) 
+    \end{itemize}
+    \item Niske (stringovi) - predstavljaju nizove karaktera: $"$ Mi volimo programiranje $"$
+    \item Bulove vrednosti: True, False
+    \item Prazne vrednosti: null, undefined
+\end{enumerate}
+U nastavku će biti ukratko opisano kreiranje, korišćenje i osnovne operacije nad navedenim tipovima. U promenljive je moguće smestiti i složenije tipove kao što su nizovi, objekti i drugi, o kojima će, takođe, biti reči u nastavku.\\\\
+Kako bismo kreirali promenljivu u programu, navodimo ključnu reč $var$ (postoje jos neke ključne reči za kreiranje promenljivih, ali će o njima biti reči kasnije), a potom naziv promenljive, koji ne sme počinjati brojem ili biti ključna reč jezika.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var a;
+\end{lstlisting}
+Ovako smo samo kreirali promenljivu, ona za sada nema nikakvu vrednost u sebi, a samim time i njen tip nije definisan. Kada želimo da promenljivoj dodelimo neku vrednost to činimo korišćenjem naredbe dodele $*$, pa tako sa
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+a = 5;    
+\end{lstlisting}
+smeštamo celi broj 5 u promenljivu a, i njen tip postaje $number$.
+Moguće je i pri kreiranju odmah dodeliti vrednost promenljivoj $a$, ovaj postupak nazivamo inicijalizacijom ili dodeljivanjem početne vrednosti promenljivoj.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var a = 5;    
+\end{lstlisting}
+JavaScript dopušta još jednu stvar, a to je kreiranje promenljive bez navođenja ključne reči var ukoliko bismo joj odmah dodelili vrednost. Napomena: ovo se ne smatra dobrom praksom, a ukoliko bi stajalo samo b bez $var$ i bez $*7$ program bi izbacio grešku.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+b = 7;    
+\end{lstlisting}
+Kada se dodeljuju nazivi promenljivim treba obratiti pažnju da nazivi nisu ključne reči jezika, kao i da ne počinju brojem.\\\\
+
+\subparagraph{Brojevi}
+U JavaScript-u možemo predstaviti cele brojeve - int: -1, -32, 0, 13, 173,itd., kao i razlomljene brojeve - float: 3.14, 9.81,itd..
+Da bismo broj smestili u neku promenljivu koristimo operator dodele.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var a = 5; 
+\end{lstlisting}
+Osim operatora dodele $=$, postoje i drugi operatori. Najčešće operatore primenjujemo nad brojevnim (numeric) vrednostima. Nad numeričkim vrednostima definisani su:
+\begin{itemize}
+    \item Unarni $-$: $-4$
+    \item Binarni $+$, $-$, $*$, $/$, $\%$, $=$, $<$, $>$, $<=$, $>=$
+\end{itemize}
+Ovi operatori imaju standarne prioritete. Operator $\%$ predstavlja ostatak pri deljenju dva broja.\\
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var c = a + b; //12
+\end{lstlisting}
+Osim ovih binarnih operatora postoje i binarni operatori za proveru jednakosti $==$, nejednakosti $!=$, za proveru jednakosti sa proverom tipova $===$, operatori koji vrše konjunkciju $\&\&$ i disjunkciju $||$, kao i složeni operatori ++(unarni), +=, -=, *=,itd.. O njima će biti više reči u nastavku. \\\\
+Da bismo broj zapisali sa određenim brojem decimala koristimo metod\footnote{Metodi su, za sad, crne kutije koje nam omogućavaju da vršimo određene promene nad promenljivim. U nastavku će biti detaljnije obrađene.} $toFixed()$, kome kao jedini argument šaljemo broj decimala koji želimo da zadržimo. 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var pi = 3.1415;
+pi = pi.toFixed(2); // pi = 3.14
+\end{lstlisting}
+\paragraph{Pisanje komentara}
+Pisanje komentara predstavlja dobru praksu i može biti od velike pomoći programeru. Najčešće se radi nad nasleđenim kodovima, koje su pisali programeri pre nas, pa tako komentari mogu dosta olakšati rad i razumevanje koda. Osim toga, vrlo često prilikom vraćanja na ranije pisane kodove, dešava se da nismo sigurni kako smo nešto napisali, iako nam je u datom momentu to delovalo sasvim jednostavno i logično, pa nam komentari mogu pomoći da se prisetimo šta je bila glavna ideja. U početničkom programiranju, komentari pomažu kako bi se neki koncepti utvrdili, dodatno razjasnili i definisali, pa autor predlaže pisanje komentara što češće.\\\\ 
+Komentari mogu biti: linijski i blokovski. Linijski komentari, kao što im i samo ime kaže imaju doseg jedne linije (koja ne bi trebalo prema konvenciji da sadrži više od 80 karaktera!) i pišu se nakon znaka $//$. Blokovski komentari imaju doseg od više linija i pišu se između $/**/$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+//ovo je linijski komentar
+/*Ovo 
+je 
+blokovski*/
+var c = a + b; //12
+\end{lstlisting}
+
+\paragraph{Konzola}
+Konzola omogućava programeru lakše debagovanje koda, lakše pronalaženje grešaka, izbacuje greške, upozorenja i obaveštenja.
+U konzoli, takođe, možemo ispisati rezultate nekih izvršavanja programa, vrednosti i tipove promenljivih itd.\\
+Da bismo to postigli, moramo najpre otvoriti konzolu, to se radi uz pomoć $F12$. Konzola je, najverovatnije, trenutno prazna. Kako bismo ispisali neki tekst u nju koristimo neke od sledećih funkcija:
+\begin{itemize}
+    \item console.log()
+    \item console.warn()
+    \item console.error()
+    \item console.info()
+\end{itemize}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var c = a + b; //12
+console.log(c); //ovime ispisujemo 12 u konzolu
+\end{lstlisting}
+\textbf{Operator typeof} služi kako bi se ispisao tip promenljive.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var c = a + b; //12
+console.log(typeof c); //ispis tipa promenljive c u konzolu - numeric
+\end{lstlisting}
+Možemo nadovezati i više argumenata pri ispisu u konzolu odvajajući ih zarezom. Korišćenjem zareza kreira se razmak između argumenata.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var c = a + b; //12
+console.log("Vrednost zbira je", c); 
+\end{lstlisting}
+
+\subparagraph{Prazne vrednosti}
+Pod prazne vrednosti ubrajamo $null$ i $undefined$. One služe da označe odsustvo postojanja vrednosti. U daljem tekstu, susretaćemo se sa ovim vrednostima.
+
+\subsubsection{Naredbe za kontrolu toka}
+Osnovni elementi za opis izračunavanja u programima nazivaju se naredbe (već smo videli naredbu dodele).
+Naredbe za kontrolu toka omogućavaju različite načine izvršavanja programa, u zavisnosti od vrednosti promenljivih. Naredbe za kontrolu toka mogu biti:
+\begin{itemize}
+\item naredbe grananja i 
+\item petlje.
+\end{itemize}
+Osnovni oblik naredbe koji se javlja je takozvana naredba izraza (ova vrsta naredbi obuhvata i naredbu dodele i naredbu poziva funkcije).
+Naime, svaki izraz završen karakterom ; je naredba. Na primer:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+3 + 4*5;
+n = 3;
+c++; //uvecanje promenljive za 1, isto kao c = c + 1
+f();	
+\end{lstlisting}
+Nekada, želimo da više različitih naredbi grupišemo i da ih tretiramo kao jednu jedinstvenu naredbu. Vitičaste zagrade { i } se koriste da grupišu naredbe u složene naredbe, odnosno blokove, i takvi blokovi se mogu koristiti na svim mestima gde se mogu koristiti i pojedinačne naredbe. 
+
+\subparagraph{Naredbe grananja} (ili naredbe uslova), na osnovu vrednosti nekog izraza, odreduju naredbu (ili grupu naredbi) koja će biti izvršena.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+if (izraz)
+    naredba1
+else
+    naredba2
+\end{lstlisting}
+Konkretno, na primeru kroz jezik JavaScript:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+//primer ispisuje veci od dva broja
+if (a > b)
+    console.log(a);
+else
+    console.log(b);
+\end{lstlisting}
+Naredbe $naredba1$ i $naredba2$ su ili pojedinačne naredbe (kada se završavaju simbolom ;) ili blokovi naredbi zapisani između vitičastih zagrada (na kraju kojih ne ide ;).
+Deo naredbe $else$ je opcioni, odnosno, ne mora postojati, pa se može napisati samo $if$ grana.
+Izraz $izraz$ predstavlja logički uslov:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+if (5 > 7)
+   a = 1;
+else
+   a = 2;
+
+
+if (7)
+    a = 1;
+else 
+    a = 2;
+    
+a = 3;
+if (a = 0)
+    console.log("a je nula\n");
+else
+    console.log("a nije nula\n");
+\end{lstlisting}
+
+
+Često možemo imati višestruke odluke, za šta koristimo $else\ if$ konstrukciju oblika:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+if (izraz1)
+    naredba1
+else if (izraz2)
+    naredba2
+else if (izraz3)
+    naredba3
+else
+    naredba4
+\end{lstlisting}
+
+\begin{primer}
+Primer $else\ if$ naredbe.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+if (a > 20)
+   console.log("A je vece od 20\n");
+else if (a > 10)
+   console.log("A je vece od 10\n");
+else if (a < -20)
+   console.log("A je manje od -20\n");
+else if (a < -10)
+   console.log("A je manje od -10\n");
+else
+   console.log("A pripada intervalu [-10, 10]\n");
+\end{lstlisting}
+\end{primer}
+
+Ternarni operator je uslovni operator oblika: $uslov\ ?\ ispunjen\ :\ inace$ i ima isto značenje kao i if else. 
+\begin{primer} Zadatak je smestiti veći od dva broja u promenljivu $x$. Prvi if else ima isto značenje kao i ternarni operator koji smešta veći broj u $x$. Ako je $a$ vece od $b$ postavlja se $x$ na $a$, inače postavlja se na $b$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+if (a > b)
+   x = a;
+else
+   x = b;
+x = (a > b) ? a : b;
+\end{lstlisting}
+\end{primer}
+Osim $if$-$else$ postoji i naredba $switch$, koja se takođe može koristiti za višestruko odlučivanje i ima opšti oblik:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+switch (izraz) {
+  case konstantan_izraz1: 
+  	naredbe1;
+  	break;
+  case konstantan_izraz2: 
+  	naredbe2;
+  	break;
+  ...
+  default: 
+    naredbe_n;
+    break;
+}
+\end{lstlisting}
+$Case$ predstavljaju slučajeve, koji ako su ispunjeni, izvršava se naredba desno od dvotačke. U slučaju da nijedan od case-ova nije ispunjen izvršava se default, ako default nije postavljen i nijedan od case-ova nije ispunjen kroz switch će se samo proći.
+
+\subparagraph{Petlje}(ciklusi ili repetitivne naredbe) uzrokuju da se određena
+naredba (ili grupa naredbi) izvršava više puta (sve dok je neki logički uslov ispunjen).
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+while(izraz)
+   naredba
+   
+while (i < j)
+   i++;
+   
+while (1)
+   i++;
+   
+for (izraz1; izraz2; izraz3)
+   naredba
+
+izraz1;
+while (izraz2) {
+   naredba
+   izraz3;
+}
+
+for(i = 0; i < n; i++)
+...
+\end{lstlisting}
+
+Postoji još jedan vid petlje, to je petlja do-while.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+do {
+naredbe
+} while(izraz)
+\end{lstlisting}
+Telo (blok naredbi naredbe) naveden izmedu vitičastih
+zagrada se izvršava i onda se izračunava uslov (izraz $izraz$).
+Ako je on tačan, telo se izvršava ponovo i to se nastavlja sve
+dok izraz $izraz$ nema vrednost nula (tj. sve dok njegova
+istinitosna vrednost ne postane netačno).
+Za razliku od petlje while, naredbe u bloku ove petlje se uvek
+izvršavaju barem jednom. Navođenje vitičastih zagrada pri korišćenju naredbi za kontrolu toka smatra se dobrom programerskom praksom.\\\\
+
+U nekim situacijama pogodno je napustiti petlju ne zbog toga
+što nije ispunjen uslov petlje, već iz nekog drugog razloga. To
+je moguće postici naredbom break:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+for(i = 1; i < n; i++) {
+    if(i > 10)
+       break;
+    ...
+}
+\end{lstlisting}
+Naredbom continue se prelazi na sledeću iteraciju u petlji.
+Na primer,
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+for(i = 0; i < n; i++) {
+   if (i % 10 == 0)
+      continue; /* preskoci brojeve deljive sa 10 */
+   ...
+}
+\end{lstlisting}
+Petlje i uslovne naredbe se mogu kombinovati, korišćenjem jednih u drugima i slično.
+U slučaju ugnježdenih petlji, naredbe break i continue imaju
+dejstvo samo na unutrašnju petlju.
+\subparagraph{Bulove vrednosti}
+Pod Bulovim vrednostima smatramo $true$ i $false$, odnosno tačno i netačno, $1$ i $0$. 
+Ako bismo hteli da kreiramo beskonačnu petlju (iako se to nikako ne preporučuje) bio bi nam potreban uslov koji uvek važi:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+while(true){
+   //radi nesto zauvek
+}
+if(false)
+    console.log("Ovo se nece nikad ispisati");
+if(true)
+    console.log("Ovo ce se uvek ispisati");
+var a = 10;
+var b = -10;
+if((a != b) == true){
+    console.log("uslov da su a i b razliciti vazi");
+}
+\end{lstlisting}
+Ako bismo hteli da nadovežemo više uslova, ili da kažemo da želimo da se nešto izvrši ako je bilo koji od uslova ispunjen koristimo binarne operatore $\&\&$ i $||$, odnosno $"$logičko i$"$ i $"$logičko ili$"$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var a = 10;
+if(a > 0 && a%2==0)
+   console.log("a je paran broj veci od 0.);
+var b = -10;
+if(a > 0 || b > 0 )
+   console.log("Ako je ili a ili b vece od 0 ovo ce se ispisati);
+\end{lstlisting}
+Napomena: uslova može biti više od 2.
+
+
+\subparagraph{Prozori}
+Često se javlja potreba da korisnika stranice obavestimo o nečemu. Ono što nam JS omogućava je da na jednostavan način uz pomoć \textbf{alert} funkcije, korisniku jasno prikažemo poruku, koju ne može da ignoriše. Jedini argument ove funkcije je niska koja se prikazuje korisniku. 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+alert("Ovo je iskacuce obavestenje");
+\end{lstlisting}
+Nekada se od korisnika zahteva da na neko pitanje odgovori pozitivno ili negativno, za šta se koristi funkcija \textbf{confirm}. Argument ove funkcije je isti kao kod $alert$. 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+confirm("Da li ste sigurni?");
+\end{lstlisting}
+Ukoliko bi se od korisnika očekivao unos nekog teksta, za to može da se koristi funkcija \textbf{prompt}. Argumenti ove funkcije su niska koja se ispisuje u prozoru i podrazumevana vrednost polja za unos. 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+prompt("Unesite broj godina:");
+\end{lstlisting}
+
+\newpage
+\subparagraph{Zadaci- Uvodna sekcija}
+
+\begin{primer}
+Napisati program koji za dva cela broja ispisuje najpre
+njihove vrednosti, a zatim i njihov zbir, razliku, proizvod, ceo deo pri deljenju
+prvog broja drugim brojem i ostatak pri deljenju prvog broja drugim brojem. 
+\end{primer}
+
+
+\begin{primer}
+Napisati program koji za realne vrednosti dužina
+stranica pravougaonika ispisuje njegov obim i površinu. Ispisati tražene vrednosti
+zaokružene na dve decimale. 
+\end{primer}
+
+\begin{primer}
+Napisati program koji za tri cela broja ispisuje
+njihovu artimetičku sredinu zaokruženu na dve decimale.
+\end{primer}
+
+\begin{primer}
+Napisati program koji za dva cela broja a i b dodeljuje
+promenljivoj rezultat vrednost 1 ako važi uslov:
+a) a i b su različiti brojevi
+b) a i b su parni brojevi
+c) a i b su pozitivni brojevi, ne veći od 100
+U suprotnom, promenljivoj rezultat dodeliti vrednost 0. Ispisati vrednost promenljive
+rezultat.
+\end{primer}
+
+\begin{primer}
+Napisati program koji za dva cela broja ispisuje
+njihov maksimum.
+\end{primer}
+
+\begin{primer}
+Napisati program koji za dva cela broja ispisuje
+njihov minimum.
+\end{primer}
+
+\begin{primer}
+Napisati program koji za tri cela broja ispisuje zbir
+pozitivnih.
+\end{primer}
+
+\begin{primer}
+U prodavnici je organizovana akcija da svaki kupac dobije
+najjeftiniji od tri artikla za jedan dinar. Napisati program koji za cene
+tri artikla izračunava ukupnu cenu, kao i koliko dinara se uštedi zahvaljujući
+popustu.
+\end{primer}
+
+
+\begin{primer}
+Napisati program koji za redni broj dana u nedelji ispisuje
+ime odgovarajućeg dana. U slučaju pogrešnog unosa ispisati odgovarajuću
+poruku. Napomena: uraditi zadatak i korišćenjem case
+\end{primer}
+
+\begin{primer}
+Napisati program koji za uneti karakter ispituje da li je
+samoglasnik.
+\end{primer}
+
+\begin{primer}
+Napisati program koji 5 puta ispisuje tekst $"$Mi volimo da
+programiramo$"$.
+\end{primer}
+
+\begin{primer}
+Napisati program koji preko prompta učitava ceo broj n i ispisuje n puta
+tekst $"$Mi volimo da
+programiramo$"$.
+\end{primer}
+
+\begin{primer}
+Napisati program koji učitava pozitivan ceo broj n a potom
+ispisuje sve cele brojeve od 0 do n.
+\end{primer}
+
+\begin{primer}
+Napisati program koji učitava dva cela broja n i m ispisuje
+sve cele brojeve iz intervala [n, m].\\
+(a) Koristiti while petlju.\\
+(b) Koristiti for petlju.\\
+(c) Koristiti do-while petlju.\\
+\end{primer}
+
+\begin{primer}
+Napisati program koji učitava ceo pozitivan broj i izračunava
+njegov faktorijal. 
+\end{primer}
+
+\begin{primer}
+Preko prompta unose se realan broj x i ceo pozitivan
+broj n. Napisati program koji izračunava n-ti stepen broja x.
+\end{primer}
+
+\begin{primer}
+Pravi delioci celog broja su svi delioci sem jedinice i samog
+tog broja. Napisati program za ceo pozitivan broj x ispisuje sve njegove
+prave delioce.
+\end{primer}
+
+\begin{primer}
+Promptom se unosi ceo pozitivan broj n, a potom i n celih
+brojeva. Izračunati i ispisati zbir onih brojeva koji su neparni i negativni.
+\end{primer}
+
+\begin{primer}
+Program učitava realan broj x i ceo pozitivan broj n.
+Napisati program koji izračunava i ispisuje sumu $S=x + 2*x^2 + 3*x^3 + ..$.
+\end{primer}
+
+\begin{primer}
+Za unetu pozitivnu celobrojnu vrednost n napisati programe
+koji ispisuju odgovarajuće brojeve. Pretpostaviti da je unos korektan.\\
+(a) Napisati program koji za unetu pozitivnu celobrojnu vrednost n ispisuje
+tablicu množenja.\\
+(b) Napisati program koji za uneto n ispisuje sve brojeve od 1 do $n^2$ pri čemu se ispisuje po n brojeva u jednoj vrsti.\\
+\end{primer}
+
+\begin{primer}
+Program učitava ceo pozitivan broj n, a potom n realnih
+brojeva. Odrediti koliko puta je prilikom unosa došlo do promene znaka. Ispisati
+dobijenu vrednost.
+\end{primer}
+
+\begin{primer}
+Kreirati sajt prodavnice u kome svaki kupac određuje sam cenu artikla. U prodavnici se nalazi n artikala čije cene su realni brojevi. Na stranici treba da postoji naziv prodavnice, kao i spisak dostupnih artikala sa slikama, a potom da se uz pomoć prompta učita broj proizvoda koje korisnik želi da kupi. Nakon toga, unose se naziv proizvoda koji korisnik zeli da kupi i cena koju zeli. Za unet broj proizvoda treba u konzoli ispisati naziv proizvoda i ponuđenu cenu, odrediti ukupnu sumu i cenu najjeftinijeg artikla.
+\end{primer}
+\newpage
+
+\subsubsection{Niske}
+Niske ili stringovi, predstavljaju nizove karaktera. U promenljivu možemo smestiti pojedinačni karakter, a možemo i čitave reči ili rečenice. \\
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var a = 'abc'; //a je niska
+a = 'a'; // a je sada karakter
+\end{lstlisting}
+Niske se mogu navoditi između $"$ (dvostrukih), $'$ (jednostrukih), kao i $`$ iskošenih navodnika (šablon-literali, engl. template literals).  
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var niska1 = "Ovo je prva niska.";
+var niska2 = "Ovo je druga niska";
+var niska3 = `Ovo je niska
+              neka treca`;
+\end{lstlisting}
+Primetimo da šablon literali poštuju novi red. Važno je naglasiti da se mora obratiti pažnja na to da navodnici budu pravilno upareni. Naime, program se neće izvršavati na predviđeni način ukoliko, na primer, nakon dvostrukog navodnika pokušamo nisku da zatvorimo jednostrukim navodnikom.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var niska1 = "Ovo je prva niska.";
+var niska2 = "Ovo je druga niska";
+var niska3 = "Ova niska nije pravilna';
+\end{lstlisting}
+
+Ukoliko želimo da unutar niske imamo prave navodnike (na primer kod citata), onda možemo ili upotrebiti drugi vid navodnika ili koristiti escape sekvencu \textbackslash. Kako bismo nadovezali dve niske koristimo operator $+$, a ovaj postupak se naziva $konkatenacija$. Treba obratiti pažnju na to da nadovezivanjem niski sa $+$, ne dobijamo razmak između stringova kao kod korišćenja $,$. Da bismo dobili razmak moramo ga dodati kao još jednu nisku, a kako bismo dobili novi red koristimo \textbackslash$n$. 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+console.log(niska1 + niska2); 
+niska1 = 'Ovo je neka niska.';
+niska1 = 'Kaze Bob: "Alice ne kradi"';
+console.log(niska1);
+niska2 = 'Kaze Alice: \'Sta cu moram\' \nAlice nikad nije imala \nnameru
+da ukradene podatke zloupotrebi.';
+console.log(niska2); 
+niska2 = 'It\'s mine';
+console.log(niska2);
+niska2 = `Kaze Alice:
+          'Necu vise krasti'
+          Ukrala sam samo ${2 + 2} jabuke.`;
+\end{lstlisting}
+Ako bismo pokušali da na niske nadovežemo numeričke vrednosti, one bi se ponašale kao niske, osim ako bismo ih izdvojili zagradama.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+console.log("Zbir 1 i 2 je: " + 1 + 2); //12
+console.log("Zbir 1 i 2 je: " + (1 + 2)); //3
+console.log(`Zbir 1 i 2 je: ${1 + 2}`);  //3
+\end{lstlisting}
+Primetimo da pri korišćenju šablon literala ono što želimo da se sračuna navodimo između $\$\{\}$.
+Nekada želimo da nisku posmatramo kao broj, da bismo eksplicitno kastovali (izvršili pretvaranje, eksplicitnu konverziju) niske u broj, koristimo funkcije $parseInt()$ i $parseFloat()$, koje prave ceo broj ili razlomljen broj redom. U slučaju da niska osim brojeva sadrži i neke druge karaktere, biće pokupljeni samo brojevi koji se nalaze na početku niske. Na primer, za nisku $"$123.292ajkula$"$ parseInt će uzeti samo broj 123 (zaključno sa tačkom, jer je Int ceo broj), parseFloat će uzeti 123.292, a ostatak će biti ignorisan. Ako bi niska bila $"$a123.292$"$ ništa ne bi bilo pokupljeno i funkcije bi vratile NaN ($"$Not a Number$"$). 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var p = "5";
+console.log(typeof p); //string
+console.log(typeof parseInt(p)); //number
+\end{lstlisting}
+Poređenje niski vrši se leksikografski uz pomoc operatora $>$,$<$,$>=$ i $<=$, kao i uz pomoć operatora $==$, $!=$ ili $===$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+if("ana" >= "ane"){
+   console.log("ana");
+}
+else{
+   console.log("ane");
+}
+\end{lstlisting}
+
+Metodom toString() vršimo eksplicitno konvertovanje u nisku.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var br_u_str = 102;
+console.log("Tip promenljive je :", typeof br_u_str);
+br_u_str = br_u_str.toString();
+console.log(br_u_str);
+console.log("Metod toString() vraca",typeof br_u_str);
+\end{lstlisting}
+
+\subparagraph{Implicitna konverzija}
+JavaScript je programski jezik takav da može da "progura" razne konstrukte, sa ciljem da program izvrši, zbog toga se često javljaju neki više ili manje očekivani rezultati. Implicitna konverzija je postupak pri kom program sam vrši konvertovanje nekog tipa u neki drugi tip kako bi dobio nešto što je njegovim internim mehanizmima smisleno. Prilikom primenjivanja konkatenacije nad brojem i niskom, broj će biti konvertovan u nisku.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+//zakomentarisati sve linije pa redom oslobadjati 
+var conv = '5' + 3; //53
+conv = 3 + '3'; //33
+conv = 5 * null; //0
+conv = '7' - 4; //3 
+conv = !""; //true 
+console.log(conv);
+console.log(typeof conv);
+\end{lstlisting}
+Kako bismo proverili da li su dve vrednosti jednake koristimo $"$==$"$, ali da bismo bili precizniji i proverili da li su vrednosti koje poredimo i istog tipa moramo koristiti $"$===$"$. Važnost ovog koncepta se jasno vidi u narednom primeru:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+console.log(10 == '10'); //true
+console.log(10 === '10'); //false
+\end{lstlisting}
+
+Vrlo često pri programiranju želećemo da dobijemo dužinu neke niske i potom pristupimo nekom pojedinačnom karakteru. To se lako postiže korišćenjem svojstva $length$ u vidu $niska.length$, a potom uz pomoć $charAt()$ pristupamo pojedinačnim karakterima niske.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+//Pristup pojedinacnim karakterima niske
+var niska = "Programiranje";
+console.log("Svojstvo length daje duzinu niske", niska.length);
+//prolaskom kroz petlju obilazimo sve karaktere niske redom
+for(i=0; i<niska.length;i++){
+    console.log(niska.charAt(i));	
+}
+//Obratiti paznju da brojanje niske krece od 0
+console.log("5 karakter niske", niska.charAt(4));
+\end{lstlisting}
+Treba primetiti da brojanje karaktera u niski kreće od 0, pa tako 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+P R O G R A M I R A  N  J  E
+0 1 2 3 4 5 6 7 8 9 10 11 12
+\end{lstlisting}
+Svi karakteri koje je moguće zapisati nalaze se u takozvanoj $ASCII$ tabeli i imaju svoje kodne cifre, te cifre nam nekada mogu biti od koristi. Njima se pristupa korišćenjem $charCodeAt()$. Da bismo uradili obrnuto, tj. izvršili konverziju broja u karakter koristimo $fromCharCode()$. Ako bismo želeli da uklonimo beline sa krajeva (i sa početka i sa kraja niske), koristimo $trim()$. 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var voce = "  Ananas  "
+console.log(voce.charCodeAt(2)); //A --> 65
+console.log(String.fromCharCode(97)); //a
+voce = voce.trim();
+console.log(voce);     
+\end{lstlisting}
+Da bismo karaktere neke niske smanjili ili uvećali, koristimo metode $toUpperCase()$ ili $toLowerCase()$ u zavisnosti od toga šta želimo postići. Primetimo da se mogu primeniti i nad pojedinačnim karakterom.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+console.log(voce.toLowerCase()); //ananas
+console.log(voce.toUpperCase()); //ANANAS
+\end{lstlisting}
+\subparagraph{Dodatne metode za rad sa niskama}
+Metode nam omogućavaju da izvršimo neke akcije nad objektima. Postoji puno metoda za rad sa niskama, a u ovom delu biće navedene samo neke od njih. \\\\
+U prethodnom delu već su predstavljene $charAt()$ i $charCodeAt()$. Prva nam daje (kaže se i vraća) karakter na poziciji koju pošaljemo kao argument, a druga nam vraća kodnu vrednost karaktera, koji se nalazi na poziciji prosleđenoj kao argument. Osim njih neki od istaknutih metoda su:
+\begin{itemize}
+    \item \textbf{concat()} - nadovezuje dve niske i vraća novu nisku ne menjajući stare,
+    \item \textbf{includes()} - proverava da li niska sadrži određen karakter ili reč, kao drugi argument se šalje od koje pozicije početi sa traženjem,  
+    \item \textbf{indexOf()} - vraća indeks prvog pojavljivanja niske koju šaljemo kao argument funkcije ili $-1$ ako ta niska nije pronađena (napomena: lastIndexOf() radi isto samo vraća poslednji), 
+    \item \textbf{repeat()} - vraća string ponovljen onoliko puta koliko je navedeno u zagradi, 
+    \item \textbf{replace()} - vraća novi string u kome je reč navedena kao prvi argument, zamenjena rečju navedenom kao drugi argument, 
+    \item \textbf{search()} - pretražuje string za rečju koja je navedena kao argument i vraća poziciju od koje reč počinje u niski ili vraća $-1$ ako reč nije pronađena,  
+    \item \textbf{slice()} - iz niske izdvaja deo niske počevši od indeksa naznačenog kao prvi argument, do indeksa naznačenog kao drugi, 
+    \item \textbf{substr()} - iz niske izdvaja podnisku počevši od indeksa navedenog kao prvi argument u dužini navedenoj kao drugi argument.
+\end{itemize}
+
+Navedimo sada neke od primera primena ovih metoda.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var niska1 = "Danas je.";
+var niska2 = "lep dan.";
+var niska3 = niska1.concat(niska2);
+console.log(niska3);
+//hocemo da provermo da li niska3 sadrzi rec dan
+console.log("Da li niska sadrzi rec dan", niska3.includes("dan"));
+console.log("Da li niska sadrzi rec ana", niska3.includes("ana"));
+console.log("Indeks prvog pojavljivanja reci dan", niska3.indexOf("dan"));
+console.log("Indeks prvog pojavljivanja reci ana", niska3.indexOf("ana"));
+console.log(niska1.repeat(4));
+var niska4 = niska2.replace("dan", "covek");
+console.log(niska4);
+console.log("Na kom indeksu pocinje rec dan", niska3.search("dan"));
+console.log("Na kom indeksu pocinje rec ana", niska3.search("ana"));
+console.log(niska3.slice(1,4));
+console.log(niska3);
+console.log(niska3.substr(1,4));    
+\end{lstlisting}
+
+
+\subparagraph{Zadaci - Niske}
+\begin{primer}
+Za unetu nisku proveriti da li sadrži broj i ispisati u konzoli. Napomena: koristiti $ASCII$ tabelu.
+\end{primer}
+
+\begin{primer}
+Zameniti sva pojavljivanja slova $a$ u niski unetoj preko prompta slovom $b$. Na primer, $"$Danas je lep dan.$"$ sa $"$Dbnbs je lep dbn.$"$. Napomena: uraditi kreiranjem nove niske.
+\end{primer}
+
+\begin{primer}
+Proveriti da li je reč uneta preko prompta palindrom. Palindromi su reči, rečenice koji se mogu čitati unapred i unazad i imaju isto značenje. Primeri za reči: Ana, bob, dovod, kapak, kajak, kuk, melem, neven, oko, pop, potop, ratar, teret. 
+\end{primer}
+
+\begin{primer}
+Program učitava reč. Napisati
+program koji proverava da li se od karaktera unete reči može napisati reč $Zima$.
+\end{primer}
+
+\begin{primer}
+Program učitava ceo broj n, a zatim i n karaktera. Napisati
+program koji proverava da li se od unetih karaktera može napisati reč $Zima$.
+\end{primer}
+
+\begin{primer}
+Napisati program koji učitava karaktere sve do kraja ulaza (do unosa broja 0), a potom ispisuje broj velikih slova, broj malih slova, broj cifara, broj belina i zbir unetih cifara. 
+\end{primer}
+
+\begin{primer}
+Napisati program koji za unetu nisku proverava da li sadrži reč $ima$.
+\end{primer}
+
+\begin{primer}
+Kreirati sajt zdrave hrane. Sajt treba da sadrži naziv, logo, navigacioni bar (O nama, Proizvodi, Kontakt). 
+\begin{itemize}
+    \item Stranica o nama treba da sadrži: sliku, tekst o radnji, adresu i ostale relevantne informacije. 
+    \item Kreirati potom stranicu sa proizvodima koja treba da sadrži najpre listu proizvoda (kategorije, pa potom po nekoliko proizvoda), a ispod toga treba da se nalaze neki od popularnih proizvoda sa slikama i cenama na 100 grama. 
+    \item Stranica za kontakt treba da sadrži kontakt formu (Ime, email, prostor za poruku, itd.).  
+\end{itemize}
+
+Nakon toga koristeci prompt, alert i confirm za sajt sa zdravom hranom napraviti da se za 5 korisnika unese: ime, ocena sajta i predlog novog naziva zdrave hrane. Proveriti ispravnost unetog podatka, ako podatak nije pravilno unet ponuditi korisniku da ponovo unese podatak. Ako jeste, unosi se naredni. Unos ocena dodati na zbir. U konzoli ispisati predlog korisnika u formatu Ime : predlog. Na kraju, ispisati prosečnu ocenu sajta.
+\end{primer}
+\newpage
+
+\subsubsection{Nizovi}
+Nizovi predstavljaju kolekcije elemenata nekog tipa. U JavaScriptu, za razliku od većine drugih programskih jezika, dozvoljeno je da ti elementi budu različitih tipova. Novi niz kreiramo korišćenjem uglastih zagrada. Ako navedemo samo uglaste zagrade, onda se kreira prazan niz, odnosno, niz koji ne sadrži elemente. Elemente u nizu navodimo pisanjem između uglastih zagrada i odvajamo ih zarezima. Indeksiranje nizova počinje od 0. Indeksiranje nam je veoma važno kako bismo mogli da lako pristupimo vrednosti koju čuva neki element niza. Elementima niza pristupamo navođenjem naziva niza, a potom u uglastim zagradama indeksa kojem želimo da pristupimo. Opisani postupci predstavljeni su kroz primer u nastavku:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var niz = [];
+var niz2 = [1,2,3,4,5];
+var niz3 = ["niska1", "niska2"];
+var niz4 = [1, "neki tekst", "!", 3.14];
+niz4["kljuc"] = 5;
+console.log(niz2[3]);
+console.log(niz3[0]);
+console.log(niz4[3]);
+console.log(niz4);
+\end{lstlisting}
+Element niza može biti i neki drugi niz. Kao što se vidi u primeru iznad, osim što nizovi mogu čuvati različite tipove (niske, brojeve, razlomljene brojeve, karaktere), moguće je indeksiranje elemenata niza različitim tipovima. Ukoliko indeksi elemenata nisu eksplicitno navedeni, elementi niza su podrazumevano indeksirani celim brojevima počevši od 0. Kao posledica činjenice da nizovi mogu čuvati elemente različitih tipova, za element niza možemo postaviti i drugi niz, čime je moguće kreiranje matrica, pa tako:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+//elementi niza mogu biti drugi nizovi
+var niz1 = [niz2,0,1,4];
+console.log("Niz 1:",niz1);
+//kreiranje matrice
+var matrica = [];
+matrica[0] = [1,2];
+matrica[1] = [3,4];
+console.log(matrica[0][1]);
+\end{lstlisting}
+Da bismo obišli celu matricu, neophodno je da prođemo kroz sve njene elemente. Odnosno, da krećući se kroz elemente niza redom obiđemo svaki od elemenata. Kako bismo to učinili na najjednostavniji način, neophodno je da koristimo dvostruku $for$ petlju. Spoljašnja petlja bi se kretala po vrstama matrice, a unutrašnja po kolonama. Veličinu niza, kao i kod niski, uzimamo korišćenjem svojstva $length$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+console.log(matrica.length);
+for(i = 0;i<matrica.length;i++){
+    for(j = 0; j<matrica.length;j++){
+         console.log("element u vrsti",i,"i koloni",j,"je:",matrica[i][j]);
+    }
+}
+\end{lstlisting}
+Treba obratiti pažnju da u primeru gore podrazumevamo da je matrica kvadratna (sa istim brojem vrsta i kolona). Kako bismo obišli matricu koja ima različit broj vrsta i kolona treba da obratimo pažnju na veličinu vrste i veličinu kolone. Čitaocu se ostavlja radi vežbe i boljeg razumevanja funkcionisanja matrica i nizova da isproba obilaske matrice za različit broj vrsta i kolona.\\\\
+Da bismo nekom elementu niza promenili vrednost dovoljno je da ga nađemo po indeksu, a potom da naredbom dodele navedemo novu vrednost. Važno je istaći da ta nova vrednost ne mora biti istog tipa.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var brojevi = [1,2,3,4];
+brojevi[3] = 6;
+console.log(brojevi); //1,2,3,6
+brojevi[3] = "Sest";
+console.log(brojevi); //1,2,3,"Sest"
+\end{lstlisting}
+
+Elemente niza možemo postaviti eksplicitno bez obzira na to da li neke indekse izostavljamo, pa je tako moguće postaviti vrednosti $brojevi[5]$ i $brojevi[7]$, a potom ispisati sve elemente niza. Za one indekse koje smo preskočili $console.log$ će ispisati $empty$.
+
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+brojevi[5] = 15;
+brojevi[7] = 99;
+console.log(brojevi); //[1,2,3,"Sest",empty,15,empty,99]
+\end{lstlisting}
+
+Nizovi i petlje se dosta dobro kombinuju, u smislu da sa petljama lako obilazimo elemente niza, kao što je i viđeno u prethodnim primerima. Kod $for$ petlje primetili smo da promenljiva $i$ dobija vrednost indeksa svakog od elemenata niza. Osim standardne $for$ petlje, u $JavaScript-u$ moguće je koristiti i poseban vid $for$ petlje, tzv. $for-in$ petlju. Ova petlja funkcioniše na isti način kao standardna $for$ petlja prolazeći kroz elemente redom, ali je njen zapis dosta kraći. Osim toga, $for-in$ petlja će proći samo kroz elemente koji postoje (preskočiće indekse u nizu koji ne čuvaju nikakvu vrednost!). Ovakvo ponašanje se najbolje oslikava kroz primer.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+for(i=0;i < brojevi.length; i++){
+	console.log(brojevi[i]); 
+}
+for(i in brojevi){
+	console.log(brojevi[i]);
+}
+\end{lstlisting}
+Ispisom kroz konzolu, lako se vidi da je prva petlja dala $1$, $2$, $3$, $"$Sest$"$, $undefined$, $15$, $undefined$, $99$, a druga $for$ petlja $1$, $2$, $3$, $"$Sest$"$, $15$, $99$. 
+ 
+
+\subparagraph{Neke metode za rad sa nizovima}
+
+Pomenimo, pre svega, još jedan bitan metod za rad sa niskama. Metodom $split()$ od postojeće niske kreiramo niz. Argument koji prosleđujemo predstavlja po kom kriterijumu da se izvrši podela niske. Da bismo uradili obratno, odnosno, od niza kreirali nisku, koristimo metod $join()$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+//Metod za rad sa niskama koji od niske kreira niz: split 
+var niska = "Danas je lep dan.";
+var niz = niska.split(" ");
+console.log(typeof niz);
+console.log(niz);
+
+//Metod koji od niza formira nisku: join
+niz = ["danas", "je", "tmuran", "dan"];
+niska = niz.join();
+console.log(typeof niska);
+console.log(niska);
+\end{lstlisting}
+Pomenimo još neke istaknute metode za rad sa nizovima:  
+\begin{itemize}
+    \item \textbf{concat()} - nadovezuje dva niza i vraća novi ne menjajući stare,
+    \item \textbf{includes()} - proverava da li niz sadrži određeni element, kao argument se šalje  ono što se traži, ako postoji vraća $true$, inače, vraća $false$,  
+    \item \textbf{push()} - dodaje novi element na kraj niza, 
+    \item \textbf{pop()} - skida poslednji element sa kraja niza, 
+    \item \textbf{reverse()} - vraća obrnut niz, 
+    \item \textbf{slice()} - iz niza izdvaja deo počevši od indeksa naznačenog kao prvi argument, do indeksa naznačenog kao drugi i vraća novi niz, 
+    \item \textbf{sort()} - sortira niz.
+\end{itemize}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var niz_brojeva = [1,2,3,4];
+var novi = niz_brojeva.concat(niz);
+console.log(novi);
+
+console.log("Da li niz sadrzi broj 13?", niz.includes(13)); //false
+niz.push(13);
+console.log("Dodat je novi element na kraj niza",niz);
+niz.pop()
+console.log("Niz kada skinemo poslednji element",niz);
+			
+niz.reverse();
+console.log("Obrnut niz",niz);
+
+niz = niz.slice(1,3);
+console.log(niz);
+niz_brojeva.reverse();
+console.log(niz_brojeva);
+niz_brojeva.sort();
+console.log(niz_brojeva);
+\end{lstlisting}
+
+\subparagraph{Zadaci- Nizovi}
+
+\begin{primer}
+Napisati program u kom za niz brojeva program ispisuje niz kvadriranih vrednosti.
+\end{primer}
+
+\begin{primer}
+Napisati program u kom se unosi n, a potom i n elemenata niza. Nakon toga, na kraj niza se dodaje suma zadatih brojeva.
+\end{primer}
+
+\begin{primer}
+Napisati program koji računa skalarni proizvod vektora a i b. Vektor $a=(a_1, a_2,...)$ i $b=(b_1, b_2,...)$, a skalarni proizvod $a*b= a_1 * b_1 + a_2 * b_2 + ... + a_n * b_n$. Najpre se unosi n, a potom po n vrednosti za vektore a i b. 
+\end{primer}
+
+\begin{primer}
+Napisati program koji za dati niz ispisuje:\\
+a) elemente na parnim pozicijama u nizu
+b) parne elemente niza.
+\end{primer}
+
+\begin{primer}
+Napisati program koji za učitani ceo broj, ispisuje broj
+pojavljivanja svake od cifara u zapisu tog broja.
+\end{primer}
+
+
+\begin{primer}
+Napisati program koji transformiše uneti niz tako što
+kvadrira sve negativne elemente niza. 
+\end{primer}
+
+\begin{primer}
+Sa standardnog ulaza se učitava dimenzija niza, elementi
+niza i jedan ceo broj k. Napisati program koji štampa indekse elemenata koji su
+deljivi sa k.
+\end{primer}
+\newpage
+
+\subsubsection{Svojstva i objekti}
+
+Ako bismo u naš niz dodali još jedan element:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+niz[4] = {svojstvo: 5 };
+console.log(niz[4]);			
+\end{lstlisting}
+Primećujemo da smo u niz dodali nešto novo oblika ${naziv\_svojstva : vrednost }$. Takav konstrukt nazivamo objektom. Objekti su strukture podataka koje čine nizovi svojstava i njihovih vrednosti. Većina JavaScript vrednosti imaju neka svojstva, već smo se susreli sa svojstvom $length$ za nizove. U primeru navedenom gore imamo samo jedno svojstvo $svojstvo$. Pogledajmo nešto intuitivniji primer. U primeru kreiramo jednog studenta sa svim svojstvima koja su nam za jednog studenta interesantna:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var student = { ime : "Una",
+prezime : "Stankovic",
+datum_rodjenja : "13.10.1994.",
+jmbg: 1310994715004,
+broj_indeksa: "1095/2016",
+nivo_studija: "m",
+prosek: 9.75,
+ocene: [8,9,10]};
+console.log(student);
+\end{lstlisting}
+Ispisom objekta student u konzoli, možemo videti svojstva i sve vrednosti svojstava. Primetimo da vrednosti svojstava opet mogu biti različite vrednosti.\\
+Zanima nas sad kako možemo pristupiti vrednostima svojstava i to je moguće učiniti na dva načina:
+\begin{itemize}
+	\item $"$tačka notacijom $"$- $nazivobjekta.svojstvo$, na primer $student.ime$
+	\item $"$po indeksu$"$ - $nazivobjekta['svojstvo']$, na primer $student['ime']$
+\end{itemize}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+console.log(student);
+console.log(student.ime);
+console.log(student["ime"]);
+\end{lstlisting}
+Napomena: u slučaju da je svojstvo broj ili da sadrži razmake u nazivu ne može se koristiti tačka notacija.\\\\
+Ako pokušamo da pristupimo vrednosti svojstva koje ne postoji dobijamo $undefined$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+console.log(student.drzavljanstvo);
+\end{lstlisting}
+
+Svojstvu dodeljujemo vrednost uz pomoć naredbe dodele (operatora $=$). Ako bismo počeli od praznog objekta kako bismo mu dodali nova svojstva možemo koristiti samo tačka notaciju. JavaScript sam prepoznaje da ta svojstva ne postoje i dodaje ih. 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var racunar = {};
+console.log(racunar);
+console.log(typeof racunar);
+racunar.licni_racunar = "da";
+racunar.os = 'windows';
+racunar.marka = 'lenovo';
+console.log(racunar);
+\end{lstlisting}
+Za uklanjanje svojstva iz objekta koristimo unarni operator $delete$.
+Ako pokušamo da pristupimo vrednosti svojstva koje smo obrisali dobijamo $undefined$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+delete racunar.licni_racunar;
+console.log(racunar.licni_racunar);
+console.log(racunar);
+\end{lstlisting}
+
+Binarnim operatorom $in$ lako se proverava da li neki objekat sadrži neko svojstvo. U zavisnosti od toga da li svojstvo postoji ili ne vraćaju se $true$ ili $false$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+console.log("licni_racunar" in racunar); //false
+console.log("os" in racunar); //true
+\end{lstlisting}
+
+Koncept \textbf{refereciranja objekata} je veoma važan. Naime, kod objekata moramo razlikovati da li imamo dve različite reference ka istom objektu ili dva objekta imaju ista svojstva. U prvom slučaju, kada imamo dve različite reference ka istom objektu, dve različite promenljive pokazuju na isti memorijski prostor, a svaka promena izvedena nad objektom preko jedne promenljive propagiraće se i na drugu. U drugom slučaju, kada dva objekta imaju ista svojstva, ali su ti objekti različiti, promene izvedene nad jednom promenljivom neće imati nikakvog uticaja na drugu. Kako bismo ovo bolje razumeli, najbolje da pogledamo naredni primer:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var student1 = {ime : "Janko",
+	prezime: "Jovanovic",
+	prosek: 9.5};
+var student2 = student1;
+var student3 = {ime : "Jovana",
+	prezime : "Markovic",
+	prosek : 8.5}
+console.log(student1 === student2); //true
+console.log(student2 === student3); //false
+console.log(student3 === student2); //false
+\end{lstlisting}
+Vidimo da pri poređenju objekata dobijamo da su objekti $student1$ i $student2$ isti. Sada pogledajmo šta se dešava kada pokušamo da izvršimo neku promenu nad $student1$. 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+student1.ime = "Ana";
+console.log(student2.ime); //Ana
+console.log(student3.ime); //Jovana
+\end{lstlisting}
+Obratiti pažnju da je u prvom $console.log$-u $student2$.
+
+\subparagraph{Zadaci- Objekti}
+\begin{primer}
+Kreirati objekat $"$Auto$"$. Objekat treba da sadrži: marku, godište, cenu.
+Ispisati objekat na izlaz.
+\end{primer}
+
+\begin{primer}
+Kreirati objekat $"$Film$"$, sa imenom filma, godinom izlaska, i ocenom na $IMDB$-u. Kreirati više takvih objekata i smestiti ih u niz (barem $5$). Na izlaz ispisati one filmove koji imaju ocenu preko $8$.  
+\end{primer}
+
+\begin{primer}
+Kreirati objekat $"$Zaposleni$"$ za neku firmu. Objekat treba da sadrži: ime, prezime, datum rodjenja, identifikacioni broj, poziciju, platu, datum zaposlenja, da li je zaposlen za stalno, pol i spisak iznosa poslednjih $6$ plata.
+\end{primer}
+
+\begin{primer}
+Za spisak zaposlenih u nekoj firmi (barem $5$), uraditi sledeće:
+\begin{itemize}
+	\item kreirati spisak zaposlenih: ime i prezime, visina plate, da li su stalno zaposleni
+	\item izdvojiti one čija su primanja veća od 30000,
+	\item izdvojiti stalno zaposlene,
+	\item onima koji nisu stalno zaposleni dodati bonuse u iznosu od 10000,	
+	\item proveriti da li se za zaposlene date firme posebno vodi stavka visina poreza i
+	\item za zaposlene koji su stalno zaposleni izračunati prosek poslednje 3 plate.
+\end{itemize}
+
+\end{primer}
+
+\begin{primer}
+Kreirati sajt muzeja. Sajt treba da sadrži navigacioni bar: O nama, Postavke, Karte i Kontakt. Stranica O nama treba da sadrži kratak istorijat muzeja, kao i spisak događaja. Postavke treba da sadrži 3 postavke: Afrička umetnost, Kineska umetnost i Evropska umetnost. Svaka od postavki treba da sadrži bar 3 slike, kratak opis kao i datum početka i završetka postavke. Osim toga treba kreirati inventar za svaku od postavki sa barem 3 stavke. Stranica sa kartama treba da sadrži cene karata prema kategorijama, kao i popuste za specijalne kategorije (mlade do 26 godina, penzionere). Stranica za kontakt treba da sadrži formu: Ime i prezime, E-mail, Poruka.\\\\
+U programu kreirati:
+\begin{itemize}
+\item POSTAVKE: Evropska, Afrička i Kineska. Potom, za svaku od postavki kreirati naziv, datume trajanja (od i do) i sifrarnik inventara ( kao niz sifara).
+\item Karte: povlašćene kategorije, standardna cena
+\item Kontakt: ime i prezime, e-mail, poruka.
+\end{itemize}  
+\end{primer}
+\newpage
+
+\subsubsection{Funkcije}
+Funkcija je jedna od osnovnih konstrukcija jezika koja nam omogućava ponovno korišćenje koda. Omogućavaju nam, čak, i da ih koristimo iako ne razumemo detalje implementacije. Štaviše, već smo koristili neke od ugrađenih funkcija, kao što su prompt, alert, parseInt, itd.. Izdvajanjem koda u funkcije povećava se čitljivost koda i olakšava se njegovo održavanje. Osim toga, olakšava se ponovna upotrebljivost koda (engl. reusability). Naime, vrlo često će nam biti potrebno da ponovo iskoristimo neki kod, neku funkciju koja nam se javlja u više programa. Upravo zbog toga, u $JavaScript$-u , kao i u mnogim drugim programskim jezicima, postoje ugrađene funkcije, kao i dodatne biblioteke sa funkcijama koje je moguće koristiti kako bi se olakšao rad. Moguće je čak i pisanje sopstvenih biblioteka.    
+\\
+Osnovno uputstvo za pisanje funkcija se sastoji iz nekoliko bazičnih koraka:
+\begin{itemize}
+\item Uočiti logičke celine
+\item Uočiti neophodne parametre i povratnu vrednost 
+\item Dati ime koje odgovara implementaciji
+\item Implementirati funkciju
+\end{itemize}
+
+Funkcija se odlikuje svojom deklaracijom i definicijom.
+Deklaracija (ili prototip) funkcije ima opšti oblik:\\
+$function\ ime\_funkcije(niz\_deklaracija\_parametara);$\\\\
+Definicija funkcije ima oblik:
+\begin{verbatim}
+function ime_funkcije(niz_deklaracija_parametara) {
+   deklaracije
+   naredbe
+}
+\end{verbatim}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+function sabiranje(a,b){
+
+}
+\end{lstlisting}
+
+\subparagraph{Parametri i argumenti funkcije}
+Funkcija može imati parametre koje obrađuje i oni se navode u
+okviru definicije, iza imena funkcije i izmedu zagrada.
+Termini parametar funkcije i argument funkcije se ponekad
+koriste kao sinonimi. Objasnimo kroz primer razliku između ovih pojmova. Naime,  $n$ je parametar funkcije $kvadrat(n);$, a $5$ i $9$ su
+njeni argumenti u pozivima $kvadrat(5)$ i $kvadrat(9)$.\\\\
+Parametri funkcije mogu se u telu funkcije koristiti kao lokalne
+promenljive\footnote{Lokalne promenljive su vidljive samo unutar tela te funkcije.} te funkcije, a koje imaju početnu vrednost
+određenu vrednostima argumenata u pozivu funkcije.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+function sabiranje(a,b){
+	var zbir = a + b;
+}
+
+var a = 5;
+var b = 7;
+sabiranje(5,7);
+\end{lstlisting}
+
+\subparagraph{Povratna vrednost funkcije}
+\textbf{Povratna vrednost} funkcije predstavlja glavni rezultat rada te funkcije.Funkcija rezultat vraća naredbom $return\ r;$ gde je $r$ izraz ili promenljiva. Nakon završetka svih naredbi unutar funkcije ili dolaskom do naredbe $return$ izvršavanje se nastavlja od mesta odakle je funkcija pozvana.
+Naredba $return\ r;$ ne samo da vraća vrednost $r$ kao rezultat
+rada funkcije, nego i prekida njeno izvršavanje. Funkcija može vraćati i rezultat izračunavanja nekog izraza, kao funkcija $sabiranje2$ u primeru dole. Vrednost koju funkcija vrati možemo smestiti u neku promenljivu kako bismo mogli sa njom na dalje da radimo. Funkcije mogu pozivati druge funkcije, a funkcija može pozivati i samu sebe. Više o slučaju kada funkcija poziva samu sebe biće u sekciji o rekurzivnim funkcijama.\\\\
+
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+function sabiranje(a,b){
+	var zbir = a + b;
+	return zbir;
+}
+
+function sabiranje2(a,b){
+	return a + b;
+}
+
+var a = 5;
+var b = 7;
+sabiranje(5,7);
+var c = sabiranje2(a,b);
+\end{lstlisting}
+
+Kao što vidimo kada pozivamo funkciju koristimo naziv funkcije, a potom navodimo listu argumenata. Funkcija može primati nula ili više argumenata. U slučaju, da funkcija nema argumente pozivamo je kao $ime\_funkcije()$. Funkcija bez argumenata će se izvršiti i vratiti povratnu vrednost. Ako funkcija ima jedan ili više argumenata, njih navodimo između zagrada, odvojene zarezima. Bitno je naglasiti da nazivi parametara pri definisanju funkcije i argumenata pri njenom pozivanju ne moraju biti isti, ali promenljive korišćene u telu funkcije i nazivi parametara moraju biti isti! To je posledica toga što promenljive navedene u definiciji dobijaju vrednosti argumenata, koje se kasnije koriste u telu funkcije, one su poput najave da će se na tom mestu očekivati neke vrednosti koje kasnije treba koristiti na tačno određen način (što je definisano u telu funkcije).  
+
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+function sabiranje(a,b){
+	var zbir = a + b;
+	return zbir;
+}
+
+function sabiranje2(a,b){
+	return a + b;
+}
+//funkcije bez argumenata
+function pozdrav(){
+	console.log("Hello World!");
+	return;
+}
+
+function dodatak(){
+	var broj = Math.random()*100;
+	return broj;
+}
+
+var a = 5;
+var b = 7;
+sabiranje(5,7); //nema ispisa nikakvog
+var c = sabiranje2(a,b); 
+console.log(c);
+pozdrav(); //"Hello World!"
+console.log(dodatak());
+\end{lstlisting}
+Primetimo da iako funkcija ne vraća nikakvu konkretnu vrednost na kraju funkcije se nalazi $return;$.
+Napomena: Funkcija $Math.random()$ korišćena u primeru je funkcija iz biblioteke $Math$ i vraća nasumični broj između $0$ i $1$. \\\\
+
+Osim navedenog načina moguće je funkciju dodeliti promenljivoj. Obratiti pažnju da nakon poslednje vitičaste zagrade mora stajati tačka-zarez. 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var stepenovanje = function(osnova, eksponent){
+		var rez = 1;
+        for(i = 0; i < eksponent; i++){
+        	rez *= osnova;
+        }
+        return rez;
+	};
+console.log(stepenovanje(2,3));
+\end{lstlisting}
+
+
+\subparagraph{Vežba}
+Uraditi sve zadatke iz uvodne sekcije koristeći funkcije. Potom uraditi i zadatke u nastavku.
+
+\begin{primer}
+Napisati funkciju kvadrat(x) koja računa kvadrat
+datog broja. Napisati program koji učitava ceo broj i ispuje rezultat poziva
+funkcije.
+\end{primer}
+
+\begin{primer}
+Napisati funkciju apsolutna\_vrednost(x) koja izračunava apsolutnu vrednost broja x. Napisati program koji učitava jedan ceo broj i ispisuje rezultat poziva funkcije.
+\end{primer}
+
+\begin{primer}
+Napisati funkciju min(x, y, z) koja izračunava minimum tri broja. Napisati program koji učitava tri cela broja i ispisuje rezultat poziva funkcije.
+\end{primer}
+
+\begin{primer}
+Napisati funkciju stepen(x, n) koja
+računa vrednost n-tog stepena realnog broja x. Napisati program koji učitava
+relan broj x i ceo broj n i ispisuje rezultat rada funkcije.
+\end{primer}
+
+\begin{primer}
+Napisati funkciju faktorijel(n) koja računa
+faktorijel broja n. Napisati i program koji učitava dva cela broja x i y iz intervala
+[0, 12] i ispisuje vrednost zbira x! + y! (x! znači faktorijel broja x).
+\end{primer}
+
+\begin{primer}
+Napisati funkciju sadrzi(x, c) koja ispituje
+da li se cifra c nalazi u zapisu celog broja x. Funkcija treba da vrati 1 ako se cifra
+nalazi u broju, a 0 inače. Napisati program koji učitava dva cela broja i ispisuje
+rezultat poziva funkcije.
+\end{primer}
+
+\begin{primer}
+Napisati program za ispitivanje svojstava cifara datog celog
+broja.\\
+(a) Napisati funkciju sve\_parne\_cifre koja ispituje da li se dati ceo broj sastoji
+isključivo iz parnih cifara. Funkcija treba da vrati 1 ako su sve cifre
+broja parne i 0 u suprotnom.\\
+(b) Napisati funkciju sve\_cifre\_jednake koja ispituje da li su sve cifre datog
+celog broja jednake. Funkcija treba da vrati 1 ako su sve cifre broja jednake
+i 0 u suprotnom.\\
+Napisati program koji učitava ceo broj i ispisuje da li su sve cifre parne i da li su
+sve cifre jednake.
+\end{primer}
+
+\begin{primer}
+Napisati funkciju rastuce(n) koja ispituje da li
+su cifre datog celog broja u rastućem poretku. Funkcija treba da vrati vrednost
+1 ako cifre ispunjavaju uslov, odnosno 0 ako ne ispunjavaju uslov. Napisati i
+program koji učitava ceo broj i ispisuje poruku da li su cifre unetog broja u
+rastućem poretku.
+\end{primer}
+
+\begin{primer}
+Broj je prost ako je deljiv samo sa 1 i sa samim sobom.
+Napisati funkciju int prost (int x) koja ispituje da li je dati ceo broj prost.
+Funkcija treba da vrati 1 ako je broj prost i 0 u suprotnom. 
+\end{primer}
+
+\begin{primer}
+Napisati funkciju int prebrojavanje(float x) koja prebrojava
+koliko puta se broj x pojavljuje u nizu brojeva koji se unose sve do pojave
+broja 0. Napisati program koji učitava vrednost broja x i testira rad napisane
+funkcije.
+\end{primer}
+
+
+\begin{primer}
+Napisati funkcije za rad sa nizovima celih brojeva.\\
+(a) Napisati funkciju ucitaj(a, n) koja učitava elemente niza a dimenzije n.\\
+(b) Napisati funkciju stampaj(a, n) koja štampa elemente niza a dimenzije n.\\
+(c) Napisati funkciju suma(a, n) koja računa i vraća sumu
+elemenata niza a dimenzije n.\\
+(d) Napisati funkciju prosek(a, n) koja računa i vraća prosečnu
+vrednost (aritmetičku sredinu) elemenata niza a dimenzije n.\\
+(e) Napisati funkciju minimum(a, n) koja izračunava i vraća
+minimum elemenata niza a dimenzije n.\\
+(f) Napisati funkciju pozicija\_maksimuma(a, n) koja izračunava
+i vraća poziciju maksimalnog elementa u nizu a dimenzije n. U slučaju
+više pojavljivanja maksimalnog elementa, vratiti najmanju poziciju.\\
+(g)Napisati funkciju koja sve vrednosti niza uvećava za zadatu vrednost m.
+\end{primer}
+
+\begin{primer}
+Kreirati sajt zdrave hrane. Stranica treba da sadrži odgovarajuće HTML i CSS elemente (slike, naslove, tekst, itd.). Korisnik treba da odabere da li želi da učestvuje u anketi ili ne. ako odabere da želi, koristeći ugrađenu funkciju prompt zahtevati od korisnika predlog za naziv zdrave hrane i ocenu sajta. Postupak uraditi za barem 6 korisnika. Nakon što su svi uneli podatke (ili odlučili da ih ne unesu), ispisati spisak svih predloga, a potom ispisati prosečnu ocenu sajta. Uraditi odgovarajuće provere unosa.   
+\end{primer}
+\newpage
+
+\subparagraph{Anonimne funkcije}
+Anonimne funkcije su funkcije koje nemaju naziv. Anonimne funkcije koristimo kada želimo da se neka funkcija izvrši jednom. Vrednost anonimne funkcije ne možemo koristiti ukoliko je ne smestimo u neku promenljivu ili nije deo neke druge funkcije o čemu će biti više reči kasnije. Definisanjem funkcije dodelom promenljivoj kreiramo anonimnu funkciju sa desne strane naredbe dodele. Pogledajmo još jedan primer:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var anonimna = function(){
+	console.log("Dosli ste do anonimne funkcije.");
+	return;
+	};
+anonimna();
+\end{lstlisting}
+%Anonimne funkcije imaju i svoj skraćeni zapis u vidu \textbf{lambda funkcija} oblika:
+%\begin{verbatim}
+%(lista parametara) => telo funkcije
+%\end{verbatim}
+%Zagrade oko parametara su neophodne ukoliko je broj parametara veći od 1. Ukoliko funkcija nema %parametara onda su potrebne samo $()$. Ukoliko funkcija ima samo jednu naredbu i ta naredba je $%$return$ sa povratnom vrednošću, onda nam ni reč $return$ nije neophodna. Pogledajmo primere:
+%\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+%x => { return x*x; }
+%console.log(x);
+%x => x*x;
+%\end{lstlisting}
+
+\subparagraph{Broj argumenata funkcije}
+Lako se uočava da pri pozivu funkcije možemo funkciji poslati više argumenata nego što ona zahteva. U $JavaScriptu$ je to dozvoljeno ponašanje, iako u većini drugih programskih jezika nije. Ako bismo poslali veći broj argumenata nego što funkcija zahteva, ona bi višak argumenata ignorisala. U slučaju da je poslato manje argumenata nego što funkcija zahteva, za oni parametri za koje argumenti nisu poslati postavljaju se na $undefined$. Zaključak, $JavaScript$ ne proverava ni broj ni tip poslatih argumenata.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var a = 5;
+var b = 7;
+//fija: sabiranje2(a,b);
+console.log(sabiranje2(a,b,4,2,1));
+\end{lstlisting}
+Pogledajmo još jedan primer.  Funkcija $argumenti()$ prima $2$ argumenta, posmatrajmo šta se dešava u različitim slučajevima:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+function argumenti(prvi, drugi){
+	console.log(prvi);
+	console.log(drugi);
+    return;
+}
+argumenti("Prvi","Drugi"); //prvi drugi
+argumenti("Prvi"); //prvi undefined
+argumenti(); //undefined undefined
+argumenti("Prvi","Drugi","Treci"); //prvi drugi	
+\end{lstlisting}
+
+$JavaScript$ funkcije imaju ugrađeni objekat $arguments$. Ovaj objekat možemo koristiti da na jednostavan način proverimo koji je broj argumenata poslat.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+ function prosek(){
+	var suma = 0;
+	console.log("Broj argumenataje:",arguments.length);
+	for(i=0;i<arguments.length;i++){
+    suma += arguments[i];
+	console.log(arguments[i]);
+    }
+	var prosek = suma / arguments.length;
+    console.log(suma);
+	return prosek;
+    }
+	var p = prosek(9,10,10,6,8);
+    console.log("Prosek ocena je:",p);	
+\end{lstlisting}
+Na ovaj način možemo pristupiti argumentima koje bismo inače ignorisali.
+U jeziku $JavaScript$ argumenti se prenose po vrednosti. To znači da se njihova originalna vrednost ne menja. Sa druge strane, objekti se prenose po referenci, što znači da se njihova originalna vrednost menja.\\\\
+Nekada nam nije odmah poznato koliko parametara će funkcija imati. $JavaScript$ nam omogućava da funkcije mogu imati i proizvoljan broj parametara. Da bismo napisali ovakvu funkciju koristimo sledeću notaciju:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+ function nova(...parametri){
+	for(parametar of parametri){
+		//uradi nesto sa parametrima	
+	} 
+ }
+\end{lstlisting}
+Pogledajmo i na primeru:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+function lista_za_kupovinu(...parametri){
+	for(parametar of parametri){
+    	console.log(parametar);    
+    } 
+}
+console.log("Lista za kupovinu");
+lista_za_kupovinu("mleko","hleb","lazanje","torta");
+\end{lstlisting}
+Primetimo da smo koristili $for-of$ petlju za kretanje kroz listu parametara. Ova petlja nam služi za kretanje kroz nizove, karaktere niski, mape, skupove, itd. Napomena: ranije smo videli $for-in$
+petlju, ta petlja se najčešće koristi za iteraciju kroz svojstva objekata ili indekse.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var ucenik = { ime : "Ana",
+	indeks: "1083/2016",
+    prosek: 9.41};
+for(kljuc in ucenik){
+	console.log(`${kljuc} --> ${ucenik[kljuc]}`);
+}  
+
+var str = "Neki tekst";
+for(indeks in str){
+	console.log(`Indeks ${str[indeks]}:${indeks}`);
+}
+\end{lstlisting}
+
+\subparagraph{Periodično izvršavanje funkcija}
+Nekada funkcije želimo da izvršavamo periodično, odnosno, želimo da se kod unutar funkcije izvršava nakon određenog vremenskog intervala. Za ovakvo izvršavanje funkcija koristimo funkcije $setTimeout()$ i $setInterval()$.\\\\
+Funkcija $setTimeout()$ izvršava naredbe nakon vremenskog intervala zadatog u milisekundama ( 1000ms = 1s). Prvi argument je funkcija koja se izvršava nakon broja milisekundi navedenih kao drugi argument funkcije. Funkcija koja se prosleđuje kao argument funkcije $setTimeout()$ može biti i anonimna funkcija. U tom slučaju nju direktno pišemo u okviru zagrada funkcije. 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+function objava(){
+	alert("Obavesteni ste!");
+}
+setTimeout(objava,4000);
+//anonimna fija je prvi argument
+setTimeout(function(){
+	alert("Obavesteni ste iz anonimne funkcije!");
+},5000);
+\end{lstlisting}
+Funkciju $setTimeout()$ možemo koristiti i za periodično izvršavanje funkcije tako što ćemo je pozvati unutar neke funkcije $f()$ koju želimo da izvršavamo više puta, a kao prvi argument šaljemo naziv te funkcije iz koje se poziva. Napomena: Neophodno je posebno pozvati funkciju $f()$ prvi put.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+ //Funkciju setTimeout mozemo koristiti i za periodicno izvrsavanje
+function objava2(){
+	alert("Obavestenje u intervalu!");
+    setTimeout(objava2,1000);
+	}
+objava2();
+\end{lstlisting}
+Povratna vrednost funkcije $setTimeout()$ je identifikator tajmera koji je pokrenut, za prekidanje tajmera koristimo funkciju $clearTimeout()$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var tajmer = setTimeout(function(){
+	alert("Ovaj tekst se nece ispisati");
+	}, 2000);
+clearTimeout(tajmer);
+\end{lstlisting}
+Osim funkcije $setTimeout()$ za periodično izvršavanje funkcija možemo koristiti funkciju $setInterval()$. Ova funkcija prima iste argumente kao i $setTimeout()$, samo što u njenom slučaju broj milisekundi predstavlja broj nakon kog će se ponovo izvršiti funkcija navedena kao prvi argument.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+setInterval(function(){
+	alert("Ova funkcija ce se izvrsavati svake sekunde.")
+	}, 1000);
+\end{lstlisting}
+Kao i kod $setTimeout()$ povratna vrednost funkcije $setInterval()$ je tajmer. Kako bismo prekinuli tajmer moramo pozvati funkciju $clearInterval()$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var tajmer = setInterval(function(){
+	alert("Ovo ce se izvrsiti samo jednom");
+},1000);
+//Nakon 1.5 sekunde ce se pozvati prekidanje setInterval()
+setTimeout(function(){
+	clearInterval(tajmer);
+},1500);
+\end{lstlisting}
+
+\subparagraph{Zadaci- Periodično izvršavanje funkcija}
+\begin{primer}
+Kreirati stranicu-prezentaciju pozorista. Sajt treba da sadrži: naslov, paragraf, slike, deo sa kontakt informacijama i ostale odgovarajuće HTML i CSS elemente. Nakon $10$ sekundi od otvaranja sajta korisnik se obavestava da su tokom januara sve cene karata snižene $50\%$. 
+\end{primer}
+
+\begin{primer}
+Kreirati stranicu za brzo anketiranje stanovnika. Po otvaranju stranice nakon 3 sekunde izlazi prozor sa pitanjem $"$Da li želite da učestvujete u anketi?$"$. Ako je odgovor potvrdan, korisniku se svake 4 sekunde nudi po jedno od 15 pitanja (pitanja idu redom). Pitanja:
+\begin{itemize}
+\item Koliko imate godina?
+\item Koji ste nivo obrazovanja stekli?
+\item Da li ste pušač?
+\item Da li jedete meso?
+\item Da li redovno odlazite na zdravstvene preglede?
+\item Da li radite?
+\item Koliko puta nedeljno trenirate?
+\item Posecujete li muzeje?
+\item Posecujete li pozorište?
+\item Imate li partnera?
+\item Koliko stranih jezika govorite?
+\item Imate li kucnog ljubimca?
+\item Koristite li računar svakodnevno?
+\item Koliko sati dnevno gledate TV?
+\item U kom mestu živite?
+\end{itemize}  
+Anketiranje traje ukupno minut. Po završetku ankete treba da iskoči prozor sa $"$Hvala na izdvojenom vremenu!$"$. Na kraju, u konzoli se ispisuje spisak pitanja i korisnikovih odgovora. 
+\end{primer}
+\newpage
+
+\subsubsection{Objekat Math}
+Primetili smo da smo pri pisanju funkcija za rad sa brojevima pisali neke funkcije koje bi trebalo da se dosta često koriste pri matematičkim izračunavanjima. Osim toga, pominjali smo i da se funkcije koriste kako bi nam omogućile da neke postupke koji su nam često potrebni napišemo samo jednom, a potom upotrebljavamo kad god nam je to neophodno. $JavaScript$ u okviru objekta \textbf{Math} nudi definisane matematičke funkcije i konstante. Neke od njih su:
+\begin{itemize}
+	\item \textbf{Math.random()} - generiše pseudoslučajne brojeve iz intervala 0,1, 
+	\item \textbf{Math.round(x)} - zaokružuje broj $x$ na najbliži ceo broj,  
+	\item \textbf{Math.sqrt(x)} - računa koren broja $x$, 
+	\item \textbf{Math.pow(x,y)} - računa $y$-ti stepen broja $x$,  
+	\item \textbf{Math.min(x,y,z,...)} - računa minimum brojeva navedenih kao argumente,
+	\item \textbf{Math.max(x,y,z,...)} - računa maksimum brojeva navedenih kao argumente i
+	\item \textbf{Math.PI} - konstanta $\pi$.
+\end{itemize} 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var a = 9;
+var b = 3;
+console.log("Koren ",a,"je", Math.sqrt(a));
+console.log(a,"na",b,'je',Math.pow(a,b));
+console.log("Minimum brojeva",a,",",b,", 
+	120 i 2 je",Math.min(a,b,120,2));
+console.log("Maksimum brojeva",a,",",b,",
+	120 i 2 je",Math.min(a,b,120,2));
+console.log("Broj ",a,"puta konstanta pi je", 
+	a*Math.PI,"\nKada se dobijeni broj podeli sa 14 i 
+	zaokruzi dobija se:",Math.round((Math.PI*a)/14));
+\end{lstlisting}
+
+
+\subparagraph{Vežba}
+Modifikovati prethodno urađene primere tako da se koriste funkcije objekta $Math$.
+\newpage
+\subsubsection{Doseg promenljivih}
+Doseg (engl. scope) važenja promenljive označava u kojim sve delovima koda je neku promenljivu moguće $"$videti$"$, odnosno, pristupati joj, menjati je i koristiti. Dobro razumevanje i poznavanje dosega važenja promenljive nam je veoma bitno pri programiranju. Nekada se može desiti da pokušavamo da pristupimo promenljivoj u nekom delu koda u kome ona nije vidljiva ili da, još gore, nesvesno promenimo vrednost neke promenljive, što kasnije može imati posledice po izvršavanje ostatka programa.\\\\
+Mesto gde uvodimo promenljivu utiče na njen doseg. Promenljive kreirane van svih blokova koda i funkcija imaju \textbf{globalni doseg}. Promenljive koje predstavljaju argumente funkcije, kao i one koje kreiramo unutar funkcija imaju doseg te funkcije u kojoj se nalaze.
+Do sada smo promenljive kreirali koristeći isključivo ključnu reč $var$. Postoje još dve ključne reči kojima kreiramo promenljive to su $let$ i $const$. Promenljive kreirane ključnom rečju $let$ i $const$ imaju \textbf{lokalni doseg}. To znači da su one vidljive samo unutar bloka u kom su deklarisane. Promenljive uvedene ključnom rečju $var$ za funkciju važe na nivou cele funkcije. Pogledajmo naredni primer:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+function vidljivost(x){
+	console.log(x);
+    var x = 5;
+	console.log(x);
+    if(x == 5){
+	//promenljive mozemo kreirati koristeci let
+	//let promenljive imaju lokalni doseg
+	let n = 7;
+	console.log("n iz if-a:",n);
+	}
+    else{
+	console.log("n iz else-a:",n);   
+    }
+    return x;
+}
+var x = 10;
+vidljivost(x);
+console.log(x);
+\end{lstlisting}
+Iz primera se vidi da je promenljiva $x$ globalna. U funkciji $vidljivost(x)$ najpre ispisujemo vrednost promenljive $x$, i dobijamo $10$, što je ono što smo i prosledili. Potom unutar funkcije menjamo vrednost promenljive $x$ na $5$. Nakon toga kreiramo promenljivu n, koja nije vidljiva u $else$ grani (probati ovo tako što ćete zakomentarisati liniju $var x = 5;$. Nakon poziva funkcije ponovo ispisujemo vrednost promenljive $x$ i vidimo da ništa nije promenjeno. Posmatrajmo još jedan primer:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+function zbir(){
+	return c+d;
+}
+
+var c = 7; //zakomentarisati
+var d = 8; //zakomentarisati
+console.log(zbir());
+var a = 5;
+var b = 7;
+console.log(zbir(a,b));
+\end{lstlisting}
+
+
+Primetimo da funkcija uvek radi za promenljive $c$ i $d$ zato što su globalno definisane, pa funkcija može da nađe njihove vrednosti. U slučaju da su $c$ i $d$ nedefinisani izbacuje se greška.\\\\
+Obratite pažnju i na to šta se dešava sa $let$, kada pokušamo da mu promenimo vrednost. Zameniti $let$ sa $var$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+function vidljivost_let(){
+	let x = 5;
+	if(true){
+		let x = 7;
+		console.log(x); //7
+	} 
+	console.log(x); //5
+}
+vidljivost_let();
+\end{lstlisting}
+
+Osim promenljivih, funkcije isto mogu biti deklarisane globalno i lokalno. Globalno deklarisane funkcije su vidljive i mogu se pozivati na nivou celog programa, a lokalno deklarisane funkcije samo unutar one funkcije (i njenih drugih podfunkcija) u kojoj je deklarisana. \textbf{Izvlačenje deklaracija} (engl. hoisting) je pojam koji se odnosi na to da $JavaScript$ izvlači deklaracije funkcija i promenljivih tokom faze kompajliranja što nam omogućava da vršimo pozive funkcija ili promenljivih i pre njihovog definisanja (obratiti pažnju da se izvlače deklaracije, ali ne i definicije!). Navedeni koncepti se oslikavaju kroz sledeće primere. Najpre, vidljivost funkcija:
+
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+
+function globalna(){
+	console.log("Ova funkcija je vidljiva i moze se 
+	pozvati na nivou celog programa.");
+}
+function globalna_2(){
+	lokalna(1); //poziv pre definicije
+	function lokalna(n){
+		console.log("Poziv",n, "iz lokalne:");
+		globalna();
+	}
+	function lokalna2(){
+		console.log("Poziv iz druge lokalne:");
+		lokalna(2);
+	}
+    lokalna(3); //poziv nakon definicije   
+    lokalna2();
+}
+
+globalna();
+globalna_2();
+lokalna(4);
+lokalna2();
+\end{lstlisting}
+Potom, izvlačenje deklaracija:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+ispisi(s); //s is not declared
+ispisi(parametar); //undefined
+var parametar;
+function ispisi(p){
+	console.log("Vrednost parametra je:",p);
+    return;
+}
+parametar = 10; 
+ispisi(parametar);
+\end{lstlisting}
+
+\subsubsection{Rekurzivne funkcije}
+Programski jezik $JavaScript$ podržava rekurzivne funkcije. Rekurzivne funkcije su one funkcije koje pozivaju same sebe. Uvek mora postojati neki uslov izlaska iz rekurzije. Najčešći primer koji se posmatra pri učenju ovih funkcija je \textit{Fibonačijev niz}.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+function fib(n){
+	if(n == 0 || n == 1){
+		return 1;	
+	}
+	return fib(n-1) + fib(n-2);
+}
+
+var a = 5;
+console.log("a-ti Fibonacijev broj", fib(a));
+\end{lstlisting}
+Da bismo dobili naredni element potrebna su nam prethodna 2. Zbog toga, pozivamo funkciju za prethodna 2 broja. Uslov zaustavljanja je kada dođemo do $1$ ili do $0$.
+
+\newpage

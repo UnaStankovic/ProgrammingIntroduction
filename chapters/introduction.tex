@@ -1,0 +1,331 @@
+\section{Uvod u računarstvo}
+\label{sec:uvod}
+Računarstvo i informatika predstavljaju jednu od najvažnijih oblasti današnjice koje su u konstantnom razvoju. Danas, ne možemo zamisliti život bez računara, pametnih telefona ili mnogobrojnih uređaja koji se pokreću uz pomoć računara. Razvitak računarstva i tehnologije u poslednjih 70 godina je eksponencijalan, tako da, danas, imamo razvoj prenosnih računara, tableta, pametnih telefona i uređaja, kola, kućnih aparata i ostalih koji se pokreću korišćenjem računarskih sistema. Kako definisati računarski sistem? Postoji više različitih računarskih sistema, od kojih svaki ima svoju posebnu definiciju, ali naš fokus je na digitalnim računarskim sistemima. Oni podrazumevaju mašinu koja može da se programira kako bi izvršavala različite zadatke svođenjem na elementarne operacije nad brojevima. Brojevi se u računaru zapisuju uz pomoć nula i jedinica, odnosno, binarnim zapisom, kao nizovi bitova. \\\\
+Kada se razmišlja o tome šta sve računarstvo obuhvata, lako se uviđa da računarstvo nije samo računar, već da ono predstavlja mnogo širu oblast koja se bavi izučavanjem teorije i prakse procesa računanja i primene računara u različitim naučnim oblastima, tehnici i svakodnevnom životu. Računar sam po sebi nije cilj, već sredstvo za postizanje različitih ciljeva u zavisnosti od njihove primene. Za današnje računare često ćemo čuti da su $"$programabilni$"$, ali šta to zapravo govori? Programabilnost računara se ogleda u činjenici da je moguće računaru dati neki skup instrukcija koje će on izvršavati sa ciljem ispunjavanja određenih zadataka, koje mu čovek, odnosno, programer zadaje. Računari kakve danas poznajemo nastali su polovinom XX veka, ali želja za automatizacijom određenih postupaka seže daleko dalje u prošlost. Naime, posmatrajući istorijski, ljudi su vekovima stvarali razne naprave koje su mogle da rešavaju neke numeričke zadatke. 
+
+\subsection{Istorijat računarstva}
+Da bismo u potpunosti razumeli računarstvo moramo imati uvid u njegove početke i razvoj. Istorijski gledano, koreni ljudske želje da olakšaju sebi svakodnevni život sežu davno u prošlost. Kao pravi primer takvih težnji možemo uzeti jedne od prvih računaljki abakus. U $18.$ veku nastale su prve mehaničke sprave koje su mogle da vrše automatsko izvođenje aritmetičkih operacija i pomažu u rešavanju matematičkih zadataka. Blez Paksal\footnote{Blaise Pascal (1623–1662), francuski filozof, matematičar i fizičar. U njegovu čast jedan
+programski jezik nosi ime PASCAL.} je $1642.$ godine konstruisao mehaničke sprave koje su služile za sabiranje i oduzimanje celih brojeva, zvane Paskaline. Trideset godina nakon njega, Godfrid Lajbnic\footnote{Gottfried Wilhelm Leibniz (1646–1716), nemački filozof i matematičar} konstruisao je mašinu, zasnovanu na dekadnom sistemu, koja je mogla da vrši sve četiri osnovne operacije. Lajbnic je bio prvi koji je predlagao koriscenje binarnog sistema.\\\\ 
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.5]{../pictures/abakus.jpg}
+\end{center}
+\caption{Abakus}
+\label{fig:abakus}
+\end{figure}
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.25]{../pictures/pasc.jpg}
+\end{center}
+\caption{Paskalina}
+\label{fig:pasc}
+\end{figure}
+\subparagraph{Mehaničke mašine} Žozef Mari Žakard\footnote{Joseph Marie Jacquard (1752–1834), francuski trgovac.} je $1801.$ godine napravio prvu programabilnu mašinu — mehanički tkački razboj. On je pomoću bušenih kartica
+kreirao kompleksne šare na tkanini. Svaka rupa na kartici određivala je jedan pokret mašine, a svaki red na kartici odgovarao je jednom redu šare.
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.25]{../pictures/loom.jpg}
+\end{center}
+\caption{Žakardov razboj}
+\label{fig:jacques}
+\end{figure}
+U prvoj polovini $19.$ veka, Čarls Bebidž\footnote{Charles Babbage (1791–1871), engleski matematičar, filozof i pronalazač.} je dizajnirao prve programabilne računske mašine.  Godine 1822. započeo je rad na diferencijskoj mašini, za računanje vrednosti polinomijalnih funkcija. Ime je dobila zbog toga što je koristila tzv. metod konačnih razlika da bi bila eliminisana potreba za množenjem i deljenjem. Mašina je trebalo da ima oko 25000 delova i da se pokreće ručno, ali nije nikada završena.
+Ubrzo nakon toga, Bebidž je započeo rad na novoj mašini nazvanoj analitička mašina. Osnovna razlika u
+odnosu na sve prethodne mašine specifičnih namena, bila je u tome što je analitička mašina zamišljena kao računska mašina opšte namene. $"$Programiranje$"$  na ovoj mašini vršilo bi se programima zapisanim na bušenim karticama (sličnim Žakardovim), a program bi kontrolisao mehanički račuunar koji bi omogućavao sekvencijalno izvršavanje naredbi, grananje i skokove. Osnovni delovi ovog računara trebalo je da budu mlin (engl. mill) i skladište (engl. store), koji po svojoj funkcionalnosti sasvim odgovaraju procesoru i
+memoriji današnjih računara. Ada Bajron\footnote{Augusta Ada King (rođ. Byron), Countess of Lovelace, (1815–1852), engleska matematičarka.
+U njenu čast nazvan je programski jezik ADA.} zajedno sa Bebidžem napisala je
+prve programe za analitičku mašinu i, da je mašina uspešno konstruisana, njeni
+programi bi mogli da računaju određene složene nizove brojeva (takozvane Bernulijeve
+brojeve). Upravo je to razlog zašto se ona smatra prvim programerom u istoriji. Ona je bila i prva koja je uvidela da se računarske mašine mogu upotrebiti i u nematematičke namene, čime je naslutila današnjicu.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.25]{../pictures/bebidz.jpg}
+\end{center}
+\caption{Bebidžova diferencijska mašina}
+\label{fig:beb}
+\end{figure}
+
+\subparagraph{Elektromehaničke mašine}
+Ove mašine koristile su se od sredine $19.$ veka do Drugog svetskog rata.
+Jednu od prvih mašina za čitanje bušenih kartica konstruisana je od strane Hermana Holerita. Njena glavna svrha bila je obrada rezultata popisa stanovništva u Sjedinjenim američkim državama 1890. godine. 
+Koristeći bušene kartice uspešno izvršen je popis za godinu dana, naspram deset godina, koliko je bilo potrebno ranije. Od Holeritove male kompanije nastao je IBM.\footnote{Herman Hollerith (1860–1929), američki pronalazač.}
+
+\subparagraph{Elektronski računari} Elektronski računari koriste se od kraja 1930-ih do
+danas. 
+ 
+\subsection{Fon Nojmanova arhitektura}
+\label{sec:fN}
+Na osnovu istorijata može se uočiti da svi navedeni računari imaju nedostatak jedne važne karakteristike računara danas, a to je programabilnost. Mašine korišćene nekada nisu bile programabilne već su funkcionisale po unapred definisanom programu određenom samom konstrukcijom mašine. Iako ovakav pristup nije sasvim izumro (danas se može videti na primeru digitrona), uglavnom nije poželjan. Prava promena u pristupu, koja je dovela do stvaranja programabilnih računara, nastala je ranih 1940-ih godina sa pojavom računara koji bi programe koje izvršavaju čuvali u memoriji zajedno sa podacima. Takve računare nazivamo računarima sa skladištenim podacima (engl. stored program computers). Jedna od najvažnijih karakteristika ovih računara je da kod njih postoji jasna podela na hardver i softver. Za rodonačelnika ovakve arhitekture smatra se Džon fon Nojman. On je 1945. godine opisao arhitekturu čija je glavna karakteristika da se programi mogu učitavati isto kao i podaci koji se obrađuju. Primeri prvih ovakvih računara su EDVAC, Mark 1 i EDSAC.\\\\
+Osnovni elementi fon Nojmanove arhitekture su:
+\begin{enumerate}
+\item procesor - koji čine aritmetičko-logička jedinica, kontrolna jedinica i registri, i 
+\item glavna memorija 
+\end{enumerate}
+koji su međusobno povezani, dok se ostale komponente računara smatraju pomoćnim. Prikaz fon Nojmanove arhitekture je na slici \ref{fig:fonN}.
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.25]{../pictures/fonN.png}
+\end{center}
+\caption{Šematski prikaz fon Nojmanove arhitekture}
+\label{fig:fonN}
+\end{figure}
+Pod pomoćne komponente ubrajamo ulazno-izlazne jediice, spoljašnje memorije itd., koje da bi funkcionisale moraju biti povezane na centralni deo računara (procesor i glavnu memoriju).
+Osnovna uloga procesora je obrada podataka, dok je osnovna uloga memorije skladištenje podataka koji se obrađuju, kao i programa. Postoji jedinstven način na koji zapisujemo i podatke i programe, a to je uz pomoć nula i jedinica, odnosno, binarnim zapisom. Tokom rada računara podaci i programi se prenose između procesora i glavne memorije.
+\subparagraph{Procesor} Prva centralna komponenta fon Nojmanove arhitekture. Procesor, koji je odgovoran za rad računara, sastoji se od \textit{kontrolne jedinice} - koja upravlja radom procesora i \textit{aritmetičko-logičke jedinice} - koja je zadužena za izvođenje aritmetičkih operacija (sabiranje, oduzimanje, množenje, poređenje, itd. ) i logičkih operacija (konjunkcija, negacija, itd. ) nad brojevima. Osim dva navedena dela procesor sadrži i određeni broj registara, obično fiksirane širine (8, 16, 32 ili 64 bita), koji privremeno mogu da čuvaju podatke. Danas procesori neretko poseduju više jezgara (engl. core) koja istovremeno izvršavaju instrukcije čime se obezbeđuje paralelno izvršavanje.
+\subparagraph{Memorija} Druga centralna komponenta fon Nojmanove arhitekture
+je glavna memorija. Memorija predstavlja linearno uređeni niz registara, pri čemu svaki ima svoju adresu. Kao posledica osobine ove memorije da se sadržaju može pristupati u slučajnom redosledu, čest naziv je i memorija sa slobodnim pristupom (engl. RAM - random access memory). Razlikujemo nekoliko parametara koji odlikuju memoriju, to su:
+\begin{itemize}
+\item kapacitet - GB,
+\item vreme pristupa - vreme potrebno da se memorija pripremi za čitanje ili upis i 
+\item protok - izražava količinu podataka koji se prenose po jedinici merenja (danas obično mereno u GBps).
+\end{itemize}
+Na slici \ref{fig:memh} može se videti memorijska hijerarhija.
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.5]{../pictures/mem_hijer.jpg}
+\end{center}
+\caption{Šematski prikaz memorijske hijerarhije}
+\label{fig:memh}
+\end{figure}
+
+\subsection{Hardver}
+Bez obzira na činjenicu da osnovu savremenih računarskih sistema i dalje čini fon Nojmanova arhitektura, za rad računara u današnjem smislu reči potreban je i čitav niz hardverskih komponenti koje nam dodatno olakšavaju. Opis komponenti koje čine jedan računar danas ne sastoji se od kućišta, monitora, tastature i miša, već nam je potreban apstraktniji, sveobuhvatniji opis. Upravo, kako bi se jasnije i preciznije opisao računar kaže se da ga čine:
+\begin{itemize}
+\item procesor tj. centralna procesorska jedinica (engl. Central Processing Unit,
+CPU), koja obrađuje podatke,
+\item glavna memorija (engl. main memory), u kojoj se istovremeno čuvaju i
+podaci koji se obrađuju i trenutno pokrenuti programi, i 
+\item različiti periferijski uređaji ili ulazno-izlazne jedinice (engl. peripherals,
+input-output devices, IO devices), u koje se ubrajaju miševi, tastature, ekrani,
+štampači, diskovi, a koji služe za interakciju između korisnika i sistema i trajno skladištenje podataka i programa.
+\end{itemize} 
+Da bi se izvršilo povezivanje svih navedenih komponenti koristimo magistralu.
+Za funkcionisanje modernih računara neophodni su i hardver i softver. 
+Hardver (tehnički sistem računara) čine opipljive, fizičke komponente računara: procesor, memorija, matična ploča, itd. 
+
+\subsection{Softver}
+Softver računara čine programi i prateći podaci koji određuju izračunavanja koja vrši računar.
+Prvi računari su se odlikovali jezicima specifičnim za konkretni računar - mašinski zavisnim jezicima. Već od 1950-ih, sa pojavom prvih jezika višeg nivoa, programiranje postaje dosta lakše. Danas, programi se najčešće pišu u višim programskim jezicima, a potom se prevode na mašinski jezik, onaj koji je razumljiv računaru. Programom opisujemo računaru koje operacije treba da izvrši sa ciljem ispunjavanja nekog zadatka. U nastavku biće navedeno nekoliko primera koji ilustruju izvršavanje programa napisanih na višim programskim jezicima. 
+\begin{primer}
+Želimo da izračunamo vrednost izraza $2*x + 3$ za neko $x$. Podatke u računarstvu, kao i u matematici, možemo predstaviti pomoću promenljivih. Međutim, za razliku od matematike, promenljive u računarstvu mogu menjati svoju vrednost. Svakoj promenljivoj je u memoriji računara pridruženo jedno fiksirano mesto i ona može tokom izvršavanja programa da menja vrednost. Recimo da je $x$ ulazni parametar našeg programa, a $y$ izlazna vrednost, tada izračunavanje opisujemo sa
+\begin{verbatim}
+y := 2*x + 3
+\end{verbatim}
+gde $*$ označava množenje, $+$ sabiranje, a $:=$ naredbu dodele, odnosno promenljivoj sa leve strane izraza dodeljujemo vrednost izraza sa desne strane.
+\end{primer}
+\begin{primer}
+Kao naredni primer uzmimo poređenje dva broja, odnosno, kao izlaz treba da dobijemo veći od dva broja.
+Ovakav izraz možemo zapisati kao:
+\begin{verbatim}
+ako je x >= y onda
+    m := x
+inače
+    m := y
+\end{verbatim}
+\end{primer}
+\begin{primer}
+Kao još jedan primer uzmimo stepenovanje:
+\begin{verbatim}
+s := 1, i := 0
+dok je i < n radi sledeće:
+    s := s·x, 
+    i := i + 1
+\end{verbatim}
+\end{primer}
+Savremeni softver klasifikujemo u 2 kategorije:
+\begin{itemize}
+\item Sistemski i
+\item Aplikativni.
+\end{itemize}
+\textbf{\em Aplikativni softver} je onaj koji krajnji korisnici računara direktno koriste u svojim svakodnevnim aktivnostima. Tu spadaju, na primer, pregledači Veba, e-mail klijenti, kancelarijski softver (programi za kucanje teksta, izradu prezentacija,...), video igre, softver za prikaz slika, itd.\\
+\textbf{\em Sistemski softver} ima ulogu da kontroliše hardver i pruža usluge aplikativnom softveru. Najznačajniji skup sistemskog softvera je operativni sistem (OS), ali u sistemski softver ubrajamo i različite uslužne programe: editore teksta, alate za programiranje (prevodioci, dibageri, profajleri, integrisana okruženja) i slično. Uloga operativnog sistema je da programeru pruži skup funkcija koje programer može da koristi kako bi ispunio određeni cilj, sakrivajući konkretne hardverske detalje - ovaj skup funkcija naziva se programski interfejs za pisanje aplikacija (engl. API - Application Programming Interface).
+
+\subsection{Oblasti savremenog računarstva}
+Savremeno računarstvo sastoji se iz više podoblasti između kojih nema jasnih granica. Prema klasifikaciji američke asocijacije ACM - Association for Computing Machinery, razlikujemo naredne podoblasti~\cite{Janicic}:
+\begin{itemize}
+\item Algoritmika (procesi izračunavanja i njihova složenost)
+\item Strukture podataka (reprezentovanje i obrada podataka)
+\item Programski jezici (dizajn i analiza svojstava formalnih jezika za opisivanje
+algoritama)
+\item Programiranje (proces zapisivanja algoritama u nekom programskom jeziku)
+\item Softversko inženjerstvo (proces dizajniranja, razvoja i testiranja programa)
+\item Prevođenje programskih jezika (efikasno prevođenje viših programskih jezika,
+obično na mašinski jezik)
+\item Operativni sistemi (sistemi za upravljanje računarom i programima)
+\item Mrežno računarstvo (algoritmi i protokoli za komunikaciju između računara)
+\item Primene (dizajn i razvoj softvera za svakodnevnu upotrebu)
+\item Istraživanje podataka (pronalaženje relevantnih informacija u velikim skupovima
+podataka)
+\item Veštačka inteligencija (rešavanje problema u kojima se javlja kombinatorna
+eksplozija)
+\item Robotika (algoritmi za kontrolu ponašanja robota)
+\item Računarska grafika (analiza i sinteza slika i animacija)
+\item Kriptografija (algoritmi za zaštitu privatnosti podataka)
+\item Teorijsko računarstvo (teorijske osnove izračunavanja, računarska matematika,
+verifikacija softvera, itd).
+\end{itemize}
+
+\subsection{Osnovni pojmovi i konstrukti}
+Programiranje predstavlja proces zapisivanja algoritama u nekom programskom jeziku.
+Algoritam predstavlja precizan opis postupka za rešavanje nekog problema u konačnom broju koraka. Algoritmi se odlikuju svojom složenošću. Ta složenost može biti vremenska ili memorijska. Vremenska složenost se odnosi na vreme potrebno za izvršavanje nekog algoritma. Memorijska složenost označava koliko memorijskih resursa je potrebno za izvršavanje algoritma. Cilj analize algoritama je predviđanje njegovog ponašanja i brzine izvršavanja bez realizacije na nekom konkretnom računaru. Ta procena treba da se odnosi na svaki računar. Nemoguće bi bilo na svakom računaru ispitati izvršavanje nekog algoritma. Zbog toga je analiza algoritama približna tehnika.~\cite{Zivkovic} Postoji uniformna tehnika za grafički prikaz algoritama, međutim, mi nećemo ulaziti u detalje, već će biti dato nekoliko ilustrativnih primera kako bi se dobila glavna ideja.
+\begin{primer}
+Kao najjednostavniji primer algoritma uzmimo primer sa lampom. U početnom koraku lampa je ugašena, a mi želimo da je upalimo ili, ako ne radi, da je odnesemo na popravku. Najpre, proveravamo da li je lampa uključena u struju. Romb je znak kojim označavamo uslov. Ako lampa nije uključena u struju treba je uključiti. U suprotnom, ako je lampa uključena u struju, ali ne svetli, proveravamo da li je sijalica pregorela. Ako jeste, menjamo sijalicu. Ako nije, lampa je pokvarena i moramo je popraviti. Na slici \ref{fig:alg0} vidimo kako bismo grafički prikazali opisani postupak.
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.25]{../pictures/lamp.png}
+\end{center}
+\caption{Primer najjednostavnijeg algoritma.}
+\label{fig:alg0}
+\end{figure}
+\end{primer}
+
+\begin{primer}
+Kao primer, više prikladan računarskoj terminologiji, uzmimo sabiranje $2$ broja, $M$ i $N$. Na slici \ref{fig:alg1} vidimo kako bismo grafički prikazali postupak sabiranja brojeva.
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.5]{../pictures/sum-num-alg.png}
+\end{center}
+\caption{Prikaz algoritma za sabiranje dva broja.}
+\label{fig:alg1}
+\end{figure}
+\end{primer}
+
+U sekciji \ref{sec:fN} koja govori o fon Nojmanovoj arhitekturi, videli smo da se podaci (i programi) smeštaju u memoriju računara, najčešće u vidu niza bitova. Međutim, kako se programer ne bi zamarao detaljima i kako bi mogao da radi na dosta apstraktnijem nivou, programski jezici obezbeđuju koncept promenljivih. Promenljive daju mogućnost programeru da podacima dodeli imena i da im na osnovu tih imena i pristupa. Svaka promenljiva u programu ima dodeljen određeni niz bajtova. \\\\
+Promenenljive se odlikuju svojim tipovima i životnim vekom. Životni vek je koncept koji nam govori u kom delu faze izvršavanja programa je promenljivoj dodeljen memorijski prostor, odnosno, kada je možemo koristiti. Životni vek promenljive omogućava da na različitim mestima u programu koristimo različite promenljive istog imena i pravilo dosega identifikatora (engl. scope) određuje deo programa u kome se uvedeno ime može koristiti. Druga odlika promenljivih su tipovi. Organizovanje podataka u tipove pomaže programeru da ne mora da razmišlja o podacima na nivou njihove binarne reprezentacije, već daleko apstraktnije. Neki od najčešćih tipova su:
+\begin{itemize}
+\item celi brojevi (... -3, -2, -1, 0, 1, 2, 3,...),
+\item brojevi u pokretnom zarezu ( 1.0, 3.14, 9.81,...),
+\item karakteri (a, b, P, ,, !, ...),
+\item niske ("zdravo", "svima",...)
+\end{itemize} 
+Osim ovih postoje i složeniji tipovi koji mogu objediniti više istih ili različitih tipova, pa tako imamo nizove, strukture, liste, i dr.
+Svaki tip podataka se karakteriše vrstom podataka koje opisuje, skupom operacija koje se nad njime vrše i načinom reprezentacije i detaljima implementacije tog tipa.
+
+Osnovni gradivni elementi imperativnih programskih jezika su naredbe.
+Naredba dodele je osnovna naredba i njom se vrednost neke promenljive postavlja na vrednost nekog izraza definisanog nad konstantama i promenljivim. Šta to, u praksi, znači? To znači da kada kažemo $x = 3*y$ zapravo promenljivoj x dodeljujemo vrednost $3*y$. Naredbe se u programu nižu jedna za drugom, osim u slučaju korišćenja naredbi za kontrolu toka izvršavanja programa. Ove naredbe u zavisnosti od tekućih
+vrednosti promenljivih neke naredbe mogu da ne izvršavaju, izvršavaju ih više puta(petlje) i slično. Najčešće korišćene kontrolne strukture su granajuće naredbe (if-then-else), petlje (for, while, do-while, repeat-until) i naredbe skoka (goto). Naredba if-then-else ima sledeći opšti oblik:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+if izraz1 
+   naredba1
+else 
+   naredba2
+\end{lstlisting}
+Treba obratiti pažnju da je else grana neobavezna, odnosno, može, ali ne mora, da postoji. 
+\begin{primer}
+Naredni primer štampa veći od dva broja.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+if a > b
+   print(a)
+else
+   print(b)
+\end{lstlisting}
+\end{primer}
+
+\begin{primer}
+Naredni primer u promenljivu $a$ smešta tekst $"$Hello world!$"$ ako je vrednost promenljive b veća od 0.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+if b > 0
+   a = "Hello world!"
+\end{lstlisting}
+\end{primer}
+
+Jedan od najbitnijih koncepata programiranja je pojam {\em petlje}. Petlje predstavljaju konstrukcije koje nam omogućuju da izvršavamo jednu ili više akcija više puta. Sastoje se iz uslova i tela petlje. Uslov nam definiše u kom slučaju ćemo napustiti petlju (na primer, ako broj iteracija\footnote{Iteracija petlje predstavlja jedno izvršavanje koda koji se nalazi u telu petlje.} petlje predje 100, ili ako je neka promenljiva n veca od 1000, itd.). Telo petlje sadrži akcije koje želimo da ponavljamo.Na slici \ref{fig:loops} može se videti opšti oblik petlji.
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.5]{../pictures/Loops.png}
+\end{center}
+\caption{Petlja.}
+\label{fig:loops}
+\end{figure}
+
+\begin{primer}
+Za naredni primer, uzećemo sabiranje prvih 50 brojeva. Naime, naporno bi bilo da pišemo $1+2+3+...+50$, a da ne pomišljamo na brojeve poput $1000$, $100 000$ ili $1 000 000$. To bi bilo gotovo neizvodivo. Zbog toga, želimo da na apstraktniji način opišemo proceduru koja će umesto nas izvršiti sabiranje prvih 50 brojeva. Da bismo to uspeli moramo iskoristiti petlju. Na slici \ref{fig:alg2} vidimo kako bismo grafički prikazali postupak.
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.5]{../pictures/algorithm-flow.png}
+\end{center}
+\caption{Prikaz algoritma za sabiranje prvih 50 brojeva.}
+\label{fig:alg2}
+\end{figure}
+\end{primer}
+
+Petlje su neophodne za uspešno programiranje. 
+ Postoji nekoliko različitih vrsta petlji,  čija upotreba zavisi od onoga što njom želimo da postignemo, pa tako imamo:
+\begin{itemize}
+\item $"for"$ petlju i
+\item $"while"$ petlju 
+\end{itemize}
+koje predstavljaju osnovne konstrukte u skoro svim programskim jezicima. Osim for i while petlje postoje i druge, ali o njima nece biti reči.\\\\
+For petlja je najčešće oblika:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+for(izraz1, izraz2, izraz3)
+    naredba
+\end{lstlisting}
+$Izraz1$ i $izraz3$ obično predstavljaju naredbe dodele ili inkrementiranje, gde se $izraz1$ obično naziva inicijalizacija, a $izraz3$ je korak. Izraz u sredini, $izraz2$, predstavlja relacijski izraz i služi kao uslov izlaska iz petlje. $Naredba$ predstavlja liniju ili blok koda koji želimo da se izvršava.
+Kao posledica navedenog, $for$ petlju možemo posmatrati kao:
+\begin{verbatim}
+for(inicijalizacija, uslov izlaska, korak)
+    kod koji želimo da se izvrši
+\end{verbatim}
+\begin{primer}
+Naredni primer predstavlja jedan od uobičajenih oblika u kojima se $for$ petlja pojavljuje:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+for(i = 0; i < n; i++)
+    print(i)
+\end{lstlisting}
+Ovaj primer za svaki korak petlje ispisuje broj koraka. 
+\end{primer}
+
+
+\subsection{Klasifikacija programskih jezika}
+
+Brojnost programskih jezika raste iz godine u godinu. Stalno se pojavljuju novi i brži jezici, unapređuju se stari i nemoguće je ispratiti sve promene. Da bismo odmah razumeli okvirno kako neki programski jezik funkcioniše moramo znati kojoj paradigmi pripada. Kada kažemo da neki jezik pripada nekoj paradigmi mi zapravo govorimo nešto o karakteristikama tog jezika koje važe za sve jezike koji pripadaju istoj grupi. Programske paradigme su formirane prema načinu programiranja. Neki od najkorišćenijih programskih jezika današnjice spadaju u grupu imperativnih programskih jezika, npr. jezik C. Glavna karakteristika imperativnih programskih jezika je da stanje programa karakterišu promenljive kojima se predstavljaju podaci i naredbe kojima se vrše određene transformacije nad promenljivim (sabiranje, oduzimanje, poređenje, itd.). Osim imperativne, značajne programske paradigme su i
+objektno-orijentisana (C++, Java (Java NIJE JavaScript!), C\# itd.), funkcionalna (Lisp, Haskell, ML, itd.), logička (u nju spada, na primer, Prolog). Sa razvojem savremenih programskih jezika došlo je do brisanja jasnih granica između ovih jezika, pa tako dolazi do mešanja karakteristika različitih paradigmi.\\\\
+Za većinu programskih jezika danas reći ćemo da su proceduralni. Kada kažemo da je neki jezik proceduralan zapravo želimo da iskažemo činjenicu da je zadatak programera da opiše način (proceduru) kojim će se doći do rešenja problema. Kao idejno potpuno kontrastni, postoje deklarativni programski jezici (poput Prologa) koji od programera zahteva precizan opis problema, a mehanizam programskog jezika se onda bavi pronalaskom rešenja.\\\\
+Prema tipu konverzije tipova imamo statički i dinamički tipizirane jezike. Kod statički tipiziranih jezika (poput C-a) zahteva se da programer definiše tip svake promenljive i da ga potom više ne menja tokom izvršavanja programa. Kod dinamički tipiziranih jezika ista promenljiva može sadržati podatke različitog tipa tokom različitih faza izvršavanja. Nekada je moguće čak i vršenje operacija nad promenljivima različitog tipa, pri čemu dolazi do implicitne konverzije. Na primer, jezik JavaScript ne zahteva definisanje tipa promenjlivih i dopušta kôd poput $a = 1; b = "2"; a = a + b;$\\\\
+
+\subsection{Primeri za vežbu}
+\begin{primer}
+Napisati primer algoritma za kuvanje kafe.
+\end{primer}
+\begin{primer}
+Napisati primer algoritma za provodjenje jednog dana.
+\end{primer}
+\begin{primer}
+Napisati primer algoritma za savladavanje nekog kursa. 
+\end{primer}
+\begin{primer}
+Napisati primer algoritma za računanje zbira prvih 10 parnih brojeva.
+\end{primer}
+\begin{primer}
+Koju vrednost ima promenljiva $x$ nakon izvršavanja narednog koda:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+int x = 0;
+if (x > 3);
+    x++;
+\end{lstlisting}
+\end{primer}
+\begin{primer}
+Napisati pseudo kod za računanje zbira 3 broja.
+\end{primer}
+\begin{primer}
+Napisati pseudo kod u kome se promenljivoj $a$ dodeljuje vrednost $3$, promenljivoj $b$ dodeljuje vrednost $6$ i onda se njihov zbir smešta u promenljivu $c$. Nakon toga, proveriti da li ostatak pri deljenju promenljive (računa se uz pomoć \%) $c$ sa brojem 2 daje 0, odnosno, da li je $c$ paran.
+\end{primer}
+\begin{primer}
+Napisati pseudo kod\footnote{Pseudo kod predstavlja kod koji nije dat u formalnim terminima, već predstavlja ideju kako bi kod trebao da izgleda.} algoritma za računanje zbira prvih 10 parnih brojeva.
+\end{primer}
+\begin{primer}
+
+\end{primer}
+
+\subsection{Domaći zadatak}
+Domaći zadatak:
+\begin{itemize}
+\item pročitati nešto dodatno o istorijatu računarstva (01\_istorijat), 
+\item opisati ukratko svaki od elemenata memorije (01\_piramida),
+\item odraditi sve primere i pitalice ,
+\item domaci sa osi/tcp slojevima: 01\_osi, 01\_tcp
+\item domaci koji je size teksta o browserima: 01\_browser
+\item samostalno pronaći još 10 novih i uraditi ih(01\_0,...,01\_9).
+\end{itemize}
