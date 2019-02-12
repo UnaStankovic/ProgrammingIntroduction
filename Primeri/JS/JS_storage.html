@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Web Storage</title>
+	<style>
+		#omotac{
+			background-color: lightblue;
+			text-align: center;
+		}
+		#storage{
+			background-color: yellow;
+			
+		}
+		.info{
+			color: red;
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div id="omotac">
+		<h1>Web Storage</h1>
+		<p>U ovom fajlu bice obradjeno cuvanje podataka kroz web storage.</p>
+	</div>
+	<div id="storage">
+		Postoje dva tipa web storage-a:
+		<ul>
+			<li>Local storage</li> - cuva podatke trajno
+			<li>Session storage</li> - cuva podatke na nivou sesije
+		</ul>
+		<hr>
+		<h2> Primer local storage</h2>
+		<p>U narednom pasusu ce se ispisati sacuvani podatak</p>
+		<p id="podatak" class='info'></p>
+		<p>U narednom pasusu ce se ispisati vrednost drugog podatka</p>
+		<p id="drugipodatak" class='info'></p>
+		<hr>
+		<hr>
+		<h2> Primer session storage</h2>
+		<p>U narednom pasusu ce se ispisati sacuvani podatak</p>
+		<p id="podatak2" class='info'></p>
+		<p>U narednom pasusu ce se ispisati vrednost drugog podatka</p>
+		<p id="drugipodatak2" class='info'></p>
+		<hr>
+		<h2>JSON</h2>
+		<p>Objasnjenje JSON formata. Pogledati konzolu uz pomoc F12</p>
+		<p id="json"></p>
+		<hr>
+	</div>
+	<script type="text/javascript">
+	//local storage
+	//proveravamo da li postoji podrska za web storage
+	if (typeof(Storage) !== "undefined") {
+	  	//LOCAL STORAGE
+	  	// cuvanje podataka
+		localStorage.setItem("podatak", "vrednost");
+
+		// dohvatanje podataka i ispis u odg pasus
+		document.getElementById("podatak").innerHTML = localStorage.getItem("podatak");
+		//Stavljamo da se funkcija za uklanjanje podatka izvrsi nakon 2 sekunde
+		//kako bismo videli ponasanje
+		setTimeout(function(){
+			localStorage.removeItem('podatak');
+			document.getElementById("podatak").innerHTML = localStorage.getItem("podatak");
+			console.log(localStorage.getItem("podatak"));
+		},2000);
+		
+		//drugi nacin zadavanja je sa tacka notacijom
+		localStorage.drugipodatak = '5';
+		if (Number(localStorage.drugipodatak) <= 5) {
+		  localStorage.drugipodatak = Number(localStorage.drugipodatak) + 1;
+		} else {
+			localStorage.drugipodatak = 1;
+		}
+		document.getElementById("drugipodatak").innerHTML = "Vrednost drugog podatka je " + localStorage.drugipodatak;
+
+		//SESSION STORAGE
+		sessionStorage.setItem('sesijskipodatak', 'nekavrednost');
+		document.getElementById('podatak2').innerHTML = sessionStorage.getItem('sesijskipodatak');
+
+		setTimeout(function(){
+			sessionStorage.removeItem('sesijskipodatak');
+			document.getElementById("podatak2").innerHTML = sessionStorage.getItem("sesijskipodatak");
+			console.log(sessionStorage.getItem("sesijskipodatak"));
+		},2000);
+		
+		//drugi nacin zadavanja je i ovde sa tacka notacijom
+		sessionStorage.drugipodatak = '5';
+		if (Number(sessionStorage.drugipodatak) <= 5) {
+		  sessionStorage.drugipodatak = Number(sessionStorage.drugipodatak) + 1;
+		} else {
+			sessionStorage.drugipodatak = 1;
+		}
+		document.getElementById("drugipodatak2").innerHTML = "Vrednost drugog podatka je " + sessionStorage.drugipodatak;
+
+		//JSON format
+		//da bismo ubacili u storage podatke u JSON formatu
+		var test = { 'prvi': 1, 'drugi': 2, 'treci': 3 };
+		// smestamo objekte u storage
+		localStorage.setItem('test', JSON.stringify(test));
+		// uzimamo objekte iz storage.a
+		var pokupi_test = localStorage.getItem('test');
+		console.log('Pretvaranje niske u JSON objekat: ', JSON.parse(pokupi_test));
+
+	} else {
+  		//ako ne postoji poruka zelimo i to da se ispise	
+  		document.getElementById("podatak").innerHTML = "Ne postoji podrska za web storage";
+	}
+
+	//JSON
+	var objekat = {name: "John", age: 31, city: "New York"};
+	var niska = JSON.stringify(objekat);
+	console.log(niska);
+	
+	var niska2 = '{"name": "John", "age": "31", "city": "New York"}';
+	var objekat = JSON.parse(niska2);
+	console.log(objekat);
+	//smestanje u storage
+	localStorage.setItem("testJSON", niska);
+	text = localStorage.getItem("testJSON");
+	obj = JSON.parse(text);
+	console.log(obj);
+	document.getElementById("json").innerHTML = obj.name;
+	</script>
+</body>
+</html>
