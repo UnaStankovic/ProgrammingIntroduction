@@ -2,7 +2,7 @@
 Rečeno je da je $JavaScript$ služi za davanje interaktivnosti stranici, međutim, do sad smo sve ispisivali u konzoli sa malo interakcije sa stranicom. Da bismo mogli da dodamo interaktivnost sa postojećim elementima stranice (ili da kreiramo nove) moramo najpre naučiti kako da tim elementima pristupimo. Za svaku web stranicu pregledač formira nešto što nazivamo \textbf{DOM}\footnote{engl. Document Object Model}. DOM je drvolika struktura čiji su elementi $HTML$ elementi (tagovi) i njihovi sadržaji(unutar tagova). $DOM$ čuva hijerarhijsku strukturu u smislu da je neki element, koji je u $HTML$-u bio roditeljski element nekog drugog elementa, i u $DOM$-u roditeljski element. Elementi koji su hijerarhijski $"$ispod$"$ nekog elementa nazivamo decom ili, ako je u pitanju jedan element, detetom (engl. child). Koren $DOM$ stabla je objekat $window$ koji predstavlja prozor pregledača. Elementi napisani u $HTML$-u odgovaraju čvorovima podstabla čiji je koren objekat $document$, jedan od sinova objekta $window$. Pogledajmo sliku:
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.5]{../pictures/structure.png}
+\includegraphics[scale=0.5]{pictures/structure.png}
 \end{center}
 \caption{Prikaz DOM stabla počevši od window objekta.}
 \label{fig:domwin}
@@ -16,7 +16,7 @@ Rečeno je da je $JavaScript$ služi za davanje interaktivnosti stranici, međut
 \end{lstlisting} 	 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.5]{../pictures/dom.png}
+\includegraphics[scale=0.5]{pictures/dom.png}
 \end{center}
 \caption{Prikaz primera DOM stabla.}
 \label{fig:dom}
@@ -127,7 +127,7 @@ var naslov = omotac.previousElementSibling;
 Na slici \ref{fig:dom3} se vidi grafički prikaz.
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.5]{../pictures/parentchild2.png}
+\includegraphics[scale=0.5]{pictures/parentchild2.png}
 \end{center}
 \caption{Prikaz odnosa između elemenata u DOM stablu.}
 \label{fig:dom3}
@@ -135,7 +135,7 @@ Na slici \ref{fig:dom3} se vidi grafički prikaz.
 Na slici \ref{fig:dom2} se na primeru liste jasno vide odnosi između elemenata:
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.5]{../pictures/parentchild.png}
+\includegraphics[scale=0.5]{pictures/parentchild.png}
 \end{center}
 \caption{Prikaz odnosa između elemenata u DOM stablu.}
 \label{fig:dom2}
@@ -247,7 +247,7 @@ Kreirati stranicu koja vrši heširanje tajne poruke koju korisnik unosi preko p
 Prikaz programa dat je na slici \ref{fig:hes}.
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.5]{../pictures/hes.png}
+\includegraphics[scale=0.5]{pictures/hes.png}
 \end{center}
 \caption{Prikaz programa.}
 \label{fig:hes}
@@ -551,7 +551,7 @@ Napisite kratku biografiju.
 Pogledajmo sada primer. Želimo da kreiramo formular kao na slici \ref{fig:formular}
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.5]{../pictures/formular.png}
+\includegraphics[scale=0.5]{pictures/formular.png}
 \end{center}
 \caption{Prikaz primera formulara koji želimo da napravimo.}
 \label{fig:formular}
@@ -702,9 +702,139 @@ Npr.: Korišćenjem novih koncepata (filter, map i reduce), izračunati broj pac
 \end{primer}
 \newpage
 
-%\subsubsection{Web storage}
-%\subparagraph{Local storage}
-%\subparagraph{Session storage}
+
+
+
+\subsubsection{Web storage}
+Vrlo često želimo da neke podatke sačuvamo lokalno, unutar korisničkog pregledača. Ranije su se za čuvanje podataka koristili isključivo kolačići, koji predstavljaju prilično nebezbedan način čuvanja podataka. Danas, i dalje koristimo kolačiće za neke potrebe, ali postoji još jedan način čuvanja podataka, a to je $web\ storage$. $Web\ storage$ se smatra dosta sigurnijim u odnosu na kolačiće, jer se podaci ne šalju na server, i može čuvati veće količine podataka, barem $5MB$, u zavisnosti od pregledača \ref{fig:storage2}. Sve stranice iz istog izvora mogu čuvati i pristupati istim podacima.\\\\
+Na slici \ref:storage nalazi se poređenje $localStorage$, $sessionStorage$ i kolačića.
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.5]{pictures/storage.png}
+\end{center}
+\caption{Poređenje.}
+\label{fig:storage}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.5]{pictures/storagemem.png}
+\end{center}
+\caption{Poređenje.}
+\label{fig:storag2}
+\end{figure}
+
+$Web\ storage$ nudi dva objekta za čuvanje podataka na klijentu, to su:
+\begin{itemize}
+\item $window.localStorage$ - čuva podatke trajno, bez isteka roka trajanja, na primer: preference vezane za neku temu na sajtu i slično,
+\item $window.sessionStorage$ - čuva podatke na nivou dužine sesije, kada se $tab$ u pregledaču zatvori i podaci se brišu.
+\end{itemize}
+Ova dva načina čuvanja podataka obezbeđuju čuvanje podataka u formatu $naziv$ i $vrednost$. Podaci sačuvani kroz $localStorage$ mogu samo da se čitaju, $read only$ su, a čuvaju se kao niske.
+Da bismo bili sigurni da neki pregledač podržava $web\ storage$, možemo to proveriti sa $typeof(Storage)$ ako bi on bio različit od $undefined$, onda je podržan.\\
+Postoje dva metoda za postavljanje i dohvatanje elemenata iz $storage$-a. To su:
+\begin{itemize}
+\item setItem("naziv", "vrednost") i 
+\item getItem("naziv").
+\end{itemize}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+if (typeof(Storage) !== "undefined") {
+  localStorage.setItem("podatak", "vrednost");
+  document.getElementById("podatak").innerHTML = localStorage.getItem("podatak");
+} else {
+  document.getElementById("podatak").innerHTML = "Ne postoji podrska za web storage";
+}
+\end{lstlisting}
+
+Da bismo uklonili podatke koristimo metod $removeItem("naziv")$. Uklanjanje je namerno stavljeno u funkciju koja se izvršava nakon dve sekunde kako bi se videlo ponašanje.
+
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+//Stavljamo da se funkcija za uklanjanje podatka izvrsi nakon 2 sekunde kako bismo videli ponasanje
+setTimeout(function(){
+  localStorage.removeItem('podatak');
+  document.getElementById("podatak").innerHTML = localStorage.getItem("podatak");
+  console.log(localStorage.getItem("podatak"));
+},2000);
+\end{lstlisting}
+
+Postoji još jedan način da postavimo vrednosti, a to je uz pomoć $"$tačka notacije$"$. Tačka notacijom postavljanje vrednost izgleda kao $localStorage.naziv = vrednost$. Treba obratiti pažnju da se u $web storage$-u podaci čuvaju kao stringovi, pa u slučaju da hoćemo da koristimo brojevne vrednosti moramo izvršiti konverziju. Na isti način pristupamo i vrednostima svojstva. 
+
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+localStorage.drugipodatak = '5';
+  if (Number(localStorage.drugipodatak) <= 5) {
+    localStorage.drugipodatak = Number(localStorage.drugipodatak) + 1;
+  } else {
+  localStorage.drugipodatak = 1;
+  }
+document.getElementById("drugipodatak").innerHTML = "Vrednost drugog podatka je " + localStorage.drugipodatak;
+\end{lstlisting}
+$Session\ storage$ funkcioniše po istom principu. Dodatno nudi mogućnost da odjednom obrišemo sve što je sačuvano prilikom jedne sesije uz pomoć $clear()$. Obratiti pažnju da podaci ostaju prilikom osvežavanja stranice! \\\\
+Gotovo uvek baratamo sa nekim podacima u $JSON$ formatu. Da bismo na uspešan način ovakve podatke sačuvali, a kasnije i koristili moramo najpre pretvoriti objekat u nisku. To radimo uz pomoć funkcije $JSON.stringify()$, koja za argument prima objekat koji treba pretvoriti u nisku.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var test = { 'prvi': 1, 'drugi': 2, 'treci': 3 };
+localStorage.setItem('test', JSON.stringify(test));
+\end{lstlisting}
+Da bismo sačuvani podatak pokupili i potom opet pretvorili u objekat koristimo funkciju $JSON.parse()$, koja kao argument prima nisku koju treba da pretvori u objekat. 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var pokupi_test = localStorage.getItem('test');
+console.log('Pretvaranje niske u JSON objekat: ', JSON.parse(pokupi_test));
+\end{lstlisting}
+
+\subsubsection{JSON}
+$JSON$ je jedan od standardnih formata za čuvanje i razmenu podataka. $JSON$ predstavlja tekst zapisan u objektnoj notaciji $JavaScripta$. Bilo koji $JavaScript$ objekat možemo pretvoriti u $JSON$ i obratno. Da bismo izvršili ta pretvaranja bitna su nam dva metoda $JSON.stringify()$ i $JSON.parse()$. Prvi metod nam omogućava da od $JavaScript$ objekta dobijemo $JSON$ format, a druga nam od $JSON$ teksta pravi $JavaScript$ objekat. Tip fajlova koji čuvaju $JSON$ podatke je $.json$, a odgovarajući $MIME$ tip je $application/json$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var objekat = {name: "John", age: 31, city: "New York"};
+var niska = JSON.stringify(objekat);
+console.log(niska);
+\end{lstlisting}
+
+$JSON.parse()$ je ugrađena $JavaScript$ funkcija koja pravi objekat od niske. Kada primimo podatke sa servera neophodno je da primenimo ovu funkciju kako bismo mogli da ih koristimo kao objekat.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+var objekat = {name: "John", age: 31, city: "New York"};
+var niska = JSON.stringify(objekat);
+console.log(niska);
+	
+var niska2 = '{"name": "John", "age": "31", "city": "New York"}';
+var objekat = JSON.parse(niska2);
+console.log(objekat);
+
+localStorage.setItem("testJSON", niska);
+text = localStorage.getItem("testJSON");
+obj = JSON.parse(text);
+console.log(obj);
+document.getElementById("json").innerHTML = obj.name;
+\end{lstlisting}
+
+U $JSON$-u sve niske moraju biti pod dvostrukim navodnicima. Tipovi podataka koje mogu biti vrednosti u $JSON$-u su:
+\begin{itemize}
+\item niske $\{ "ime":"Ana" \}$,
+\item brojevi $\{ "godine": 23 \}$,
+\item objekti $\{
+"zaposleni":\{ "ime":"Ana", "godine":23, "status":"Stalno zaposleni" \}
+ \}$,
+\item nizovi $\{
+"zaposleni":[ "Ana", "Ivan", "Petra" ]
+\}$,
+\item Bulove vrednosti $\{ "ima\_odmor":true \}$,
+\item null $\{ "broj\_ormarica":null \}$.
+\end{itemize}
+
+Sa $delete$ brišemo svojstva $JSON$ objekata.
+
+\subsubsection{BOM}
+
+$BOM$ ili $Browser\ Object\ Model$ dozvoljava $JavaScriptu$ da komunicira sa pregledačem.
+Objekat $window$ predstavlja prozor pregledača. Svi globalni $JavaScript$ objekti, funkcije i promenljive postaju članovi $window$ objekta i to na sledeći način:
+\begin{itemize}
+\item globalne promenljive su svojstva,
+\item globalne funkcije su metodi, 
+\item objekat $document$ je svojstvo window objekta
+\end{itemize}
+Često nam je neophodno da odredimo veličinu prozora bez $toolbara$ i $scrollbara$, za to postoje $2$ metode $innerHeight$ i $innerWidth$.
+Naredni objekat je $window.screen$ koji sadrži informacije o korisničkom ekranu kao što su visina, širina i druge. Metodi $screen.width$ i $screen.height$ vraćaju veličine ekrana u pikselima. Slično $screen.availWidth$ i $screen.availHeight$ vraćaju veličinu ekrana u pikselima bez $task bara$. 
+Za vežbu isprobati ove funkcije.\\\\
+
+Prisetimo se da su $alert$, $confirm$ i $prompt$ takođe pripadali objektu $window$. Osim njih, tu spadaju i $setTimeout$ i $setInterval$.
+
 
 %\subsection{Objektno orijentisani JavaScript}
 

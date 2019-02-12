@@ -8,14 +8,14 @@ Da bismo u potpunosti razumeli računarstvo moramo imati uvid u njegove početke
 programski jezik nosi ime PASCAL.} je $1642.$ godine konstruisao mehaničke sprave koje su služile za sabiranje i oduzimanje celih brojeva, zvane Paskaline. Trideset godina nakon njega, Godfrid Lajbnic\footnote{Gottfried Wilhelm Leibniz (1646–1716), nemački filozof i matematičar} konstruisao je mašinu, zasnovanu na dekadnom sistemu, koja je mogla da vrši sve četiri osnovne operacije. Lajbnic je bio prvi koji je predlagao koriscenje binarnog sistema.\\\\ 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.5]{../pictures/abakus.jpg}
+\includegraphics[scale=0.5]{pictures/abakus.jpg}
 \end{center}
 \caption{Abakus}
 \label{fig:abakus}
 \end{figure}
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.25]{../pictures/pasc.jpg}
+\includegraphics[scale=0.25]{pictures/pasc.jpg}
 \end{center}
 \caption{Paskalina}
 \label{fig:pasc}
@@ -24,7 +24,7 @@ programski jezik nosi ime PASCAL.} je $1642.$ godine konstruisao mehaničke spra
 kreirao kompleksne šare na tkanini. Svaka rupa na kartici određivala je jedan pokret mašine, a svaki red na kartici odgovarao je jednom redu šare.
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.25]{../pictures/loom.jpg}
+\includegraphics[scale=0.25]{pictures/loom.jpg}
 \end{center}
 \caption{Žakardov razboj}
 \label{fig:jacques}
@@ -40,7 +40,7 @@ brojeve). Upravo je to razlog zašto se ona smatra prvim programerom u istoriji.
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.25]{../pictures/bebidz.jpg}
+\includegraphics[scale=0.25]{pictures/bebidz.jpg}
 \end{center}
 \caption{Bebidžova diferencijska mašina}
 \label{fig:beb}
@@ -65,7 +65,7 @@ Osnovni elementi fon Nojmanove arhitekture su:
 koji su međusobno povezani, dok se ostale komponente računara smatraju pomoćnim. Prikaz fon Nojmanove arhitekture je na slici \ref{fig:fonN}.
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.25]{../pictures/fonN.png}
+\includegraphics[scale=0.25]{pictures/fonN.png}
 \end{center}
 \caption{Šematski prikaz fon Nojmanove arhitekture}
 \label{fig:fonN}
@@ -83,7 +83,7 @@ je glavna memorija. Memorija predstavlja linearno uređeni niz registara, pri č
 Na slici \ref{fig:memh} može se videti memorijska hijerarhija.
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.5]{../pictures/mem_hijer.jpg}
+\includegraphics[scale=0.5]{pictures/mem_hijer.jpg}
 \end{center}
 \caption{Šematski prikaz memorijske hijerarhije}
 \label{fig:memh}
@@ -173,7 +173,7 @@ Algoritam predstavlja precizan opis postupka za rešavanje nekog problema u kona
 Kao najjednostavniji primer algoritma uzmimo primer sa lampom. U početnom koraku lampa je ugašena, a mi želimo da je upalimo ili, ako ne radi, da je odnesemo na popravku. Najpre, proveravamo da li je lampa uključena u struju. Romb je znak kojim označavamo uslov. Ako lampa nije uključena u struju treba je uključiti. U suprotnom, ako je lampa uključena u struju, ali ne svetli, proveravamo da li je sijalica pregorela. Ako jeste, menjamo sijalicu. Ako nije, lampa je pokvarena i moramo je popraviti. Na slici \ref{fig:alg0} vidimo kako bismo grafički prikazali opisani postupak.
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.25]{../pictures/lamp.png}
+\includegraphics[scale=0.25]{pictures/lamp.png}
 \end{center}
 \caption{Primer najjednostavnijeg algoritma.}
 \label{fig:alg0}
@@ -184,7 +184,7 @@ Kao najjednostavniji primer algoritma uzmimo primer sa lampom. U početnom korak
 Kao primer, više prikladan računarskoj terminologiji, uzmimo sabiranje $2$ broja, $M$ i $N$. Na slici \ref{fig:alg1} vidimo kako bismo grafički prikazali postupak sabiranja brojeva.
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.5]{../pictures/sum-num-alg.png}
+\includegraphics[scale=0.5]{pictures/sum-num-alg.png}
 \end{center}
 \caption{Prikaz algoritma za sabiranje dva broja.}
 \label{fig:alg1}
@@ -233,7 +233,7 @@ if b > 0
 Jedan od najbitnijih koncepata programiranja je pojam {\em petlje}. Petlje predstavljaju konstrukcije koje nam omogućuju da izvršavamo jednu ili više akcija više puta. Sastoje se iz uslova i tela petlje. Uslov nam definiše u kom slučaju ćemo napustiti petlju (na primer, ako broj iteracija\footnote{Iteracija petlje predstavlja jedno izvršavanje koda koji se nalazi u telu petlje.} petlje predje 100, ili ako je neka promenljiva n veca od 1000, itd.). Telo petlje sadrži akcije koje želimo da ponavljamo.Na slici \ref{fig:loops} može se videti opšti oblik petlji.
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.5]{../pictures/Loops.png}
+\includegraphics[scale=0.5]{pictures/Loops.png}
 \end{center}
 \caption{Petlja.}
 \label{fig:loops}
@@ -243,7 +243,7 @@ Jedan od najbitnijih koncepata programiranja je pojam {\em petlje}. Petlje preds
 Za naredni primer, uzećemo sabiranje prvih 50 brojeva. Naime, naporno bi bilo da pišemo $1+2+3+...+50$, a da ne pomišljamo na brojeve poput $1000$, $100 000$ ili $1 000 000$. To bi bilo gotovo neizvodivo. Zbog toga, želimo da na apstraktniji način opišemo proceduru koja će umesto nas izvršiti sabiranje prvih 50 brojeva. Da bismo to uspeli moramo iskoristiti petlju. Na slici \ref{fig:alg2} vidimo kako bismo grafički prikazali postupak.
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.5]{../pictures/algorithm-flow.png}
+\includegraphics[scale=0.5]{pictures/algorithm-flow.png}
 \end{center}
 \caption{Prikaz algoritma za sabiranje prvih 50 brojeva.}
 \label{fig:alg2}
