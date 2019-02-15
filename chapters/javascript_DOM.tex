@@ -829,11 +829,38 @@ Objekat $window$ predstavlja prozor pregledača. Svi globalni $JavaScript$ objek
 \item globalne funkcije su metodi, 
 \item objekat $document$ je svojstvo window objekta
 \end{itemize}
-Često nam je neophodno da odredimo veličinu prozora bez $toolbara$ i $scrollbara$, za to postoje $2$ metode $innerHeight$ i $innerWidth$.
+Često nam je neophodno da odredimo veličinu prozora pregledača bez $toolbara$ i $scrollbara$, za to postoje $2$ metode $innerHeight$ i $innerWidth$.
 Naredni objekat je $window.screen$ koji sadrži informacije o korisničkom ekranu kao što su visina, širina i druge. Metodi $screen.width$ i $screen.height$ vraćaju veličine ekrana u pikselima. Slično $screen.availWidth$ i $screen.availHeight$ vraćaju veličinu ekrana u pikselima bez $task bara$. 
 Za vežbu isprobati ove funkcije.\\\\
 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+console.log(window.innerHeight);
+console.log(window.innerWidth);
+document.getElementById('newwin').addEventListener('click', function(){
+  window.open('1.html');});
+console.log(screen.availWidth); 
+console.log(window.location);
+function viseinfo() {	
+  window.location.assign("https://www.w3schools.com")
+}
+document.getElementById('newdoc').addEventListener('click', viseinfo);
+\end{lstlisting}
+
 Prisetimo se da su $alert$, $confirm$ i $prompt$ takođe pripadali objektu $window$. Osim njih, tu spadaju i $setTimeout$ i $setInterval$.
+
+\subparagraph{Zadaci - WebStorage, JSON, BOM}
+\begin{primer}
+Zadatke koji sadrze formulare dopuniti tako da se podaci čuvaju u $JSON$ formatu u $localStorage$-u. Izvršiti izlistavanje sačuvanih podataka. Obrisati ih nakon korišćenja. Na primer, za zadatak zdravstvena stanica, kreirati čuvanje podataka o pacijentima, a potom, klikom na dugme, izlistati sva imena i prezimena pacijenata sa njihovim brojevima kartona. Ostale zadatke sa formama slično prilagoditi. 
+\end{primer}
+
+\begin{primer}
+Kreirati stranicu koja predstavlja $Google$ pretraživač. Stranica treba da sadrži sve elemente kao prava stranica $Google$-a. U $Web storage$-u se čuvaju podaci o nekim pojmovima koji se mogu pretraživati. Na primer, dostupna je lista gradova sa opisima gradova i spiskom regiona kojima ti gradovi pripadaju. Prilikom unosa naziva grada vrši se sugestija pojmova. Klikom na dugme za pretragu otvara se nova stranica na kojoj se nalaze rezultati pretrage. Stranica treba da bude poput $Google$ pretrage. Klikom na dugme $I\ am\ feeling\ lucky$ pored dugmeta za pretragu treba da se nasumično odabere neki od mogućih rezultata (gradova). 
+\end{primer}
+
+\begin{primer}
+Dopuniti prethodni zadatak tako da sadrži i druge podatke. 
+\end{primer}
+
 
 
 %\subsection{Objektno orijentisani JavaScript}
