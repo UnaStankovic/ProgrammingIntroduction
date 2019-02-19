@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>BOM</title>
+	<link rel="stylesheet" href="bootstrap.css">
+	<style>
+        #header{
+            height: 100px;
+            background-color: gray;
+            text-align: center;
+            color: white;
+        }
+       
+        #col1{
+            height: 400px;
+            background-color: white;
+            border: 1px solid gray;
+        }
+        
+        #col2{
+            height: 400px;
+            background-color: white;
+            border: 1px solid gray;
+        }
+        
+        #col3{
+            height: 400px;
+            background-color: white;
+        	border: 1px solid gray;
+        }
+        
+        #footer{
+            height: 50px;
+            background-color: black;
+        }
+        .inlist{
+        	color: lightblue;
+        }
+        .neww{
+        	width: 100%;
+        	height: 20px;
+			background-color: gray;
+			text-align: center;
+			display:inline-block;
+
+        }
+        .neww:hover{
+        	background-color: lightgray;
+        	cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+	<div id="omotac" class='container-fluid'>
+		<div class='row'>
+		   <div id='header' class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		   		<h1>BOM</h1>
+				<p>Browser Object Model</p>
+		   </div>
+		  
+		</div>
+		<div class='row'>
+			<div id='col1' class="col-sm-3 col-md-3 col-lg-3">
+				<h2 class='inlist'>Window</h2>
+				<hr>
+				<p>Sadrzi informacije o prozoru pregledaca</p>
+				<hr>
+				<b>window.</b>
+				<ul>
+					<li>innerHeight</li>
+					<li>innerWidth</li>
+					<li>open</li>
+					<li>close</li>
+					<li>moveTo</li>
+					<li>resizeTo</li>
+				</ul>
+				<div id='newwin' class='neww'>Novi prozor</div>
+			</div>
+			<div id='col2' class="col-sm-3 col-md-3 col-lg-3"> 
+				<h2  class='inlist'>Screen</h2>
+				<hr>
+				<p>Sadrzi informacije o korisnickom ekranu</p>
+				<hr>
+				<b>screen.</b>
+				<ul>
+					<li>width</li>
+					<li>height</li>
+					<li>availWidth</li>
+					<li>availHeight</li>
+					<li>colorDepth</li>
+					<li>pixelDepth</li>
+				</ul>
+			</div>
+		    <div id='col3' class="col-sm-3 col-md-3 col-lg-3"> 
+				<h2 class='inlist'>Location</h2>
+				<hr>
+				<p>Sadrzi informacije o lokacijama i vrsi promenu strane</p>
+				<hr>
+				<b>window.location.</b>
+				<ul>
+					<li>href</li>
+					<li>hostname</li>
+					<li>pathname</li>
+					<li>protocol</li>
+					<li>assign</li>
+				</ul>
+				<div id='newdoc' class='neww'>Vise informacija</div>			
+		    </div>
+		    <div id='col4' class="col-sm-3 col-md-3 col-lg-3">
+				<h2 class='inlist'>Navigator</h2>
+				<hr>
+				<p>Sadrzi informacije o pregledacu korisnika</p>
+				<hr>
+				<b>navigator.</b>
+				<ul>
+					<li>appName</li>
+					<li>appCodeName</li>
+					<li>platform</li>
+				</ul>
+			</div>
+		</div>
+		<div class='row'>
+		    <div id='footer' class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> </div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		//Sirina i visina pregledaca u px
+		console.log(window.innerHeight);
+		console.log(window.innerWidth);
+		document.getElementById('newwin').addEventListener('click', function(){
+			window.open('1.html');});
+		console.log(screen.availWidth); 
+		console.log(window.location);
+
+		//window.location.assign
+		function viseinfo() {	
+		  window.location.assign("https://www.w3schools.com")
+		}
+		document.getElementById('newdoc').addEventListener('click', viseinfo);
+	</script>
+</body>
+</html>

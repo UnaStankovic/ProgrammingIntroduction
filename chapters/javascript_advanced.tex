@@ -1,0 +1,80 @@
+\section{Napredni koncepti u JavaScriptu}
+
+U ovom poglavlju biće predstavljeni koncepti koji izlaze iz okvira osnovnih pojmova u $JavaScript$u.
+
+\subsection{Rad sa nizovima}
+
+Jedne od metoda za rad sa nizovima su $map$, $filter$ i $reduce$.
+$Map$ omogućava da se svaki element niza transformiše pomoću navedene funkcije čiji je jedini argument tekući element koji se obrađuje. Povratna vrednost funkcije predstavlja novu vrednost elementa koji se trenutno obrađuje. Bitno je napomenuti da $map$ ne transformiše polazni niz (in place) već kao povratnu vrednost vraća novi, transformisani, niz. Pogledajmo primer koji negativne brojeve pretvara u pozitivne, odnosno, vrši apsolutnu vrednost broja.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+nizAbs = niz.map(function(element) {
+    if (element < 0) {
+        return -element;
+    } else {
+	    return element;
+    }
+});
+\end{lstlisting}
+U promenljivu $nizAbs$ vraćamo novi niz koji se dobija vršenjem funkcije navedene kao prvi argument funkcije $map$ nad elementima niza $niz$.
+$Reduce$ omogućava primenu agregatnih funkcija nad nizovima. Funkcija koja se prosleđuje sadrži dva argumenta, $akumulator$ (koji čuva tekuću ukupnu izracunatu vrednost) i tekući element koji se obrađjuje. Obratiti pažnju da je inicijalna vrednost akumulatora je $1$. Inicijalna vrednost se može eksplicitno zadati kao drugi argument $reduce$ funkcije. Primer računa sumu negativnih parnih brojeva.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+const sumaNegElemenata = niz.reduce(function(akumulator, element) {
+    if (element < 0) {
+        return akumulator + element;
+    } else {
+        return akumulator;
+    }
+}, 0); // 0 je POSTAVLJENA inicijalna vrednost akumulatora
+\end{lstlisting}
+
+
+$Filter$ $"$filtrira$"$ niz korišćenjem zadate funkcije. Zadata funkcija dobija kao argument tekući element i u zavisnosti od uslova vraća $false$ ako element treba da se izbaci ili $true$ ako element treba da ostane u nizu. Transformisani niz se vraća kao argument $filter$ funkcije. U primeru se izbacuju negativni brojevi.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+const izbaceniNegativni = niz.filter(function(element) {
+    if (element < 0) {
+        return false;
+    } else {
+        return true;
+    }
+});
+\end{lstlisting}
+
+Iteracija kroz niz može se vršiti i $forEach$ funkcijom. Zadatom funkcijom se definišu operacije nad elementima niza, funkcija dobija tekuci element kao argument. Ujedno, funkcija $"$pokušava$"$ da vrednost svakog elementa povećava za 10. Izmena nece uticati na stvarni element niza.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+console.log('Elementi niza su:');
+var novi_niz = [];
+niz.forEach(function(element) {
+    console.log(element);
+    // Ova izmena se nece odraziti na elemente polaznog niza.
+    element += 10;
+    novi_niz.push(element);
+    console.log(element);
+});
+\end{lstlisting}
+
+\subsection{Anonimne funkcije}
+Osim standardne notacije za anonimne funkcije postoji i skraćena notacija koju nazivamo $lambda$ funkcija. $Lambda$ notacija je sledećeg oblika: lista parametara $=>$ telo funkcije. Ukoliko funkcija ima jedan parametar zagrade nisu neophodne, ukoliko ih nema onda se navode samo obične zagrade.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+function(){
+	return a*a;
+} 
+
+(a)=>{
+    return a*a;
+}
+
+a=>{
+    return a*a;
+}
+
+()=>{
+    alert("Poziv iz lambda fije");
+}
+\end{lstlisting}
+
+
+\subparagraph{Zadaci - JS napredni koncepti}
+
+\begin{primer}
+Za zadatak sa zdravstvenom stanicom izvršiti filtriranje pacijenata prema krvnim grupama. Ispisati spiskove pacijenata za svaku od krvnih grupa, kao i broj pacijenata sa određenom krvnom grupom.
+\end{primer}
