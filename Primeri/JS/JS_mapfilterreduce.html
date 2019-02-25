@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JavaScript</title>
+	<link rel="stylesheet" href="bootstrap.css">
+	<style>
+        #header{
+            height: 100px;
+            background-color: #ff9966;
+            text-align: center;
+            color: white;
+        }
+    
+        #nav{
+            height: 400px;
+            background-color: #00cc99;
+        }
+
+        #col1{
+            height: 400px;
+            background-color: #ffff66;
+        }
+        
+        #col2{
+            height: 400px;
+            background-color: #aa55dd;
+        }
+        
+        #col3{
+            height: 400px;
+            background-color: #55aadd;
+        }
+        
+        #footer{
+            height: 50px;
+            background-color: #993366;
+        }
+        
+    </style>
+</head>
+<body>
+	
+	<div id="omotac" class='container-fluid'>
+		<div class='row'>
+	       <div id='header' class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	       		<h1>JavaScript - dodatni koncepti</h1>
+				<p>Konzola krije tajne JS funkcija map, reduce, filter...</p>
+	       </div>
+		</div>
+		<div class='row'>
+			<div id='nav' class="col-sm-3 col-md-3 col-lg-3">
+				<h2>MAP</h2>
+				<ul>
+					<li>transformise svaki element niza funkcijom ciji je jedini argument tekuci element</li>
+					<li>povratna vrednost funkcije je nova vrednost elementa koji se trentno obradjuje</li>
+					<li>ne transformise zadati vec kreira novi niz</li>
+				</ul>
+			</div>
+			<div id='col1' class="col-sm-3 col-md-3 col-lg-3">FILTER</div>
+			<div id='col2' class="col-sm-3 col-md-3 col-lg-3">REDUCE </div>
+	        <div id='col3' class="col-sm-3 col-md-3 col-lg-3"> </div>
+	    </div>
+	    <div class='row'>
+	        <div id='footer' class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> </div>
+		</div>
+	</div>
+	<script>
+		console.log("_____________________________");
+		console.log("MAP");
+		console.log("_____________________________");
+		const niz = [1,2,3,-4,-5];
+		console.log('Polazni niz:');
+		console.log(niz);
+
+		// Map omogucava da se svaki element niza transformise
+		// pomocu navedene funkcije ciju je jedini argument tekuci
+		// element koji se obradjuje. Povratna vrednost funkcije
+		// predstavlja novu vrednost elementa koji se trenutno obradjuje
+
+		// Map ne transformise polazni niz (in place) vec kao povratnu vrednost vraca novi
+		// (transformisani)
+
+		// U ovom slucaju, negativni brojevi se pretvaraju u pozitivne
+		// (brojevi se transformisu u njihove apsolutne vrednosti)
+		nizAbs = niz.map(function(element) {
+			if (element < 0) {
+				return -element;
+			} else {
+				return element;
+			}
+		})
+
+		console.log('Transformisan niz:');
+		console.log(nizAbs);
+
+		console.log('Polazni niz:');
+		console.log(niz);
+
+		// Reduce omogucava primenu agregatnih funkcija nad nizovima.
+		// Funkcija koja se prosledjuje sadrzi dva argumenta, akumulator (koji cuva tekucu ukupnu izracunatu vrednost) i 
+		//tekuci element koji se obradjuje.
+
+		// VAZNO: Inicijalna vrednost akumulatora je 1,
+		// Inicijalna vrednost se moze eksplicitno zadati kao drugi argument
+		// reduce funkcije
+
+		// U primeru se racuna suma negativnih suma parnih brojeva
+		const sumaNegElemenata = niz.reduce(function(akumulator, element) {
+			if (element < 0) {
+				return akumulator + element;
+			} else {
+				return akumulator;
+			}
+		}, 0); // 0 je inicijalna vrednost akumulatora
+
+		console.log('Suma negativnih elemenata niza:', sumaNegElemenata);
+
+		// Filter "filtrira" niz koriscenjem zadate funkcije (u sustini moze samo 
+		// eventualno da izbaci neki element). Zadata funkcija dobija kao argument
+		// tekuci element i u zavisnosti od uslova vraca false ako element treba da se
+		// izbaci ili true ako element treba da ostane u nizu.
+
+		// Transformisani niz se vraca kao argument filter funkcije
+
+		// U primeru se izbacuju negativni brojevi
+
+		const izbaceniNegativni = niz.filter(function(element) {
+			if (element < 0) {
+				return false;
+			} else {
+				return true;
+			}
+		});
+
+		console.log('Niz bez negativnih brojeva:');
+		console.log(izbaceniNegativni);
+
+		// Iteracija kroz niz moze se vrsiti i forEach funkcijom.
+		// Zadatom funkcijom se definisu operacije nad elementima niza,
+		// funkcija dobija tekuci element kao argument.
+
+		// Ujedno, funkcija "pokusava" da vrednost svakog elementa povecava za 10.
+		// Izmena nece uticati na stvarni element niza.
+
+		console.log('Elementi niza su:');
+		var novi_niz = [];
+		niz.forEach(function(element) {
+			console.log(element);
+
+			// Ova izmena se nece odraziti na elemente polaznog niza.
+			element += 10;
+			novi_niz.push(element);
+			console.log(element);
+			// Izmene nad objektima (koji se prosledjuju kao reference),
+			// mogu se odraziti na elemente niza
+		});
+
+		console.log('Neizmenjeni polazni niz:');
+		console.log(niz);
+		console.log('Novi niz');
+		console.log(novi_niz);
+
+	</script>
+</body>
+</html>

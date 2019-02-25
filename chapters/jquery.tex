@@ -1,6 +1,6 @@
-\section{JQuery biblioteka}
+\subsection{JQuery biblioteka}
 
-JQuery je biblioteka koja omogućava brojne funkcionalnosti koje nam olakšavaju rad. Neke od njih su:
+JQuery je jedna od najpopularnijih biblioteka nastala $2006.$ godine koja nam omogućava brojne funkcionalnosti koje umnogome olakšavaju rad. Neke od njih su:
 \begin{itemize}
 \item HTML/DOM manipulacija
 \item CSS manipulacija
@@ -8,8 +8,80 @@ JQuery je biblioteka koja omogućava brojne funkcionalnosti koje nam olakšavaju
 \item Efekti i animacije
 \end{itemize} 
 
+Sintaksa $JQuery$-ja sastoji se iz nekoliko elemenata $\$(dohvatanje\ elementa).akcija\ nad\ elementom$. Na primer, $\$('p').hide()$, čime se skrivaju svi pasusi. 
+Pre nego što krenemo da pišemo $JQuery$ kod neophodno je da ga uključimo:
+\begin{verbatim}
+<script src="jquery.js"></script>
+\end{verbatim}
+Da bismo došli do ove datoteke neophodno je da je skinemo sa zvaničnog sajta. Postoji nekoliko verzija biblioteke, pa treba odabrati onu koja odgovara potrebama.
+\\\\
+Svaki $JQuery$ kod počinje sa istom linijom koja mora postojati kako bi se sprečilo da se kod izvršava pre nego što su svi $HTML$ elementi učitani:
+\begin{verbatim}
+$(document).ready(function(){
 
+});
+\end{verbatim}
+ili kraće sa:
+\begin{verbatim}
+$(function(){
 
+});
+\end{verbatim}
 
+\subparagraph{JQuery selektori}
+$JQuery$ selektori predstavljaju jedan od najvažnijih elemenata ove biblioteke. Uz pomoć selektora dohvatamo i baratamo $HTML$ elementima. Svi $JQuery$ selektori počinju sa \$(), a potom pod navodnicima navodimo naziv etikete ili $CSS$ selektor. Veoma je važno napomenuti da je moguće nadovezivati naredbe nakon što se element jednom dohvati ovaj postupak se naziva ulančavanje.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+HTML:
+<h1>Ovo je naslov</h1>
 
+JS:
+$('h1').css({
+    'color': 'red',
+    'font-size': '20px',
+});
+\end{lstlisting}
+\subparagraph{JQuery događaji}
+Događaji su veoma slični nazivima onima u standardnom $JavaScript$-u, a kako bismo ih navodili koristimo $on$. Unutar zagrada, potom, navodimo naziv događaja i funkciju koja treba da se izvrši kada je događaj okinut. Opet, unutar te funkcije možemo dohvatati druge elemente i dodavati neke operacije, na primer: promena boje, dodavanje reagovanja na događaj ili postavljanje animacija. Animacije su nešto što $JQuery$ razlikuje od običnog $JavaScripta$, kao i od drugih biblioteka, jer se ovde na veoma jednostavan način dodaju. Naime, na neki element možemo postaviti animaciju ključnom rečju $animate$ kojoj kao argumente šaljemo osobine elementa (kako se element menja), vreme za koje treba animacija da se izvrši, kao i funkciju koju je potrebno izvršiti nakon što je animacija gotova, Svi navedeni koncepti ilustrovani su na primeru ispod:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+HTML:
+<h1>Ovo je naslov</h1>
+<input type="text" id="polje1">
 
+JS:
+$('h1').css({
+    'color': 'red',
+    'font-size': '20px',
+    }).on('click', function(){
+        $('#polje1').animate({
+            opacity: 0.25,
+            left: "+=50",
+            height: "toggle"
+        }, 500, function() {
+             console.log('gotovo');
+        });
+});
+\end{lstlisting}
+U $JQuery$-u normalno rade i lambda funkcije:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+HTML:
+<h1>Ovo je naslov</h1>
+<input type="text" id="polje1">
+
+<h2 class="klasa1">123</h2>
+<h2 class="klasa1">345</h2>
+<h2 class="klasa1">567</h2>
+<h2 class="klasa1">678</h2>
+<h2 class="klasa1">335</h2>
+
+JS:
+$('.klasa1').on('click', () =>
+{
+    console.log('kliknuto');
+});
+\end{lstlisting}
+Da bismo pokupili vrednost elementa $input$ polja neophodno je da navedemo $.val()$ (prisetimo se u $JavaScript$-u bilo je $.value$). 
+\begin{lstlisting}[backgroundcolor = \color{lightgray}, breaklines=true]
+$('#polje1').on('input', (e) => {
+    console.log($('#polje1').val());
+});
+\end{lstlisting}

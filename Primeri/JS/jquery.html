@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JQuery</title>
+</head>
+<body>
+	<h1>Ovo je naslov</h1>
+	<input type="text" id="polje1">
+
+	<h2 class="klasa1">123</h2>
+	<h2 class="klasa1">345</h2>
+	<h2 class="klasa1">567</h2>
+	<h2 class="klasa1">678</h2>
+	<h2 class="klasa1">335</h2>
+
+	<script src="jquery.js"></script>
+	<script>
+		$('document').ready(function(){
+			 $('h1').css({
+			 	'color': 'red',
+			 	'font-size': '20px',
+			 }).on('click', function(){
+			 	$('#polje1').animate({
+			 	    opacity: 0.25,
+			 	    left: "+=50",
+			 	    height: "toggle"
+			 	  }, 500, function() {
+			 	    console.log('gotovo');
+			 	  });
+			 });
+
+			 $('#polje1').on('input', (e) => {
+			 	console.log($('#polje1').val());
+			 });
+//
+			$('.klasa1').on('click', () =>
+			{
+				console.log('kliknuto');
+			})
+/*
+			$('#polje1').slideUp(500).slideDown(500, () => {
+				console.log('Gotovo!');
+			});
+*/			
+
+		});
+	</script>
+</body>
+</html>
